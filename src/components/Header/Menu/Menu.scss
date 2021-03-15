@@ -1,0 +1,22 @@
+@import '../Shared.scss';
+.menu {
+    width: 140px;
+    align-items: center;
+    justify-content: space-between;
+    .menu-icon {
+        
+        i {
+            @include inset-shadow;
+            
+        }
+        .active {
+            @include inset-shadow-active;
+        }
+    }
+    .shop-name {
+        font-weight: bold;
+        font-size: larger;
+        color: black;
+        text-decoration: none;
+    }
+}

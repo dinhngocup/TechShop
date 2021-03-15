@@ -1,0 +1,58 @@
+.nav {
+    ul {
+        margin: 0;
+        li {
+            display: inline;
+            padding: 20px;
+            font-size: smaller;
+            font-weight: bold;
+            position: relative;
+            a {
+                color: black;
+                transition: 0.8s;
+                &:after {
+                    transition: 0.8s;
+                    position: absolute;
+                    content: "";
+                    background-color: #E77733;
+
+                    height: 2px;
+                    width: 0%;
+
+                    bottom: 10px;
+                    left:0;
+                    right: 0;
+
+                    margin: 0 auto;
+                }
+                &:hover {
+                    text-decoration: none;
+                    color: #E77733;
+                    &:after {
+                        width: 50%;
+                    }
+                }
+            }
+            .active {
+                color: #E77733;
+                &:after {
+                    position: absolute;
+                    content: "";
+                    background-color: #E77733;
+
+                    height: 2px;
+                    width: 50%;
+
+                    bottom: 10px;
+                    left:0;
+                    right: 0;
+
+                    margin: 0 auto;
+                }
+            }
+           
+            
+        }
+    }
+
+}

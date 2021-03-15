@@ -1,0 +1,25 @@
+
+@import '../Shared.scss';
+
+.info-group {
+    font-size: smaller;
+    justify-content: space-between;
+    align-items: center;
+    width: 80px;
+    a {
+        color: black;
+        i {
+            padding: 10px;
+            border-radius: 50%;
+            &:hover {
+                box-shadow: 10px 0px 40px -5px #E77733, inset 0px 0px 40px 0px white;
+            }
+        }
+        &.active {
+            i {
+                @include inset-shadow-active;
+            }
+        }
+
+    }
+}
