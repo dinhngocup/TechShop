@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.scss'
+import './_header.scss'
 import Menu from './Menu/menu'
 import Nav from './Nav/nav'
 import Info from './Info/info'

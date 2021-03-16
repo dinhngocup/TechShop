@@ -1,9 +1,9 @@
 import React from "react";
-import './Nav.scss'
+import './_nav.scss'
 import {
   NavLink,
 } from "react-router-dom";
-
+import Search from './search'
 function Nav(props) {
     return (
         

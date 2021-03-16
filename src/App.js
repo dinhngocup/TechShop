@@ -1,7 +1,7 @@
 import Header from "./components/Header/header";
 import "./App.css";
-import Home from './components/home'
 import News from './components/news'
+import Home from './components/Home/home'
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,7 +16,7 @@ function App() {
         <Route path="/shopping-cart" />
         <Route path="/user-info" />
         <Route path="/products" />
-        <Route path="/news"component={News}/>
+        <Route path="/news" component={News}/>
         <Route path="/sales" />
         <Route path="/contacts" />
       </Switch>

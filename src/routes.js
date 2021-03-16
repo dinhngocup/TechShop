@@ -5,7 +5,7 @@ const routes = [
     {
         path: '/home',
         exact: true,
-        main: () => <Home/>
+        main: () => <News/>
     },
     {
         path: '/news',
