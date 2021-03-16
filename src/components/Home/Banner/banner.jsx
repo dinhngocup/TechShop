@@ -1,13 +1,11 @@
-import React from 'react'
-import './_banner.scss'
+import React from "react";
+import "./_banner.scss";
 function Banner() {
-    return (
-        <div className="banner">
-            Banner
-        </div>
-    )
+  return (
+    <div>
+      banner
+    </div>
+  );
 }
 
-
-export default Banner
-
+export default Banner;

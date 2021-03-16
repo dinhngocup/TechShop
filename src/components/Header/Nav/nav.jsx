@@ -7,7 +7,8 @@ import Search from './search'
 function Nav(props) {
     return (
         
-        <div>
+        <div className='nav-bar d-flex'>   
+            <Search />
             <nav className='nav'>
                 <ul>
                     <li>
