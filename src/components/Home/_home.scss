@@ -1,5 +1,17 @@
 .body-content {
     width: 100%;
-    background-color: rgb(252,235,198);
-    height: 90vh;
+    background-color: white;
+    .wrapper-dashboard {
+
+        display: flex;
+        justify-content: center;
+        .trending-dashboard {
+            width: 90%;
+            .trending-row {
+                width: 90%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
 }
