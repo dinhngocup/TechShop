@@ -1,0 +1,36 @@
+.wrapper  {
+    background-color: deeppink;
+    display: flex;
+    justify-content: center;
+    // .main-content {
+    //     width: 100%;
+    // }
+}
+
+
+@media (max-width: 1248px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1248px) {
+    .main-content {
+        width: 80%;
+    }
+}
+@media (min-width: 1600px) {
+    .main-content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .main-content {
+        width: 60%;
+    }
+}@media (min-width: 1600px) {
+    .main-content {
+        width: 60%;
+    }
+}

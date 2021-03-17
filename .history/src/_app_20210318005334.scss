@@ -1,0 +1,33 @@
+.wrapper  {
+    background-color: rgb(252,235,198);
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+@media (max-width: 1440px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1441px) {
+    .main-content {
+        width: 80%;
+    }
+}
+@media (min-width: 1600px) {
+    .main-content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 2400px) {
+    .main-content {
+        width: 50%;
+    }
+}
+ *{
+
+ }

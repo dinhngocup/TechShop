@@ -1,0 +1,14 @@
+.wrapper  {
+    background-color: deeppink;
+    display: flex;
+    justify-content: center;
+    .main-content {
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 1248px) {
+    
+}
+//@media (min-width: 1600px) 60%
