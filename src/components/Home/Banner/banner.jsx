@@ -64,7 +64,11 @@ function Banner() {
   };
 
   return (
-    <div id="demo" className="banner carousel slide" data-ride="carousel">
+    <div
+      id="demo"
+      className="banner carousel slide"
+      data-ride="carousel"
+    >
       <ul className="carousel-indicators">
         {/* <li data-target="#demo" data-slide-to="0" className="active"></li>
         <li data-target="#demo" data-slide-to="1"></li>

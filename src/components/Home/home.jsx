@@ -3,7 +3,8 @@ import Banner from "./Banner/banner";
 import TrendingProduct from "./TrendingProduct/trendingProduct";
 import "./_home.scss";
 function Home() {
-  const [trendingProducts, setTrendingProducts] = useState("");
+  const [trendingProducts_1, setTrendingProducts_1] = useState("");
+  const [trendingProducts_2, setTrendingProducts_2] = useState("");
 
   // get trending Prods from DB
   useEffect(() => {
@@ -53,19 +54,20 @@ function Home() {
         price: "10.000.000đ",
       },
     ];
-    setTrendingProducts(products);
-  }, []);
 
+    setTrendingProducts_1(products.slice(0, 4));
+    setTrendingProducts_2(products.slice(4, 8));
+  }, []);
   const showTrendingProducts = (products) => {
     if (products.length === 0) return "";
-    let arr = [...products];
-    let row = arr.map((product, index) => {
-      if (index > 3) return "";
-      products.shift();
-      return <TrendingProduct key={index} />;
+    let row = products.map((product, index) => {
+      return (
+        <div className="col-sm-3" key={index} >
+          <TrendingProduct product={product} />
+        </div>
+      );
     });
-    console.log("products", products);
-    console.log(row);
+
     return row;
   };
 
@@ -76,16 +78,12 @@ function Home() {
         <div className="trending-dashboard mt-5">
           <h3>Trending Products</h3>
           <div className="trending-row mt-3">
-            <TrendingProduct />
-            <TrendingProduct />
-            <TrendingProduct />
-            <TrendingProduct />
-          </div>
-          <div className="trending-row mt-3">
-            <TrendingProduct />
-            <TrendingProduct />
-            <TrendingProduct />
-            <TrendingProduct />
+            <div className="row mb-3">
+              {showTrendingProducts(trendingProducts_1)}
+            </div>
+            <div className="row mb-3">
+              {showTrendingProducts(trendingProducts_2)}
+            </div>
           </div>
         </div>
       </div>
