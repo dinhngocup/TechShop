@@ -3,11 +3,13 @@ import "./_menu.scss";
 import { Link } from "react-router-dom";
 import MenuItem from "./menu-item";
 
+
 function Menu() {
+
   const [isHiddingMenu, setIsHiddingMenu] = useState(false);
   const [nav, setNav] = useState("");
   const [li, setLi] = useState("");
-
+  
   //const [menuItems, setMenuItems] = useState("");
 
   const placeLiElement = (li, nav) => {
@@ -40,7 +42,6 @@ function Menu() {
 
     setIsHiddingMenu(true);
     placeLiElement(liElement, navElement);
-    //console.log('1', isHiddingMenu);
   }, []);
 
   const showMenu = (isHiddingMenu) => {
@@ -96,15 +97,17 @@ function Menu() {
 
   const HandleHiddenMenu = (e) => {
     setIsHiddingMenu(!isHiddingMenu);
-    //console.log('2', isHiddingMenu);
-
+    
+   
     // if declare e.preventDef and e.stopPropa, direct to new page is prevented
     //e.preventDefault();
 
     placeLiElement(li, nav);
 
     //e.stopPropagation();
+
   };
+  
   return (
     <div className="fluid-container menu">
       <div className="row">
@@ -126,5 +129,6 @@ function Menu() {
     </div>
   );
 }
+
 
 export default Menu;

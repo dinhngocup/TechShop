@@ -6,6 +6,7 @@ import image from "../../../assets/images/city_7.jpg";
 
 function TopProductGroup(props) {
   const { group, productPerGroup } = props;
+  
   const showTopProduct = (products) => {
     let result = "";
     if (products.length === 0) return result;

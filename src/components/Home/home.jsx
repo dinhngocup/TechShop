@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 
 import Banner from "./Banner/banner";
 import TrendingProduct from "./TrendingProduct/trendingProduct";
@@ -69,6 +70,7 @@ function Home() {
 
   // get top purchased prods from DB depending on filterTopProd
   useEffect(() => {
+    
     let products = "";
     // call api
 
@@ -85,7 +87,7 @@ function Home() {
           name: "IPhone X",
           price: "10.000.000đ",
         },
-  
+
         {
           img: "",
           name: "IPhone XR",
@@ -139,7 +141,7 @@ function Home() {
           name: "Keyboard 2",
           price: "10.000.000đ",
         },
-  
+
         {
           img: "",
           name: "Keyboard 3",
@@ -160,6 +162,11 @@ function Home() {
           name: "Keyboard 6",
           price: "10.000.000đ",
         },
+        {
+          img: "",
+          name: "Keyboard 6",
+          price: "10.000.000đ",
+        },
       ];
     } else if (filterTopProduct === "mouse") {
       products = [
@@ -173,7 +180,7 @@ function Home() {
           name: "Mouse 2",
           price: "10.000.000đ",
         },
-  
+
         {
           img: "",
           name: "Mouse 3",
@@ -195,7 +202,6 @@ function Home() {
           price: "10.000.000đ",
         },
       ];
-      
     } else if (filterTopProduct === "monitor") {
       products = [
         {
@@ -208,7 +214,7 @@ function Home() {
           name: "Monitor 2",
           price: "10.000.000đ",
         },
-  
+
         {
           img: "",
           name: "Monitor 3",
@@ -250,7 +256,6 @@ function Home() {
 
   const showCarouselIndicators = (length) => {
     let result = [];
-
     if (length === 0) return result;
 
     for (let i = 0; i < length; i++) {
@@ -259,7 +264,7 @@ function Home() {
           data-target="#top-dashboard"
           data-slide-to={i}
           className={i === 0 ? "active" : ""}
-          key={i}
+          key={nanoid()}
         ></li>
       );
     }
@@ -270,33 +275,43 @@ function Home() {
     let tempArr = [];
     // the quantity of page
     let pageNumber = Math.ceil(items.length / productPerGroup);
-   
+
     for (let i = 0; i < pageNumber; i++) {
       if (productPerGroup * (i + 1) <= items.length)
-        tempArr.push(items.slice(productPerGroup * i, productPerGroup * (i + 1)));
+        tempArr.push(
+          items.slice(productPerGroup * i, productPerGroup * (i + 1))
+        );
       else tempArr.push(items.slice(productPerGroup * i));
     }
-    
+
     let res = "";
+
     res = tempArr.map((arr, index) => {
       return (
         <div
           className={`carousel-item ${index === 0 ? "active" : ""}`}
-          key={index}
+          key={nanoid()}
         >
-          <TopProductGroup group={arr} productPerGroup={productPerGroup}/>
+          <TopProductGroup group={arr} productPerGroup={productPerGroup} />
         </div>
       );
     });
-    
     return res;
   };
 
   const changeTypeTopProduct = (e) => {
-    console.log(e.target.name);
+    let parent = e.target.parentElement;
+    let buttons = parent.querySelectorAll("button");
+    buttons.forEach((btn) => {
+      if (btn.classList.contains("active")) {
+        btn.classList.remove("active");
+      }
+    });
+
     let filter = e.target.name;
+    e.target.classList.add("active");
     setFilterTopProduct(filter);
-  }
+  };
 
   return (
     <div className="body-content">
@@ -317,17 +332,37 @@ function Home() {
           <div className="header-top-dashboard">
             <h3>Top Purchased Products</h3>
             <div>
-              <button type="button" className="btn btn-outline-secondary active" name="top20" onClick={changeTypeTopProduct}>
+              <button
+                type="button"
+                className="btn btn-outline-secondary active"
+                name="top20"
+                onClick={changeTypeTopProduct}
+              >
                 Top 20
               </button>
-              <button type="button" className="btn btn-outline-secondary" name="keyboard" onClick={changeTypeTopProduct}>
-                Bàn phím
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                name="keyboard"
+                onClick={changeTypeTopProduct}
+              >
+                Keyboard
               </button>
-              <button type="button" className="btn btn-outline-secondary" name="mouse" onClick={changeTypeTopProduct}>
-                Chuột
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                name="mouse"
+                onClick={changeTypeTopProduct}
+              >
+                Mouse
               </button>
-              <button type="button" className="btn btn-outline-secondary" name="monitor" onClick={changeTypeTopProduct}>
-                Màn hình
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                name="monitor"
+                onClick={changeTypeTopProduct}
+              >
+                Monitor
               </button>
             </div>
           </div>
@@ -339,7 +374,9 @@ function Home() {
             data-interval="false"
           >
             <ul className="carousel-indicators">
-              {showCarouselIndicators(Math.ceil(topProducts.length / TOP_PRODUCT_NUMBER_PER_GROUP))}
+              {showCarouselIndicators(
+                Math.ceil(topProducts.length / TOP_PRODUCT_NUMBER_PER_GROUP)
+              )}
             </ul>
             <div className="carousel-inner">
               {showCarouselItems(topProducts, TOP_PRODUCT_NUMBER_PER_GROUP)}

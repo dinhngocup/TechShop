@@ -4,6 +4,8 @@ import Menu from './Menu/menu'
 import Nav from './Nav/nav'
 import Info from './Info/info'
 
+
+
 function Header() {
     return (
         <div className='header d-flex sticky-top'>
@@ -12,6 +14,7 @@ function Header() {
             <Info />
         </div>
     );
+    
 }
 
 export default Header;
