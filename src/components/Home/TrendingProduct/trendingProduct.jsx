@@ -5,6 +5,7 @@ import "./_trendingProduct.scss";
 
 function TrendingProduct(props) {
   const { product } = props;
+  
   return (
     <div className="trending-product d-flex">
       <img src={image} alt={product.name}/>
@@ -20,4 +21,4 @@ TrendingProduct.propTypes = {
   product: PropTypes.object.isRequired,
 };
 
-export default TrendingProduct;
+export default React.memo(TrendingProduct);

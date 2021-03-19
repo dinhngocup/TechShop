@@ -5,9 +5,41 @@
 
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
         .trending-dashboard {
             width: 90%;
-            
+            .header-top-dashboard {
+                display: flex;
+                justify-content: space-between;
+                button {
+                    margin: 0 10px;
+                    border: none;
+                    color: black;
+                    border-radius: 20px;
+                    &:hover {
+                        border: 1px solid #E77733;
+                        background-color: transparent;
+                    }
+                    &.active, &:focus {
+                        background-color: transparent;
+                        border: 1px solid #E77733;
+                        outline: none;
+                        box-shadow: none;
+                        color: #E77733;
+                        font-weight: 700;
+                    }
+                }
+                
+            }
+            .top-row {
+                .carousel-indicators li{
+                    background-color: #E77733;
+                }
+                .carousel-inner {
+                    padding-bottom: 30px;
+                }
+            }
         }
     }
 }

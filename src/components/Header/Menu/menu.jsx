@@ -22,9 +22,7 @@ function Menu() {
       el.style.setProperty("--delay-open", `${(li.length - i) * 0.1}s`);
     });
     nav.classList.toggle("nav-closed");
-    
-  }
- 
+  };
 
   //get nav & li position
   useEffect(() => {
@@ -43,7 +41,6 @@ function Menu() {
     setIsHiddingMenu(true);
     placeLiElement(liElement, navElement);
     //console.log('1', isHiddingMenu);
-
   }, []);
 
   const showMenu = (isHiddingMenu) => {
@@ -86,9 +83,11 @@ function Menu() {
 
         return (
           <li key={index}>
-            <MenuItem data={data} 
-            isHiddingMenu={isHiddingMenu} 
-            handleHideMenu={HandleHiddenMenu}/>
+            <MenuItem
+              data={data}
+              isHiddingMenu={isHiddingMenu}
+              handleHideMenu={HandleHiddenMenu}
+            />
           </li>
         );
       });
@@ -99,8 +98,6 @@ function Menu() {
     setIsHiddingMenu(!isHiddingMenu);
     //console.log('2', isHiddingMenu);
 
-
-
     // if declare e.preventDef and e.stopPropa, direct to new page is prevented
     //e.preventDefault();
 
@@ -109,13 +106,12 @@ function Menu() {
     //e.stopPropagation();
   };
   return (
-    
     <div className="fluid-container menu">
       <div className="row">
         <div className="col hidden-menu-container">
           <ul className="hidden-menu" id="hidden-menu">
-            {showMenu(isHiddingMenu)}  
-            
+            {showMenu(isHiddingMenu)}
+
             <button className="nav-toggle" onClick={HandleHiddenMenu}>
               X
             </button>

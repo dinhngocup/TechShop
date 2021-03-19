@@ -62,7 +62,7 @@ function Banner() {
 
     return result;
   };
-
+  
   return (
     <div
       id="demo"
@@ -70,25 +70,13 @@ function Banner() {
       data-ride="carousel"
     >
       <ul className="carousel-indicators">
-        {/* <li data-target="#demo" data-slide-to="0" className="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li> */}
         {showCarouselIndicators(bannerImages)}
       </ul>
       <div className="carousel-inner">
-        {/* <div className="carousel-item active">
-          <img src={image} alt="Los Angeles" />
-        </div>
-        <div className="carousel-item">
-          <img src={image} alt="Los Angeles" />
-        </div>
-        <div className="carousel-item">
-          <img src={image} alt="Los Angeles" />
-        </div> */}
         {showCarouselItems(bannerImages)}
       </div>
     </div>
   );
 }
 
-export default Banner;
+export default React.memo(Banner);

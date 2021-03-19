@@ -1,0 +1,15 @@
+.top-group {
+    .top-product {
+        flex-direction: column;
+        
+        img {
+            border-radius: 10px;
+            width: 300px;
+            height: 300px;
+        }
+        .name {
+            font-weight: 700;
+            letter-spacing: 0.7px;
+        }
+    }
+}
