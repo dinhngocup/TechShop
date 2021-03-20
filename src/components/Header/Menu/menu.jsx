@@ -3,15 +3,20 @@ import "./_menu.scss";
 import { Link } from "react-router-dom";
 import MenuItem from "./menu-item";
 
+import PropTypes from "prop-types";
 
-function Menu() {
+Menu.propTypes = {
+  updateMenuStatus: PropTypes.func.isRequired,
+  requestCloseMenu: PropTypes.bool.isRequired,
+};
 
+function Menu(props) {
+  let { updateMenuStatus, requestCloseMenu } = props;
   const [isHiddingMenu, setIsHiddingMenu] = useState(false);
   const [nav, setNav] = useState("");
   const [li, setLi] = useState("");
-  
-  //const [menuItems, setMenuItems] = useState("");
 
+  //const [menuItems, setMenuItems] = useState("");
   const placeLiElement = (li, nav) => {
     let boundary_y = li[0].getBoundingClientRect().top;
     li.forEach((el, i) => {
@@ -20,8 +25,8 @@ function Menu() {
         el.getAttribute("data-group") * -11 -
         boundary_y;
       el.style.setProperty("--top", top);
-      el.style.setProperty("--delay-close", `${i * 0.1}s`);
-      el.style.setProperty("--delay-open", `${(li.length - i) * 0.1}s`);
+      el.style.setProperty("--delay-close", `${i * 0.03}s`);
+      el.style.setProperty("--delay-open", `${(li.length - i) * 0.03}s`);
     });
     nav.classList.toggle("nav-closed");
   };
@@ -43,6 +48,19 @@ function Menu() {
     setIsHiddingMenu(true);
     placeLiElement(liElement, navElement);
   }, []);
+
+  useEffect(() => {
+    // actually dependency only include requestCloseMenu
+    if (requestCloseMenu) {
+      setIsHiddingMenu(true);
+      
+      placeLiElement(li, nav);
+      updateMenuStatus({
+        isClosingMenu: true,
+        requestCloseMenu: false,
+      });
+    }
+  }, [requestCloseMenu, li, nav, updateMenuStatus]);
 
   const showMenu = (isHiddingMenu) => {
     const menuItemsFromDB = [
@@ -94,20 +112,22 @@ function Menu() {
       });
     return res;
   };
-
+  
   const HandleHiddenMenu = (e) => {
+    let temp = !isHiddingMenu;
     setIsHiddingMenu(!isHiddingMenu);
-    
-   
+    updateMenuStatus({
+      isClosingMenu: temp,
+      requestCloseMenu: false,
+    });
     // if declare e.preventDef and e.stopPropa, direct to new page is prevented
     //e.preventDefault();
 
     placeLiElement(li, nav);
 
-    //e.stopPropagation();
-
+    e.stopPropagation();
   };
-  
+
   return (
     <div className="fluid-container menu">
       <div className="row">
@@ -129,6 +149,5 @@ function Menu() {
     </div>
   );
 }
-
 
 export default Menu;
