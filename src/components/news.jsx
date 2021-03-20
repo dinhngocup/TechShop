@@ -8,5 +8,5 @@ function News() {
     )
 }
 
-export default News
+export default React.memo(News)
 

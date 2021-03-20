@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "./_menu.scss";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { updateRequestClose } from "../../../appSlice";
 import MenuItem from "./menu-item";
+import { updateMenuState } from "./menuSlice";
+import "./_menu.scss";
 
-import PropTypes from "prop-types";
 
-Menu.propTypes = {
-  updateMenuStatus: PropTypes.func.isRequired,
-  requestCloseMenu: PropTypes.bool.isRequired,
-};
+function Menu() {
+  const state = useSelector((state) => state.menu);
+  const stateApp = useSelector((state) => state.app);
+  const dispatch = useDispatch();
 
-function Menu(props) {
-  let { updateMenuStatus, requestCloseMenu } = props;
-  const [isHiddingMenu, setIsHiddingMenu] = useState(false);
   const [nav, setNav] = useState("");
   const [li, setLi] = useState("");
 
-  //const [menuItems, setMenuItems] = useState("");
+  
   const placeLiElement = (li, nav) => {
     let boundary_y = li[0].getBoundingClientRect().top;
     li.forEach((el, i) => {
@@ -25,11 +24,23 @@ function Menu(props) {
         el.getAttribute("data-group") * -11 -
         boundary_y;
       el.style.setProperty("--top", top);
-      el.style.setProperty("--delay-close", `${i * 0.03}s`);
-      el.style.setProperty("--delay-open", `${(li.length - i) * 0.03}s`);
+      el.style.setProperty("--delay-close", `${i * 0.1}s`);
+      el.style.setProperty("--delay-open", `${(li.length - i) * 0.1}s`);
     });
     nav.classList.toggle("nav-closed");
   };
+
+  useEffect(() => {
+    // actually dependency only include stateApp.requestClose
+    if (stateApp.requestClose && !state.isClosing) {
+      placeLiElement(li, nav);
+      const actionMenu = updateMenuState(true);
+      dispatch(actionMenu);
+
+      const actionApp = updateRequestClose(false);
+      dispatch(actionApp);
+    }
+  }, [stateApp.requestClose, li, nav, dispatch, state.isClosing]);
 
   //get nav & li position
   useEffect(() => {
@@ -37,30 +48,21 @@ function Menu(props) {
     let liElement = navElement.querySelectorAll("li");
     let group_size = Math.ceil(liElement.length / 3);
     let group_index = 0;
+
     setNav(navElement);
     setLi(liElement);
+
     liElement.forEach((e, i) => {
       e.setAttribute("data-group", group_index);
       group_index =
         i % group_size === group_size - 1 ? group_index + 1 : group_index;
     });
 
-    setIsHiddingMenu(true);
     placeLiElement(liElement, navElement);
-  }, []);
 
-  useEffect(() => {
-    // actually dependency only include requestCloseMenu
-    if (requestCloseMenu) {
-      setIsHiddingMenu(true);
-      
-      placeLiElement(li, nav);
-      updateMenuStatus({
-        isClosingMenu: true,
-        requestCloseMenu: false,
-      });
-    }
-  }, [requestCloseMenu, li, nav, updateMenuStatus]);
+    const action = updateMenuState(true);
+    dispatch(action);
+  }, [dispatch]);
 
   const showMenu = (isHiddingMenu) => {
     const menuItemsFromDB = [
@@ -112,20 +114,18 @@ function Menu(props) {
       });
     return res;
   };
-  
-  const HandleHiddenMenu = (e) => {
-    let temp = !isHiddingMenu;
-    setIsHiddingMenu(!isHiddingMenu);
-    updateMenuStatus({
-      isClosingMenu: temp,
-      requestCloseMenu: false,
-    });
-    // if declare e.preventDef and e.stopPropa, direct to new page is prevented
-    //e.preventDefault();
 
+  const HandleHiddenMenu = (e) => {
+    let temp = !state.isClosing
+    
     placeLiElement(li, nav);
 
     e.stopPropagation();
+
+    const action = updateMenuState(temp);
+    dispatch(action);
+    const actionApp = updateRequestClose(false);
+    dispatch(actionApp);
   };
 
   return (
@@ -133,7 +133,7 @@ function Menu(props) {
       <div className="row">
         <div className="col hidden-menu-container">
           <ul className="hidden-menu" id="hidden-menu">
-            {showMenu(isHiddingMenu)}
+            {showMenu(state.isClosing)}
 
             <button className="nav-toggle" onClick={HandleHiddenMenu}>
               X

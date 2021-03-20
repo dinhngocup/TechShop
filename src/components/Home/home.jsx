@@ -8,6 +8,7 @@ import TopProductGroup from "./TopProductGroup/topProductGroup";
 import "./_home.scss";
 
 function Home() {
+  console.log('home')
   const [trendingProducts_1, setTrendingProducts_1] = useState("");
   const [trendingProducts_2, setTrendingProducts_2] = useState("");
 
@@ -70,6 +71,7 @@ function Home() {
 
   // get top purchased prods from DB depending on filterTopProd
   useEffect(() => {
+    console.log('hi')
     
     let products = "";
     // call api
@@ -336,7 +338,7 @@ function Home() {
                 type="button"
                 className="btn btn-outline-secondary active"
                 name="top20"
-                onClick={changeTypeTopProduct}
+                onClick={(changeTypeTopProduct)}
               >
                 Top 20
               </button>
@@ -388,4 +390,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default React.memo(Home);

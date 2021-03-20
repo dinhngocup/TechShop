@@ -4,25 +4,15 @@ import Menu from "./Menu/menu";
 import Nav from "./Nav/nav";
 import Info from "./Info/info";
 
-import PropTypes from "prop-types";
-
-Header.propTypes = {
-  updateMenuStatus: PropTypes.func.isRequired,
-  requestCloseMenu: PropTypes.bool.isRequired,
-};
-
-function Header(props) {
-  const { updateMenuStatus, requestCloseMenu } = props;
+function Header() {
+  //console.log('header')
   return (
     <div className="header d-flex sticky-top">
-      <Menu
-        updateMenuStatus={updateMenuStatus}
-        requestCloseMenu={requestCloseMenu}
-      />
+      <Menu />
       <Nav />
       <Info />
     </div>
   );
 }
 
-export default Header;
+export default React.memo(Header);
