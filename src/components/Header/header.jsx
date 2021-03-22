@@ -5,12 +5,13 @@ import Nav from "./Nav/nav";
 import Info from "./Info/info";
 
 function Header() {
+  //console.log('header');
   return (
-    <div className="header d-flex fixed-top">
+    <header className="header d-flex fixed-top">
       <Menu />
       <Nav />
       <Info />
-    </div>
+    </header>
   );
 }
 

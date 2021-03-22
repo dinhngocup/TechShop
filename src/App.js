@@ -10,6 +10,7 @@ import "./_app.scss";
 
 
 function App() {
+  console.log('app');
   const dispatch = useDispatch();
 
   const handleCloseMenu = () => {

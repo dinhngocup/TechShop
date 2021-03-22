@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import Banner from "./Banner/banner";
+import BrandGroup from "./BrandGroup/brandGroup";
 import HeaderSection from "./HeaderSection/headerSection";
 import ProposedProduct from "./ProposedProduct/proposedProduct";
 import TopProductGroup from "./TopProductGroup/topProductGroup";
@@ -8,6 +9,7 @@ import TrendingProduct from "./TrendingProduct/trendingProduct";
 import "./_home.scss";
 
 function Home() {
+  //console.log('render home');
   const [trendingProducts_1, setTrendingProducts_1] = useState("");
   const [trendingProducts_2, setTrendingProducts_2] = useState("");
 
@@ -16,6 +18,8 @@ function Home() {
   const TOP_PRODUCT_NUMBER_PER_GROUP = 3;
 
   const [proposedProducts, setProposedProducts] = useState("");
+
+  const [brands, setBrands] = useState("");
 
   // get trending Prods from DB
   useEffect(() => {
@@ -310,6 +314,49 @@ function Home() {
     setProposedProducts(products);
   }, []);
 
+  // get brands from DB
+  useEffect(() => {
+    // call api get data
+
+    // temp data
+    let brands = [
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+      {
+        img: "",
+        name: "Asus",
+      },
+    ];
+
+    setBrands(brands);
+  }, []);
+
   const showTrendingProducts = (products) => {
     if (products.length === 0) return "";
     let row = products.map((product, index) => {
@@ -392,6 +439,22 @@ function Home() {
           key={nanoid()}
         >
           <ProposedProduct product={product} />
+        </div>
+      );
+    });
+    return res;
+  };
+
+  const showBrands = (brands) => {
+    let tempArr = [];
+    if (brands.length === 0) return "";
+    tempArr.push(brands.slice(0, 4));
+    tempArr.push(brands.slice(4));
+    let res = "";
+    res = tempArr.map((arr, index) => {
+      return (
+        <div className="row" key={index}>
+          <BrandGroup brands={arr} />
         </div>
       );
     });
@@ -530,6 +593,18 @@ function Home() {
               <input />
               <button type="button">Submit</button>
             </form>
+          </div>
+        </div>
+
+        {/* Our supported brands */}
+        <div className="supported-brand mt-5">
+          <div className="content">
+            <div className="sub-header">OUR SUPPORTED BRANDS</div>
+            <h1 className="header">BEST OF THE BEST</h1>
+            <div className="title-deco">
+              <span></span>
+            </div>
+            <div className="brands m-5">{showBrands(brands)}</div>
           </div>
         </div>
       </div>

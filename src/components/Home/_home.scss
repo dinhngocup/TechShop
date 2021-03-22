@@ -53,6 +53,7 @@
         }
     }
     .subscription {
+        border-radius: 20px;
         width: 90%;
         background-image: url("../../assets/images/pic6.jpeg");
 
@@ -103,6 +104,54 @@
                         border: 1px #f96167 solid;
                         color: #f96167;
                     }
+                }
+            }
+        }
+    }
+    .supported-brand {
+        width: 90%;
+
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .content {
+            width: 100%;
+            h1 {
+                color: #e77733;
+                font-weight: 700;
+            }
+            .title-deco {
+                span {
+                    width: 100px;
+                    background-color: #e77733;
+                    height: 2px;
+                    display: inline-block;
+                    position: relative;
+                    &:before {
+                        content: "";
+                        height: 2px;
+                        width: 4px;
+                        position: absolute;
+                        top: 0;
+                        left: -10px;
+                        background-color: inherit;
+                    }
+                    &:after {
+                        content: "";
+                        height: 2px;
+                        width: 4px;
+                        position: absolute;
+                        top: 0;
+                        right: -10px;
+                        background-color: inherit;
+                    }
+                }
+            }
+            .brands {
+                .col {
+                    padding:0;
                 }
             }
         }

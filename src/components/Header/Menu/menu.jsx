@@ -8,6 +8,7 @@ import "./_menu.scss";
 
 
 function Menu() {
+  //console.log('menu');
   const state = useSelector((state) => state.menu);
   const stateApp = useSelector((state) => state.app);
   const dispatch = useDispatch();
