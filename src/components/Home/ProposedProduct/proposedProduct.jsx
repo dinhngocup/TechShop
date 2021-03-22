@@ -1,6 +1,8 @@
 import { PropTypes } from "prop-types";
 import React, { useEffect, useState } from "react";
 import image1 from "../../../assets/images/pic7.jpeg";
+import BtnAdd from "../../Button/btnAdd";
+import BtnMore from "../../Button/btnMore";
 import "./_proposedProduct.scss";
 
 ProposedProduct.propTypes = {
@@ -81,8 +83,8 @@ function ProposedProduct(props) {
         </div>
         <p className="description">{product.description}</p>
         <div className="d-flex">
-          <button className="btn-learn-more">Learn more</button>
-          <button className="btn-add-to-cart">Add to cart</button>
+          <BtnAdd/>
+          <BtnMore/>
         </div>
       </div>
     </div>

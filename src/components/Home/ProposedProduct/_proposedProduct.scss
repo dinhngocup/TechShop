@@ -37,28 +37,8 @@
                 }
             }
         }
-        button {
-            border-radius: 50px;
-            padding: 10px 20px 10px 20px;
-            margin-right: 10px;
-            border: none;
-            transition:  0.5s;
-            &:hover {
-                background-color: #fcebc6;
-                color: black;
-            }
-        }
-        .btn-learn-more {
-            border: 1px solid #e77733;
-            background-color: #fff;
-            color: #e77733;
-            font-weight: 700;
-        }
-        .btn-add-to-cart {
-            background-color: #e77733;
-            color: #ffff;
-            font-weight: 700;
-        }
+        
+        
         .description {
             color: #888;
             line-height: 22px;
