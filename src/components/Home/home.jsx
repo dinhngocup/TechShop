@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
-
+import React, { useEffect, useState } from "react";
 import Banner from "./Banner/banner";
-import TrendingProduct from "./TrendingProduct/trendingProduct";
+import HeaderSection from "./HeaderSection/headerSection";
+import ProposedProduct from "./ProposedProduct/proposedProduct";
 import TopProductGroup from "./TopProductGroup/topProductGroup";
-
+import TrendingProduct from "./TrendingProduct/trendingProduct";
 import "./_home.scss";
 
 function Home() {
-  console.log('home')
   const [trendingProducts_1, setTrendingProducts_1] = useState("");
   const [trendingProducts_2, setTrendingProducts_2] = useState("");
 
   const [topProducts, setTopProducts] = useState("");
   const [filterTopProduct, setFilterTopProduct] = useState("top20");
-
   const TOP_PRODUCT_NUMBER_PER_GROUP = 3;
+
+  const [proposedProducts, setProposedProducts] = useState("");
+
   // get trending Prods from DB
   useEffect(() => {
     // call api get data
@@ -71,8 +72,6 @@ function Home() {
 
   // get top purchased prods from DB depending on filterTopProd
   useEffect(() => {
-    console.log('hi')
-    
     let products = "";
     // call api
 
@@ -243,6 +242,74 @@ function Home() {
     setTopProducts(products);
   }, [filterTopProduct]);
 
+  // get hot proposes from DB
+  useEffect(() => {
+    // call api get data
+
+    // temp data
+    let products = [
+      {
+        img: "",
+        name: "Apple Watch",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-01 00:00:00",
+      },
+      {
+        img: "",
+        name: "IPhone X",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-02 00:00:00",
+      },
+
+      {
+        img: "",
+        name: "IPhone XR",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-23 00:00:00",
+      },
+      {
+        img: "",
+        name: "IPhone 12",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-01 00:00:00",
+      },
+      {
+        img: "",
+        name: "Macbook Pro",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-04 00:00:00",
+      },
+      {
+        img: "",
+        name: "Macbook Air",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-05 00:00:00",
+      },
+      {
+        img: "",
+        name: "Airpod 2",
+        price: "10.000.000đ",
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-04-04 00:00:00",
+      },
+    ];
+
+    setProposedProducts(products);
+  }, []);
+
   const showTrendingProducts = (products) => {
     if (products.length === 0) return "";
     let row = products.map((product, index) => {
@@ -315,12 +382,29 @@ function Home() {
     setFilterTopProduct(filter);
   };
 
+  const showHotProposes = (products) => {
+    let res = "";
+    if (products.length === 0) return res;
+    res = products.map((product, index) => {
+      return (
+        <div
+          className={`carousel-item ${index === 0 ? "active" : ""}`}
+          key={nanoid()}
+        >
+          <ProposedProduct product={product} />
+        </div>
+      );
+    });
+    return res;
+  };
+
   return (
-    <div className="body-content">
+    <React.Fragment>
       <Banner />
       <div className="wrapper-dashboard">
+        {/* Trending products*/}
         <div className="trending-dashboard mt-5">
-          <h3>Trending Products</h3>
+          <HeaderSection content="Trending Products" />
           <div className="trending-row mt-4">
             <div className="row mb-3">
               {showTrendingProducts(trendingProducts_1)}
@@ -330,15 +414,17 @@ function Home() {
             </div>
           </div>
         </div>
+
+        {/* Top purchased products */}
         <div className="trending-dashboard mt-5">
           <div className="header-top-dashboard">
-            <h3>Top Purchased Products</h3>
+            <HeaderSection content="Top Purchased Products" />
             <div>
               <button
                 type="button"
                 className="btn btn-outline-secondary active"
                 name="top20"
-                onClick={(changeTypeTopProduct)}
+                onClick={changeTypeTopProduct}
               >
                 Top 20
               </button>
@@ -368,7 +454,6 @@ function Home() {
               </button>
             </div>
           </div>
-
           <div
             id="top-dashboard"
             className="top-row carousel slide mt-4"
@@ -385,8 +470,70 @@ function Home() {
             </div>
           </div>
         </div>
+
+        {/* Hot proposes */}
+        <div className="trending-dashboard mt-5">
+          <div className="header-hot-proposes">
+            <HeaderSection content="Hot Proposes" />
+            <div>
+              <a
+                className=""
+                href="#hot-proposes"
+                role="button"
+                data-slide="prev"
+              >
+                <i className="fa fa-arrow-left"></i>
+              </a>
+
+              <a
+                className=""
+                href="#hot-proposes"
+                role="button"
+                data-slide="next"
+              >
+                <i className="fa fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div
+            id="hot-proposes"
+            className="carousel slide"
+            data-ride="carousel"
+            data-interval="false"
+          >
+            <div className="carousel-inner">
+              {showHotProposes(proposedProducts)}
+            </div>
+          </div>
+        </div>
+
+        {/* Subscription */}
+        <div className="subscription mt-5">
+          <div className="content">
+            <div className="header-subs mb-4">
+              <span>SPECIAL OFFERS</span> FOR SUBSCRIBERS
+            </div>
+            <h4>
+              NEW OFFERS EVERY WEEK <span>+</span>{" "}
+            </h4>
+            <h4>
+              DISCOUNT SYSTEM <span>+</span> BEST PRICES
+            </h4>
+            <div className="sub-content mt-4">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Voluptates eos obcaecati, aliquam amet dolore enim ab dolorum.
+              Debitis voluptate, nam corporis sit pariatur perferendis nobis
+              iure soluta inventore, ipsum ratione.
+            </div>
+            <form className="subs-input mt-4">
+              <input />
+              <button type="button">Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

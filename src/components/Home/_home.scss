@@ -1,43 +1,108 @@
-.body-content {
-    width: 100%;
-    background-color: white;
-    .wrapper-dashboard {
-
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        .trending-dashboard {
-            width: 90%;
-            .header-top-dashboard {
-                display: flex;
-                justify-content: space-between;
-                button {
-                    margin: 0 10px;
-                    border: none;
-                    color: black;
-                    border-radius: 20px;
-                    &:hover {
-                        border: 1px solid #E77733;
-                        background-color: transparent;
-                    }
-                    &.active, &:focus {
-                        background-color: transparent;
-                        border: 1px solid #E77733;
-                        outline: none;
-                        box-shadow: none;
-                        color: #E77733;
-                        font-weight: 700;
-                    }
+.wrapper-dashboard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .trending-dashboard {
+        width: 90%;
+        .header-top-dashboard {
+            display: flex;
+            justify-content: space-between;
+            button {
+                margin: 0 10px;
+                border: none;
+                color: black;
+                border-radius: 20px;
+                &:hover {
+                    border: 1px solid #e77733;
+                    background-color: transparent;
                 }
-                
+                &.active,
+                &:focus {
+                    background-color: transparent;
+                    border: 1px solid #e77733;
+                    outline: none;
+                    box-shadow: none;
+                    color: #e77733;
+                    font-weight: 700;
+                }
             }
-            .top-row {
-                .carousel-indicators li{
-                    background-color: #E77733;
+        }
+        .header-hot-proposes {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                font-size: x-large;
+                color: #e77733;
+                margin: 0px 10px;
+                &:hover {
+                    opacity: 0.5;
                 }
-                .carousel-inner {
-                    padding-bottom: 30px;
+            }
+        }
+        .top-row {
+            .carousel-indicators li {
+                background-color: #e77733;
+            }
+            .carousel-inner {
+                padding-bottom: 30px;
+            }
+        }
+    }
+    .subscription {
+        width: 90%;
+        background-image: url("../../assets/images/pic6.jpeg");
+
+        height: 700px;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        .content {
+            width: 50%;
+            .header-subs {
+                span {
+                    color: #f96167;
+                }
+            }
+            h4 {
+                font-weight: 700;
+                letter-spacing: 1px;
+                span {
+                    font-weight: 900;
+                    color: #f96167;
+                }
+            }
+            .sub-content {
+                opacity: 0.5;
+            }
+            .subs-input {
+                display: inline-block;
+                width: 400px;
+                position: relative;
+                input {
+                    width: 100%;
+                    border-radius: 30px;
+                    padding: 10px 120px 10px 30px;
+                    line-height: 30px;
+                    border: 1px #eee solid;
+                }
+                button {
+                    position: absolute;
+                    top: 0px;
+                    border-radius: 30px;
+                    padding: 14px 30px;
+                    right: 0px;
+                    background-color: #f96167;
+                    border: none;
+                    &:hover {
+                        background-color: #fff;
+                        border: 1px #f96167 solid;
+                        color: #f96167;
+                    }
                 }
             }
         }

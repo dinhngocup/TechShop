@@ -5,9 +5,8 @@ import Nav from "./Nav/nav";
 import Info from "./Info/info";
 
 function Header() {
-  //console.log('header')
   return (
-    <div className="header d-flex sticky-top">
+    <div className="header d-flex fixed-top">
       <Menu />
       <Nav />
       <Info />

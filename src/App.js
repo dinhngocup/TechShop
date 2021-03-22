@@ -8,11 +8,8 @@ import Home from './components/Home/home';
 import News from "./components/news";
 import "./_app.scss";
 
-//const Home = React.lazy(() => import("./components/Home/home"));
 
 function App() {
-  console.log('app')
-  //const stateMenu = useSelector((state) => state.menu);
   const dispatch = useDispatch();
 
   const handleCloseMenu = () => {
@@ -27,6 +24,7 @@ function App() {
       <div className="main-content" onClick={handleCloseMenu}>
         <Router>
           <Header />
+          <div className="body-content">
             <Switch>
               <Route path="/home" component={Home} />
               <Route path="/shopping-cart" />
@@ -36,6 +34,7 @@ function App() {
               <Route path="/sales" />
               <Route path="/contacts" />
             </Switch>
+          </div>
         </Router>
       </div>
     </div>
