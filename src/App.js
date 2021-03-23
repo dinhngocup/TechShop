@@ -7,6 +7,7 @@ import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
 import Home from "./components/Home/home";
 import News from "./components/news";
+import ScrollToTop from "./components/ScrollToTop/scrollToTop";
 import "./_app.scss";
 
 function App() {
@@ -24,14 +25,15 @@ function App() {
         <Router>
           <Header />
           <div className="body-content">
+            <ScrollToTop />
             <Switch>
               <Route path="/home" component={Home} />
-              <Route path="/shopping-cart" />
-              <Route path="/user-info" />
-              <Route path="/products" />
+              <Route path="/shopping-cart" component={News} />
+              <Route path="/user-info" component={News} />
+              <Route path="/products" component={News} />
               <Route path="/news" component={News} />
-              <Route path="/sales" />
-              <Route path="/contacts" />
+              <Route path="/sales" component={News} />
+              <Route path="/contacts" component={News} />
             </Switch>
             <Footer />
           </div>
