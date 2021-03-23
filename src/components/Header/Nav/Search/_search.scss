@@ -8,7 +8,7 @@
     transition: 0.8s;
     div:focus-within {
         width: 470px !important;
-        height: 40px !important;
+
         i {
             color: #e77733;
             background-color: white;
@@ -58,7 +58,7 @@
         }
     }
     &:hover {
-        div {
+        .search-bar {
             width: 470px;
             position: relative;
             i {
@@ -72,6 +72,23 @@
                 background-color: white;
             }
         }
+    }
+    &:focus-within {
+        .result-container {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    }
+    .result-container {
+        position: absolute;
+        border: 1px solid #adadad;
+        background-color: white;
+        width: 470px;
+        top: 50px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
     }
 }
 

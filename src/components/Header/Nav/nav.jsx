@@ -1,7 +1,7 @@
 import React from "react";
 import "./_nav.scss";
 import { NavLink, Link } from "react-router-dom";
-import Search from "./search";
+import Search from "./Search/search";
 function Nav(props) {
   return (
     <div className="nav-bar d-flex">
