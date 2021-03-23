@@ -17,46 +17,43 @@
                         transition: 0.8s;
                         position: absolute;
                         content: "";
-                        background-color: #E77733;
-    
+                        background-color: #e77733;
+
                         height: 2px;
                         width: 0%;
-    
+
                         bottom: 10px;
-                        left:0;
+                        left: 0;
                         right: 0;
-    
+
                         margin: 0 auto;
                     }
                     &:hover {
                         text-decoration: none;
-                        color: #E77733;
+                        color: #e77733;
                         &:after {
                             width: 50%;
                         }
                     }
                 }
                 .active {
-                    color: #E77733;
+                    color: #e77733;
                     &:after {
                         position: absolute;
                         content: "";
-                        background-color: #E77733;
-    
+                        background-color: #e77733;
+
                         height: 2px;
                         width: 50%;
-    
+
                         bottom: 10px;
-                        left:0;
+                        left: 0;
                         right: 0;
-    
+
                         margin: 0 auto;
                     }
                 }
-               
-                
             }
         }
-    
     }
 }

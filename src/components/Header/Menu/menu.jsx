@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { updateRequestClose } from "../../../appSlice";
 import MenuItem from "./menu-item";
 import { updateMenuState } from "./menuSlice";
 import "./_menu.scss";
-
 
 function Menu() {
   //console.log('menu');
@@ -16,9 +14,8 @@ function Menu() {
   const [nav, setNav] = useState("");
   const [li, setLi] = useState("");
 
-  
   const placeLiElement = (li, nav) => {
-    let boundary_y = li[0].getBoundingClientRect().top;
+    let boundary_y = li[0].getBoundingClientRect().top + 5;
     li.forEach((el, i) => {
       let top =
         el.getBoundingClientRect().top +
@@ -117,8 +114,8 @@ function Menu() {
   };
 
   const HandleHiddenMenu = (e) => {
-    let temp = !state.isClosing
-    
+    let temp = !state.isClosing;
+
     placeLiElement(li, nav);
 
     e.stopPropagation();
@@ -130,22 +127,15 @@ function Menu() {
   };
 
   return (
-    <div className="fluid-container menu">
-      <div className="row">
-        <div className="col hidden-menu-container">
-          <ul className="hidden-menu" id="hidden-menu">
-            {showMenu(state.isClosing)}
+    <div className="menu">
+      <div className="hidden-menu-container">
+        <ul className="hidden-menu" id="hidden-menu">
+          {showMenu(state.isClosing)}
 
-            <button className="nav-toggle" onClick={HandleHiddenMenu}>
-              X
-            </button>
-          </ul>
-        </div>
-        <div className="col">
-          <Link className="shop-name" to="/home">
-            TechShop
-          </Link>
-        </div>
+          <button className="nav-toggle" onClick={HandleHiddenMenu}>
+            X
+          </button>
+        </ul>
       </div>
     </div>
   );

@@ -3,21 +3,19 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { updateRequestClose } from "./appSlice";
+import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
-import Home from './components/Home/home';
+import Home from "./components/Home/home";
 import News from "./components/news";
 import "./_app.scss";
 
-
 function App() {
-  console.log('app');
+  console.log("app");
   const dispatch = useDispatch();
 
   const handleCloseMenu = () => {
-    
     const action = updateRequestClose(true);
     dispatch(action);
-    
   };
 
   return (
@@ -35,6 +33,7 @@ function App() {
               <Route path="/sales" />
               <Route path="/contacts" />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </div>

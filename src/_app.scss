@@ -4,10 +4,11 @@
     justify-content: center;
     height: 100%;
     .body-content {
+        margin-top:100px;
         width: 100%;
-        height: 100%;
         background-color: white;
     }
+    
 }
 
 @media (max-width: 1440px) {
@@ -31,4 +32,7 @@
     .main-content {
         width: 50%;
     }
+}
+body {
+    font-family: 'Cabin', sans-serif !important;
 }
