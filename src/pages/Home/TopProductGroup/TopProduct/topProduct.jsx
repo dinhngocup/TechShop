@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import image from "../../../../assets/images/city_7.jpg";
-import BtnAdd from '../../../Button/btnAdd'
-import BtnMore from '../../../Button/btnMore'
+import BtnAdd from '../../Button/btnAdd'
+import BtnMore from '../../Button/btnMore'
 import "./_topProduct.scss";
 
 function TopProduct(props) {
