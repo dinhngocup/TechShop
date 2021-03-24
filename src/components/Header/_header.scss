@@ -1,9 +1,9 @@
 header {
-      height: 100px;
+      height: 70px;
       background-color: rgb(252, 235, 198);
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       padding: 0px 30px;
       width: 100%;
       .header-top {

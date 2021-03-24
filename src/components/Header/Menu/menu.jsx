@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateRequestClose } from "../../../appSlice";
 import MenuItem from "./menu-item";
 import { updateMenuState } from "./menuSlice";
+import { Link } from "react-router-dom";
 import "./_menu.scss";
 
 function Menu() {
@@ -15,7 +16,7 @@ function Menu() {
   const [li, setLi] = useState("");
 
   const placeLiElement = (li, nav) => {
-    let boundary_y = li[0].getBoundingClientRect().top + 5;
+    let boundary_y = li[0].getBoundingClientRect().top;
     li.forEach((el, i) => {
       let top =
         el.getBoundingClientRect().top +
@@ -127,15 +128,22 @@ function Menu() {
   };
 
   return (
-    <div className="menu">
-      <div className="hidden-menu-container">
-        <ul className="hidden-menu" id="hidden-menu">
-          {showMenu(state.isClosing)}
+    <div className="fluid-container menu">
+      <div className="row">
+        <div className="col hidden-menu-container">
+          <ul className="hidden-menu" id="hidden-menu">
+            {showMenu(state.isClosing)}
 
-          <button className="nav-toggle" onClick={HandleHiddenMenu}>
-            X
-          </button>
-        </ul>
+            <button className="nav-toggle" onClick={HandleHiddenMenu}>
+              X
+            </button>
+          </ul>
+        </div>
+        <div className="col">
+          <Link className="shop-name" to="/home">
+            TechShop
+          </Link>
+        </div>
       </div>
     </div>
   );
