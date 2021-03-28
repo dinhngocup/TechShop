@@ -1,0 +1,42 @@
+.product-area {
+    background-color: rgb(246,246,246);
+    .product-grid-view {
+        padding: 50px 0;
+        width: 80%;
+        .heading {
+            background-color: white;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 30px;
+            color: #666666;
+            font-weight: bold;
+            font-size: smaller;
+            margin-bottom: 30px;
+            .breadcrumb-nav {
+                ul {
+                    padding: 0;
+                    list-style-type: none;
+                    li {
+                        margin-right: 38px;
+                        display: inline;
+                        position: relative;
+                        text-transform: uppercase;
+                        &:first-child:after {
+                            content: "";
+                        }
+                        &::after {
+                            content: "/";
+                            color: inherit;
+                            position: absolute;
+                            left: -22px;
+                            font-size: inherit;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

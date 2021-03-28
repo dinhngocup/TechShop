@@ -5,10 +5,13 @@ import "./App.css";
 import { updateRequestClose } from "./appSlice";
 import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
-import Home from "./pages/Home/home";
+import Home from "./pages/Home/main";
 import News from "./components/news";
 import ScrollToTop from "./components/ScrollToTop/scrollToTop";
 import "./_app.scss";
+import Product from "./pages/Product/main";
+
+
 
 function App() {
   console.log("app");
@@ -30,7 +33,7 @@ function App() {
               <Route path="/home" component={Home} />
               <Route path="/shopping-cart" component={News} />
               <Route path="/user-info" component={News} />
-              <Route path="/products" component={News} />
+              <Route path="/products" component={Product} />
               <Route path="/news" component={News} />
               <Route path="/sales" component={News} />
               <Route path="/contacts" component={News} />
