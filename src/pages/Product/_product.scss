@@ -1,42 +1,72 @@
 .product-area {
     background-color: rgb(246,246,246);
-    .product-grid-view {
-        padding: 50px 0;
-        width: 80%;
-        .heading {
-            background-color: white;
-            height: 50px;
-            line-height: 50px;
-            display: flex;
-            justify-content: space-between;
-            padding: 0px 30px;
-            color: #666666;
-            font-weight: bold;
-            font-size: smaller;
-            margin-bottom: 30px;
-            .breadcrumb-nav {
-                ul {
-                    padding: 0;
-                    list-style-type: none;
-                    li {
-                        margin-right: 38px;
-                        display: inline;
-                        position: relative;
-                        text-transform: uppercase;
-                        &:first-child:after {
-                            content: "";
-                        }
-                        &::after {
-                            content: "/";
-                            color: inherit;
-                            position: absolute;
-                            left: -22px;
-                            font-size: inherit;
-                        }
+    .product-banner {
+        width: 100%;
+        height:400px;
+        //background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+        background-image: url('../../assets/images/banner.jpeg');
+        background-size: cover;
+        background-position: center;
+        
+        background-repeat:no-repeat;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+        }
+        .breadcrumb-nav {
+            position: absolute;
+            bottom: 0;
+            left:0;
+            right:0;
+            ul {
+                padding: 0;
+                list-style-type: none;
+                li {
+                    color: white;
+                    margin-right: 38px;
+                    display: inline;
+                    position: relative;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    &:first-child:after {
+                        content: "";
+                    }
+                    &::after {
+                        content: "/";
+                        position: absolute;
+                        left: -22px;
+                        //font-size: inherit;
                     }
                 }
             }
         }
+    }
+    .product-grid-view {
+        padding: 50px 0;
+        width: 80%;
         
+        .option-table {
+            background-color: white;
+            margin-bottom: 30px;
+            &-heading {
+                color: #666666;
+                font-weight: bold;
+                border-bottom: 1px solid rgb(246, 246, 246);
+                padding: 10px 30px;
+                letter-spacing: 0.8px;
+            }
+            &-content {
+                padding: 20px 30px;
+                max-height: 290px;
+                overflow: scroll;
+            }
+        }
     }
 }
+

@@ -9,7 +9,7 @@ function Categories(props) {
   return (
     <div className="option-table">
       <div className="option-table-heading">CATEGORIES</div>
-      <div className="option-table-content category-table ">
+      <div className="option-table-content category-table">
         <ul>
           {categories.map((category, index) => (
             <li className={index === 0 ? "active" : ""} key={nanoid()}>{category.name}</li>
