@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useDispatch } from "react-redux";
 import image1 from "../../../assets/images/product1.jpeg";
+import { getProductModal } from '../ProductModal/productModalSlice';
 import WishIcon from "../WishIcon/wishIcon";
 import "./_productCard.scss";
 
@@ -33,6 +35,13 @@ function ProductCard(props) {
     }
     return result;
   };
+
+
+  const dispatch = useDispatch();
+  const openModal = () => {
+    const action = getProductModal(product);
+    dispatch(action);
+  };
   return (
     <div className="product-card">
       <div className="product-photo">
@@ -43,8 +52,8 @@ function ProductCard(props) {
             className="fa fa-search-plus"
             data-toggle="modal"
             data-target="#productModal"
+            onClick={openModal}
           ></i>
-
           <i className="fa fa-cart-plus"></i>
         </div>
       </div>
@@ -57,15 +66,16 @@ function ProductCard(props) {
           <div className="product-rate">{renderRateProduct(product.rate)}</div>
         </div>
       </div>
-      {/* <ProductModal product={product}/> */}
     </div>
   );
 }
 
 ProductCard.propTypes = {
   product: PropTypes.object,
+  getDataModal: PropTypes.func,
 };
 ProductCard.defaultProps = {
   product: {},
+  getDataModal: null,
 };
-export default ProductCard;
+export default React.memo(ProductCard);

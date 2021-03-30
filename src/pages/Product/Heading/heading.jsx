@@ -5,7 +5,7 @@ import './_heading.scss'
 const Heading = () => {
     return (
         <div className="product-heading">
-            <div className="showing">Showing 01-09 of 17 Results</div>
+            <div></div>
             <div className="showing">Showing 01-09 of 17 Results</div>
         </div>
     );

@@ -1,7 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import "./_existedBrand.scss";
-import { nanoid } from "nanoid";
 
 function ExistedBrand(props) {
   const { brands } = props;
@@ -11,7 +10,7 @@ function ExistedBrand(props) {
     res = brands.map((brand, index) => {
       let randomColor = Math.floor(Math.random() * 16777215).toString(16);
       return (
-        <li key={nanoid()}>
+        <li key={index}>
           <i
             className="fas fa-square-full"
             style={{ color: `#${randomColor}` }}

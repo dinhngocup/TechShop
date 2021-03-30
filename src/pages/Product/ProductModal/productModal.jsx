@@ -5,7 +5,6 @@ import image1 from "../../../assets/images/product3.jpeg";
 
 function ProductModal(props) {
   const { product } = props;
-  console.log(props);
   return (
     <div
       className="modal fade"
@@ -38,10 +37,9 @@ function ProductModal(props) {
               <div className="title info-deco">{product.name}</div>
               <div className="price info-deco">{product.price}</div>
               <div className="more-info info-deco">
-                <div className="all-info">
-                See more information
-                  {/* <a href="/">See more information</a> */}
-                </div>
+                <a className="all-info " href="/">
+                  See more information
+                </a>
                 <div className="quick-add-to-cart">
                   <input
                     type="number"

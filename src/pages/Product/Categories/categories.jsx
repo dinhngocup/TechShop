@@ -1,7 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import "./_categories.scss";
-import { nanoid } from 'nanoid';
 
 
 function Categories(props) {
@@ -12,7 +11,7 @@ function Categories(props) {
       <div className="option-table-content category-table">
         <ul>
           {categories.map((category, index) => (
-            <li className={index === 0 ? "active" : ""} key={nanoid()}>{category.name}</li>
+            <li className={index === 0 ? "active" : ""} key={index}>{category.name}</li>
           ))}
         </ul>
       </div>

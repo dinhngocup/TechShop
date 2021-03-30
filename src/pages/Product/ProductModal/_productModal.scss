@@ -34,21 +34,35 @@
     .more-info {
         width: 50%;
         .all-info {
+            line-height: 10px;
+            color: #434343;
+            text-decoration: underline;
             font-size: smaller;
-            margin-bottom: 20px;
+            transition: 0.3s;
+            &:hover {
+                color: #e77733;
+            }
         }
         .quick-add-to-cart {
             display: flex;
             justify-content: space-between;
-
+            margin-top: 20px;
             input {
                 display: inline;
                 width: 30%;
+            }
+            button {
+                background-color: #444;
+                &:hover {
+                    color:black;
+                    background-color: rgb(252, 235, 198);
+                }
             }
         }
     }
     .short-desc {
         color: #909295;
         font-size: 14px;
+        font-weight: bold;
     }
 }
