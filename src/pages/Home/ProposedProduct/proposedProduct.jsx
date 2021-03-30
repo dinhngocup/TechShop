@@ -6,7 +6,10 @@ import BtnMore from "../Button/btnMore";
 import "./_proposedProduct.scss";
 
 ProposedProduct.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.object,
+};
+ProposedProduct.defaultProps = {
+  products: {},
 };
 
 function ProposedProduct(props) {

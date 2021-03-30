@@ -62,51 +62,7 @@
         display: flex;
         align-items: center;
         text-align: center;
-        .content {
-            width: 50%;
-            .header-subs {
-                span {
-                    color: #f96167;
-                }
-            }
-            h4 {
-                font-weight: 700;
-                letter-spacing: 1px;
-                span {
-                    font-weight: 900;
-                    color: #f96167;
-                }
-            }
-            .sub-content {
-                opacity: 0.5;
-            }
-            .subs-input {
-                display: inline-block;
-                width: 400px;
-                position: relative;
-                input {
-                    width: 100%;
-                    border-radius: 30px;
-                    padding: 10px 120px 10px 30px;
-                    line-height: 30px;
-                    border: 1px #eee solid;
-                }
-                button {
-                    position: absolute;
-                    top: 0px;
-                    border-radius: 30px;
-                    padding: 14px 30px;
-                    right: 0px;
-                    background-color: #f96167;
-                    border: none;
-                    &:hover {
-                        background-color: #fff;
-                        border: 1px #f96167 solid;
-                        color: #f96167;
-                    }
-                }
-            }
-        }
+        
     }
     .supported-brand {
         width: 90%;
@@ -150,7 +106,7 @@
                 }
             }
             .brands {
-                .col {
+                .col-4, .col-sm-4, .col-md-3, .col-lg-3 {
                     padding:0;
                 }
             }
