@@ -11,7 +11,7 @@
                 font-weight: bold;
                 position: relative;
                 &:hover {
-                    a{
+                    a {
                         text-decoration: none;
                         color: #e77733;
                         &:after {
@@ -58,7 +58,7 @@
                 &.dropdown-switcher {
                     &:hover {
                         .dropdown {
-                            visibility:visible;
+                            visibility: visible;
                             opacity: 1;
                         }
                     }
@@ -69,12 +69,12 @@
                         transition: 0.3s;
                         border: 1px solid #adadad;
                         background-color: white;
-    
+
                         padding: 40px;
                         z-index: 999;
                         opacity: 0;
                         visibility: hidden;
-                        .col {
+                        .col-4 {
                             display: flex;
                             flex-direction: column;
                             a {
@@ -87,6 +87,11 @@
                                 }
                                 &:after {
                                     width: 0;
+                                }
+                                &.active {
+                                    font-weight: 600;
+                                    padding-left: 15px;
+                                    color: #e77733;
                                 }
                             }
                         }

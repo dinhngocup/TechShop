@@ -9,7 +9,7 @@ import TrendingProductList from "./TrendingProduct/trendingProductList";
 import "./_home.scss";
 
 function Home() {
-  //console.log('render home');
+  console.log('render home');
   const [trendingProducts, setTrendingProducts] = useState([]);
 
   const [proposedProducts, setProposedProducts] = useState([]);
