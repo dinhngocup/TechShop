@@ -1,5 +1,5 @@
 import Home from './components/home'
-import News from './components/news'
+import News from '../components/news'
 
 const routes = [
     {

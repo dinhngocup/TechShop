@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Col, Row } from "reactstrap";
+import { getListProduct } from '../../../pages/Product/productSlice';
 import { getCategories } from "../Nav/categorySlice";
 import Search from "./Search/search";
 import "./_nav.scss";
 
 function Nav(props) {
-  //console.log('nav')
   const stateCategories = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
@@ -59,6 +59,12 @@ function Nav(props) {
     dispatch(action);
   }, [dispatch]);
 
+
+  const changeProductCategory = async (category) => {
+    await dispatch(getListProduct(category))
+  }
+
+
   return (
     <div className="nav-bar d-flex">
       <Search />
@@ -81,6 +87,7 @@ function Nav(props) {
                         <NavLink
                           to={`/products/${category.slug}`}
                           activeClassName="active"
+                          onClick={() => changeProductCategory(category.slug)}
                         >
                           {category.name}
                         </NavLink>

@@ -13,7 +13,7 @@ function Product() {
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  //const { url } = useRouteMatch();
+  
 
   // get brands
   useEffect(() => {
