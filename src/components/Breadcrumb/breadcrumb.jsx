@@ -1,15 +1,27 @@
 import React from "react";
-import './_breadcrumb.scss';
+import "./_breadcrumb.scss";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+function Breadcrumb() {
+  const { breadcrumb } = useSelector((state) => state.breadcrumb);
 
-function Breadcrumb(props) {
   return (
     <ul>
-      <li>HOME</li>
-      <li>PRODUCTS</li>
+      {breadcrumb.length !== 0
+        ? breadcrumb.map((element, index) =>
+            index !== breadcrumb.length - 1 ? (
+              <li key={index}>
+                <Link to={element.slug}>{element.name}</Link>
+              </li>
+            ) : (
+              <li key={index} className="active-breadcrumb">
+                {element.name}
+              </li>
+            )
+          )
+        : ""}
     </ul>
   );
 }
-
-Breadcrumb.propTypes = {};
 
 export default Breadcrumb;

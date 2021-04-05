@@ -2,6 +2,11 @@
     padding: 10px;
     margin-bottom: 30px;
     background-color: white;
+    color: black !important;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
     .product-photo {
         position: relative;
         img {
@@ -21,7 +26,7 @@
                 background-color: #f1f1f1;
                 &:hover {
                     transition: 0.5s;
-                    color: white;
+                    color: white !important;
                     background-color: #e77733;
                 }
             }
@@ -29,6 +34,7 @@
     }
     .product-info {
         padding: 20px 0;
+        
         .product-title {
             text-transform: uppercase;
             font-weight: 600;

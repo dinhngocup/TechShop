@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useDispatch } from "react-redux";
 import image1 from "../../../assets/images/product1.jpeg";
-import { getProductModal } from '../ProductModal/productModalSlice';
+import { getProductModal } from "../ProductModal/productModalSlice";
 import WishIcon from "../WishIcon/wishIcon";
 import "./_productCard.scss";
+import { Link } from "react-router-dom";
 
 function ProductCard(props) {
   const { product } = props;
@@ -36,7 +37,6 @@ function ProductCard(props) {
     return result;
   };
 
-
   const dispatch = useDispatch();
   const openModal = () => {
     const action = getProductModal(product);
@@ -44,28 +44,32 @@ function ProductCard(props) {
   };
   return (
     <div className="product-card">
-      <div className="product-photo">
-        <img src={image1} alt="Apple watch" />
-        <WishIcon />
-        <div className="product-action">
-          <i
-            className="fa fa-search-plus"
-            data-toggle="modal"
-            data-target="#productModal"
-            onClick={openModal}
-          ></i>
-          <i className="fa fa-cart-plus"></i>
+      <Link to={`/products/${product.category}/${product.id}`}>
+        <div className="product-photo">
+          <img src={image1} alt="Apple watch" />
+          <WishIcon />
+          <div className="product-action">
+            <i
+              className="fa fa-search-plus"
+              data-toggle="modal"
+              data-target="#productModal"
+              onClick={openModal}
+            ></i>
+            <i className="fa fa-cart-plus"></i>
+          </div>
         </div>
-      </div>
-      <div className="product-info">
-        <div className="product-title mb-2">
-          <span>{product.name}</span>
+        <div className="product-info">
+          <div className="product-title mb-2">
+            <span>{product.name}</span>
+          </div>
+          <div className="product-sub-title">
+            <div className="product-price">{product.price}</div>
+            <div className="product-rate">
+              {renderRateProduct(product.rate)}
+            </div>
+          </div>
         </div>
-        <div className="product-sub-title">
-          <div className="product-price">{product.price}</div>
-          <div className="product-rate">{renderRateProduct(product.rate)}</div>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }

@@ -5,6 +5,8 @@ import reducerProductModal from '../pages/Product/ProductModal/productModalSlice
 import reducerCategory from '../components/Header/Nav/categorySlice'
 import reducerProduct from '../pages/Product/productSlice'
 import reducerFilter from '../pages/Product/Filter/filterSlice'
+import reducerBreadcrumb from '../components/Breadcrumb/breadcrumbSlice'
+
 const rootReducer = {
     menu: reducerMenu,
     app: reducerApp,
@@ -12,6 +14,7 @@ const rootReducer = {
     category: reducerCategory,
     product: reducerProduct,
     filter: reducerFilter,
+    breadcrumb: reducerBreadcrumb,
 
 }
 const store = configureStore({

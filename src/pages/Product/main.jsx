@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb/breadcrumb";
-import Categories from "./Categories/categories";
-import ExistedBrand from "./ExistedBrand/existedBrand";
-import Filter from "./Filter/filter";
-import Heading from "./Heading/heading";
-import ProductList from "./ProductList/productList";
+import {
+  addNewBreadcrumb,
+  removeLastBreadcrumb,
+} from "../../components/Breadcrumb/breadcrumbSlice";
+import ProductDetail from "./ProductDetail/productDetail";
+import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";
 
 function Product() {
   console.log("main");
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addNewBreadcrumb({
+      name: 'products',
+      slug: '/products/smart-watch'
+    }));
+    return () => {
+      dispatch(removeLastBreadcrumb());
+    };
+  }, [dispatch]);
   return (
     <div className="wrapper-dashboard product-area">
       <div className="product-banner">
@@ -21,18 +32,12 @@ function Product() {
       <div className="product-grid-view">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-3 pl-0">
-              <Filter />
-
-              <Categories />
-              <ExistedBrand />
-            </div>
-            <div className="col-md-9 pr-0">
-              <Heading />
-              <Route path="/products/:slug">
-                <ProductList />
-              </Route>
-            </div>
+            <Route exact path="/products/:slug">
+              <ProductGridView />
+            </Route>
+            <Route path="/products/:slug/:id">
+              <ProductDetail />
+            </Route>
           </div>
         </div>
       </div>

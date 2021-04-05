@@ -9,6 +9,9 @@
             position: relative;
             text-transform: uppercase;
             font-weight: 600;
+            a {
+                color: inherit;
+            }
             &:first-child:after {
                 content: "";
             }
@@ -16,7 +19,11 @@
                 content: "/";
                 position: absolute;
                 left: -22px;
+                color: white;
                 //font-size: inherit;
+            }
+            &.active-breadcrumb {
+                color: black;
             }
         }
     }

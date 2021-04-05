@@ -8,7 +8,6 @@ import { getListProduct } from "../productSlice";
 
 
 function ProductList() {
-  //console.log("list");
   const products = useSelector((state) => state.product.data);
 
   const stateProductModal = useSelector((state) => state.productModal);
