@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import { Row } from "reactstrap";
+import ProductApi from "../../../../api/productApi";
 import HeaderSection from "../../HeaderSection/headerSection";
 import FilterTopProduct from "../FilterTopProduct/filterTopProduct";
 import TopProduct from "../TopProduct/topProduct";
@@ -14,174 +15,12 @@ function TopProductCarousel() {
 
   // get top purchased prods from DB depending on filterTopProd
   useEffect(() => {
-    let products = "";
-    // call api
-
-    // temp data
-    if (filterTopProduct === "top20") {
-      products = [
-        {
-          img: "",
-          name: "Apple Watch",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "IPhone X",
-          price: "10.000.000đ",
-        },
-
-        {
-          img: "",
-          name: "IPhone XR",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "IPhone 12",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Macbook Pro",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Macbook Air",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Airpod 2",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Airpod pro",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Airpod 2",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Airpod pro",
-          price: "10.000.000đ",
-        },
-      ];
-    } else if (filterTopProduct === "keyboard") {
-      products = [
-        {
-          img: "",
-          name: "Keyboard 1",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Keyboard 2",
-          price: "10.000.000đ",
-        },
-
-        {
-          img: "",
-          name: "Keyboard 3",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Keyboard 4",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Keyboard 5",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Keyboard 6",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Keyboard 6",
-          price: "10.000.000đ",
-        },
-      ];
-    } else if (filterTopProduct === "mouse") {
-      products = [
-        {
-          img: "",
-          name: "Mouse 1",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Mouse 2",
-          price: "10.000.000đ",
-        },
-
-        {
-          img: "",
-          name: "Mouse 3",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Mouse 4",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Mouse 5",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Mouse 6",
-          price: "10.000.000đ",
-        },
-      ];
-    } else if (filterTopProduct === "monitor") {
-      products = [
-        {
-          img: "",
-          name: "Monitor 1",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Monitor 2",
-          price: "10.000.000đ",
-        },
-
-        {
-          img: "",
-          name: "Monitor 3",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Monitor 4",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Monitor 5",
-          price: "10.000.000đ",
-        },
-        {
-          img: "",
-          name: "Monitor 6",
-          price: "10.000.000đ",
-        },
-      ];
+    const fetchTopPurchasedProduct = async (filterTopProduct) => {
+      let response = await ProductApi.getTopPurchasedProducts(filterTopProduct)
+      setTopProducts(response)
     }
-
-    setTopProducts(products);
+    fetchTopPurchasedProduct(filterTopProduct)
+    
   }, [filterTopProduct]);
 
   const showCarouselIndicators = (length) => {

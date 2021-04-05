@@ -1,10 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./_categories.scss";
 
 function Categories() {
-  const { url } = useRouteMatch();
   const stateCategories = useSelector((state) => state.category);
 
   return (
@@ -16,7 +15,7 @@ function Categories() {
             ? stateCategories.data.map((category, index) => (
                 <NavLink
                   activeClassName="active"
-                  to={`${url}/${category.slug}`}
+                  to={`/products/${category.slug}`}
                   key={index}
                 >
                   <li>{category.name}</li>

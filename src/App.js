@@ -42,7 +42,7 @@ function App() {
               <Route path="/user-info">
                 <News />
               </Route>
-              <Route path="/products">
+              <Route path="/products/:slug">
                 <Product />
               </Route>
               <Route exact path="/news">

@@ -7,8 +7,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import ProductApi from '../../api/productApi';
 
 // 'product/getListProduct' is prefix
-export const getListProduct = createAsyncThunk('product/getListProduct', async(category, thunkAPI) => {
-    const listProduct = await ProductApi.getAll(category)
+export const getListProduct = createAsyncThunk('product/getListProduct', async(params, thunkAPI) => {
+    const listProduct = await ProductApi.getProductsByCategory(params)
     return listProduct
 })
 
@@ -20,14 +20,14 @@ const product = createSlice({
   reducers :{},
   extraReducers: {
     [getListProduct.pending] : (state) => {
-        console.log('pending fetching list')
+        //console.log('pending fetching list')
     },
     [getListProduct.fulfilled] : (state, action) => {
-        console.log('list', action.payload)
+        //console.log('fetching successfully')
         state.data = action.payload
     },
     [getListProduct.rejected] : (state) => {
-        console.log('false fetching list')
+        //console.log('false fetching list')
     }
   },
 });

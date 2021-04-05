@@ -23,8 +23,8 @@ function Menu() {
         el.getAttribute("data-group") * -11 -
         boundary_y;
       el.style.setProperty("--top", top);
-      el.style.setProperty("--delay-close", `${i * 0.1}s`);
-      el.style.setProperty("--delay-open", `${(li.length - i) * 0.1}s`);
+      el.style.setProperty("--delay-close", `${i * 0.03}s`);
+      el.style.setProperty("--delay-open", `${(li.length - i) * 0.03}s`);
     });
     nav.classList.toggle("nav-closed");
   };

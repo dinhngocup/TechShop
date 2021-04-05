@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "reactstrap";
+import BrandApi from "../../../api/brandApi";
 import image from "../../../assets/images/razer.png";
 import "./_brandGroup.scss";
-import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
 
-function BrandGroup(props) {
-  const { brands } = props;
-  
+function BrandGroup() {
+  const [brands, setBrands] = useState([]);
+  useEffect(() => {
+    const fetchBrands = async () => {
+      let response = await BrandApi.getBrands();
+      setBrands(response);
+    };
+    fetchBrands();
+  }, []);
+
   return (
     <Row>
       {brands.length !== 0
@@ -26,9 +33,5 @@ function BrandGroup(props) {
     </Row>
   );
 }
-
-BrandGroup.propTypes = {
-  brands: PropTypes.array.isRequired,
-};
 
 export default BrandGroup;

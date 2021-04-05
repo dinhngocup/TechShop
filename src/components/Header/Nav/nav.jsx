@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import { getListProduct } from '../../../pages/Product/productSlice';
-import { getCategories } from "../Nav/categorySlice";
 import Search from "./Search/search";
 import "./_nav.scss";
+import { getCategories } from './categorySlice';
 
 function Nav(props) {
   const stateCategories = useSelector((state) => state.category);
@@ -13,56 +12,13 @@ function Nav(props) {
 
   // get categories
   useEffect(() => {
-    let categoryList = [
-      {
-        name: "Smart Watch",
-        slug: "smart-watch",
-      },
-      {
-        name: "PC Accessories",
-        slug: "pc-accessories",
-      },
-      {
-        name: "Audio System",
-        slug: "audio-system",
-      },
-      {
-        name: "HeadPhone",
-        slug: "headphone",
-      },
-      {
-        name: "Mouse",
-        slug: "mouse",
-      },
-      {
-        name: "Gaming Desk/Chair",
-        slug: "gaming-desk-chair",
-      },
-      {
-        name: "Laptop",
-        slug: "laptop",
-      },
-      {
-        name: "Monitor",
-        slug: "monitor",
-      },
-      {
-        name: "Keyboard",
-        slug: "keyboard",
-      },
-      {
-        name: "All",
-        slug: "all",
-      },
-    ];
-    const action = getCategories(categoryList);
-    dispatch(action);
+    async function fetchCategories() {
+      await dispatch(getCategories());
+    }
+    fetchCategories();
   }, [dispatch]);
 
 
-  const changeProductCategory = async (category) => {
-    await dispatch(getListProduct(category))
-  }
 
 
   return (
@@ -76,7 +32,7 @@ function Nav(props) {
             </NavLink>
           </li>
           <li className="dropdown-switcher">
-            <NavLink activeClassName="active" to="/products">
+            <NavLink activeClassName="active" to="/products/smart-watch">
               Products
             </NavLink>
             <div className="dropdown">
@@ -87,7 +43,6 @@ function Nav(props) {
                         <NavLink
                           to={`/products/${category.slug}`}
                           activeClassName="active"
-                          onClick={() => changeProductCategory(category.slug)}
                         >
                           {category.name}
                         </NavLink>

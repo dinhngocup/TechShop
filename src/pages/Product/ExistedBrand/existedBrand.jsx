@@ -1,9 +1,45 @@
-import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./_existedBrand.scss";
 
-function ExistedBrand(props) {
-  const { brands } = props;
+function ExistedBrand() {
+  //console.log('brands')
+  const [brands, setBrands] = useState([]);
+
+  // get brands
+  useEffect(() => {
+    let brandList = [
+      {
+        quantityProduct: 11,
+        name: "Asus",
+      },
+      {
+        quantityProduct: 10,
+        name: "Apple",
+      },
+      {
+        quantityProduct: 15,
+        name: "HP",
+      },
+      {
+        quantityProduct: 19,
+        name: "Razer",
+      },
+      {
+        quantityProduct: 19,
+        name: "Dell",
+      },
+      {
+        quantityProduct: 20,
+        name: "Asus",
+      },
+      {
+        quantityProduct: 10,
+        name: "Apple",
+      },
+    ];
+    setBrands(brandList);
+  }, []);
+
   const renderListBrand = (brands) => {
     let res = "";
     if (brands.length === 0) return res;
@@ -31,9 +67,5 @@ function ExistedBrand(props) {
     </div>
   );
 }
-
-ExistedBrand.propTypes = {
-  brands: PropTypes.array.isRequired,
-};
 
 export default ExistedBrand;
