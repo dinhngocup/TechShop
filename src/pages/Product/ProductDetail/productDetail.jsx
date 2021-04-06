@@ -5,8 +5,11 @@ import { useParams } from "react-router-dom";
 import ProductApi from "../../../api/productApi";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "../../../components/Breadcrumb/breadcrumbSlice";
+import SingleProInfo from "./SingleProInfo/singleProInfo";
+
+
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -15,10 +18,12 @@ function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       let response = await ProductApi.getDetailedProduct(id);
-      dispatch(addNewBreadcrumb({
-        name: response.name,
-        slug: ''
-      }));
+      dispatch(
+        addNewBreadcrumb({
+          name: response.name,
+          slug: "",
+        })
+      );
       setProduct(response);
     };
     fetchProduct();
@@ -27,7 +32,11 @@ function ProductDetail() {
     };
   }, [dispatch, id]);
 
-  return <div>Chi tiet san pham: {product.name}</div>;
+  return (
+    <React.Fragment>
+      <SingleProInfo product={product}/>
+    </React.Fragment>
+  );
 }
 
 //ProductDetail.propTypes = {};

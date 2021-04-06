@@ -6,36 +6,10 @@ import { getProductModal } from "../ProductModal/productModalSlice";
 import WishIcon from "../WishIcon/wishIcon";
 import "./_productCard.scss";
 import { Link } from "react-router-dom";
+import ProductRating from "../ProductRating/productRating";
 
 function ProductCard(props) {
   const { product } = props;
-  const renderRateProduct = (rate) => {
-    let result = [];
-
-    let fullStar = Math.floor(rate);
-    let restStar = (rate * 10) % 10;
-
-    let total = 0;
-
-    for (let i = 0; i < fullStar; i++) {
-      result.push(<i key={total} className="fas fa-star"></i>);
-      total++;
-    }
-
-    if (3 < restStar && restStar <= 7) {
-      result.push(<i key={total} className="fas fa-star-half-alt"></i>);
-      total++;
-    } else if (restStar > 7) {
-      result.push(<i key={total} className="fas fa-star"></i>);
-      total++;
-    }
-    if (total < 5) {
-      for (let i = 0; i < 5 - total; i++) {
-        result.push(<i key={total + i} className="far fa-star"></i>);
-      }
-    }
-    return result;
-  };
 
   const dispatch = useDispatch();
   const openModal = () => {
@@ -64,9 +38,8 @@ function ProductCard(props) {
           </div>
           <div className="product-sub-title">
             <div className="product-price">{product.price}</div>
-            <div className="product-rate">
-              {renderRateProduct(product.rate)}
-            </div>
+
+            <ProductRating rate={product.rate} />
           </div>
         </div>
       </Link>
