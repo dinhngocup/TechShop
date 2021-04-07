@@ -2,7 +2,7 @@ import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 const ProductApi = {
   getProductsByCategory: async (params) => {
-    let {category, order} = params
+    let { category, order } = params;
     const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}?category=${category}&_sort=price&_order=${order}`;
     //console.log("call api get product by category");
     return axiosClient.get(url);
@@ -24,6 +24,14 @@ const ProductApi = {
   },
   getDetailedProduct: async (id) => {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
+    return axiosClient.get(url);
+  },
+  getRelatedCategoryPro: async (category) => {
+    const url = `${UrlConstant.GET_RELATED_CATEGORY_PRODUCT}?category=${category}`;
+    return axiosClient.get(url);
+  },
+  getRelatedBrandPro: async (brand) => {
+    const url = `${UrlConstant.GET_RELATED_BRAND_PRODUCT}?brand=${brand}`;
     return axiosClient.get(url);
   },
 };

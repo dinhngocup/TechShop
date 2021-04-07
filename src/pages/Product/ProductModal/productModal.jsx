@@ -4,6 +4,7 @@ import "./_productModal.scss";
 import image1 from "../../../assets/images/product3.jpeg";
 
 function ProductModal(props) {
+  
   const { product } = props;
   return (
     <div

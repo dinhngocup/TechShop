@@ -13,6 +13,7 @@ function ProductCard(props) {
 
   const dispatch = useDispatch();
   const openModal = () => {
+    console.log('hi')
     const action = getProductModal(product);
     dispatch(action);
   };
@@ -22,7 +23,7 @@ function ProductCard(props) {
         <div className="product-photo">
           <img src={image1} alt="Apple watch" />
           <WishIcon />
-          <div className="product-action">
+          <div className="product-action" onClick={(e) => { e.preventDefault()}}>
             <i
               className="fa fa-search-plus"
               data-toggle="modal"

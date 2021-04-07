@@ -8,10 +8,11 @@ import {
   removeLastBreadcrumb
 } from "../../../components/Breadcrumb/breadcrumbSlice";
 import SingleProInfo from "./SingleProInfo/singleProInfo";
-
+import SingleProTab from './SingleProTab/singleProTab'
 
 
 function ProductDetail() {
+  //console.log('detail')
   const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -35,6 +36,7 @@ function ProductDetail() {
   return (
     <React.Fragment>
       <SingleProInfo product={product}/>
+      <SingleProTab product={product}/>
     </React.Fragment>
   );
 }

@@ -3,7 +3,7 @@ import image4 from "../../../../assets/images/pic7.jpeg";
 import image1 from "../../../../assets/images/product1.jpeg";
 import image2 from "../../../../assets/images/product2.jpeg";
 import image3 from "../../../../assets/images/product3.jpeg";
-import ProductInfo from "../ProductInfo/productInfo";
+import ProductInfo from "./ProductInfo/productInfo";
 import "./_singleProInfo.scss";
 import PropTypes from "prop-types";
 import { Row, Col } from "reactstrap";

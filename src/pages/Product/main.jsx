@@ -9,15 +9,18 @@ import {
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";
+import ScrollToTop from "../../components/ScrollToTop/scrollToTopRouter";
 
 function Product() {
   console.log("main");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(addNewBreadcrumb({
-      name: 'products',
-      slug: '/products/smart-watch'
-    }));
+    dispatch(
+      addNewBreadcrumb({
+        name: "products",
+        slug: "/products/smart-watch",
+      })
+    );
     return () => {
       dispatch(removeLastBreadcrumb());
     };
@@ -32,12 +35,14 @@ function Product() {
       <div className="product-grid-view">
         <div className="container-fluid">
           <div className="row">
-            <Route exact path="/products/:slug">
-              <ProductGridView />
-            </Route>
-            <Route path="/products/:slug/:id">
-              <ProductDetail />
-            </Route>
+            <ScrollToTop>
+              <Route exact path="/products/:slug">
+                <ProductGridView />
+              </Route>
+              <Route path="/products/:slug/:id">
+                <ProductDetail />
+              </Route>
+            </ScrollToTop>
           </div>
         </div>
       </div>
