@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import HeaderSection from "../../../../../components/HeaderSection/headerSection";
 import ProductModal from "../../../ProductModal/productModal";
 import RelatedCategoryPro from "./RelatedCategoryPro/relatedCategoryPro";
-import "./_relatedProduct.scss";
+
 
 function RelatedPro(props) {
   //console.log("related");
