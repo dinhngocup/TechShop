@@ -38,5 +38,9 @@ const ProductApi = {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
+  getFullDescriptionPro: async (id) => {
+    const url = `${UrlConstant.GET_FULL_DESCRIP_PRODUCT}/${id}`;
+    return axiosClient.get(url);
+  },
 };
 export default ProductApi;

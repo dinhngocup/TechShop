@@ -7,6 +7,7 @@ export const GET_DETAILED_PRODUCT = "/products"
 export const GET_RELATED_CATEGORY_PRODUCT = "/products"
 export const GET_RELATED_BRAND_PRODUCT = "/products"
 export const GET_SPECS_PRODUCT = "/products"
+export const GET_FULL_DESCRIP_PRODUCT = "/products"
 
 // CATEGORY
 export const GET_ALL_CATEGORIES = "/categories"

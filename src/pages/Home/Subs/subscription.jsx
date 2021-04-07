@@ -8,12 +8,12 @@ function Subscription() {
       <div className="header-subs mb-4">
         <span>SPECIAL OFFERS</span> FOR SUBSCRIBERS
       </div>
-      <h4>
+      <h3>
         NEW OFFERS EVERY WEEK <span>+</span>{" "}
-      </h4>
-      <h4>
+      </h3>
+      <h3>
         DISCOUNT SYSTEM <span>+</span> BEST PRICES
-      </h4>
+      </h3>
       <div className="sub-content mt-4">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates eos
         obcaecati, aliquam amet dolore enim ab dolorum. Debitis voluptate, nam
