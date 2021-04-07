@@ -6,13 +6,11 @@ import ProductModal from "../../../ProductModal/productModal";
 import RelatedCategoryPro from "./RelatedCategoryPro/relatedCategoryPro";
 import "./_relatedProduct.scss";
 
-
 function RelatedPro(props) {
   //console.log("related");
   const { category, brand } = props;
 
   const stateProductModal = useSelector((state) => state.productModal);
-
 
   const categoryData = {
     type: "category",
@@ -24,13 +22,12 @@ function RelatedPro(props) {
   };
   return (
     <React.Fragment>
-      <div className="related-products">
-        <HeaderSection content="Related Products" />
-        <RelatedCategoryPro {...categoryData} />
-        <HeaderSection content="Same Brand Products" />
-        <RelatedCategoryPro {...brandData} />
-      </div>
-      <ProductModal product={stateProductModal.data}/>
+      <HeaderSection content="Related Products" />
+      <RelatedCategoryPro {...categoryData} />
+      <HeaderSection content="Same Brand Products" />
+      <RelatedCategoryPro {...brandData} />
+
+      <ProductModal product={stateProductModal.data} />
     </React.Fragment>
   );
 }

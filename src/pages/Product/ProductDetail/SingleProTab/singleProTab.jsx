@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import { PropTypes } from "prop-types";
 import React, { useState, useEffect } from "react";
 import ProDescription from "./ProDescription/proDescription";
 import ProReview from "./ProReview/proReview";
@@ -8,7 +8,6 @@ import TechDescrip from "./TechDescrip/techDescrip";
 import "./_singleProTab.scss";
 
 function SingleProTab(props) {
-  
   const { product } = props;
   const [tabContent, setTabContent] = useState(null);
   const [activeTab, setActiveTab] = useState("description");
@@ -26,28 +25,26 @@ function SingleProTab(props) {
         setTabContent(<ProReview id={product.id} />);
         break;
       case "related":
-        const data = {category: product.category,brand: product.brand};
+        const data = { category: product.category, brand: product.brand };
         setTabContent(<RelatedPro {...data} />);
         break;
-      case "tech-descrip":
+      case "specs":
         setTabContent(<TechDescrip id={product.id} />);
         break;
       default:
         setTabContent(<ProDescription id={product.id} />);
         break;
     }
-    
-  }, [activeTab, product])
-
+  }, [activeTab, product]);
 
   return (
     <div className="single-pro-tab mt-4 container-fluid">
       <div className="row">
         <ProTab
-          tagName="tech-descrip"
+          tagName="specs"
           changeTab={changeTab}
           activeTab={activeTab}
-          tagContent="Tech Description"
+          tagContent="Specs"
         />
 
         <ProTab
@@ -73,17 +70,23 @@ function SingleProTab(props) {
       </div>
 
       <div className="row">
-        {tabContent === null ? <ProDescription id={product.id} /> : tabContent}
+        <div className="tab-content">
+          {tabContent === null ? (
+            <ProDescription id={product.id} />
+          ) : (
+            tabContent
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
 SingleProTab.propTypes = {
-    product: PropTypes.object,
+  product: PropTypes.object,
 };
 SingleProTab.defaultProps = {
-    product: {},
+  product: {},
 };
 
 export default SingleProTab;
