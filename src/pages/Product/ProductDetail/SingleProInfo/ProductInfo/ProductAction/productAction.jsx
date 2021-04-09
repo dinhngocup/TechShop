@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./_productAction.scss";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../../../../app/cartSlice";
 
 ProductAction.propTypes = {
   status: PropTypes.object,
@@ -10,11 +12,21 @@ ProductAction.defaultProps = {
 };
 
 function ProductAction(props) {
-  //console.log("action");
-  const { status } = props;
+  const { status, id } = props;
+  const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
-
+  const handleAddToCart = (id) => {
+    dispatch(
+      addToCart({
+        id: id,
+        quantity: quantity,
+      })
+    );
+  };
+  useEffect(() => {
+    setQuantity(1);
+  }, [id]);
   return (
     <React.Fragment>
       <div className="stock-status">
@@ -64,7 +76,12 @@ function ProductAction(props) {
         </div>
       </div>
 
-      <div className="product-actions mt-4">
+      <div
+        className="product-actions mt-4"
+        onClick={() => {
+          handleAddToCart(id);
+        }}
+      >
         <i className="fas fa-cart-plus"></i>
       </div>
     </React.Fragment>

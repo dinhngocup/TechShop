@@ -42,5 +42,17 @@ const ProductApi = {
     const url = `${UrlConstant.GET_FULL_DESCRIP_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
+  getProductsInCart: async (items) => {
+    let urlParam = "";
+    items.forEach((item, index) => {
+      if (index !== 0) {
+        urlParam += `&id=${item.id}`;
+      }
+    });
+
+    console.log(urlParam);
+    const url = `${UrlConstant.GET_PRODUCTS_IN_CART}?id=${items[0].id}${urlParam}`;
+    return axiosClient.get(url);
+  },
 };
 export default ProductApi;

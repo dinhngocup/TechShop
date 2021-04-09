@@ -7,15 +7,24 @@ import WishIcon from "../WishIcon/wishIcon";
 import "./_productCard.scss";
 import { Link } from "react-router-dom";
 import ProductRating from "../ProductRating/productRating";
+import { addToCart } from "../../../app/cartSlice";
 
 function ProductCard(props) {
   const { product } = props;
 
   const dispatch = useDispatch();
   const openModal = () => {
-    console.log('hi')
     const action = getProductModal(product);
     dispatch(action);
+  };
+  const handleAddToCart = (e, id) => {
+    e.preventDefault();
+    dispatch(
+      addToCart({
+        id: id,
+        quantity: 1,
+      })
+    );
   };
   return (
     <div className="product-card">
@@ -23,14 +32,24 @@ function ProductCard(props) {
         <div className="product-photo">
           <img src={image1} alt="Apple watch" />
           <WishIcon />
-          <div className="product-action" onClick={(e) => { e.preventDefault()}}>
+          <div
+            className="product-action"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
             <i
               className="fa fa-search-plus"
               data-toggle="modal"
               data-target="#productModal"
               onClick={openModal}
             ></i>
-            <i className="fa fa-cart-plus"></i>
+            <i
+              className="fa fa-cart-plus"
+              onClick={(e) => {
+                handleAddToCart(e, product.id);
+              }}
+            ></i>
           </div>
         </div>
         <div className="product-info">

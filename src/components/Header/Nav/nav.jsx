@@ -53,8 +53,9 @@ function Nav(props) {
             </div>
           </li>
           <li>
-            <NavLink activeClassName="active" to="/news">
-              News
+            <NavLink activeClassName="active" to="/shopping-cart">
+             
+             Shopping Cart
             </NavLink>
           </li>
           <li>

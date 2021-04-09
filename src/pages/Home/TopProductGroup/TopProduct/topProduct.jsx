@@ -13,7 +13,7 @@ function TopProduct(props) {
         <img src={image} alt={product.name} />
         <div className="button">
           <BtnMore />
-          <BtnAdd />
+          <BtnAdd id={product.id}/>
         </div>
       </div>
       <div className="mt-2 product-name">

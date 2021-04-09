@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
+import '../../assets/styles/_childBanner.scss';
 import Breadcrumb from "../../components/Breadcrumb/breadcrumb";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "../../components/Breadcrumb/breadcrumbSlice";
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";
-import ScrollToTop from "../../components/ScrollToTop/scrollToTopRouter";
 
 function Product() {
-  console.log("main");
+  //console.log("main");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -27,7 +27,7 @@ function Product() {
   }, [dispatch]);
   return (
     <div className="wrapper-dashboard product-area">
-      <div className="product-banner">
+      <div className="child-banner product-banner">
         <div className="breadcrumb-nav container">
           <Breadcrumb />
         </div>
@@ -35,14 +35,14 @@ function Product() {
       <div className="product-grid-view">
         <div className="container-fluid">
           <div className="row">
-            <ScrollToTop>
+            
               <Route exact path="/products/:slug">
                 <ProductGridView />
               </Route>
               <Route path="/products/:slug/:id">
                 <ProductDetail />
               </Route>
-            </ScrollToTop>
+            
           </div>
         </div>
       </div>

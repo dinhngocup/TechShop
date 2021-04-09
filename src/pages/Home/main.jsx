@@ -9,6 +9,7 @@ import TrendingProductList from "./TrendingProduct/trendingProductList";
 import "./_home.scss";
 
 function Home() {
+  //console.log('home')
   return (
     <React.Fragment>
       <Banner />

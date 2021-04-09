@@ -34,7 +34,7 @@ function ProductInfo(props) {
             : ""}
         </div>
         <div className="col-lg-5">
-          <ProductAction status={product.status} />
+          <ProductAction status={product.status} id={product.id} />
         </div>
       </div>
     </React.Fragment>

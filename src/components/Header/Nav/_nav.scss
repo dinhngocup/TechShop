@@ -10,6 +10,7 @@
                 font-size: smaller;
                 font-weight: bold;
                 position: relative;
+                
                 &:hover {
                     a {
                         text-decoration: none;
@@ -21,9 +22,9 @@
                 }
                 a {
                     color: black;
-                    transition: 0.8s;
+                    //transition: 0.8s;
                     &:after {
-                        transition: 0.8s;
+                        //transition: 0.8s;
                         position: absolute;
                         content: "";
                         background-color: #e77733;

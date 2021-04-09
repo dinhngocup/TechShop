@@ -11,6 +11,8 @@ import Home from "./pages/Home/main";
 import Product from "./pages/Product/main";
 import "./_app.scss";
 import Sales from "./components/sale";
+import ShoppingCart from "./pages/ShoppingItems/main";
+import ScrollToTopRouter from "./components/ScrollToTop/scrollToTopRouter";
 
 function App() {
   console.log("app");
@@ -29,32 +31,39 @@ function App() {
           <Header />
           <div className="body-content">
             <ScrollToTop />
-            <Switch>
-              {/* <Route path=":slug">
-                <Sales />
-              </Route> */}
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/shopping-cart">
-                <News />
-              </Route>
-              <Route path="/user-info">
-                <News />
-              </Route>
-              <Route path="/products/:slug">
-                <Product />
-              </Route>
-              <Route exact path="/news">
-                <News />
-              </Route>
 
-              <Route path="/sales">
-                <Sales />
-              </Route>
-              <Route path="/contacts">
-                <News />
-              </Route>
+            <Switch>
+              <ScrollToTopRouter>
+                <Route path="/home">
+                  <Home />
+                </Route>
+                <Route
+                  path={[
+                    "/shopping-cart",
+                    "/wish-list",
+                    "/check-out",
+                    "/completed-order",
+                  ]}
+                >
+                  <ShoppingCart />
+                </Route>
+                <Route path="/user-info">
+                  <News />
+                </Route>
+                <Route path="/products/:slug">
+                  <Product />
+                </Route>
+                <Route exact path="/news">
+                  <News />
+                </Route>
+
+                <Route path="/sales">
+                  <Sales />
+                </Route>
+                <Route path="/contacts">
+                  <News />
+                </Route>
+              </ScrollToTopRouter>
             </Switch>
             <Footer />
           </div>

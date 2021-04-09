@@ -14,7 +14,6 @@ ProposedProduct.defaultProps = {
 
 function ProposedProduct(props) {
   const { product } = props;
-
   const [duration, setDuration] = useState("");
 
   useEffect(() => {
@@ -86,7 +85,7 @@ function ProposedProduct(props) {
         </div>
         <p className="description">{product.description}</p>
         <div className="d-flex">
-          <BtnAdd/>
+          <BtnAdd id={product.id}/>
           <BtnMore/>
         </div>
       </div>

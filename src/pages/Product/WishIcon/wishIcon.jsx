@@ -5,7 +5,8 @@ import "./_wishIcon.scss";
 
 function WishIcon() {
   const [image, setImage] = useState(image1);
-  const editWishItem = () => {
+  const editWishItem = (e) => {
+    e.preventDefault();
     if (image === image1) setImage(image2);
     else setImage(image1);
   };
