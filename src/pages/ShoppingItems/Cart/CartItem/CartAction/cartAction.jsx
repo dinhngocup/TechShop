@@ -1,34 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { updateQuantity } from "../../../../../app/cartSlice";
 import "./_cartAction.scss";
+import { updateQuantity } from "../../../../../app/cartSlice";
 
 function CartAction(props) {
-  const { stockQuantity, cartStore } = props;
-  //console.log("cart action");
-  const [quantity, setQuantity] = useState(cartStore.quantity);
-  console.log("quantity", quantity);
+  const { stockQuantity, productInCart } = props;
+
   const dispatch = useDispatch();
-  const valueRef = useRef();
 
-  //until component unmount we update quantity in cart store
-  useEffect(() => {
-    return () => {
-      if (cartStore.quantity !== valueRef.current) {
-        let data = { ...cartStore };
-        data.quantity = valueRef.current;
-        dispatch(updateQuantity(data));
-      }
-    };
-  }, []);
-  /**
-   * In cleanup of useEffect, we cannot access quantityState
-   * => we have to useRef to save value of quantityState during the lifecycle of component
-   */
-
-  useEffect(() => {
-    valueRef.current = quantity;
-  }, [quantity]);
+  const updateQuantityInStore = (quantity) => {
+    dispatch(
+      updateQuantity({
+        id: productInCart.id,
+        quantity: quantity,
+      })
+    );
+  };
 
   return (
     <div className="cart-action-wrapper">
@@ -36,7 +23,8 @@ function CartAction(props) {
         <div
           className="quantity-btn flex"
           onClick={() => {
-            if (quantity > 1) setQuantity(quantity - 1);
+            if (productInCart.quantity > 1)
+              updateQuantityInStore(productInCart.quantity - 1);
           }}
         >
           <i className="fa fa-minus"></i>
@@ -44,19 +32,20 @@ function CartAction(props) {
         <input
           type="number"
           className="flex"
-          value={quantity}
+          value={productInCart.quantity}
           onChange={(e) => {
-            setQuantity(e.target.value);
+            updateQuantityInStore(e.target.value);
           }}
           onBlur={(e) => {
             if (e.target.value > stockQuantity || e.target.value < 1)
-              setQuantity(1);
+              updateQuantityInStore(1);
           }}
         />
         <div
           className="quantity-btn flex"
           onClick={() => {
-            if (quantity < stockQuantity) setQuantity(quantity + 1);
+            if (productInCart.quantity < stockQuantity)
+              updateQuantityInStore(productInCart.quantity + 1);
           }}
         >
           <i className="fa fa-plus"></i>

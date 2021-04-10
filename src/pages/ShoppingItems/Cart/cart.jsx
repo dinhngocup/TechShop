@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "../../../components/Breadcrumb/breadcrumbSlice";
 import CartItem from "./CartItem/cartItem";
 import "./_cart.scss";
-import ProductApi from "../../../api/productApi";
 
-function Cart(props) {
-  console.log('cart')
-  const [products, setProducts] = useState([]);
-  const cartStore = useSelector((state) => state.cart.products);
+function Cart() {
+  console.log("cart");
+  const productsInCart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -25,14 +23,6 @@ function Cart(props) {
       dispatch(removeLastBreadcrumb());
     };
   }, [dispatch]);
-
-  useEffect(() => {
-    const fetchData = async (cartStore) => {
-      let response = await ProductApi.getProductsInCart(cartStore);
-      setProducts(response);
-    };
-    if (cartStore.length !== 0) fetchData(cartStore);
-  }, [cartStore]);
 
   useEffect(() => {}, []);
   return (
@@ -50,12 +40,9 @@ function Cart(props) {
             </tr>
           </thead>
           <tbody>
-            {products.length !== 0
-              ? products.map((product, index) => {
-                  let item = cartStore.find((item) => item.id === product.id);
-                  return (
-                    <CartItem key={index} product={product} cartStore={item} />
-                  );
+            {productsInCart.length !== 0
+              ? productsInCart.map((product, index) => {
+                  return <CartItem key={index} productInCart={product} />;
                 })
               : null}
           </tbody>

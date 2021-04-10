@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import image from "../../../../assets/images/pic7.jpeg";
 import CartAction from "./CartAction/cartAction";
 import "./_cartItem.scss";
 import { Link } from "react-router-dom";
+import ProductApi from "../../../../api/productApi";
 
 function CartItem(props) {
-  const { product, cartStore } = props;
-  console.log('cart items', product.id)
-  
+  const { productInCart } = props;
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchDetailedProduct = async (id) => {
+      let response = await ProductApi.getDetailedProduct(id);
+      console.log(response);
+      setProduct(response);
+    };
+    fetchDetailedProduct(productInCart.id);
+  }, [productInCart.id]);
+
   return (
     <tr className="cart-item">
       <td className="product">
@@ -30,11 +40,11 @@ function CartItem(props) {
       <td className="price">{product.price}</td>
       <td>
         <CartAction
-          stockQuantity={product.status.stockQuantity}
-          cartStore={cartStore}
+          stockQuantity={product.status?.stockQuantity}
+          productInCart={productInCart}
         />
       </td>
-      <td className="stock">{product.status.stockQuantity}</td>
+      <td className="stock">{product.status?.stockQuantity}</td>
       <td className="total-price">10.000.000đ</td>
       <td className="btn-remove">
         <i className="fa fa-times"></i>

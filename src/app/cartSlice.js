@@ -25,14 +25,11 @@ const cart = createSlice({
     },
     updateQuantity: (state, action) => {
       //console.log('update')
-      let existedProduct = state.products.find(
-        (product) => product.id === action.payload.id
-      );
-      if (existedProduct !== undefined)
-        existedProduct.quantity = action.payload.quantity;
-      else {
-        return;
-      }
+      state.products.find((product) => {
+        if (product.id === action.payload.id)
+          product.quantity = action.payload.quantity;
+        return "";
+      });
     },
   },
 });
