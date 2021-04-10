@@ -10,6 +10,7 @@ import "./_cart.scss";
 function Cart() {
   console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
+  console.log(productsInCart)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(

@@ -12,7 +12,7 @@ function CartItem(props) {
   useEffect(() => {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
-      console.log(response);
+      //console.log(response);
       setProduct(response);
     };
     fetchDetailedProduct(productInCart.id);

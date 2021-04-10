@@ -5,12 +5,16 @@ import App from "./App";
 import store from "./app/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
   <React.StrictMode>
+    <CookiesProvider>
+
     <Provider store={store}>
       <App />
     </Provider>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
