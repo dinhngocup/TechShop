@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-export default function Sales() {
-    // const {slug} = useParams();
-    // console.log('slug', slug)
-    //console.log('sale')
+Sale.propTypes = {
+    
+};
+
+function Sale(props) {
     return (
         <div>
-            Sales
+            Sale
         </div>
-    )
+    );
 }
+
+export default Sale;

@@ -42,6 +42,10 @@ const ProductApi = {
     const url = `${UrlConstant.GET_FULL_DESCRIP_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
+  searchProducts: async (info) => {
+    const url = `${UrlConstant.SEARCH_PRODUCTS}?q=${info}`;
+    return axiosClient.get(url);
+  }
   
 };
 export default ProductApi;
