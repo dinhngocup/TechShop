@@ -5,6 +5,7 @@ import reducerFilter from "../pages/Product/Filter/filterSlice";
 import reducerProductModal from "../pages/Product/ProductModal/productModalSlice";
 import reducerProduct from "../pages/Product/productSlice";
 import reducerCart from "../pages/ShoppingItems/Cart/cartSlice";
+import reducerWishList from '../pages/ShoppingItems/WishList/wishListSlice';
 
 const rootReducer = {
   productModal: reducerProductModal,
@@ -13,6 +14,7 @@ const rootReducer = {
   filter: reducerFilter,
   breadcrumb: reducerBreadcrumb,
   cart: reducerCart,
+  wishList: reducerWishList,
 };
 const store = configureStore({
   reducer: rootReducer,

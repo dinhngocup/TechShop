@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import image from "../../../../assets/images/pic7.jpeg";
 import CartAction from "./CartAction/cartAction";
-import "./_cartItem.scss";
+
 import { Link } from "react-router-dom";
 import ProductApi from "../../../../api/productApi";
 import { useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ function CartItem(props) {
   }, [productInCart.id]);
 
   return (
-    <tr className="cart-item">
+    <tr className="table-item">
       <td className="product">
         <img src={image} alt="" className="" />
         <div className="short-info">
@@ -48,7 +48,11 @@ function CartItem(props) {
           productInCart={productInCart}
         />
       </td>
-      <td className="stock">{product.status?.stockQuantity}</td>
+      <td className={product.status?.stockStatus}>
+        {product.status?.stockQuantity === 0
+          ? "Out Of Stock"
+          : product.status?.stockQuantity}
+      </td>
       <td className="total-price">10.000.000đ</td>
       <td className="btn-remove">
         <i

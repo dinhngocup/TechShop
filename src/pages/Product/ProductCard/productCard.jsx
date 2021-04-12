@@ -50,7 +50,7 @@ function ProductCard(props) {
       <Link to={`/products/${product.category}/${product.id}`}>
         <div className="product-photo">
           <img src={image1} alt="Apple watch" />
-          <WishIcon />
+          <WishIcon id={product.id}/>
           <div
             className="product-action"
             onClick={(e) => {

@@ -59,8 +59,8 @@ function Nav(props) {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName="active" to="/sales">
-              Sales
+            <NavLink activeClassName="active" to="/wish-list">
+              Wish List
             </NavLink>
           </li>
           <li>

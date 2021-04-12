@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Cookies } from "react-cookie";
 
+/**
+ * payload of actions is {
+ * id: ID OF PRODUCT,
+ * quantity: QUANTITY OF PRODUCT
+ * }
+ */
+
 //singleton for cookies??
 const cookies = new Cookies();
 
@@ -27,10 +34,10 @@ const cart = createSlice({
       } else {
         existedProduct.quantity += action.payload.quantity;
       }
-      cookies.set("cart", JSON.stringify(state.products));
+      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
     removeFromCart: (state, action) => {
-      console.log(action.payload.id)
+      console.log(action.payload.id);
       state.products =
         cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
 
@@ -39,7 +46,7 @@ const cart = createSlice({
       );
       state.products = [...existedProduct];
 
-      cookies.set("cart", JSON.stringify(state.products));
+      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
       //console.log("after remove", state.products);
     },
     updateQuantity: (state, action) => {
@@ -48,7 +55,7 @@ const cart = createSlice({
           product.quantity = action.payload.quantity;
         return "";
       });
-      cookies.set("cart", JSON.stringify(state.products));
+      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
     increaseQuantity: (state, action) => {
       state.products =
@@ -58,7 +65,7 @@ const cart = createSlice({
         return "";
       });
       console.log(JSON.stringify(state.products, undefined, 2));
-      cookies.set("cart", JSON.stringify(state.products));
+      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
     decreaseQuantity: (state, action) => {
       state.products =
@@ -67,7 +74,7 @@ const cart = createSlice({
         if (product.id === action.payload.id) product.quantity--;
         return "";
       });
-      cookies.set("cart", JSON.stringify(state.products));
+      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
   },
 });

@@ -22,9 +22,9 @@
                 }
                 a {
                     color: black;
-                    //transition: 0.8s;
+                    transition: 0.5s;
                     &:after {
-                        //transition: 0.8s;
+                        transition: 0.5s;
                         position: absolute;
                         content: "";
                         background-color: #e77733;

@@ -2,15 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
+  removeLastBreadcrumb,
 } from "../../../components/Breadcrumb/breadcrumbSlice";
 import CartItem from "./CartItem/cartItem";
-import "./_cart.scss";
 
 function Cart() {
   //console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
-  //console.log(productsInCart)
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -27,7 +26,7 @@ function Cart() {
 
   useEffect(() => {}, []);
   return (
-    <div className="cart">
+    <div className="table-wrapper">
       <div className="table-content">
         <table>
           <thead>

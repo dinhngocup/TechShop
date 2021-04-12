@@ -4,14 +4,11 @@ import "./App.css";
 import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
 import News from "./components/news";
-import Sales from "./components/sale";
 import ScrollToTop from "./components/ScrollToTop/scrollToTop";
 import Home from "./pages/Home/main";
 import Product from "./pages/Product/main";
 import ShoppingCart from "./pages/ShoppingItems/main";
 import "./_app.scss";
-
-
 
 function App() {
   console.log("app");
@@ -48,9 +45,6 @@ function App() {
                 <News />
               </Route>
 
-              <Route path="/sales">
-                <Sales />
-              </Route>
               <Route path="/contacts">
                 <News />
               </Route>

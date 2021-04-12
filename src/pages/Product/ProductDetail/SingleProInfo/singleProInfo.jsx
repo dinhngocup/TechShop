@@ -7,7 +7,7 @@ import ProductInfo from "./ProductInfo/productInfo";
 import "./_singleProInfo.scss";
 import PropTypes from "prop-types";
 import { Row, Col } from "reactstrap";
-import WishIcon from '../../WishIcon/wishIcon';
+import WishIcon from "../../WishIcon/wishIcon";
 
 SingleProInfo.propTypes = {
   product: PropTypes.object,
@@ -31,7 +31,7 @@ function SingleProInfo(props) {
         <div className="col-lg-5">
           <div className="single-pro-slider">
             <img src={Object.values(activeImage)[0]} alt="apple-watch" />
-            <WishIcon/>
+            <WishIcon id={product.id} />
           </div>
         </div>
         <div className="col-lg-7 product-info">
