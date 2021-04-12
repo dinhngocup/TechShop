@@ -8,7 +8,6 @@ import TopProduct from "../TopProduct/topProduct";
 import "../TopProduct/_topProduct.scss";
 
 function TopProductCarousel() {
-  //console.log('home items')
   const [topProducts, setTopProducts] = useState([]);
   const [filterTopProduct, setFilterTopProduct] = useState("top20");
 

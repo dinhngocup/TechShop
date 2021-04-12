@@ -8,9 +8,9 @@ import CartItem from "./CartItem/cartItem";
 import "./_cart.scss";
 
 function Cart() {
-  console.log("cart");
+  //console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
-  console.log(productsInCart)
+  //console.log(productsInCart)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(

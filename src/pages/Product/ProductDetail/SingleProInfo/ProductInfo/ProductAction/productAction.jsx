@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./_productAction.scss";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../../../../app/cartSlice";
+import { addToCart } from "../../../../../ShoppingItems/Cart/cartSlice";
 
 ProductAction.propTypes = {
   status: PropTypes.object,

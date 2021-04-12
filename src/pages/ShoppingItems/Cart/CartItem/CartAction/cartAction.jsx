@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import "./_cartAction.scss";
-import { updateQuantity } from "../../../../../app/cartSlice";
+import {
+  updateQuantity,
+  decreaseQuantity,
+  increaseQuantity,
+} from "../../cartSlice";
 
 function CartAction(props) {
   const { stockQuantity, productInCart } = props;
@@ -24,7 +28,7 @@ function CartAction(props) {
           className="quantity-btn flex"
           onClick={() => {
             if (productInCart.quantity > 1)
-              updateQuantityInStore(productInCart.quantity - 1);
+              dispatch(decreaseQuantity({ id: productInCart.id }));
           }}
         >
           <i className="fa fa-minus"></i>
@@ -44,8 +48,9 @@ function CartAction(props) {
         <div
           className="quantity-btn flex"
           onClick={() => {
+            console.log(productInCart.id);
             if (productInCart.quantity < stockQuantity)
-              updateQuantityInStore(productInCart.quantity + 1);
+              dispatch(increaseQuantity({ id: productInCart.id }));
           }}
         >
           <i className="fa fa-plus"></i>

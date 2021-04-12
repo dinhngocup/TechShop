@@ -21,17 +21,17 @@
             transition: 0.3s;
             
         }
-        &:hover {
-            .icon {
-                transition: 0.5s;
-                left: 0;
-                right: 0;
-                opacity: 1;
-            }
-            .name {
-                opacity: 0;
-            }
-        }
+        // &:hover {
+        //     .icon {
+        //         transition: 0.5s;
+        //         left: 0;
+        //         right: 0;
+        //         opacity: 1;
+        //     }
+        //     .name {
+        //         opacity: 0;
+        //     }
+        // }
     }
     &.btn-learn-more {
         margin-right: 10px;

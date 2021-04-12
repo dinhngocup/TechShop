@@ -3,15 +3,12 @@ import "./_info.scss";
 import {
   NavLink,
 } from "react-router-dom";
+import CartIcon from './CartIcon/cartIcon';
 
 function Info() {
     return (
         <div className="info-group d-flex">
-            <NavLink 
-                activeClassName='active'
-                to="/shopping-cart">
-                <i className="fa fa-shopping-bag"></i>
-            </NavLink>
+           <CartIcon />
             <NavLink 
                 activeClassName='active'
                 to="/user-info">
