@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import image from "../../../../assets/images/city_7.jpg";
-import BtnAdd from '../../Button/btnAdd'
-import BtnMore from '../../Button/btnMore'
+import BtnAdd from "../../Button/btnAdd";
+import BtnMore from "../../Button/btnMore";
 import "./_topProduct.scss";
 
 function TopProduct(props) {
@@ -13,7 +13,7 @@ function TopProduct(props) {
         <img src={image} alt={product.name} />
         <div className="button">
           <BtnMore />
-          <BtnAdd id={product.id}/>
+          <BtnAdd product={(product.id, product.name, product.price)} />
         </div>
       </div>
       <div className="mt-2 product-name">

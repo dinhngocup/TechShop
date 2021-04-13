@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import image from "../../../../assets/images/pic7.jpeg";
-import CartAction from "./CartAction/cartAction";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductApi from "../../../../api/productApi";
-import { useDispatch } from "react-redux";
+import image from "../../../../assets/images/pic7.jpeg";
 import { removeFromCart } from "../cartSlice";
+import CartAction from "./CartAction/cartAction";
 
 function CartItem(props) {
   const { productInCart } = props;
+
   const [product, setProduct] = useState({});
-  //console.log('item', product.id)
+
+  //console.log("item", productInCart.id);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
-      //console.log(response);
+
       setProduct(response);
     };
     fetchDetailedProduct(productInCart.id);
@@ -53,7 +55,9 @@ function CartItem(props) {
           ? "Out Of Stock"
           : product.status?.stockQuantity}
       </td>
-      <td className="total-price">10.000.000đ</td>
+      <td className="total-price">
+        {productInCart.price * productInCart.quantity}
+      </td>
       <td className="btn-remove">
         <i
           className="fa fa-times"

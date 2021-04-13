@@ -16,7 +16,7 @@ function CartAction(props) {
     dispatch(
       updateQuantity({
         id: productInCart.id,
-        quantity: quantity,
+        quantity: quantity
       })
     );
   };
@@ -48,7 +48,6 @@ function CartAction(props) {
         <div
           className="quantity-btn flex"
           onClick={() => {
-            console.log(productInCart.id);
             if (productInCart.quantity < stockQuantity)
               dispatch(increaseQuantity({ id: productInCart.id }));
           }}

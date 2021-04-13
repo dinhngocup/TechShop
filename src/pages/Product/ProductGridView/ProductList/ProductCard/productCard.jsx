@@ -33,13 +33,15 @@ function ProductCard(props) {
     dispatch(action);
   };
 
-  const handleAddToCart = (e, id) => {
+  const handleAddToCart = (e, id, name, price) => {
     e.preventDefault();
     if (!loading) {
       dispatch(
         addToCart({
           id: id,
           quantity: 1,
+          name: name,
+          price: price,
         })
       );
       alert();
@@ -50,7 +52,7 @@ function ProductCard(props) {
       <Link to={`/products/${product.category}/${product.id}`}>
         <div className="product-photo">
           <img src={image1} alt="Apple watch" />
-          <WishIcon id={product.id}/>
+          <WishIcon id={product.id} />
           <div
             className="product-action"
             onClick={(e) => {
@@ -67,7 +69,7 @@ function ProductCard(props) {
             </button>
             <button
               onClick={(e) => {
-                handleAddToCart(e, product.id);
+                handleAddToCart(e, product.id, product.name, product.price);
               }}
               disabled={loading}
             >

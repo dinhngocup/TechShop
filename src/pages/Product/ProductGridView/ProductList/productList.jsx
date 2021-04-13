@@ -31,7 +31,10 @@ function ProductList() {
             order: filter,
           });
         } else {
-          response = await ProductApi.searchProducts(searchTerm);
+          response = await ProductApi.searchProductsIncludeFilter({
+            keyword: searchTerm,
+            order: filter,
+          });
         }
       } else {
         response = await ProductApi.getProductsByCategory({

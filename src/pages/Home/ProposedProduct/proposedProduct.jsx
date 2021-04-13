@@ -49,8 +49,7 @@ function ProposedProduct(props) {
   return (
     <div className="proposed-product row">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-          <img src={image1} alt="Apple Watch" />
-        
+        <img src={image1} alt="Apple Watch" />
       </div>
       <div className="col-sm-12 proposed-product-content col-xs-12 col-md-12 col-lg-4">
         <h2>{product.name}</h2>
@@ -85,8 +84,9 @@ function ProposedProduct(props) {
         </div>
         <p className="description">{product.description}</p>
         <div className="d-flex">
-          <BtnAdd id={product.id}/>
-          <BtnMore/>
+          <BtnAdd product={(product.id, product.name, product.price)} />
+
+          <BtnMore />
         </div>
       </div>
     </div>

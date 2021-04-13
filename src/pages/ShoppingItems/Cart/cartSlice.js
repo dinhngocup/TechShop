@@ -2,6 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Cookies } from "react-cookie";
 
 /**
+ * payload of ADD TO CART action is {
+ * id: ID OF PRODUCT,
+ * quantity: QUANTITY OF PRODUCT,
+ * name: NAME OF PRODUCT
+ * }
+ *
  * payload of actions is {
  * id: ID OF PRODUCT,
  * quantity: QUANTITY OF PRODUCT
@@ -37,10 +43,10 @@ const cart = createSlice({
       cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
     removeFromCart: (state, action) => {
-      console.log(action.payload.id);
-      state.products =
-        cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
-
+      if (
+        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+      )
+        state.products = [...cookies.get("cart")];
       let existedProduct = state.products.filter(
         (product) => product.id !== action.payload.id
       );
@@ -58,18 +64,27 @@ const cart = createSlice({
       cookies.set("cart", JSON.stringify(state.products), { path: "/" });
     },
     increaseQuantity: (state, action) => {
-      state.products =
-        cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
+      // state.products =
+      //   cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
+      if (
+        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+      )
+        state.products = [...cookies.get("cart")];
+
+      //console.log(state.products);
       state.products.find((product) => {
         if (product.id === action.payload.id) product.quantity++;
         return "";
       });
-      console.log(JSON.stringify(state.products, undefined, 2));
+
       cookies.set("cart", JSON.stringify(state.products), { path: "/" });
+      //console.log(JSON.stringify(state.products, undefined, 2));
     },
     decreaseQuantity: (state, action) => {
-      state.products =
-        cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
+      if (
+        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+      )
+        state.products = [...cookies.get("cart")];
       state.products.find((product) => {
         if (product.id === action.payload.id) product.quantity--;
         return "";
@@ -85,4 +100,5 @@ export const {
   updateQuantity,
   increaseQuantity,
   decreaseQuantity,
+  setNewestPrice,
 } = cart.actions;

@@ -12,15 +12,16 @@ ProductAction.defaultProps = {
 };
 
 function ProductAction(props) {
-  const { status, id } = props;
+  const { status, id, name } = props;
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
-  const handleAddToCart = (id) => {
+  const handleAddToCart = (id, name) => {
     dispatch(
       addToCart({
         id: id,
         quantity: quantity,
+        name: name
       })
     );
   };
@@ -79,7 +80,7 @@ function ProductAction(props) {
       <div
         className="product-actions mt-4"
         onClick={() => {
-          handleAddToCart(id);
+          handleAddToCart(id, name);
         }}
       >
         <i className="fas fa-cart-plus"></i>

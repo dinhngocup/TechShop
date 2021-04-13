@@ -52,5 +52,10 @@ const ProductApi = {
     const url = `${UrlConstant.SEARCH_PRODUCTS}?q=${info}`;
     return axiosClient.get(url);
   },
+  searchProductsIncludeFilter: async (params) => {
+    let { keyword, order } = params;
+    const url = `${UrlConstant.SEARCH_PRODUCTS}?q=${keyword}&_sort=price&_order=${order}`;
+    return axiosClient.get(url);
+  },
 };
 export default ProductApi;

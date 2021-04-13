@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./_btn.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../ShoppingItems/Cart/cartSlice";
 
 function BtnAdd(props) {
-  const { id } = props;
+  const { product } = props;
   const dispatch = useDispatch();
   const [content, setContent] = useState("Add to cart");
   const [loading, setLoading] = useState(false);
 
   let timer = null;
-  
+
   const alert = () => {
     window.clearTimeout(timer);
     setContent("Added");
@@ -20,11 +20,13 @@ function BtnAdd(props) {
       setLoading(false);
     }, 300);
   };
-  const handleAddToCart = (id) => {
+  const handleAddToCart = (product) => {
     dispatch(
       addToCart({
-        id: id,
+        id: product.id,
         quantity: 1,
+        name: product.name,
+        price: product.price,
       })
     );
     alert();
@@ -34,7 +36,7 @@ function BtnAdd(props) {
       disabled={loading}
       className="btn-main btn-tranform btn-add"
       onClick={() => {
-        handleAddToCart(id);
+        handleAddToCart(product);
       }}
     >
       <span className="name">{content}</span>

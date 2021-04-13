@@ -4,10 +4,13 @@ import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
 } from "../../../components/Breadcrumb/breadcrumbSlice";
+import EmptyItem from "../EmptyItem/emptyItem";
 import CartItem from "./CartItem/cartItem";
+import Coupon from "./Coupon/coupon";
+import PaymentDetail from "./PaymentDetail/paymentDetail";
 
 function Cart() {
-  //console.log("cart");
+  console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
 
   const dispatch = useDispatch();
@@ -24,31 +27,80 @@ function Cart() {
     };
   }, [dispatch]);
 
-  useEffect(() => {}, []);
   return (
-    <div className="table-wrapper">
-      <div className="table-content">
-        <table>
-          <thead>
-            <tr>
-              <th className="">Product</th>
-              <th className="">Price</th>
-              <th className="">Quantity</th>
-              <th className="">In Stock</th>
-              <th className="">Total</th>
-              <th className="">Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productsInCart.length !== 0
-              ? productsInCart.map((product, index) => {
-                  return <CartItem key={index} productInCart={product} />;
-                })
-              : null}
-          </tbody>
-        </table>
+    <React.Fragment>
+      <div className="table-wrapper">
+        <div className="table-content">
+          {productsInCart.length !== 0 ? (
+            <React.Fragment>
+              <table>
+                <thead>
+                  <tr>
+                    <th className="">Product</th>
+                    <th className="">Price</th>
+                    <th className="">Quantity</th>
+                    <th className="">In Stock</th>
+                    <th className="">Total</th>
+                    <th className="">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productsInCart.map((product, index) => {
+                    return (
+                      <CartItem key={product.id} productInCart={product} />
+                    );
+                  })}
+                </tbody>
+              </table>
+            </React.Fragment>
+          ) : (
+            <EmptyItem title="cart" />
+          )}
+        </div>
       </div>
-    </div>
+      <div className="container-fluid mt-4">
+        <div className="row">
+          <div className="col-lg-6 pl-0">
+            {productsInCart.length !== 0 ? (
+              <div className="table-wrapper">
+                <Coupon />
+              </div>
+            ) : null}
+          </div>
+
+          <div className="col-lg-6 pr-0">
+            {productsInCart.length !== 0 ? (
+              <div className="table-wrapper">
+                <div className="payment-details">
+                  <div>
+                    <h4>Payment Details</h4>
+                  </div>
+                  <table className="table-payment">
+                    <tbody>
+                      {productsInCart.map((product, index) => {
+                        return (
+                          <PaymentDetail key={product.id} product={product} />
+                        );
+                      })}
+                      <tr className="payment-detail">
+                        <td>Coupon Discount</td>
+                        <td className="discount">-500.000</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr className="payment-detail">
+                        <td>Order Total</td>
+                        <td className="price">40.000.000</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 

@@ -23,11 +23,13 @@ function WishItem(props) {
     fetchDetailedProduct(productInWishList);
   }, [productInWishList]);
 
-  const handleAddToCart = (id) => {
+  const handleAddToCart = (id, name, price) => {
     dispatch(
       addToCart({
         id: id,
         quantity: 1,
+        name: name,
+        price: price,
       })
     );
     dispatch(editWishList(id));
@@ -63,7 +65,7 @@ function WishItem(props) {
         <button
           disabled={product.status?.stockStatus === "in-stock" ? false : true}
           onClick={() => {
-            handleAddToCart(product.id);
+            handleAddToCart(product.id, product.name, product.price);
           }}
         >
           <i className="fas fa-shopping-cart"></i>

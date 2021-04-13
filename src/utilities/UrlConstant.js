@@ -17,3 +17,6 @@ export const GET_ALL_CATEGORIES = "/categories"
 
 // BRANDS
 export const GET_ALL_BRANDS = "/brands"
+
+// COUPON
+export const GET_COUPON_BY_ID = "/coupons"
