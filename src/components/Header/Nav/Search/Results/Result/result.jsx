@@ -12,9 +12,9 @@ Result.defaultProps = {
 };
 function Result(props) {
   const { product } = props;
-  console.log(product.id);
+  //console.log(product.id);
   return (
-    <Link className="result" to="">
+    <Link className="result" to={`/products/${product.category}/${product.id}`}>
       <img src={image} alt={product.name} />
       <div className="info">
         <div className="name">{product.name}</div>
@@ -24,4 +24,4 @@ function Result(props) {
   );
 }
 
-export default React.memo(Result);
+export default Result;

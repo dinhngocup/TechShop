@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reducerBreadcrumb from "../components/Breadcrumb/breadcrumbSlice";
 import reducerCategory from "../components/Header/Nav/categorySlice";
-import reducerFilter from "../pages/Product/Filter/filterSlice";
-import reducerProductModal from "../pages/Product/ProductModal/productModalSlice";
+import reducerFilter from "../pages/Product/ProductGridView/Filter/filterSlice";
+import reducerProductModal from "../pages/Product/ProductGridView/ProductList/ProductModal/productModalSlice";
 import reducerProduct from "../pages/Product/productSlice";
 import reducerCart from "../pages/ShoppingItems/Cart/cartSlice";
 import reducerWishList from '../pages/ShoppingItems/WishList/wishListSlice';

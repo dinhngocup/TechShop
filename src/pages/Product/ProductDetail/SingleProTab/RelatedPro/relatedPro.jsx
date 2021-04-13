@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
 import HeaderSection from "../../../../../components/HeaderSection/headerSection";
-import ProductModal from "../../../ProductModal/productModal";
+import ProductModal from "../../../ProductGridView/ProductList/ProductModal/productModal";
 import RelatedCategoryPro from "./RelatedCategoryPro/relatedCategoryPro";
 
 

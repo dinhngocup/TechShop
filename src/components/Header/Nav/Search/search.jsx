@@ -32,16 +32,19 @@ function Search() {
       otherResults = response.length - 5;
       response = response.slice(0, 5);
     }
-    let data = {
+    let object = {
       results: response,
       otherResults: otherResults,
+      searchTerm: info
     };
-    setData(data);
+    setData(object);
   };
 
   const resetSearchForm = () => {
-    setSearchTerm("");
-    setData({ results: null, otherResults: null });
+    setTimeout(() => {
+      setSearchTerm("");
+      setData({ results: null, otherResults: null, searchTerm:null });
+    }, 200);
   };
 
   return (

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
-import '../../assets/styles/_childBanner.scss';
+import "../../assets/styles/_childBanner.scss";
 import Breadcrumb from "../../components/Breadcrumb/breadcrumb";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
+  removeLastBreadcrumb,
 } from "../../components/Breadcrumb/breadcrumbSlice";
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
@@ -18,7 +18,7 @@ function Product() {
     dispatch(
       addNewBreadcrumb({
         name: "products",
-        slug: "/products/smart-watch",
+        slug: "/products",
       })
     );
     return () => {
@@ -35,14 +35,12 @@ function Product() {
       <div className="product-grid-view">
         <div className="container-fluid">
           <div className="row">
-            
-              <Route exact path="/products/:slug">
-                <ProductGridView />
-              </Route>
-              <Route path="/products/:slug/:id">
-                <ProductDetail />
-              </Route>
-            
+            <Route exact path={["/products", "/products/:slug"]}>
+              <ProductGridView />
+            </Route>
+            <Route path="/products/:slug/:id">
+              <ProductDetail />
+            </Route>
           </div>
         </div>
       </div>

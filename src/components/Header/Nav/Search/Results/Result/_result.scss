@@ -4,7 +4,7 @@
     display: flex;
     border-bottom: 1px solid #d8d8d8;
     align-items: center;
-    color:black;
+    color: black;y
     &:hover {
         text-decoration: none;
         .info {
@@ -24,7 +24,6 @@
         border-radius: 5px;
     }
     .info {
-        
         padding: 0 10px;
         font-weight: lighter;
         .name {

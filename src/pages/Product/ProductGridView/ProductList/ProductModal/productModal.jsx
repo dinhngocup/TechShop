@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./_productModal.scss";
-import image1 from "../../../assets/images/product3.jpeg";
+import image1 from "../../../../../assets/images/product3.jpeg";
 
 function ProductModal(props) {
   

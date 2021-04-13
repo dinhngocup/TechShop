@@ -38,7 +38,8 @@ function App() {
               <Route path="/user-info">
                 <News />
               </Route>
-              <Route path="/products/:slug">
+
+              <Route path={["/products", "/products/:slug"]}>
                 <Product />
               </Route>
               <Route exact path="/news">

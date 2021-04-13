@@ -8,10 +8,10 @@ import "./_results.scss";
 
 function Results(props) {
   const { data } = props;
-  console.log(data);
-  const { results, otherResults } = data;
+  //console.log(data);
+  const { results, otherResults, searchTerm } = data;
 
-  const arrangeResults = (results, otherResults) => {
+  const arrangeResults = (results, otherResults, searchTerm) => {
     let res = "";
     if (results === null) return null;
     if (results.length === 0) {
@@ -34,7 +34,7 @@ function Results(props) {
               <Result product={result} key={result.id} />
               <Link
                 className="result justify-content-center"
-                to=""
+                to={`/products?keyword=${searchTerm}`}
                 key={nanoid()}
               >
                 {otherResults} different results were found
@@ -53,7 +53,7 @@ function Results(props) {
         <div></div>
       ) : (
         <div className="result-container">
-          {arrangeResults(results, otherResults)}
+          {arrangeResults(results, otherResults, searchTerm)}
         </div>
       )}
     </React.Fragment>
@@ -64,4 +64,4 @@ Results.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default React.memo(Results);
+export default Results;

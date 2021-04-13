@@ -18,6 +18,7 @@ function Categories() {
                   activeClassName="active"
                   to={`/products/${category.slug}`}
                   key={index}
+                  exact={category.exact}
                 >
                   <li>{category.name}</li>
                 </NavLink>

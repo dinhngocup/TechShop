@@ -32,7 +32,7 @@ function Nav(props) {
             </NavLink>
           </li>
           <li className="dropdown-switcher">
-            <NavLink activeClassName="active" to="/products/smart-watch">
+            <NavLink activeClassName="active" to="/products">
               Products
             </NavLink>
             <div className="dropdown">
@@ -43,6 +43,7 @@ function Nav(props) {
                         <NavLink
                           to={`/products/${category.slug}`}
                           activeClassName="active"
+                          exact={category.exact}
                         >
                           {category.name}
                         </NavLink>

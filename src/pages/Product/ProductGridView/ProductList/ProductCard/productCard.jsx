@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import image1 from "../../../assets/images/product1.jpeg";
+import image1 from "../../../../../assets/images/product1.jpeg";
 import { getProductModal } from "../ProductModal/productModalSlice";
-import WishIcon from "../WishIcon/wishIcon";
+import WishIcon from "../../../WishIcon/wishIcon";
 import "./_productCard.scss";
 import { Link } from "react-router-dom";
-import ProductRating from "../ProductRating/productRating";
-import { addToCart } from "../../ShoppingItems/Cart/cartSlice";
+import ProductRating from "./ProductRating/productRating";
+import { addToCart } from "../../../../ShoppingItems/Cart/cartSlice";
 
 function ProductCard(props) {
   const { product } = props;

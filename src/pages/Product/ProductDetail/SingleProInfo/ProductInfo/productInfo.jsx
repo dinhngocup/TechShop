@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ProductAction from "./ProductAction/productAction";
-import ProductRating from "../../../ProductRating/productRating";
+import ProductRating from "../../../ProductGridView/ProductList/ProductCard/ProductRating/productRating";
 import './_productInfo.scss'
 
 ProductInfo.propTypes = {

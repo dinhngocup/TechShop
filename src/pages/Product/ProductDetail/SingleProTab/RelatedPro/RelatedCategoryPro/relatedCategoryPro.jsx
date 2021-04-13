@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import ProductApi from "../../../../../../api/productApi";
-import ProductCard from "../../../../ProductCard/productCard";
+import ProductCard from "../../../../ProductGridView/ProductList/ProductCard/productCard";
 
 function RelatedCategoryPro(props) {
   const { type, content } = props;
