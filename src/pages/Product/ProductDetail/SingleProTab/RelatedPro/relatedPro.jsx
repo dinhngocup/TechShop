@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
-import HeaderSection from "../../../../../components/HeaderSection/headerSection";
-import ProductModal from "../../../ProductGridView/ProductList/ProductModal/productModal";
-import RelatedCategoryPro from "./RelatedCategoryPro/relatedCategoryPro";
+import HeaderSection from "components/common/HeaderSection/headerSection";
+import ProductModal from "components/common/ProductModal/productModal";
+import RelatedCategoryPro from "./relatedCategoryPro";
 
 
 function RelatedPro(props) {

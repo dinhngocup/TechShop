@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./_proDescription.scss";
-import image from "../../../../../assets/images/footer.jpeg";
-import image1 from "../../../../../assets/images/white.png";
-import ProductApi from "../../../../../api/productApi";
+import image from "assets/images/footer.jpeg";
+import image1 from "assets/images/white.png";
+import ProductApi from "api/productApi";
 
 const ProDescription = (props) => {
   const { id } = props;

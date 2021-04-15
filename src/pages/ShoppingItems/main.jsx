@@ -1,11 +1,12 @@
 import React from "react";
-import "../../assets/styles/_childBanner.scss";
-import Breadcrumb from "../../components/Breadcrumb/breadcrumb";
-import NavShopping from "./NavShoppingItems/navShopping";
+import "assets/styles/_childBanner.scss";
+import Breadcrumb from "components/common/Breadcrumb/breadcrumb";
+import NavShopping from "components/ShoppingItemsComponents/NavShoppingItems/navShopping";
 import "./_shoppingItems.scss";
 import WishList from "./WishList/wishList";
 import Cart from "./Cart/cart";
 import {Route} from 'react-router-dom'
+import CheckOut from './CheckOut/checkOut';
 
 function ShoppingItems(props) {
   //console.log("cart main");
@@ -27,6 +28,9 @@ function ShoppingItems(props) {
             </Route>
             <Route path="/wish-list">
               <WishList />
+            </Route>
+            <Route path="/check-out">
+              <CheckOut />
             </Route>
           </div>
         </div>

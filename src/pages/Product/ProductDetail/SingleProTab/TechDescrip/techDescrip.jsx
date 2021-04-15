@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import HeaderSection from "../../../../../components/HeaderSection/headerSection";
+import HeaderSection from "components/common/HeaderSection/headerSection";
 import "./_techDescrip.scss";
-import ProductApi from "../../../../../api/productApi";
+import ProductApi from "api/productApi";
 function TechDescrip(props) {
   const { id } = props;
   const [generalInfo, setGeneralInfo] = useState([]);

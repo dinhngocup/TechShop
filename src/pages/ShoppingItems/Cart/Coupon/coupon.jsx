@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./_coupon.scss";
-import CouponApi from "../../../../api/couponApi";
+import CouponApi from "api/couponApi";
 function Coupon() {
   const [coupon, setCoupon] = useState("");
   const [couponStatus, setCouponStatus] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "reactstrap";
-import TrendingProduct from "./trendingProduct";
-import ProductApi from "../../../api/productApi";
+import TrendingProduct from "components/HomeComponents/TrendingProduct/trendingProduct";
+import ProductApi from "api/productApi";
 
 function TrendingProductList() {
   const [trendingProducts, setTrendingProducts] = useState([]);

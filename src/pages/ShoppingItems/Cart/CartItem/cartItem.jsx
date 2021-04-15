@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ProductApi from "../../../../api/productApi";
-import image from "../../../../assets/images/pic7.jpeg";
-import { removeFromCart } from "../cartSlice";
-import CartAction from "./CartAction/cartAction";
+import ProductApi from "api/productApi";
+import image from "assets/images/pic7.jpeg";
+import { removeFromCart } from "utilities/slices/cartSlice";
+import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
 
 function CartItem(props) {
   const { productInCart } = props;

@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "../../../components/Breadcrumb/breadcrumbSlice";
-import EmptyItem from "../EmptyItem/emptyItem";
+} from "utilities/slices/breadcrumbSlice";
+import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import CartItem from "./CartItem/cartItem";
 import Coupon from "./Coupon/coupon";
-import PaymentDetail from "./PaymentDetail/paymentDetail";
+
+import GeneralOrder from "../common/GeneralOrder/generalOrder";
 
 function Cart() {
   console.log("cart");
@@ -71,30 +72,10 @@ function Cart() {
           <div className="col-lg-6 pr-0">
             {productsInCart.length !== 0 ? (
               <div className="table-wrapper">
-                <div className="payment-details">
-                  <div>
-                    <h4>Payment Details</h4>
-                  </div>
-                  <table className="table-payment">
-                    <tbody>
-                      {productsInCart.map((product, index) => {
-                        return (
-                          <PaymentDetail key={product.id} product={product} />
-                        );
-                      })}
-                      <tr className="payment-detail">
-                        <td>Coupon Discount</td>
-                        <td className="discount">-500.000</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr className="payment-detail">
-                        <td>Order Total</td>
-                        <td className="price">40.000.000</td>
-                      </tr>
-                    </tfoot>
-                  </table>
+                <div>
+                  <h4>Payment Details</h4>
                 </div>
+                <GeneralOrder />
               </div>
             ) : null}
           </div>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ProposedProduct from "./proposedProduct";
 import { nanoid } from "nanoid";
-import ProductApi from '../../../api/productApi'
+import ProductApi from 'api/productApi'
 
 function ProposedProductList() {
   const [proposedProducts, setProposedProducts] = useState([]);

@@ -1,8 +1,8 @@
 import { PropTypes } from "prop-types";
 import React, { useEffect, useState } from "react";
-import image1 from "../../../assets/images/pic7.jpeg";
-import BtnAdd from "../Button/btnAdd";
-import BtnMore from "../Button/btnMore";
+import image1 from "assets/images/pic7.jpeg";
+import BtnAdd from "components/common/Button/btnAdd";
+import BtnMore from "components/common/Button/btnMore";
 import "./_proposedProduct.scss";
 
 ProposedProduct.propTypes = {

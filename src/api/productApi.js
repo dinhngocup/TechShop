@@ -1,4 +1,4 @@
-import * as UrlConstant from "../utilities/UrlConstant";
+import * as UrlConstant from "utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 const ProductApi = {
   getAllProducts: async (params) => {

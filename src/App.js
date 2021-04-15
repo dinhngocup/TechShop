@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer/footer";
-import Header from "./components/Header/header";
-import News from "./components/news";
-import ScrollToTop from "./components/ScrollToTop/scrollToTop";
-import Home from "./pages/Home/main";
-import Product from "./pages/Product/main";
-import ShoppingCart from "./pages/ShoppingItems/main";
+import Footer from "components/main/Footer/footer";
+import Header from "components/main/Header/header";
+import News from "components/news";
+import ScrollToTop from "components/main/ScrollToTop/scrollToTop";
+import Home from "pages/Home/main";
+import Product from "pages/Product/main";
+import ShoppingCart from "pages/ShoppingItems/main";
 import "./_app.scss";
-import ScrollToTopRouter from "./components/ScrollToTop/scrollToTopRouter";
+import ScrollToTopRouter from "components/main/ScrollToTop/scrollToTopRouter";
 
 function App() {
   console.log("app");

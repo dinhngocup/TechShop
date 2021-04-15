@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
-import BrandApi from "../../../api/brandApi";
-import image from "../../../assets/images/razer.png";
+import BrandApi from "api/brandApi";
+import image from "assets/images/razer.png";
 import "./_brandGroup.scss";
 
 function BrandGroup() {

@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "../../../components/Breadcrumb/breadcrumbSlice";
-import EmptyItem from "../EmptyItem/emptyItem";
-import WishItem from "./WishItem/wishItem";
+} from "utilities/slices/breadcrumbSlice";
+import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import WishItem from "./wishItem";
 
 function WishList(props) {
   const productsInWishList = useSelector((state) => state.wishList);

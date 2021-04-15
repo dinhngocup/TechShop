@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
-import "../../assets/styles/_childBanner.scss";
-import Breadcrumb from "../../components/Breadcrumb/breadcrumb";
+import "assets/styles/_childBanner.scss";
+import Breadcrumb from "components/common/Breadcrumb/breadcrumb";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "../../components/Breadcrumb/breadcrumbSlice";
+} from "utilities/slices/breadcrumbSlice";
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";

@@ -2,7 +2,7 @@ import { PropTypes } from "prop-types";
 import React, { useState, useEffect } from "react";
 import ProDescription from "./ProDescription/proDescription";
 import ProReview from "./ProReview/proReview";
-import ProTab from "./ProTab/proTab";
+import ProTab from "components/ProductComponents/ProTab/proTab";
 import RelatedPro from "./RelatedPro/relatedPro";
 import TechDescrip from "./TechDescrip/techDescrip";
 import "./_singleProTab.scss";
