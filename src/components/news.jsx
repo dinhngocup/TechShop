@@ -1,13 +1,9 @@
-import React from 'react';
+import React from "react";
 
-function News() {
-    //console.log('news')
-    return (
-        <div>
-            News
-        </div>
-    )
+function News(props) {
+  console.log("props", props);
+  
+  return <div>News</div>;
 }
 
-export default React.memo(News)
-
+export default React.memo(News);

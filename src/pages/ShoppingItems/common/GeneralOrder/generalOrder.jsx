@@ -1,19 +1,21 @@
+import PaymentDetail from "components/ShoppingItemsComponents/PaymentDetail/paymentDetail";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import './_generalOrder.scss'
-import PaymentDetail from "components/ShoppingItemsComponents/PaymentDetail/paymentDetail";
+import "./_generalOrder.scss";
 
 function GeneralOrder() {
   const productsInCart = useSelector((state) => state.cart.products);
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (productsInCart.length !== 0) {
       let price = productsInCart.reduce(
         (accumulator, currentValue) =>
-          accumulator.price * accumulator.quantity +
-          currentValue.price * currentValue.quantity
+          accumulator + currentValue.price * currentValue.quantity,
+        0
       );
+        //console.log(price)
       setTotalPrice(price);
     }
   }, [productsInCart]);

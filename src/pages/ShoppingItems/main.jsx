@@ -5,12 +5,12 @@ import NavShopping from "components/ShoppingItemsComponents/NavShoppingItems/nav
 import "./_shoppingItems.scss";
 import WishList from "./WishList/wishList";
 import Cart from "./Cart/cart";
-import {Route} from 'react-router-dom'
-import CheckOut from './CheckOut/checkOut';
+import { Route } from "react-router-dom";
+import CheckOut from "./CheckOut/checkOut";
 
 function ShoppingItems(props) {
   //console.log("cart main");
-  
+
   return (
     <div className="wrapper-dashboard shopping-cart-area">
       <div className="child-banner shopping-cart-banner">

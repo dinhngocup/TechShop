@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
 } from "utilities/slices/breadcrumbSlice";
-import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import GeneralOrder from "../common/GeneralOrder/generalOrder";
 import CartItem from "./CartItem/cartItem";
 import Coupon from "./Coupon/coupon";
-
-import GeneralOrder from "../common/GeneralOrder/generalOrder";
 
 function Cart() {
   console.log("cart");
@@ -76,6 +75,9 @@ function Cart() {
                   <h4>Payment Details</h4>
                 </div>
                 <GeneralOrder />
+                <div className="btn-pay">
+                  <button>Place order</button>
+                </div>
               </div>
             ) : null}
           </div>

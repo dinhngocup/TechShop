@@ -7,13 +7,18 @@ import "./_topProduct.scss";
 
 function TopProduct(props) {
   const { product } = props;
+  let productData = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+  };
   return (
     <div className="d-flex justify-content-center top-product">
       <div className="product-info">
         <img src={image} alt={product.name} />
         <div className="button">
           <BtnMore />
-          <BtnAdd product={(product.id, product.name, product.price)} />
+          <BtnAdd product={productData} />
         </div>
       </div>
       <div className="mt-2 product-name">

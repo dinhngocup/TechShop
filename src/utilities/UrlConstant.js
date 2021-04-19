@@ -20,3 +20,8 @@ export const GET_ALL_BRANDS = "/brands"
 
 // COUPON
 export const GET_COUPON_BY_ID = "/coupons"
+
+// USER
+export const LOGIN = "/auth/login"
+export const GET_USER_SHIPPING_INFO = "/shipping_info"
+export const PLACE_ORDER = "/orders"

@@ -29,6 +29,7 @@ const cart = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
+      
       state.products =
         cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
 

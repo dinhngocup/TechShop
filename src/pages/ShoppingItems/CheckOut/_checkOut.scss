@@ -1,4 +1,11 @@
 .check-out {
+    // min-height: 565px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    .row {
+        width: 100%;
+    }
     input,
     textarea,
     select {
@@ -13,7 +20,9 @@
     .order {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-       
+        justify-content: flex-start;
+
+        
     }
+    
 }

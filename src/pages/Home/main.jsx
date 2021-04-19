@@ -72,6 +72,7 @@ function Home() {
             </div>
           </div>
         </div>
+     
       </div>
     </React.Fragment>
   );

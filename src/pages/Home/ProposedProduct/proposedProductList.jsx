@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import ProductApi from 'api/productApi'
 
 function ProposedProductList() {
+  
   const [proposedProducts, setProposedProducts] = useState([]);
   useEffect(() => {
     const fetchProposedProducts = async () => {

@@ -5,6 +5,7 @@ import { addToCart } from "utilities/slices/cartSlice";
 
 function BtnAdd(props) {
   const { product } = props;
+  
   const dispatch = useDispatch();
   const [content, setContent] = useState("Add to cart");
   const [loading, setLoading] = useState(false);

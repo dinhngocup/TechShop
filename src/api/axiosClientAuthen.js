@@ -1,28 +1,27 @@
 /**
- * This instance is used to send axios request without access token
+ * This instance is used to send axios request with access token in header
  */
+
 import axios from "axios";
+import { authHeader } from "helpers/authHeader";
 import queryString from "query-string";
 
-const axiosClient = axios.create({
+const axiosClientAuthen = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "content-type": "application/json",
   },
-  // used to parse params to paramString in url
   paramsSerializer: (params) => queryString.stringify(params),
 });
 
-axiosClient.interceptors.request.use(async (config) => {
+axiosClientAuthen.interceptors.request.use(async (config) => {
   // handle token
 
+  config.headers.Authorization = authHeader();
   return config;
 });
 
-
-
-
-axiosClient.interceptors.response.use(
+axiosClientAuthen.interceptors.response.use(
   (response) => {
     if (response && response.data) {
       return response.data;
@@ -30,8 +29,9 @@ axiosClient.interceptors.response.use(
     return response;
   },
   (error) => {
+    
     return Promise.reject(error);
   }
 );
 
-export default axiosClient;
+export default axiosClientAuthen;
