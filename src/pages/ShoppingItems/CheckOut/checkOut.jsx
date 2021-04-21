@@ -12,7 +12,6 @@ import Order from "./Order/order";
 import "./_checkOut.scss";
 
 function CheckOut(props) {
-  //console.log('checkout')
   const productsInCart = useSelector((state) => state.cart.products);
   const location = useLocation();
   const history = useHistory();
@@ -47,10 +46,11 @@ function CheckOut(props) {
       return UserApi.placeOrder(data)
         .then((res) => console.log(res))
         .catch((err) => {
-          return history.push({
-            pathname: "/login",
-            state: { referrer: location },
-          });
+          // console.log(err)
+          // return history.push({
+          //   pathname: "/login",
+          //   state: { referrer: location },
+          // });
         });
     };
     placeOrder(data);

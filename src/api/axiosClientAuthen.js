@@ -4,7 +4,9 @@
 
 import axios from "axios";
 import { authHeader } from "helpers/authHeader";
+import { cookiesService } from "helpers/cookiesService";
 import queryString from "query-string";
+import { refreshToken } from "helpers/refreshToken";
 
 const axiosClientAuthen = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -16,11 +18,12 @@ const axiosClientAuthen = axios.create({
 
 axiosClientAuthen.interceptors.request.use(async (config) => {
   // handle token
-
+  //console.log("send request");
   config.headers.Authorization = authHeader();
   return config;
 });
 
+let refreshTokenRequest = null;
 axiosClientAuthen.interceptors.response.use(
   (response) => {
     if (response && response.data) {
@@ -29,8 +32,18 @@ axiosClientAuthen.interceptors.response.use(
     return response;
   },
   (error) => {
-    
-    return Promise.reject(error);
+    return new Promise(async (resolve, reject) => {
+      if (error.response.data.message === "Token expired") {
+        refreshTokenRequest = refreshTokenRequest
+          ? refreshTokenRequest
+          : refreshToken(refreshTokenRequest);
+        await refreshTokenRequest;
+        refreshTokenRequest = null;
+        let res = await axiosClientAuthen(error.config);
+        resolve(res);
+      }
+      return Promise.reject(error);
+    });
   }
 );
 

@@ -1,14 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Cookies } from "react-cookie";
+import { cookiesService } from "helpers/cookiesService";
 /**
  * payload of actions is ID OF PRODUCTS
  */
 
-//singleton for cookies??
-const cookies = new Cookies();
-
 export const initialStateWishList = () => {
-  let result = cookies.get("wishList");
+  let result = cookiesService.getCookies("wishList");
   return result === undefined ? [] : result;
 };
 
@@ -20,9 +17,9 @@ const wishList = createSlice({
   reducers: {
     editWishList: (state, action) => {
       state.products =
-        cookies.get("wishList") === undefined
+        cookiesService.getCookies("wishList") === undefined
           ? []
-          : [...cookies.get("wishList")];
+          : [...cookiesService.getCookies("wishList")];
       let isExisted = false;
       let newProdutcs = state.products.filter((product) => {
         if (product !== action.payload) {
@@ -34,8 +31,10 @@ const wishList = createSlice({
       });
       if (!isExisted) state.products.push(action.payload);
       else state.products = [...newProdutcs];
-      
-      cookies.set("wishList", JSON.stringify(state.products), { path: "/" });
+
+      cookiesService.setCookies("wishList", JSON.stringify(state.products), {
+        path: "/",
+      });
     },
   },
 });

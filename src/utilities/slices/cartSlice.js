@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Cookies } from "react-cookie";
+import { cookiesService } from "helpers/cookiesService";
+import * as ExpireHours from "utilities/ExpireTime";
 
 /**
  * payload of ADD TO CART action is {
@@ -14,11 +15,8 @@ import { Cookies } from "react-cookie";
  * }
  */
 
-//singleton for cookies??
-const cookies = new Cookies();
-
 export const initialStateCart = () => {
-  let result = cookies.get("cart");
+  let result = cookiesService.getCookies("cart");
   return result === undefined ? [] : result;
 };
 
@@ -29,9 +27,10 @@ const cart = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      
       state.products =
-        cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
+        cookiesService.getCookies("cart") === undefined
+          ? []
+          : [...cookiesService.getCookies("cart")];
 
       let existedProduct = state.products.find(
         (product) => product.id === action.payload.id
@@ -41,20 +40,28 @@ const cart = createSlice({
       } else {
         existedProduct.quantity += action.payload.quantity;
       }
-      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
     },
     removeFromCart: (state, action) => {
       if (
-        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+        JSON.stringify(cookiesService.getCookies("cart")) !==
+        JSON.stringify(state.products)
       )
-        state.products = [...cookies.get("cart")];
+        state.products = [...cookiesService.getCookies("cart")];
       let existedProduct = state.products.filter(
         (product) => product.id !== action.payload.id
       );
       state.products = [...existedProduct];
 
-      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
-      //console.log("after remove", state.products);
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
     },
     updateQuantity: (state, action) => {
       state.products.find((product) => {
@@ -62,15 +69,18 @@ const cart = createSlice({
           product.quantity = action.payload.quantity;
         return "";
       });
-      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
     },
     increaseQuantity: (state, action) => {
-      // state.products =
-      //   cookies.get("cart") === undefined ? [] : [...cookies.get("cart")];
       if (
-        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+        JSON.stringify(cookiesService.getCookies("cart")) !==
+        JSON.stringify(state.products)
       )
-        state.products = [...cookies.get("cart")];
+        state.products = [...cookiesService.getCookies("cart")];
 
       //console.log(state.products);
       state.products.find((product) => {
@@ -78,19 +88,27 @@ const cart = createSlice({
         return "";
       });
 
-      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
-      //console.log(JSON.stringify(state.products, undefined, 2));
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
     },
     decreaseQuantity: (state, action) => {
       if (
-        JSON.stringify(cookies.get("cart")) !== JSON.stringify(state.products)
+        JSON.stringify(cookiesService.getCookies("cart")) !==
+        JSON.stringify(state.products)
       )
-        state.products = [...cookies.get("cart")];
+        state.products = [...cookiesService.getCookies("cart")];
       state.products.find((product) => {
         if (product.id === action.payload.id) product.quantity--;
         return "";
       });
-      cookies.set("cart", JSON.stringify(state.products), { path: "/" });
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
     },
   },
 });

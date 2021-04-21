@@ -1,5 +1,5 @@
+import { cookiesService } from "helpers/cookiesService";
 import React from "react";
-import { Cookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { updateLoggedInStatus } from "utilities/slices/userSlice";
@@ -9,14 +9,13 @@ import { updateLoggedInStatus } from "utilities/slices/userSlice";
  * TODO: authentication to direct user to login or children component
  */
 function PrivateRoute({ children, ...restData }) {
-  console.log("private", restData);
+  
   const location = useLocation();
   const { isLoggedIn } = useSelector((state) => state.user.data);
   const dispatch = useDispatch();
-  const cookies = new Cookies();
 
-  const status = cookies.get("user");
-  
+  const status = cookiesService.getCookies("user");
+
   const checkLoggedInStatus = (status, isLoggedIn) => {
     if (status === undefined && isLoggedIn)
       dispatch(updateLoggedInStatus({ isLoggedIn: false }));

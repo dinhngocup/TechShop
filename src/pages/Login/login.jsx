@@ -1,9 +1,8 @@
+import { cookiesService } from 'helpers/cookiesService';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "utilities/slices/userSlice";
 import { useHistory, useLocation } from "react-router-dom";
-import { Cookies } from "react-cookie";
-import { updateLoggedInStatus } from "utilities/slices/userSlice";
+import { login, updateLoggedInStatus } from "utilities/slices/userSlice";
 
 function Login() {
   console.log("login");
@@ -30,14 +29,12 @@ function Login() {
 
   useEffect(() => {
     const checkLoggedInStatus = () => {
-      const cookies = new Cookies();
-      const status = cookies.get("user");
+      const status = cookiesService.getCookies("user");
       if (status === undefined && isLoggedIn)
         dispatch(updateLoggedInStatus({ isLoggedIn: false }));
     };
     checkLoggedInStatus();
 
-    console.log(isLoggedIn);
 
     if (isLoggedIn) {
       if (location.state?.referrer.pathname) {

@@ -25,3 +25,6 @@ export const GET_COUPON_BY_ID = "/coupons"
 export const LOGIN = "/auth/login"
 export const GET_USER_SHIPPING_INFO = "/shipping_info"
 export const PLACE_ORDER = "/orders"
+
+// TOKEN
+export const REFRESH_TOKEN = "/refresh"

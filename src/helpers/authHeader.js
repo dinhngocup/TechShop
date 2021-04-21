@@ -1,8 +1,7 @@
-import { Cookies } from "react-cookie";
+import { cookiesService } from "helpers/cookiesService";
 
 export function authHeader() {
-  const cookies = new Cookies();
-  let user = cookies.get("user");
+  let user = cookiesService.getCookies("user");
 
   if (user && user.access_token) {
     return `Bearer ${user.access_token}`;
