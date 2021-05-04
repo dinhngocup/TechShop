@@ -16,51 +16,56 @@ function AnotherAddressForm(props) {
     setIsAddAddress(true);
     updateInfo(info);
   };
+  const renderAddressInfo = (isAddAddress) => {
+    return isAddAddress === false ? (
+      <React.Fragment>
+        <input
+          placeholder="Your name here..."
+          name="name"
+          onChange={handleChangeInput}
+          required
+        />
+        <input
+          placeholder="Email address here..."
+          name="email"
+          onChange={handleChangeInput}
+          required
+        />
+        <input
+          placeholder="Phone here..."
+          name="phone"
+          onChange={handleChangeInput}
+          required
+        />
+        <textarea
+          placeholder="Your address here..."
+          name="address"
+          onChange={handleChangeInput}
+          required
+        />
+      </React.Fragment>
+    ) : (
+      <AddressInfo info={info} confirm={true} />
+    );
+  };
+
+  const renderButtonSubmitAddress = (isAddAddress) => {
+    return isAddAddress === false ? (
+      <React.Fragment>
+        <button onClick={cancelAdd}>Cancel</button>
+        <button onClick={handleSubmit}>Add</button>
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        <button onClick={cancelAdd}>Delete</button>
+      </React.Fragment>
+    );
+  };
 
   return (
     <React.Fragment>
-      {isAddAddress === false ? (
-        <React.Fragment>
-          <input
-            placeholder="Your name here..."
-            name="name"
-            onChange={handleChangeInput}
-            required
-          />
-          <input
-            placeholder="Email address here..."
-            name="email"
-            onChange={handleChangeInput}
-            required
-          />
-          <input
-            placeholder="Phone here..."
-            name="phone"
-            onChange={handleChangeInput}
-            required
-          />
-          <textarea
-            placeholder="Your address here..."
-            name="address"
-            onChange={handleChangeInput}
-            required
-          />
-        </React.Fragment>
-      ) : (
-        <AddressInfo info={info} confirm={true} />
-      )}
-      <div>
-        {isAddAddress === false ? (
-          <React.Fragment>
-            <button onClick={cancelAdd}>Cancel</button>
-            <button onClick={handleSubmit}>Add</button>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <button onClick={cancelAdd}>Delete</button>
-          </React.Fragment>
-        )}
-      </div>
+      {renderAddressInfo(isAddAddress)}
+      <div>{renderButtonSubmitAddress(isAddAddress)}</div>
     </React.Fragment>
   );
 }

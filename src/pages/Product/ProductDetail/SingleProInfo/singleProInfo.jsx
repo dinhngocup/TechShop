@@ -24,7 +24,33 @@ function SingleProInfo(props) {
   const displayImage = (src) => {
     setActiveImage(src);
   };
-
+  const renderImages = (images) => {
+    return images.length !== 0
+      ? images.map((image, index) => (
+          <Col
+            key={index}
+            xs="6"
+            sm="6"
+            md="3"
+            lg="3"
+            className="product-slider"
+          >
+            <div
+              className="small-image"
+              onClick={() => {
+                displayImage(image);
+              }}
+            >
+              <img
+                src={Object.values(image)[0]}
+                alt="apple-watch"
+                className=""
+              />
+            </div>
+          </Col>
+        ))
+      : "";
+  };
   return (
     <div className="single-pro-info">
       <div className="row">
@@ -37,33 +63,7 @@ function SingleProInfo(props) {
         <div className="col-lg-7 product-info">
           <ProductInfo product={product} />
 
-          <Row>
-            {images.length !== 0
-              ? images.map((image, index) => (
-                  <Col
-                    key={index}
-                    xs="6"
-                    sm="6"
-                    md="3"
-                    lg="3"
-                    className="product-slider"
-                  >
-                    <div
-                      className="small-image"
-                      onClick={() => {
-                        displayImage(image);
-                      }}
-                    >
-                      <img
-                        src={Object.values(image)[0]}
-                        alt="apple-watch"
-                        className=""
-                      />
-                    </div>
-                  </Col>
-                ))
-              : ""}
-          </Row>
+          <Row>{renderImages(images)}</Row>
         </div>
       </div>
     </div>

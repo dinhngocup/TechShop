@@ -9,7 +9,6 @@ import { updateLoggedInStatus } from "utilities/slices/userSlice";
  * TODO: authentication to direct user to login or children component
  */
 function PrivateRoute({ children, ...restData }) {
-  
   const location = useLocation();
   const { isLoggedIn } = useSelector((state) => state.user.data);
   const dispatch = useDispatch();
@@ -22,20 +21,21 @@ function PrivateRoute({ children, ...restData }) {
   };
 
   checkLoggedInStatus(status, isLoggedIn);
-
+  
+  const redirectRoute = (loginStatus, children, location) => {
+    return loginStatus !== undefined ? (
+      children
+    ) : (
+      <Redirect
+        to={{
+          pathname: "/login",
+          state: { referrer: location },
+        }}
+      />
+    );
+  };
   return (
-    <Route {...restData}>
-      {status !== undefined ? (
-        children
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { referrer: location },
-          }}
-        />
-      )}
-    </Route>
+    <Route {...restData}>{redirectRoute(status, children, location)}</Route>
   );
 }
 

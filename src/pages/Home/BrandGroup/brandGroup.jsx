@@ -13,25 +13,23 @@ function BrandGroup() {
     };
     fetchBrands();
   }, []);
-
-  return (
-    <Row>
-      {brands.length !== 0
-        ? brands.map((brand, index) => (
-            <Col key={index} xs="4" sm="4" md="3" lg="3">
-              <div className="brand-info">
-                <div className="brand-img">
-                  <img src={image} alt={brand.name} />
-                </div>
-                <div className="brand-img">
-                  <img src={image} alt={brand.name} />
-                </div>
+  const renderBrandGroup = (brands) => {
+    return brands.length !== 0
+      ? brands.map((brand, index) => (
+          <Col key={index} xs="4" sm="4" md="3" lg="3">
+            <div className="brand-info">
+              <div className="brand-img">
+                <img src={image} alt={brand.name} />
               </div>
-            </Col>
-          ))
-        : ""}
-    </Row>
-  );
+              <div className="brand-img">
+                <img src={image} alt={brand.name} />
+              </div>
+            </div>
+          </Col>
+        ))
+      : "";
+  };
+  return <Row>{renderBrandGroup(brands)}</Row>;
 }
 
 export default BrandGroup;

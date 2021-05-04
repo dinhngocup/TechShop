@@ -20,7 +20,7 @@ const UserApi = {
         return response;
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         return Promise.reject(error);
       });
   },
@@ -32,7 +32,7 @@ const UserApi = {
         return response;
       })
       .catch((error) => {
-        console.log(error.response);
+        //console.log(error.response);
         return Promise.reject(error);
       });
   },
@@ -44,7 +44,7 @@ const UserApi = {
         return response;
       })
       .catch((error) => {
-        console.log(error.response);
+        //(error.response);
         return Promise.reject(error);
       });
   },

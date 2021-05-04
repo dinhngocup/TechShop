@@ -9,22 +9,22 @@ function TrendingProductList() {
   useEffect(() => {
     const fetchTrendingProducts = async () => {
       let response = await ProductApi.getTrendingProducts();
-      setTrendingProducts(response)
+      setTrendingProducts(response);
     };
     fetchTrendingProducts();
   }, []);
 
-  return (
-    <Row>
-      {trendingProducts.length !== 0
-        ? trendingProducts.map((product, index) => (
-            <Col key={index} xs="6" sm="6" md="3" lg="3" className="mb-3">
-              <TrendingProduct product={product} />
-            </Col>
-          ))
-        : ""}
-    </Row>
-  );
+  const renderTrendingList = (list) => {
+    return list.length !== 0
+      ? list.map((product, index) => (
+          <Col key={index} xs="6" sm="6" md="3" lg="3" className="mb-3">
+            <TrendingProduct product={product} />
+          </Col>
+        ))
+      : "";
+  };
+
+  return <Row>{renderTrendingList(trendingProducts)}</Row>;
 }
 
 export default TrendingProductList;

@@ -15,16 +15,20 @@ function GeneralOrder() {
           accumulator + currentValue.price * currentValue.quantity,
         0
       );
-        //console.log(price)
+      //console.log(price)
       setTotalPrice(price);
     }
   }, [productsInCart]);
+
+  const renderPaymentDetails = (productsInCart) => {
+    return productsInCart.map((product, index) => {
+      return <PaymentDetail key={product.id} product={product} />;
+    });
+  };
   return (
     <table className="table-payment">
       <tbody>
-        {productsInCart.map((product, index) => {
-          return <PaymentDetail key={product.id} product={product} />;
-        })}
+        {renderPaymentDetails(productsInCart)}
         <tr className="payment-detail">
           <td>Coupon Discount</td>
           <td className="discount">-500.000</td>

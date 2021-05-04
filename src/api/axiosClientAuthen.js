@@ -4,9 +4,8 @@
 
 import axios from "axios";
 import { authHeader } from "helpers/authHeader";
-import { cookiesService } from "helpers/cookiesService";
-import queryString from "query-string";
 import { refreshToken } from "helpers/refreshToken";
+import queryString from "query-string";
 
 const axiosClientAuthen = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

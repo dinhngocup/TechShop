@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import Search from "./Search/search";
 import "./_nav.scss";
-import { getCategories } from 'utilities/slices/categorySlice';
+import { getCategories } from "utilities/slices/categorySlice";
 
 function Nav(props) {
   const stateCategories = useSelector((state) => state.category);
@@ -17,9 +17,22 @@ function Nav(props) {
     }
     fetchCategories();
   }, [dispatch]);
-
-
-
+  
+  const renderCategoryModal = (categories) => {
+    return categories.length !== 0
+      ? categories.map((category, index) => (
+          <Col key={index} xs="4" sm="4" md="4" lg="4">
+            <NavLink
+              to={`/products/${category.slug}`}
+              activeClassName="active"
+              exact={category.exact}
+            >
+              {category.name}
+            </NavLink>
+          </Col>
+        ))
+      : "";
+  };
 
   return (
     <div className="nav-bar d-flex">
@@ -36,27 +49,12 @@ function Nav(props) {
               Products
             </NavLink>
             <div className="dropdown">
-              <Row>
-                {stateCategories.data.length !== 0
-                  ? stateCategories.data.map((category, index) => (
-                      <Col key={index} xs="4" sm="4" md="4" lg="4">
-                        <NavLink
-                          to={`/products/${category.slug}`}
-                          activeClassName="active"
-                          exact={category.exact}
-                        >
-                          {category.name}
-                        </NavLink>
-                      </Col>
-                    ))
-                  : ""}
-              </Row>
+              <Row>{renderCategoryModal(stateCategories.data)}</Row>
             </div>
           </li>
           <li>
             <NavLink activeClassName="active" to="/shopping-cart">
-             
-             Shopping Cart
+              Shopping Cart
             </NavLink>
           </li>
           <li>

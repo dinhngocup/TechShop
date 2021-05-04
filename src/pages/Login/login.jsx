@@ -16,6 +16,8 @@ function Login() {
     let name = e.target.name;
     let value = e.target.value;
     setInfo({ ...info, [name]: value });
+    
+
   };
 
   const handleSubmit = (e) => {

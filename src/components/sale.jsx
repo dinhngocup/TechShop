@@ -1,15 +1,9 @@
-import React from 'react';
+import React from "react";
 
-Sale.propTypes = {
-    
-};
+Sale.propTypes = {};
 
-function Sale(props) {
-    return (
-        <div>
-            Sale
-        </div>
-    );
+function Sale() {
+  return <div>Sale</div>;
 }
 
 export default Sale;

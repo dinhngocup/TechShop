@@ -25,6 +25,14 @@ function Coupon() {
     else setCouponStatus("unavailable");
   };
 
+  const renderCouponStatus = (status) => {
+    return status !== null ? (
+      <span className={`alert ${status}`}>Your coupon is {status}</span>
+    ) : (
+      ""
+    );
+  };
+
   return (
     <div className="coupon">
       <div>
@@ -37,15 +45,8 @@ function Coupon() {
           value={coupon}
           onChange={handleChangeCoupon}
         />
-        {couponStatus !== null ? (
-          <span className={`alert ${couponStatus}`}>
-            Your coupon is {couponStatus}
-          </span>
-        ) : (
-          ""
-        )}
+        {renderCouponStatus(couponStatus)}
       </div>
-      
     </div>
   );
 }

@@ -12,6 +12,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./_app.scss";
+import Sale from 'components/sale';
 
 function App() {
   console.log("app");
@@ -48,7 +49,9 @@ function App() {
                 <Route path="/login">
                   <Login />
                 </Route>
-
+                <Route path="/sales">
+                  <Sale />
+                </Route>
                 <PrivateRoute path="/check-out">
                   <ShoppingCart />
                 </PrivateRoute>

@@ -5,7 +5,7 @@ import ProductCard from "pages/Product/common/ProductCard/productCard";
 
 function RelatedCategoryPro(props) {
   const { type, content } = props;
-  
+
   let [productList, setProductList] = useState([]);
   useEffect(() => {
     switch (type) {
@@ -49,7 +49,5 @@ function RelatedCategoryPro(props) {
   };
   return <React.Fragment>{renderProductList(productList)}</React.Fragment>;
 }
-
-
 
 export default React.memo(RelatedCategoryPro);

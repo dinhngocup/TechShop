@@ -43,6 +43,14 @@ function BillingDetails(props) {
     fetchShippingInfo();
   }, []);
 
+  const renderAnotherAddress = (stateNewAddress) => {
+    return stateNewAddress === "empty" ? (
+      ""
+    ) : (
+      <AnotherAddressForm cancelAdd={showAddressForm} updateInfo={updateInfo} />
+    );
+  };
+
   return (
     <div className="billing-details">
       <div>
@@ -61,14 +69,7 @@ function BillingDetails(props) {
           <span className="new-address" onClick={showAddressForm}>
             {content}
           </span>
-          {stateNewAddress === "empty" ? (
-            ""
-          ) : (
-            <AnotherAddressForm
-              cancelAdd={showAddressForm}
-              updateInfo={updateInfo}
-            />
-          )}
+          {renderAnotherAddress(stateNewAddress)}
         </div>
       </div>
     </div>

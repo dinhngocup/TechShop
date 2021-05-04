@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ProposedProduct from "./proposedProduct";
 import { nanoid } from "nanoid";
-import ProductApi from 'api/productApi'
+import ProductApi from "api/productApi";
 
 function ProposedProductList() {
-  
   const [proposedProducts, setProposedProducts] = useState([]);
   useEffect(() => {
     const fetchProposedProducts = async () => {
@@ -13,6 +12,20 @@ function ProposedProductList() {
     };
     fetchProposedProducts();
   }, []);
+  const renderProductList = (list) => {
+    return list.length !== 0
+      ? list.map((product, index) => {
+          return (
+            <div
+              className={`carousel-item ${index === 0 ? "active" : ""}`}
+              key={nanoid()}
+            >
+              <ProposedProduct product={product} />
+            </div>
+          );
+        })
+      : "";
+  };
   return (
     <div
       id="hot-proposes"
@@ -21,18 +34,7 @@ function ProposedProductList() {
       data-interval="false"
     >
       <div className="carousel-inner">
-        {proposedProducts.length !== 0
-          ? proposedProducts.map((product, index) => {
-              return (
-                <div
-                  className={`carousel-item ${index === 0 ? "active" : ""}`}
-                  key={nanoid()}
-                >
-                  <ProposedProduct product={product} />
-                </div>
-              );
-            })
-          : ""}
+        {renderProductList(proposedProducts)}
       </div>
     </div>
   );

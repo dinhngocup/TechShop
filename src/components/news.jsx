@@ -1,7 +1,7 @@
 import React from "react";
 
 function News(props) {
-  console.log("props", props);
+  //console.log("props", props);
   
   return <div>News</div>;
 }

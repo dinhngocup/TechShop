@@ -47,17 +47,18 @@ function ProductList() {
     fetchProduct();
   }, [params, filter, location]);
 
+  const renderProductCards = (products) => {
+    return products.length !== 0
+      ? products.map((product, index) => (
+          <Col key={index} xs="12" sm="6" md="4" lg="4">
+            <ProductCard product={product} />
+          </Col>
+        ))
+      : "";
+  };
   return (
     <React.Fragment>
-      <Row>
-        {products.length !== 0
-          ? products.map((product, index) => (
-              <Col key={index} xs="12" sm="6" md="4" lg="4">
-                <ProductCard product={product} />
-              </Col>
-            ))
-          : ""}
-      </Row>
+      <Row>{renderProductCards(products)}</Row>
       <ProductModal product={stateProductModal.data} />
     </React.Fragment>
   );
