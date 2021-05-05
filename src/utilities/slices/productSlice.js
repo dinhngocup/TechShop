@@ -21,7 +21,7 @@ export const getAllProducts = createAsyncThunk(
   "product/getAllProducts",
   async (params, thunkAPI) => {
     const listProduct = await ProductApi.getAllProducts(params);
-    //console.log(listProduct)
+    console.log("listProduct", listProduct);
     return listProduct;
   }
 );

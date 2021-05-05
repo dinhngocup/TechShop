@@ -3,8 +3,8 @@ import axiosClient from "./axiosClient";
 const ProductApi = {
   getAllProducts: async (params) => {
     let { order } = params;
-    const url = `${UrlConstant.GET_ALL_PRODUCTS}?_sort=price&_order=${order}`;
-
+    //const url = `${UrlConstant.GET_ALL_PRODUCTS}?_sort=price&_order=${order}`;
+    const url = `${UrlConstant.GET_ALL_PRODUCTS}`;
     return axiosClient.get(url);
   },
   getProductsByCategory: async (params) => {

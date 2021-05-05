@@ -23,11 +23,11 @@ function Nav(props) {
       ? categories.map((category, index) => (
           <Col key={index} xs="4" sm="4" md="4" lg="4">
             <NavLink
-              to={`/products/${category.slug}`}
+              to={`/products/${category.categorySlug}`}
               activeClassName="active"
-              exact={category.exact}
+              exact={category.categoryExact}
             >
-              {category.name}
+              {category.categoryName}
             </NavLink>
           </Col>
         ))

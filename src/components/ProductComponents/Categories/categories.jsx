@@ -11,11 +11,11 @@ function Categories() {
       ? categories.map((category, index) => (
           <NavLink
             activeClassName="active"
-            to={`/products/${category.slug}`}
+            to={`/products/${category.categorySlug}`}
             key={index}
-            exact={category.exact}
+            exact={category.categoryExact}
           >
-            <li>{category.name}</li>
+            <li>{category.categoryName}</li>
           </NavLink>
         ))
       : "";

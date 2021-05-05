@@ -49,10 +49,10 @@ function ProductCard(props) {
   };
   return (
     <div className="product-card">
-      <Link to={`/products/${product.category}/${product.id}`}>
+      <Link to={`/products/${product.categoryName}/${product.productID}`}>
         <div className="product-photo">
           <img src={image1} alt="Apple watch" />
-          <WishIcon id={product.id} />
+          <WishIcon id={product.productID} />
           <div
             className="product-action"
             onClick={(e) => {
@@ -68,7 +68,7 @@ function ProductCard(props) {
             </button>
             <button
               onClick={(e) => {
-                handleAddToCart(e, product.id, product.name, product.price);
+                handleAddToCart(e, product.productID, product.productName, product.productPrice);
               }}
               disabled={loading}
             >
@@ -78,12 +78,12 @@ function ProductCard(props) {
         </div>
         <div className="product-info">
           <div className="product-title mb-2">
-            <span>{product.name}</span>
+            <span>{product.productName}</span>
           </div>
           <div className="product-sub-title">
-            <div className="product-price">{product.price}</div>
+            <div className="product-price">{product.productPrice}</div>
 
-            <ProductRating rate={product.rate} />
+            <ProductRating rate={product.productRate} />
           </div>
         </div>
       </Link>
