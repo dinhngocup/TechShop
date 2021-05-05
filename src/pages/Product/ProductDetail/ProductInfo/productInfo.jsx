@@ -23,20 +23,20 @@ function ProductInfo(props) {
   return (
     <React.Fragment>
       <div className="title">
-        <div className="product-name">{product.name}</div>
+        <div className="product-name">{product.productName}</div>
         <div className="product-rating">
-          <ProductRating rate={product.rate} />
+          <ProductRating rate={product.productRate} />
         </div>
       </div>
       <div className="title">
-        <div className="product-price">{product.price}đ</div>
+        <div className="product-price">{product.productPrice}đ</div>
       </div>
       <div className="row mt-4 mb-4">
         <div className="col-lg-7 short-tech-info">
           {renderTechInfo(product.shortTechInfo)}
         </div>
         <div className="col-lg-5">
-          <ProductAction status={product.status} id={product.id} />
+          <ProductAction status={product.status} id={product.productID} />
         </div>
       </div>
     </React.Fragment>

@@ -8,15 +8,15 @@ function FilterTopProduct(props) {
       <button
         type="button"
         className="btn btn-outline-secondary active"
-        name="top20"
+        name="10"
         onClick={changeTypeTopProduct}
       >
-        Top 20
+        Smart Phone
       </button>
       <button
         type="button"
         className="btn btn-outline-secondary"
-        name="keyboard"
+        name="9"
         onClick={changeTypeTopProduct}
       >
         Keyboard
@@ -24,7 +24,7 @@ function FilterTopProduct(props) {
       <button
         type="button"
         className="btn btn-outline-secondary"
-        name="mouse"
+        name="5"
         onClick={changeTypeTopProduct}
       >
         Mouse
@@ -32,7 +32,7 @@ function FilterTopProduct(props) {
       <button
         type="button"
         className="btn btn-outline-secondary"
-        name="monitor"
+        name="8"
         onClick={changeTypeTopProduct}
       >
         Monitor

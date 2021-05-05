@@ -31,19 +31,19 @@ function CartItem(props) {
         <div className="short-info">
           <Link
             className="name"
-            to={`/products/${product.category}/${product.id}`}
+            to={`/products/${product.categorySlug}/${product.productID}`}
           >
-            {product.name}
+            {product.productName}
           </Link>
           <div className="brand">
-            Brand: <i>{product.brand}</i>
+            Brand: <i>{product.brandName}</i>
           </div>
           <div className="color">
             Color: <i>Rose gold</i>
           </div>
         </div>
       </td>
-      <td className="price">{product.price}</td>
+      <td className="price">{product.productPrice}</td>
       <td>
         <CartAction
           stockQuantity={product.status?.stockQuantity}
@@ -61,7 +61,7 @@ function CartItem(props) {
       <td className="btn-remove">
         <i
           className="fa fa-times"
-          onClick={() => dispatch(removeFromCart({ id: product.id }))}
+          onClick={() => dispatch(removeFromCart({ id: product.productID }))}
         ></i>
       </td>
     </tr>

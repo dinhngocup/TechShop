@@ -14,11 +14,11 @@ function Result(props) {
   const { product } = props;
   //console.log(product.id);
   return (
-    <Link className="result" to={`/products/${product.category}/${product.id}`}>
-      <img src={image} alt={product.name} />
+    <Link className="result" to={`/products/${product.categorySlug}/${product.productID}`}>
+      <img src={image} alt={product.productName} />
       <div className="info">
-        <div className="name">{product.name}</div>
-        <div className="price">{product.price}</div>
+        <div className="name">{product.productName}</div>
+        <div className="price">{product.productPrice}</div>
       </div>
     </Link>
   );

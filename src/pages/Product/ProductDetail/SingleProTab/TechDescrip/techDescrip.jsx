@@ -4,7 +4,7 @@ import "./_techDescrip.scss";
 import ProductApi from "api/productApi";
 function TechDescrip(props) {
   const { id } = props;
-  const [generalInfo, setGeneralInfo] = useState([]);
+  //const [generalInfo, setGeneralInfo] = useState([]);
   const [specsInfo, setSpecsInfo] = useState([]);
   useEffect(() => {
     const fetchSpecs = async (id) => {
@@ -12,8 +12,8 @@ function TechDescrip(props) {
 
       // TODO: fix API to get ONLY specs
       // below API gets the whole product info
-      setGeneralInfo(response.specs.general);
-      setSpecsInfo(response.specs.productSpecs);
+      //setGeneralInfo(response.specs.general);
+      setSpecsInfo(response.specs);
     };
     fetchSpecs(id);
   }, [id]);
@@ -53,10 +53,10 @@ function TechDescrip(props) {
 
   return (
     <div className="row">
-      <div className="col-lg-5">
+      {/* <div className="col-lg-5">
         <HeaderSection content="General Information" />
         {renderGeneralInfo(generalInfo)}
-      </div>
+      </div> */}
       <div className="col-lg-7">
         <HeaderSection content="Product Specification" />
         {renderSpecsInfo(specsInfo)}

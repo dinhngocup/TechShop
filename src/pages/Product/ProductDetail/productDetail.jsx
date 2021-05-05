@@ -21,7 +21,7 @@ function ProductDetail() {
       let response = await ProductApi.getDetailedProduct(id);
       dispatch(
         addNewBreadcrumb({
-          name: response.name,
+          name: response.productName,
           slug: "",
         })
       );

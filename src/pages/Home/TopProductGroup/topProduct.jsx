@@ -8,22 +8,22 @@ import "./_topProduct.scss";
 function TopProduct(props) {
   const { product } = props;
   let productData = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
+    id: product.productID,
+    name: product.productName,
+    price: product.productPrice,
   };
   return (
     <div className="d-flex justify-content-center top-product">
       <div className="product-info">
-        <img src={image} alt={product.name} />
+        <img src={image} alt={product.productName} />
         <div className="button">
           <BtnMore />
           <BtnAdd product={productData} />
         </div>
       </div>
       <div className="mt-2 product-name">
-        <div className="name">{product.name}</div>
-        <div className="price">{product.price}</div>
+        <div className="name">{product.productName}</div>
+        <div className="price">{product.productPrice}</div>
       </div>
     </div>
   );

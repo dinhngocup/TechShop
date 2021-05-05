@@ -8,10 +8,10 @@ function TrendingProduct(props) {
   
   return (
     <div className="trending-product d-flex">
-      <img src={image} alt={product.name}/>
+      <img src={image} alt={product.productName}/>
       <div className="ml-3">
-        <div className="name">{product.name}</div>
-        <div className="price">{product.price}</div>
+        <div className="name">{product.productName}</div>
+        <div className="price">{product.productPrice}</div>
       </div>
     </div>
   );

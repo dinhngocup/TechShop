@@ -9,7 +9,7 @@ import "./_topProduct.scss";
 
 function TopProductCarousel() {
   const [topProducts, setTopProducts] = useState([]);
-  const [filterTopProduct, setFilterTopProduct] = useState("top20");
+  const [filterTopProduct, setFilterTopProduct] = useState("10");
 
   const TOP_PRODUCT_NUMBER_PER_GROUP = 3;
 

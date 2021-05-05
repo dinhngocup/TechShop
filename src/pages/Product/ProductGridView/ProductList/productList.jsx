@@ -30,7 +30,6 @@ function ProductList() {
           response = await ProductApi.getAllProducts({
             order: filter,
           });
-          //console.log(response)
         } else {
           response = await ProductApi.searchProductsIncludeFilter({
             keyword: searchTerm,

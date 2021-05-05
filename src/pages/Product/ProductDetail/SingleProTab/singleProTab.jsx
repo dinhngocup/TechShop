@@ -19,20 +19,20 @@ function SingleProTab(props) {
   useEffect(() => {
     switch (activeTab) {
       case "description":
-        setTabContent(<ProDescription id={product.id} />);
+        setTabContent(<ProDescription id={product.productID} />);
         break;
       case "review":
-        setTabContent(<ProReview id={product.id} />);
+        setTabContent(<ProReview id={product.productID} />);
         break;
       case "related":
-        const data = { category: product.category, brand: product.brand };
+        const data = { category: product.categoryID, brand: product.brandID };
         setTabContent(<RelatedPro {...data} />);
         break;
       case "specs":
-        setTabContent(<TechDescrip id={product.id} />);
+        setTabContent(<TechDescrip id={product.productID} />);
         break;
       default:
-        setTabContent(<ProDescription id={product.id} />);
+        setTabContent(<ProDescription id={product.productID} />);
         break;
     }
   }, [activeTab, product]);
@@ -72,7 +72,7 @@ function SingleProTab(props) {
       <div className="row">
         <div className="tab-content">
           {tabContent === null ? (
-            <ProDescription id={product.id} />
+            <ProDescription id={product.productID} />
           ) : (
             tabContent
           )}

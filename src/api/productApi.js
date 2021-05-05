@@ -3,14 +3,12 @@ import axiosClient from "./axiosClient";
 const ProductApi = {
   getAllProducts: async (params) => {
     let { order } = params;
-    //const url = `${UrlConstant.GET_ALL_PRODUCTS}?_sort=price&_order=${order}`;
-    const url = `${UrlConstant.GET_ALL_PRODUCTS}`;
+    const url = `${UrlConstant.GET_ALL_PRODUCTS}?sortOrder=${order}`;
     return axiosClient.get(url);
   },
   getProductsByCategory: async (params) => {
     let { category, order } = params;
-    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}?category=${category}&_sort=price&_order=${order}`;
-    //console.log("call api get product by category");
+    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}?categorySlug=${category}&sortOrder=${order}`;
     return axiosClient.get(url);
   },
   getTrendingProducts: async () => {
@@ -18,13 +16,8 @@ const ProductApi = {
     //console.log("call api get trending product");
     return axiosClient.get(url);
   },
-  getProposedProducts: async () => {
-    const url = `${UrlConstant.GET_PROPOSED_PRODUCTS}`;
-    //console.log("call api get proposed product");
-    return axiosClient.get(url);
-  },
-  getTopPurchasedProducts: async (filter) => {
-    const url = `${UrlConstant.GET_TOP_PURCHASED_PRODUCTS}?filter=${filter}`;
+  getTopPurchasedProducts: async (filterTopProduct) => {
+    const url = `${UrlConstant.GET_TOP_PURCHASED_PRODUCTS}?categoryID=${filterTopProduct}`;
     //console.log("call api get top purchased product");
     return axiosClient.get(url);
   },
@@ -33,15 +26,15 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   getRelatedCategoryPro: async (category) => {
-    const url = `${UrlConstant.GET_RELATED_CATEGORY_PRODUCT}?category=${category}`;
+    const url = `${UrlConstant.GET_RELATED_PRODUCT}?categoryID=${category}`;
     return axiosClient.get(url);
   },
   getRelatedBrandPro: async (brand) => {
-    const url = `${UrlConstant.GET_RELATED_BRAND_PRODUCT}?brand=${brand}`;
+    const url = `${UrlConstant.GET_RELATED_PRODUCT}?brandID=${brand}`;
     return axiosClient.get(url);
   },
   getSpecsPro: async (id) => {
-    const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
+    const url = `${UrlConstant.GET_SPECS_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
   getFullDescriptionPro: async (id) => {
@@ -54,7 +47,11 @@ const ProductApi = {
   },
   searchProductsIncludeFilter: async (params) => {
     let { keyword, order } = params;
-    const url = `${UrlConstant.SEARCH_PRODUCTS}?q=${keyword}&_sort=price&_order=${order}`;
+    const url = `${UrlConstant.SEARCH_PRODUCTS}?q=${keyword}&sortOrder=${order}`;
+    return axiosClient.get(url);
+  },
+  getProposedProducts: async () => {
+    const url = `${UrlConstant.GET_PROPOSED_PRODUCTS}`;
     return axiosClient.get(url);
   },
 };

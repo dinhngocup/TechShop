@@ -42,19 +42,19 @@ function WishItem(props) {
         <div className="short-info">
           <Link
             className="name"
-            to={`/products/${product.category}/${product.id}`}
+            to={`/products/${product.categorySlug}/${product.productID}`}
           >
-            {product.name}
+            {product.productName}
           </Link>
           <div className="brand">
-            Brand: <i>{product.brand}</i>
+            Brand: <i>{product.brandName}</i>
           </div>
           <div className="color">
             Color: <i>Rose gold</i>
           </div>
         </div>
       </td>
-      <td className="price">{product.price}</td>
+      <td className="price">{product.productPrice}</td>
 
       <td className={product.status?.stockStatus}>
         {product.status?.stockStatus === "in-stock"
@@ -65,7 +65,7 @@ function WishItem(props) {
         <button
           disabled={product.status?.stockStatus === "in-stock" ? false : true}
           onClick={() => {
-            handleAddToCart(product.id, product.name, product.price);
+            handleAddToCart(product.productID, product.productName, product.productPrice);
           }}
         >
           <i className="fas fa-shopping-cart"></i>
@@ -75,7 +75,7 @@ function WishItem(props) {
         <i
           className="fa fa-times"
           onClick={() => {
-            dispatch(editWishList(product.id));
+            dispatch(editWishList(product.productID));
           }}
         ></i>
       </td>

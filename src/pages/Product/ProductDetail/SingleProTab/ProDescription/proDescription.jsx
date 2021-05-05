@@ -14,7 +14,7 @@ const ProDescription = (props) => {
 
       // TODO: fix API to get ONLY full description
       // below API gets the whole product info
-      setDescrips(response.description);
+      setDescrips(response.longDescrip);
     };
     if (id !== undefined) fetchDescrip(id);
   }, [id]);

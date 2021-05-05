@@ -35,8 +35,8 @@ function ProductModal(props) {
               <img src={image1} alt="apple watch" />
             </div>
             <div className="product-modal-info">
-              <div className="title info-deco">{product.name}</div>
-              <div className="price info-deco">{product.price}</div>
+              <div className="title info-deco">{product.productName}</div>
+              <div className="price info-deco">{product.productPrice}</div>
               <div className="more-info info-deco">
                 <a className="all-info " href="/">
                   See more information
@@ -52,7 +52,7 @@ function ProductModal(props) {
                   <button className="btn btn-primary">Add to Cart</button>
                 </div>
               </div>
-              <div className="short-desc info-deco">{product.shortDesc}</div>
+              <div className="short-desc info-deco">{product.shortDescrip}</div>
             </div>
           </div>
         </div>

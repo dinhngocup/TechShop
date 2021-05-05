@@ -10,6 +10,9 @@ function ProTab(props) {
       md="3"
       lg="3"
       className={`pro-tab ${activeTab === tagName ? "active" : ""}`}
+      onClick={() => {
+        changeTab(tagName);
+      }}
     >
       {tagContent}
     </Col>
