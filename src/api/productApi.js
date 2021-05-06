@@ -24,17 +24,17 @@ const ProductApi = {
 
 
 
-  
+
   getDetailedProduct: async (id) => {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
   getRelatedCategoryPro: async (category) => {
-    const url = `${UrlConstant.GET_RELATED_PRODUCT}?categoryID=${category}`;
+    const url = `${UrlConstant.GET_RELATED_PRODUCT}/${category}`;
     return axiosClient.get(url);
   },
   getRelatedBrandPro: async (brand) => {
-    const url = `${UrlConstant.GET_RELATED_PRODUCT}?brandID=${brand}`;
+    const url = `${UrlConstant.GET_RELATED_PRODUCT}/${brand}`;
     return axiosClient.get(url);
   },
   getSpecsPro: async (id) => {
