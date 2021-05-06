@@ -11,7 +11,7 @@ function Info() {
            <CartIcon />
             <NavLink 
                 activeClassName='active'
-                to="/user-info">
+                to="/login">
                 <i className="fa fa-user"></i>
             </NavLink>
         </div>

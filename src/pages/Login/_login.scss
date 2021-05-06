@@ -1,0 +1,22 @@
+.login-background {
+    background-image: url("../../assets/images/footer1.jpeg");
+    height: 700px;
+    width: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //width: 80%;
+    .login-wrapper-content {
+        background-color: pink;
+        height: 70%;
+        .login-title {
+            text-align: center;
+            font-size: x-large;
+        }
+    }
+
+}

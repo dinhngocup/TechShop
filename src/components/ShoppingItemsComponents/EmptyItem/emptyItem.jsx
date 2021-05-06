@@ -4,6 +4,9 @@ import image from "assets/images/footer1.jpeg";
 import image1 from "assets/images/white.png";
 import "./_emptyItem.scss";
 import { PropTypes } from "prop-types";
+import {
+  NavLink,
+} from "react-router-dom";
 
 EmptyItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -39,15 +42,15 @@ function EmptyItem(props) {
         </div>
         <div className="col-lg-5"></div>
         <div className="empty-compo-content">
-          <h4>
-            {showHeadingStatement(title)}
-          </h4>
+          <h4>{showHeadingStatement(title)}</h4>
           <div>
             <Link to="/products">Shop today's deals</Link>
           </div>
           <div>
-            <button className="btn-sign-in">Sign in to your account</button>
-            <button className="btn-sign-up">Sign up now </button>
+            <button className="btn-sign-in">
+              <NavLink to="/login">Sign in to your account</NavLink>
+            </button>
+            {/* <button className="btn-sign-up">Sign up now </button> */}
           </div>
         </div>
       </div>
