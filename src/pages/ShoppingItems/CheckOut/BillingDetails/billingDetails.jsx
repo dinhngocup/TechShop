@@ -6,7 +6,6 @@ import "./_billingDetails.scss";
 
 function BillingDetails(props) {
   const { updateShippingInfo } = props;
-  //const history = useHistory();
   const [stateNewAddress, setStateNewAddress] = useState("empty");
   const [content, setContent] = useState(" Add new one");
   const [confirmAddress, setConfirmAddress] = useState(true);
@@ -24,7 +23,7 @@ function BillingDetails(props) {
       setStateNewAddress("add");
       setContent("");
     } else {
-      updateShippingInfo({});
+      updateShippingInfo(null);
       setStateNewAddress("empty");
       setConfirmAddress(true);
       setContent(" Add new one");
@@ -50,6 +49,8 @@ function BillingDetails(props) {
       <AnotherAddressForm cancelAdd={showAddressForm} updateInfo={updateInfo} />
     );
   };
+
+  
 
   return (
     <div className="billing-details">

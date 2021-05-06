@@ -52,7 +52,7 @@ function App() {
                 <Route path="/sales">
                   <Sale />
                 </Route>
-                <PrivateRoute path="/check-out">
+                <PrivateRoute path={["/check-out", "/completed-order"]}>
                   <ShoppingCart />
                 </PrivateRoute>
               </Switch>

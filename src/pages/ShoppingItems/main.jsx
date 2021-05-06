@@ -7,6 +7,7 @@ import WishList from "./WishList/wishList";
 import Cart from "./Cart/cart";
 import { Route } from "react-router-dom";
 import CheckOut from "./CheckOut/checkOut";
+import CompletedOrder from './CompletedOrder/completedOrder';
 
 function ShoppingItems(props) {
   //console.log("cart main");
@@ -32,6 +33,10 @@ function ShoppingItems(props) {
             <Route path="/check-out">
               <CheckOut />
             </Route>
+            <Route path="/completed-order">
+              <CompletedOrder />
+            </Route>
+
           </div>
         </div>
       </div>

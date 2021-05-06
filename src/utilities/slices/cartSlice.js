@@ -110,6 +110,14 @@ const cart = createSlice({
         ExpireHours.CART_EXPIRE_HOURS
       );
     },
+    clearAll: (state, action) => {
+      state.products.splice(0,state.products.length)
+      cookiesService.setCookies(
+        "cart",
+        JSON.stringify(state.products),
+        ExpireHours.CART_EXPIRE_HOURS
+      );
+    }
   },
 });
 export default cart.reducer;
@@ -119,5 +127,5 @@ export const {
   updateQuantity,
   increaseQuantity,
   decreaseQuantity,
-  setNewestPrice,
+  clearAll,
 } = cart.actions;

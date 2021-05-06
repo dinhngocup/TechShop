@@ -18,7 +18,6 @@ function CartItem(props) {
   useEffect(() => {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
-
       setProduct(response);
     };
     fetchDetailedProduct(productInCart.id);
@@ -46,14 +45,14 @@ function CartItem(props) {
       <td className="price">{product.productPrice}</td>
       <td>
         <CartAction
-          stockQuantity={product.status?.stockQuantity}
+          stockQuantity={product.stock}
           productInCart={productInCart}
         />
       </td>
-      <td className={product.status?.stockStatus}>
-        {product.status?.stockQuantity === 0
+      <td className={product.stockStatus}>
+        {product.stock === 0
           ? "Out Of Stock"
-          : product.status?.stockQuantity}
+          : product.stock}
       </td>
       <td className="total-price">
         {productInCart.price * productInCart.quantity}

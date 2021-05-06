@@ -21,13 +21,7 @@ function AnotherAddressForm(props) {
       <React.Fragment>
         <input
           placeholder="Your name here..."
-          name="name"
-          onChange={handleChangeInput}
-          required
-        />
-        <input
-          placeholder="Email address here..."
-          name="email"
+          name="fullname"
           onChange={handleChangeInput}
           required
         />

@@ -14,7 +14,7 @@ function AddressInfo(props) {
   };
   return (
     <div className="shipping-info">
-      <div className="name">{info.name}</div>
+      <div className="name">{info.fullname}</div>
       <div className="basic-info">Address: {info.address}</div>
 
       <div className="basic-info">Phone: {info.phone}</div>

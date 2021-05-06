@@ -25,7 +25,7 @@ const UserApi = {
       });
   },
   getShippingInfo: async () => {
-    const url = `${UrlConstant.GET_USER_SHIPPING_INFO}/1`;
+    const url = `${UrlConstant.GET_USER_SHIPPING_INFO}`;
     return axiosClientAuthen
       .get(url)
       .then((response) => {
@@ -33,18 +33,6 @@ const UserApi = {
       })
       .catch((error) => {
         //console.log(error.response);
-        return Promise.reject(error);
-      });
-  },
-  getShippingInfo2: async () => {
-    const url = `${UrlConstant.GET_USER_SHIPPING_INFO}/2`;
-    return axiosClientAuthen
-      .get(url)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        //(error.response);
         return Promise.reject(error);
       });
   },

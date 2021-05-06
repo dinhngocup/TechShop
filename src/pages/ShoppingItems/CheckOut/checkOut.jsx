@@ -2,18 +2,20 @@ import UserApi from "api/userApi";
 import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
+  removeLastBreadcrumb,
 } from "utilities/slices/breadcrumbSlice";
+import { clearAll } from "utilities/slices/cartSlice";
 import BillingDetails from "./BillingDetails/billingDetails";
 import Order from "./Order/order";
 import "./_checkOut.scss";
 
 function CheckOut(props) {
   const productsInCart = useSelector((state) => state.cart.products);
-  // const location = useLocation();
-  // const history = useHistory();
+  const history = useHistory();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -35,21 +37,30 @@ function CheckOut(props) {
   };
 
   const placeOrder = (shippingInfo) => {
+    let orderInfo = [];
+    for (let product of productsInCart) {
+      let tempProduct = {
+        productID: product.id,
+        quantity: product.quantity,
+      };
+      orderInfo.push(tempProduct);
+    }
     let data = {
-      userId: 1,
-      orderInfo: productsInCart,
+      detailedInvoices: orderInfo,
       shippingInfo: shippingInfo,
     };
     const placeOrder = async (data) => {
       return UserApi.placeOrder(data)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          history.push("/completed-order");
+          // clear all data in check out and cart
+          dispatch(clearAll());
+
+
+        })
         .catch((err) => {
           console.log(err);
-          // return history.push({
-          //   pathname: "/login",
-          //   state: { referrer: location },
-          // });
-          //err;
         });
     };
     placeOrder(data);
