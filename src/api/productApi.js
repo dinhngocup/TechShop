@@ -8,7 +8,7 @@ const ProductApi = {
   },
   getProductsByCategory: async (params) => {
     let { category, order } = params;
-    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}/${category}`;
+    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}/category/${category}`;
     return axiosClient.get(url);
   },
   getTrendingProducts: async () => {

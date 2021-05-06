@@ -11,11 +11,26 @@ ProductInfo.defaultProps = {
   products: {},
 };
 
-const renderTechInfo = (productInfo) => {
-  return productInfo !== undefined
-    ? productInfo.map((info, index) => <p key={index}>{info}</p>)
-    : "";
+const renderTechInfo = (shortTech) => {
+  if(shortTech !== undefined){
+    var shortTechInfo = shortTech.replace(/'/g, '"');
+    shortTechInfo = JSON.parse(shortTechInfo);
+    return shortTechInfo.map((info, index) => <p key={index}>{info}</p>);
+  }
+  else 
+    return "";
 };
+const handlePrice = (productPrice) => {
+  if(productPrice !== undefined){
+    var price = "";
+    while(productPrice > 1000){
+      productPrice = productPrice / 1000;
+      price = price.concat(".000");
+    }
+    return productPrice.toString().concat(price);
+  }
+  return "";
+}
 
 function ProductInfo(props) {
   const { product } = props;
@@ -29,14 +44,14 @@ function ProductInfo(props) {
         </div>
       </div>
       <div className="title">
-        <div className="product-price">{product.productPrice}đ</div>
+        <div className="product-price">{handlePrice(product.productPrice)} <u>đ</u></div>
       </div>
       <div className="row mt-4 mb-4">
         <div className="col-lg-7 short-tech-info">
-          {renderTechInfo(product.shortTechInfo)}
+          {renderTechInfo(product.shortTech)}
         </div>
         <div className="col-lg-5">
-          <ProductAction status={product.status} id={product.productID} />
+          <ProductAction stock={product.stock} stockStatus={product.stockStatus} id={product.productID} />
         </div>
       </div>
     </React.Fragment>

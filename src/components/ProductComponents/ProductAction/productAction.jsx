@@ -12,7 +12,7 @@ ProductAction.defaultProps = {
 };
 
 function ProductAction(props) {
-  const { status, id, name } = props;
+  const { stockStatus, stock, id, name } = props;
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
@@ -33,13 +33,13 @@ function ProductAction(props) {
       <div className="stock-status">
         <p>
           Status:{" "}
-          <span className={status.stockStatus}>
-            {status.stockStatus === "in-stock" ? "In Stock" : "Out of Stock"}
+          <span className={stockStatus}>
+            {stockStatus === "in-stock" ? "In Stock" : "Out of Stock"}
           </span>
         </p>
-        {status.stockQuantity > 0 ? (
+        {stock > 0 ? (
           <p>
-            Stock: <span>{status.stockQuantity}</span>
+            Stock: <span>{stock}</span>
           </p>
         ) : (
           ""
@@ -62,14 +62,14 @@ function ProductAction(props) {
             setQuantity(e.target.value);
           }}
           onBlur={(e) => {
-            if (e.target.value > status.stockQuantity || e.target.value < 1)
+            if (e.target.value > stock || e.target.value < 1)
               setQuantity(1);
           }}
         />
         <div
           className="quantity-btn flex"
           onClick={() => {
-            if (quantity < status.stockQuantity)
+            if (quantity < stock)
               setQuantity(parseInt(quantity) + 1);
           }}
         >

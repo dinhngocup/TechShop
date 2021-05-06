@@ -23,7 +23,7 @@ export const GET_ALL_BRANDS = "/api/v1/brand"
 export const GET_COUPON_BY_ID = "/coupons"
 
 // USER
-export const LOGIN = "/auth/login"
+export const LOGIN = "/api/v1/auth/login"
 export const GET_USER_SHIPPING_INFO = "/shipping_info"
 export const PLACE_ORDER = "/orders"
 

@@ -53,7 +53,7 @@ function Login() {
             <label>email</label>
             <input name="email" onChange={handleChangeInputText} required />
             <label>password</label>
-            <input name="password" onChange={handleChangeInputText} required />
+            <input name="pswd" onChange={handleChangeInputText} required />
             <button onClick={handleSubmit}>Submit</button>
           </form>
           <div>{error}</div>

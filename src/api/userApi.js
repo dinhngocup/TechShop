@@ -8,9 +8,9 @@ import axiosClientAuthen from "./axiosClientAuthen";
  */
 const UserApi = {
   login: async (params) => {
-    let { email, password } = params;
+    let { email, pswd } = params;
     const url = `${UrlConstant.LOGIN}`;
-    const data = JSON.stringify({ email, password });
+    const data = JSON.stringify({ email, pswd });
 
     return axiosClient
       .post(url, data)
