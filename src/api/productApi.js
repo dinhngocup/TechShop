@@ -3,12 +3,12 @@ import axiosClient from "./axiosClient";
 const ProductApi = {
   getAllProducts: async (params) => {
     let { order } = params;
-    const url = `${UrlConstant.GET_ALL_PRODUCTS}?sortOrder=${order}`;
+    const url = `${UrlConstant.GET_ALL_PRODUCTS}`;
     return axiosClient.get(url);
   },
   getProductsByCategory: async (params) => {
     let { category, order } = params;
-    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}?categorySlug=${category}&sortOrder=${order}`;
+    const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}/${category}`;
     return axiosClient.get(url);
   },
   getTrendingProducts: async () => {
@@ -17,10 +17,14 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   getTopPurchasedProducts: async (filterTopProduct) => {
-    const url = `${UrlConstant.GET_TOP_PURCHASED_PRODUCTS}?categoryID=${filterTopProduct}`;
+    const url = `${UrlConstant.GET_TOP_PURCHASED_PRODUCTS}/${filterTopProduct}`;
     //console.log("call api get top purchased product");
     return axiosClient.get(url);
   },
+
+
+
+  
   getDetailedProduct: async (id) => {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);
