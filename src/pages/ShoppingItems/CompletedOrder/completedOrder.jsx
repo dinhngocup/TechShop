@@ -90,7 +90,12 @@ function CompletedOrder(props) {
                 <th className="">Status</th>
               </tr>
             </thead>
-            <tbody>{renderOrders(orders)}</tbody>
+            <tbody>
+              <OrderRow />
+              <OrderRow/>
+              <OrderRow/>
+              <OrderRow/>
+            </tbody>
           </table>
         </div>
       </Route>

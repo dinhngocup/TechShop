@@ -22,9 +22,6 @@ const ProductApi = {
     return axiosClient.get(url);
   },
 
-
-
-
   getDetailedProduct: async (id) => {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);

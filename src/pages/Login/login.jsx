@@ -43,73 +43,87 @@ function Login() {
   }, [isLoggedIn, history, location, dispatch]);
 
   return (
-    // <div classNameName="row">
-    //   <div classNameName="col-6 login-background"></div>
-    //   <div classNameName="col-6 login-wrapper">
-    //     <div classNameName="login-wrapper-content">
-    //       <div classNameName='login-title'>Login</div>
-    //       <form>
-    //         <label>email</label>
-    //         <input name="email" onChange={handleChangeInputText} required />
-    //         <label>password</label>
-    //         <input name="pswd" onChange={handleChangeInputText} required />
-    //         <button onClick={handleSubmit}>Submit</button>
-    //       </form>
-    //       <div>{error}</div>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="login-wrapper">
-      <div className="container">
-        <div className="screen">
-          <div className="screen__content">
-            <form className="login">
-              <div className="login__field">
-                <i className="login__icon fas fa-user"></i>
-                <input
-                  name="email"
-                  onChange={handleChangeInputText}
-                  required
-                  type="text"
-                  className="login__input"
-                  placeholder="User name / Email"
-                />
-              </div>
-              <div className="login__field">
-                <i className="login__icon fas fa-lock"></i>
-
-                <input
-                  name="pswd"
-                  onChange={handleChangeInputText}
-                  required
-                  type="password"
-                  className="login__input"
-                  placeholder="Password"
-                />
-              </div>
-              <button className="button login__submit" onClick={handleSubmit}>
-                <span className="button__text">Log In Now</span>
-                <i className="button__icon fas fa-chevron-right"></i>
+    <div className="row">
+      <div className="col-6 login-background"></div>
+      <div className="col-6 login-wrapper">
+        <div className="login-wrapper-content">
+          <div className="login-title">Welcome to TechShop</div>
+          <form>
+            <p>Email</p>
+            <input
+              name="email"
+              onChange={handleChangeInputText}
+              required
+              placeholder="Enter your email"
+            />
+            <p>Password</p>
+            <input
+              name="pswd"
+              onChange={handleChangeInputText}
+              required
+              placeholder="Enter your password"
+            />
+            <div className="text-center">
+              <button onClick={handleSubmit} className="btn">
+                Get Started
               </button>
-            </form>
-            <div className="social-login">
-              <h3>log in via</h3>
-              <div className="social-icons">
-                <a href="#" className="social-login__icon fab fa-instagram"></a>
-                <a href="#" className="social-login__icon fab fa-facebook"></a>
-                <a href="#" className="social-login__icon fab fa-twitter"></a>
-              </div>
             </div>
-          </div>
-          <div className="screen__background">
-            <span className="screen__background__shape screen__background__shape4"></span>
-            <span className="screen__background__shape screen__background__shape3"></span>
-            <span className="screen__background__shape screen__background__shape2"></span>
-            <span className="screen__background__shape screen__background__shape1"></span>
-          </div>
+          </form>
+          <div>{error}</div>
         </div>
       </div>
     </div>
+    // <div className="login-wrapper">
+    //   <div className="container">
+    //     <div className="screen">
+    //       <div className="screen__content">
+    //         <form className="login">
+    //           <div className="login__field">
+    //             <i className="login__icon fas fa-user"></i>
+    //             <input
+    //               name="email"
+    //               onChange={handleChangeInputText}
+    //               required
+    //               type="text"
+    //               className="login__input"
+    //               placeholder="User name / Email"
+    //             />
+    //           </div>
+    //           <div className="login__field">
+    //             <i className="login__icon fas fa-lock"></i>
+
+    //             <input
+    //               name="pswd"
+    //               onChange={handleChangeInputText}
+    //               required
+    //               type="password"
+    //               className="login__input"
+    //               placeholder="Password"
+    //             />
+    //           </div>
+    //           <button className="button login__submit" onClick={handleSubmit}>
+    //             <span className="button__text">Log In Now</span>
+    //             <i className="button__icon fas fa-chevron-right"></i>
+    //           </button>
+    //         </form>
+    //         <div className="social-login">
+    //           <h3>log in via</h3>
+    //           <div className="social-icons">
+    //             <a href="#" className="social-login__icon fab fa-instagram"></a>
+    //             <a href="#" className="social-login__icon fab fa-facebook"></a>
+    //             <a href="#" className="social-login__icon fab fa-twitter"></a>
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <div className="screen__background">
+    //         <span className="screen__background__shape screen__background__shape4"></span>
+    //         <span className="screen__background__shape screen__background__shape3"></span>
+    //         <span className="screen__background__shape screen__background__shape2"></span>
+    //         <span className="screen__background__shape screen__background__shape1"></span>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
