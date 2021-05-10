@@ -46,12 +46,13 @@ function AnotherAddressForm(props) {
   const renderButtonSubmitAddress = (isAddAddress) => {
     return isAddAddress === false ? (
       <React.Fragment>
-        <button onClick={cancelAdd}>Cancel</button>
-        <button onClick={handleSubmit}>Add</button>
+        <button  className='btn btn-light' onClick={cancelAdd}>Cancel</button>
+        <button className='btn btn-success btn-address-form' onClick={handleSubmit}>Confirm</button>
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <button onClick={cancelAdd}>Delete</button>
+        <div></div>
+        <button className='btn btn-danger' onClick={cancelAdd}>Delete</button>
       </React.Fragment>
     );
   };
@@ -59,7 +60,7 @@ function AnotherAddressForm(props) {
   return (
     <React.Fragment>
       {renderAddressInfo(isAddAddress)}
-      <div>{renderButtonSubmitAddress(isAddAddress)}</div>
+      <div className='group-btn'>{renderButtonSubmitAddress(isAddAddress)}</div>
     </React.Fragment>
   );
 }

@@ -10,6 +10,21 @@
                 text-decoration: underline;
             }
         }
+        .group-btn {
+            width: 35%;
+            margin-top: 10px;
+            float: right;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                //width: 40%;
+                //padding: 10px 20px;
+            }
+            .btn-address-form {
+                background-color: #c8a165;
+            }
+        }
     }
     
     
