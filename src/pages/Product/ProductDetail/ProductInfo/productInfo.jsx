@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ProductAction from "components/ProductComponents/ProductAction/productAction";
 import ProductRating from "components/common/ProductRating/productRating";
 import "./_productInfo.scss";
+import handlePrice from "utilities/formatPrice";
 
 ProductInfo.propTypes = {
   product: PropTypes.object,
@@ -20,17 +21,6 @@ const renderTechInfo = (shortTech) => {
   else 
     return "";
 };
-const handlePrice = (productPrice) => {
-  if(productPrice !== undefined){
-    var price = "";
-    while(productPrice > 1000){
-      productPrice = productPrice / 1000;
-      price = price.concat(".000");
-    }
-    return productPrice.toString().concat(price);
-  }
-  return "";
-}
 
 function ProductInfo(props) {
   const { product } = props;

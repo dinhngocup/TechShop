@@ -4,6 +4,7 @@ import image from "assets/images/city_7.jpg";
 import BtnAdd from "components/common/Button/btnAdd";
 import BtnMore from "components/common/Button/btnMore";
 import "./_topProduct.scss";
+import handlePrice from "utilities/formatPrice";
 
 function TopProduct(props) {
   const { product } = props;
@@ -23,7 +24,7 @@ function TopProduct(props) {
       </div>
       <div className="mt-2 product-name">
         <div className="name">{product.productName}</div>
-        <div className="price">{product.productPrice}</div>
+        <div className="price">{handlePrice(product.productPrice)} <u>đ</u></div>
       </div>
     </div>
   );

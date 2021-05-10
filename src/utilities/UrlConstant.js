@@ -27,5 +27,9 @@ export const LOGIN = "api/v1/auth/login"
 export const GET_USER_SHIPPING_INFO = "/api/v1/user/shippingInfo"
 export const PLACE_ORDER = "/api/v1/invoice"
 
+// ORDER
+export const GET_ALL_COMPLETED_ORDER = "/api/v1/invoice/user"
+export const GET_DETAILED_ORDER = "/api/v1/invoice"
+
 // TOKEN
 export const REFRESH_TOKEN = "/refresh"

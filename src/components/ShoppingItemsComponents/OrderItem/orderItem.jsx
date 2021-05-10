@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import './_orderItem.scss'
 import image from "assets/images/pic7.jpeg";
+import handlePrice from "utilities/formatPrice";
+
 
 function OrderItem(props) {
   const {product} = props
@@ -13,9 +15,9 @@ function OrderItem(props) {
         </div>
         <div className="short-info">{product.productName}</div>
       </td>
-      <td>{product.productPrice} đ</td>
+      <td>{handlePrice(product.productPrice)} <u>đ</u></td>
       <td>{product.quantity}</td>
-      <td>{product.totalPrice} đ</td>
+      <td>{handlePrice(product.totalPrice)} <u>đ</u></td>
     </tr>
   );
 }
