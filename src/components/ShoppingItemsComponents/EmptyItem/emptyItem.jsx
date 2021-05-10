@@ -1,12 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import image from "assets/images/footer1.jpeg";
 import image1 from "assets/images/white.png";
-import "./_emptyItem.scss";
 import { PropTypes } from "prop-types";
-import {
-  NavLink,
-} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./_emptyItem.scss";
 
 EmptyItem.propTypes = {
   title: PropTypes.string.isRequired,

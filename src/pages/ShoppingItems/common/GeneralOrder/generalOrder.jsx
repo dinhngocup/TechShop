@@ -2,6 +2,7 @@ import PaymentDetail from "components/ShoppingItemsComponents/PaymentDetail/paym
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./_generalOrder.scss";
+import handlePrice from "utilities/formatPrice";
 
 function GeneralOrder() {
   const productsInCart = useSelector((state) => state.cart.products);
@@ -37,7 +38,7 @@ function GeneralOrder() {
       <tfoot>
         <tr className="payment-detail">
           <td>Order Total</td>
-          <td className="price">{totalPrice}</td>
+          <td className="price">{handlePrice(totalPrice)}</td>
         </tr>
       </tfoot>
     </table>
