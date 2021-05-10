@@ -61,6 +61,7 @@ function Login() {
               name="pswd"
               onChange={handleChangeInputText}
               required
+              type="password"
               placeholder="Enter your password"
             />
             <div className="text-center">

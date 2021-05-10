@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
 import HeaderSection from "components/common/HeaderSection/headerSection";
+import React from "react";
 import "./_techDescrip.scss";
-import ProductApi from "api/productApi";
 function TechDescrip(props) {
   const { specs } = props;
   //const [generalInfo, setGeneralInfo] = useState([]);
-  const [specsInfo, setSpecsInfo] = useState([]);
+  //const [specsInfo, setSpecsInfo] = useState([]);
 
   // const renderGeneralInfo = (generalInfo) => {
   //   return generalInfo.length !== 0
@@ -19,7 +18,7 @@ function TechDescrip(props) {
   // };
 
   const renderSpecsInfo = (specsInfo) => {
-    if(specsInfo != undefined){
+    if(specsInfo !== undefined){
       var specifications = specsInfo.replace(/'/g, '"');
       specifications = JSON.parse(specifications);
       return specifications.map((item, index) => {

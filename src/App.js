@@ -30,7 +30,7 @@ function App() {
                   <Home />
                 </Route>
                 <Route
-                  path={["/shopping-cart", "/wish-list", "/completed-order"]}
+                  path={["/shopping-cart", "/wish-list"]}
                 >
                   <ShoppingCart />
                 </Route>

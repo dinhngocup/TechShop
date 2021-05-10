@@ -1,5 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import handlePrice from "utilities/formatPrice";
 
 function PaymentDetail(props) {
     const { product } = props;
@@ -7,7 +8,7 @@ function PaymentDetail(props) {
   return (
     <tr className="payment-detail">
       <td>{product.name}</td>
-      <td className="price">{product.price * product.quantity}</td>
+      <td className="price">{handlePrice(product.price * product.quantity)} <u>đ</u></td>
     </tr>
   );
 }

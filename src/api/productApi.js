@@ -2,12 +2,12 @@ import * as UrlConstant from "utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 const ProductApi = {
   getAllProducts: async (params) => {
-    let { order } = params;
+    //let { order } = params;
     const url = `${UrlConstant.GET_ALL_PRODUCTS}`;
     return axiosClient.get(url);
   },
   getProductsByCategory: async (params) => {
-    let { category, order } = params;
+    let { category } = params;
     const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}/category/${category}`;
     return axiosClient.get(url);
   },

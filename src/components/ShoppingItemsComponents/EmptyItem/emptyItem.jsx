@@ -47,9 +47,9 @@ function EmptyItem(props) {
             <Link to="/products">Shop today's deals</Link>
           </div>
           <div>
-            <button className="btn-sign-in">
+            {/* <button className="btn-sign-in">
               <NavLink to="/login">Sign in to your account</NavLink>
-            </button>
+            </button> */}
             {/* <button className="btn-sign-up">Sign up now </button> */}
           </div>
         </div>

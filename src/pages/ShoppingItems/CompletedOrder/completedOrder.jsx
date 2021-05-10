@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   addNewBreadcrumb,
@@ -8,8 +8,10 @@ import OrderRow from "./orderRow";
 import "./_completedOrder.scss";
 import DetailedOrder from "./detailedOrder";
 import { Route } from "react-router-dom";
-import order from "../CheckOut/Order/order";
-import OrderApi from "api/orderApi";
+import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+
+import OrderApi from 'api/orderApi';
+
 
 function CompletedOrder(props) {
   const dispatch = useDispatch();
@@ -34,42 +36,6 @@ function CompletedOrder(props) {
       setOrders(response);
     };
     getAllCompletedOrders();
-    const tempData = [
-      {
-        invoiceID: 1,
-        userID: 2,
-        totalCost: 190000000,
-        invoiceDate: "2021-05-07",
-        shippingDate: "2021-05-10",
-        note: null,
-        otherShippingAddress: true,
-        statusInvoice: "PENDING",
-        userInvoiceIndex: "phuongdinh1802@gmail.com0",
-      },
-      {
-        invoiceID: 2,
-        userID: 2,
-        totalCost: 210000000,
-        invoiceDate: "2021-05-07",
-        shippingDate: "2021-05-10",
-        note: null,
-        otherShippingAddress: false,
-        statusInvoice: "PENDING",
-        userInvoiceIndex: "phuongdinh1802@gmail.com1",
-      },
-      {
-        invoiceID: 3,
-        userID: 2,
-        totalCost: 128400000,
-        invoiceDate: "2021-05-09",
-        shippingDate: "2021-05-12",
-        note: null,
-        otherShippingAddress: false,
-        statusInvoice: "PENDING",
-        userInvoiceIndex: "phuongdinh1802@gmail.com2",
-      },
-    ];
-   // setOrders(tempData);
   }, []);
 
   const renderOrders = (orders) => {
@@ -80,39 +46,43 @@ function CompletedOrder(props) {
       : null;
   };
 
-  return (
-    <div className="table-wrapper completed-order">
-      <div>
-        <h4>Your Orders</h4>
-      </div>
-      <Route exact path="/completed-order">
-        <div className="table-content">
-          <table className="completed-order-table">
-            <thead>
-              <tr>
-                <th className="">Order ID</th>
-                <th className="">Order Date</th>
-                {/* <th className="">Product</th> */}
-                <th className="">Total</th>
-                <th className="">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <OrderRow />
-              <OrderRow/>
-              <OrderRow/>
-              <OrderRow/>
-            </tbody>
-          </table>
+  const renderCompletedOrder = (orders) => {
+    return orders.length !== 0 ? (
+      <React.Fragment>
+        <div>
+          <h4>Your Orders</h4>
         </div>
-      </Route>
-      <Route path="/completed-order/:orderID">
-        <DetailedOrder />
-      </Route>
-    </div>
-  );
+        <Route exact path="/completed-order">
+          <div className="table-content">
+            <table className="completed-order-table">
+              <thead>
+                <tr>
+                  <th className="">Order ID</th>
+                  <th className="">Order Date</th>
+                  {/* <th className="">Product</th> */}
+                  <th className="">Total</th>
+                  <th className="">Status</th>
+                </tr>
+              </thead>
+              <tbody>{renderOrders(orders)}</tbody>
+            </table>
+          </div>
+        </Route>
+        <Route path="/completed-order/:orderID">
+          <DetailedOrder />
+        </Route>
+      </React.Fragment>
+    ) : (
+      <EmptyItem title="completed-order" />
+    );
+  };
+
+  return <div className="table-wrapper completed-order">
+    {renderCompletedOrder(orders)}
+  </div>;
 }
 
 CompletedOrder.propTypes = {};
 
 export default CompletedOrder;
+

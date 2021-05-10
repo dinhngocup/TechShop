@@ -1,16 +1,14 @@
+import OrderApi from "api/orderApi";
+import OrderItem from "components/ShoppingItemsComponents/OrderItem/orderItem";
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "utilities/slices/breadcrumbSlice";
 import "./_detailedOrder.scss";
 
-import OrderItem from "components/ShoppingItemsComponents/OrderItem/orderItem";
-import { render } from "@testing-library/react";
-import { useParams } from "react-router";
-import OrderApi from "api/orderApi";
 
 function DetailedOrder(props) {
   const dispatch = useDispatch();
@@ -37,50 +35,7 @@ function DetailedOrder(props) {
       setDetailedInfo(response);
     }
     getDetailedOrder();
-    const tempData = {
-      detailedInvoices: [
-        {
-          productID: 1,
-          productPrice: 40000000,
-          quantity: 1,
-          totalPrice: 40000000,
-          productName: "Smart Watch 1",
-        },
-        {
-          productID: 2,
-          productPrice: 60000000,
-          quantity: 1,
-          totalPrice: 60000000,
-          productName: "Smart Watch 2",
-        },
-        {
-          productID: 4,
-          productPrice: 80000000,
-          quantity: 1,
-          totalPrice: 80000000,
-          productName: "Smart Watch 4",
-        },
-        {
-          productID: 6,
-          productPrice: 10000000,
-          quantity: 1,
-          totalPrice: 10000000,
-          productName: "PC Accessories 1",
-        },
-      ],
-      shippingInfo: {
-        fullname: "Đinh Ngọc Uyen Phuong ",
-        phone: "0904588091",
-        address: "39",
-      },
-      email: null,
-      totalPrice: 190000000,
-      note: null,
-      statusInvoice: "PENDING",
-      shippingDate: "2021-05-10",
-      invoiceDate: "2021-05-07",
-    };
-  //  setDetailedInfo(tempData);
+    
   }, [orderID]);
 
   const renderOrderItem = (detailedInvoices) => {
