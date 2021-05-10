@@ -9,10 +9,13 @@ import "./_detailedOrder.scss";
 
 import OrderItem from "components/ShoppingItemsComponents/OrderItem/orderItem";
 import { render } from "@testing-library/react";
+import { useParams } from "react-router";
+import OrderApi from "api/orderApi";
 
 function DetailedOrder(props) {
   const dispatch = useDispatch();
   const [detailedInfo, setDetailedInfo] = useState({});
+  const { orderID } = useParams();
 
   useEffect(() => {
     dispatch(
@@ -28,7 +31,12 @@ function DetailedOrder(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    
+    const getDetailedOrder = async () => {
+      let response = await OrderApi.getDetailedOrder(orderID);
+      console.log(response);
+      setDetailedInfo(response);
+    }
+    getDetailedOrder();
     const tempData = {
       detailedInvoices: [
         {
@@ -72,8 +80,8 @@ function DetailedOrder(props) {
       shippingDate: "2021-05-10",
       invoiceDate: "2021-05-07",
     };
-    setDetailedInfo(tempData);
-  }, []);
+  //  setDetailedInfo(tempData);
+  }, [orderID]);
 
   const renderOrderItem = (detailedInvoices) => {
     if (detailedInvoices === undefined) return;

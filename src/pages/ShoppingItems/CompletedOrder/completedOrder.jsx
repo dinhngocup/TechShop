@@ -9,6 +9,7 @@ import "./_completedOrder.scss";
 import DetailedOrder from "./detailedOrder";
 import { Route } from "react-router-dom";
 import order from "../CheckOut/Order/order";
+import OrderApi from "api/orderApi";
 
 function CompletedOrder(props) {
   const dispatch = useDispatch();
@@ -27,6 +28,12 @@ function CompletedOrder(props) {
   }, [dispatch]);
 
   useEffect(() => {
+    async function getAllCompletedOrders () {
+      let response = [];
+      response = await OrderApi.getAllCompletedOrders();
+      setOrders(response);
+    };
+    getAllCompletedOrders();
     const tempData = [
       {
         invoiceID: 1,
@@ -62,7 +69,7 @@ function CompletedOrder(props) {
         userInvoiceIndex: "phuongdinh1802@gmail.com2",
       },
     ];
-    setOrders(tempData);
+   // setOrders(tempData);
   }, []);
 
   const renderOrders = (orders) => {

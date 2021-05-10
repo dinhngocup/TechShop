@@ -5,6 +5,7 @@ import ProductApi from "api/productApi";
 import image from "assets/images/pic7.jpeg";
 import { removeFromCart } from "utilities/slices/cartSlice";
 import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
+import handlePrice from "utilities/formatPrice";
 
 function CartItem(props) {
   const { productInCart } = props;
@@ -42,7 +43,7 @@ function CartItem(props) {
           </div>
         </div>
       </td>
-      <td className="price">{product.productPrice}</td>
+      <td className="price">{handlePrice(product.productPrice)} <u>đ</u></td>
       <td>
         <CartAction
           stockQuantity={product.stock}
@@ -55,7 +56,7 @@ function CartItem(props) {
           : product.stock}
       </td>
       <td className="total-price">
-        {productInCart.price * productInCart.quantity}
+        {handlePrice(productInCart.price * productInCart.quantity)} <u>đ</u>
       </td>
       <td className="btn-remove">
         <i

@@ -8,6 +8,7 @@ import "./_productCard.scss";
 import { Link } from "react-router-dom";
 import ProductRating from "components/common/ProductRating/productRating";
 import { addToCart } from "utilities/slices/cartSlice";
+import handlePrice from "utilities/formatPrice";
 
 function ProductCard(props) {
   const { product } = props;
@@ -81,7 +82,7 @@ function ProductCard(props) {
             <span>{product.productName}</span>
           </div>
           <div className="product-sub-title">
-            <div className="product-price">{product.productPrice}</div>
+            <div className="product-price">{handlePrice(product.productPrice)} <u>đ</u></div>
 
             <ProductRating rate={product.productRate} />
           </div>

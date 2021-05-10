@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./_orderRow.scss";
 import { NavLink } from "react-router-dom";
+import handlePrice from "utilities/formatPrice";
 function OrderRow(props) {
   const {invoice} = props
   return (
@@ -11,7 +12,7 @@ function OrderRow(props) {
       </td>
       <td className="">{invoice.invoiceDate}</td>
       {/* <td>Apple watch series 5</td> */}
-      <td className="">{invoice.totalCost} đ</td>
+      <td className="">{handlePrice(invoice.totalCost)} <u>đ</u></td>
       <td className="">{invoice.statusInvoice}</td>
     </tr>
   );
