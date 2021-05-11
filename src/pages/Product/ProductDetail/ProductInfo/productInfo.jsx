@@ -13,13 +13,11 @@ ProductInfo.defaultProps = {
 };
 
 const renderTechInfo = (shortTech) => {
-  if(shortTech !== undefined){
+  if (shortTech !== undefined) {
     var shortTechInfo = shortTech.replace(/'/g, '"');
     shortTechInfo = JSON.parse(shortTechInfo);
     return shortTechInfo.map((info, index) => <p key={index}>{info}</p>);
-  }
-  else 
-    return "";
+  } else return "";
 };
 
 function ProductInfo(props) {
@@ -34,14 +32,22 @@ function ProductInfo(props) {
         </div>
       </div>
       <div className="title">
-        <div className="product-price">{handlePrice(product.productPrice)} <u>đ</u></div>
+        <div className="product-price">
+          {handlePrice(product.productPrice)} <u>đ</u>
+        </div>
       </div>
       <div className="row mt-4 mb-4">
         <div className="col-lg-7 short-tech-info">
           {renderTechInfo(product.shortTech)}
         </div>
         <div className="col-lg-5">
-          <ProductAction stock={product.stock} stockStatus={product.stockStatus} id={product.productID} />
+          <ProductAction
+            stock={product.stock}
+            stockStatus={product.stockStatus}
+            id={product.productID}
+            name={product.productName}
+            price={product.productPrice}
+          />
         </div>
       </div>
     </React.Fragment>

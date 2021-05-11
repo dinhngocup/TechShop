@@ -28,7 +28,7 @@ function Home() {
         </div>
 
         {/* Hot proposes */}
-        <div className="trending-dashboard mt-5">
+        {/* <div className="trending-dashboard mt-5">
           <div className="header-hot-proposes">
             <HeaderSection content="Hot Proposes" />
             <div>
@@ -52,7 +52,7 @@ function Home() {
             </div>
           </div>
           <ProposedProductList />
-        </div>
+        </div> */}
 
         {/* Subscription */}
         <div className="subscription mt-5">

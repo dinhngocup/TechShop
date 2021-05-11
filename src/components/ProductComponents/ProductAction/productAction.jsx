@@ -12,18 +12,38 @@ ProductAction.defaultProps = {
 };
 
 function ProductAction(props) {
-  const { stockStatus, stock, id, name } = props;
+  const { stockStatus, stock, id, name, price } = props;
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
-  const handleAddToCart = (id, name) => {
-    dispatch(
-      addToCart({
-        id: id,
-        quantity: quantity,
-        name: name
-      })
-    );
+
+  const [content, setContent] = useState("Add to cart");
+  const [loading, setLoading] = useState(false);
+
+  let timer = null;
+
+  const alert = () => {
+    window.clearTimeout(timer);
+    setContent("Added");
+    setLoading(true);
+    timer = window.setTimeout(function () {
+      setContent("Add to cart");
+      setLoading(false);
+    }, 300);
+  };
+
+  const handleAddToCart = (id, name, loading, price) => {
+    if (!loading) {
+      dispatch(
+        addToCart({
+          id: id,
+          quantity: quantity,
+          name: name,
+          price: price
+        })
+      );
+      alert();
+    }
   };
   useEffect(() => {
     setQuantity(1);
@@ -62,15 +82,13 @@ function ProductAction(props) {
             setQuantity(e.target.value);
           }}
           onBlur={(e) => {
-            if (e.target.value > stock || e.target.value < 1)
-              setQuantity(1);
+            if (e.target.value > stock || e.target.value < 1) setQuantity(1);
           }}
         />
         <div
           className="quantity-btn flex"
           onClick={() => {
-            if (quantity < stock)
-              setQuantity(parseInt(quantity) + 1);
+            if (quantity < stock) setQuantity(parseInt(quantity) + 1);
           }}
         >
           <i className="fa fa-plus"></i>
@@ -80,10 +98,11 @@ function ProductAction(props) {
       <div
         className="product-actions mt-4"
         onClick={() => {
-          handleAddToCart(id, name);
+          handleAddToCart(id, name, loading, price);
         }}
       >
-        <i className="fas fa-cart-plus"></i>
+        {/* <i className="fas fa-cart-plus"></i> */}
+        {content}
       </div>
     </React.Fragment>
   );
