@@ -1,9 +1,8 @@
-import React from "react";
-import Banner from "components/HomeComponents/Banner/banner";
-import BrandGroup from "./BrandGroup/brandGroup";
 import HeaderSection from "components/common/HeaderSection/headerSection";
-import ProposedProductList from "./ProposedProduct/proposedProductList";
+import Banner from "components/HomeComponents/Banner/banner";
 import Subscription from "components/HomeComponents/Subs/subscription";
+import React from "react";
+import BrandGroup from "./BrandGroup/brandGroup";
 import TopProductCarousel from "./TopProductGroup/topProductCarousel";
 import TrendingProductList from "./TrendingProduct/trendingProductList";
 import "./_home.scss";

@@ -30,15 +30,15 @@ function GeneralOrder() {
     <table className="table-payment">
       <tbody>
         {renderPaymentDetails(productsInCart)}
-        <tr className="payment-detail">
+        {/* <tr className="payment-detail">
           <td>Coupon Discount</td>
           <td className="discount">-500.000</td>
-        </tr>
+        </tr> */}
       </tbody>
       <tfoot>
         <tr className="payment-detail">
           <td>Order Total</td>
-          <td className="price">{handlePrice(totalPrice)}</td>
+          <td className="price">{handlePrice(totalPrice)} <u>đ</u></td>
         </tr>
       </tfoot>
     </table>

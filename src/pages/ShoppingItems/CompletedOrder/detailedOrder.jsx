@@ -5,14 +5,15 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
+  removeLastBreadcrumb,
 } from "utilities/slices/breadcrumbSlice";
 import "./_detailedOrder.scss";
-
+import { Spinner } from 'reactstrap';
 
 function DetailedOrder(props) {
   const dispatch = useDispatch();
   const [detailedInfo, setDetailedInfo] = useState({});
+  const [loading, setLoading] = useState(true);
   const { orderID } = useParams();
 
   useEffect(() => {
@@ -31,11 +32,11 @@ function DetailedOrder(props) {
   useEffect(() => {
     const getDetailedOrder = async () => {
       let response = await OrderApi.getDetailedOrder(orderID);
-      console.log(response);
+      //console.log(response);
+      setLoading(false);
       setDetailedInfo(response);
-    }
+    };
     getDetailedOrder();
-    
   }, [orderID]);
 
   const renderOrderItem = (detailedInvoices) => {
@@ -49,32 +50,65 @@ function DetailedOrder(props) {
         ))
       : "";
   };
-  return (
-    <div className="detailed-order">
-      <div className="row">
-        <div className="col">
-          <div className="title">Shipping Address</div>
-          <div className="content">
-            <div className="name">{detailedInfo.shippingInfo?.fullname}</div>
-            <div className="basic-info">
-              Address: {detailedInfo.shippingInfo?.address}
-            </div>
 
-            <div className="basic-info">
-              Phone: {detailedInfo.shippingInfo?.phone}
-            </div>
-          </div>
+  const renderShippingAddress = (detailedInfo) => {
+    if (loading) {
+      return (
+        <div className="text-center">
+          <Spinner color="primary" />
         </div>
-        <div className="col">
-          <div className="title">Shipping Method</div>
-          <div className="content">
-            <div className="basic-info">
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="name">{detailedInfo.shippingInfo?.fullname}</div>
+          <div className="basic-info">
+            Address: {detailedInfo.shippingInfo?.address}
+          </div>
+
+          <div className="basic-info">
+            Phone: {detailedInfo.shippingInfo?.phone}
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
+  const renderShippingMethod = (detailedInfo) => {
+    if (loading) {
+      return (
+        <div className="text-center">
+          <Spinner color="primary" />
+        </div>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="basic-info">
               Shipping date: {detailedInfo.shippingDate}
             </div>
             <div className="basic-info">Freeship</div>
             <div className="basic-info">
               Invoice creation date: {detailedInfo.invoiceDate}
             </div>
+        </React.Fragment>
+      );
+    }
+  };
+
+  return (
+    <div className="detailed-order">
+      <div className="row">
+        <div className="col">
+          <div className="title">Shipping Address</div>
+          <div className="content">
+            {renderShippingAddress(detailedInfo)}
+          </div>
+        </div>
+        <div className="col">
+          <div className="title">Shipping Method</div>
+          <div className="content">
+          {renderShippingMethod(detailedInfo)}
           </div>
         </div>
         <div className="col">

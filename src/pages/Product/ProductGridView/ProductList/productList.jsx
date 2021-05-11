@@ -5,6 +5,7 @@ import { Col, Row } from "reactstrap";
 import ProductApi from "api/productApi";
 import ProductCard from "pages/Product/common/ProductCard/productCard";
 import ProductModal from "components/common/ProductModal/productModal";
+import { Spinner } from 'reactstrap';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -20,9 +21,11 @@ function ProductList() {
 
   const params = useParams();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchProduct() {
+      setLoading(true);
       let response = [];
       if (params.slug === undefined) {
         let searchTerm = new URLSearchParams(location.search).get("keyword");
@@ -43,11 +46,17 @@ function ProductList() {
         });
       }
       setProducts(response);
+      setLoading(false);
     }
     fetchProduct();
   }, [params, filter, location]);
 
   const renderProductCards = (products) => {
+    if(loading) {
+      return <Col xs="12" sm="12" md="12" lg="12"className='text-center'>
+        <Spinner color="primary" />
+      </Col>
+    } else 
     return products.length !== 0
       ? products.map((product, index) => (
           <Col key={index} xs="12" sm="6" md="4" lg="4">

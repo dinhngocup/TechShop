@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import React from "react";
 import "./_addressInfo.scss";
+import { Spinner } from 'reactstrap';
 
 function AddressInfo(props) {
   const { info, confirm } = props;
@@ -12,13 +13,28 @@ function AddressInfo(props) {
       ""
     );
   };
+  const renderAddressInfo = (info) => {
+    console.log(info)
+    if (Object.keys(info).length === 0) {
+      return (
+        <div className="text-center">
+          <Spinner color="primary" />
+        </div>
+      );
+    }
+    return (
+      <React.Fragment>
+        <div className="name">{info.fullname}</div>
+        <div className="basic-info">Address: {info.address}</div>
+
+        <div className="basic-info">Phone: {info.phone}</div>
+        {renderConfirmTag(confirm)}
+      </React.Fragment>
+    );
+  };
   return (
     <div className="shipping-info">
-      <div className="name">{info.fullname}</div>
-      <div className="basic-info">Address: {info.address}</div>
-
-      <div className="basic-info">Phone: {info.phone}</div>
-      {renderConfirmTag(confirm)}
+      {renderAddressInfo(info)}
     </div>
   );
 }

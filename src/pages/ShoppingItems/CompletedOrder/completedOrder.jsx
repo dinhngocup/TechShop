@@ -9,12 +9,14 @@ import "./_completedOrder.scss";
 import DetailedOrder from "./detailedOrder";
 import { Route } from "react-router-dom";
 import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import { Spinner } from 'reactstrap';
 
 import OrderApi from 'api/orderApi';
 
 
 function CompletedOrder(props) {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     dispatch(
@@ -31,9 +33,11 @@ function CompletedOrder(props) {
 
   useEffect(() => {
     async function getAllCompletedOrders () {
+      setLoading(true);
       let response = [];
       response = await OrderApi.getAllCompletedOrders();
       setOrders(response);
+      setLoading(false);
     };
     getAllCompletedOrders();
   }, []);
@@ -46,7 +50,12 @@ function CompletedOrder(props) {
       : null;
   };
 
-  const renderCompletedOrder = (orders) => {
+  const renderCompletedOrder = (orders, loading) => {
+    if(loading) {
+      return <div className='text-center'>
+        <Spinner color="primary" />
+      </div>
+    } else 
     return orders.length !== 0 ? (
       <React.Fragment>
         <div>
@@ -78,7 +87,7 @@ function CompletedOrder(props) {
   };
 
   return <div className="table-wrapper completed-order">
-    {renderCompletedOrder(orders)}
+    {renderCompletedOrder(orders, loading)}
   </div>;
 }
 

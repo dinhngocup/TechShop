@@ -11,11 +11,12 @@ import { clearAll } from "utilities/slices/cartSlice";
 import BillingDetails from "./BillingDetails/billingDetails";
 import Order from "./Order/order";
 import "./_checkOut.scss";
+import { Spinner } from 'reactstrap';
 
 function CheckOut(props) {
   const productsInCart = useSelector((state) => state.cart.products);
   const history = useHistory();
-
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -49,15 +50,16 @@ function CheckOut(props) {
       detailedInvoices: orderInfo,
       shippingInfo: shippingInfo,
     };
+
     const placeOrder = async (data) => {
+      setLoading(true);
       return UserApi.placeOrder(data)
         .then((res) => {
-          console.log(res);
+          //console.log(res);
+          setLoading(false)
           history.push("/completed-order");
           // clear all data in check out and cart
           dispatch(clearAll());
-
-
         })
         .catch((err) => {
           console.log(err);
@@ -66,6 +68,24 @@ function CheckOut(props) {
     placeOrder(data);
   };
 
+  const renderPayBtn = (loading) => {
+    if (loading) {
+      return (
+        <div className="text-center">
+          <Spinner color="primary" />
+        </div>
+      );
+    }
+    return (
+      <button
+        onClick={() => {
+          placeOrder(shippingInfo);
+        }}
+      >
+        Pay
+      </button>
+    );
+  };
   const renderCheckOut = (productsInCart) => {
     return productsInCart.length !== 0 ? (
       <div className="row">
@@ -75,13 +95,14 @@ function CheckOut(props) {
         <div className="col-lg-6 order">
           <Order />
           <div className="btn-pay">
-            <button
+            {/* <button
               onClick={() => {
                 placeOrder(shippingInfo);
               }}
             >
               Pay
-            </button>
+            </button> */}
+            {renderPayBtn(loading)}
           </div>
         </div>
       </div>
