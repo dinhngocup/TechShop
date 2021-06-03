@@ -40,7 +40,10 @@
         .product-title {
             text-transform: uppercase;
             font-weight: 600;
-            
+        }
+        .product-brand {
+            font-style: italic;
+            font-size: small;
         }
         .product-sub-title {
             display: flex;

@@ -4,6 +4,7 @@ import ScrollToTop from "components/main/ScrollToTop/scrollToTop";
 import ScrollToTopRouter from "components/main/ScrollToTop/scrollToTopRouter";
 import News from "components/news";
 import PrivateRoute from "components/privateRoute";
+import Sale from "components/sale";
 import Home from "pages/Home/main";
 import Login from "pages/Login/login";
 import Product from "pages/Product/main";
@@ -12,11 +13,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./_app.scss";
-import Sale from 'components/sale';
 
 function App() {
   console.log("app");
-
   return (
     <div className="wrapper">
       <div className="main-content">
@@ -29,9 +28,7 @@ function App() {
                 <Route exact path={["/home", "/"]}>
                   <Home />
                 </Route>
-                <Route
-                  path={["/shopping-cart", "/wish-list"]}
-                >
+                <Route path={["/shopping-cart", "/wish-list"]}>
                   <ShoppingCart />
                 </Route>
                 <Route path="/user-info">
@@ -42,10 +39,11 @@ function App() {
                   <Product />
                 </Route>
 
-                <Route path="/contacts">
-                  <News />
-                </Route>
-                
+                <Route path="/contacts" component={News} />
+
+                {/* <News />
+                </Route> */}
+
                 <Route path="/login">
                   <Login />
                 </Route>
@@ -57,6 +55,7 @@ function App() {
                 </PrivateRoute>
               </Switch>
             </ScrollToTopRouter>
+            
             <Footer />
           </div>
         </Router>

@@ -1,16 +1,19 @@
-import { PropTypes } from "prop-types";
-import React, { useState, useEffect } from "react";
-import ProDescription from "./ProDescription/proDescription";
-import ProReview from "./ProReview/proReview";
 import ProTab from "components/ProductComponents/ProTab/proTab";
-import RelatedPro from "./RelatedPro/relatedPro";
-import TechDescrip from "./TechDescrip/techDescrip";
+import { PropTypes } from "prop-types";
+import React, { useEffect, useState } from "react";
+import DescriptionTab from "./DescriptionTab/descriptionTab";
+import ReviewTab from "./ReviewTab/reviewTab";
+import RelatedTab from "./RelatedTab/relatedTab";
+import SpecsTab from "./SpecsTab/specsTab";
 import "./_singleProTab.scss";
 
 function SingleProTab(props) {
-  const { product } = props;
+  //console.log("hi");
+  const { product, relatedCategoryProducts,relatedBrandProducts} = props;
   const [tabContent, setTabContent] = useState(null);
   const [activeTab, setActiveTab] = useState("description");
+
+  
 
   const changeTab = (tagName) => {
     setActiveTab(tagName);
@@ -19,23 +22,31 @@ function SingleProTab(props) {
   useEffect(() => {
     switch (activeTab) {
       case "description":
-        setTabContent(<ProDescription longDescrip={product.longDescrip} />);
+        setTabContent(<DescriptionTab longDescrip={product.longDescrip} />);
         break;
       case "review":
-        setTabContent(<ProReview id={product.productID} />);
+        setTabContent(<ReviewTab id={product.productID} />);
         break;
       case "related":
-        const data = { category: product.categoryID, brand: product.brandID };
-        setTabContent(<RelatedPro {...data} />);
+        setTabContent(
+          <RelatedTab
+            relatedCategoryProducts={relatedCategoryProducts}
+            relatedBrandProducts={relatedBrandProducts}
+          />
+        );
         break;
       case "specs":
-        setTabContent(<TechDescrip specs={product.specs} />);
+        let generalInfo = {
+          brandName: product.brandName, 
+          warranty: product.warranty
+        }
+        setTabContent(<SpecsTab specs={product.specs} generalInfo={generalInfo} />);
         break;
       default:
-        setTabContent(<ProDescription longDescrip={product.longDescrip} />);
+        setTabContent(<DescriptionTab longDescrip={product.longDescrip} />);
         break;
     }
-  }, [activeTab, product]);
+  }, [activeTab, product, relatedCategoryProducts, relatedBrandProducts]);
 
   return (
     <div className="single-pro-tab mt-4 container-fluid">
@@ -71,11 +82,12 @@ function SingleProTab(props) {
 
       <div className="row">
         <div className="tab-content">
-          {tabContent === null ? (
+          {tabContent}
+          {/* {tabContent === null ? (
             <ProDescription longDescrip={product.longDescrip} />
           ) : (
             tabContent
-          )}
+          )} */}
         </div>
       </div>
     </div>

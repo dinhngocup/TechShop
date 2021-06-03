@@ -35,6 +35,10 @@ function ProductInfo(props) {
         <div className="product-price">
           {handlePrice(product.productPrice)} <u>đ</u>
         </div>
+        <div className="">
+          <i>Brand: </i>
+          <span className="product-price">{product.brandName}</span>
+        </div>
       </div>
       <div className="row mt-4 mb-4">
         <div className="col-lg-7 short-tech-info">

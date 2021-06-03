@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cookiesService } from "helpers/cookiesService";
-import * as ExpireHours from "utilities/ExpireTime";
+import * as ExpireHours from "utilities/Constant";
 
 /**
  * payload of ADD TO CART action is {

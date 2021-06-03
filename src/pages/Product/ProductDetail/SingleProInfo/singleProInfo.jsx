@@ -70,4 +70,4 @@ function SingleProInfo(props) {
   );
 }
 
-export default SingleProInfo;
+export default React.memo(SingleProInfo);

@@ -21,6 +21,8 @@ function GeneralOrder() {
     }
   }, [productsInCart]);
 
+  
+
   const renderPaymentDetails = (productsInCart) => {
     return productsInCart.map((product, index) => {
       return <PaymentDetail key={product.id} product={product} />;

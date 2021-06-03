@@ -1,9 +1,9 @@
 import image from "assets/images/footer.jpeg";
 import image1 from "assets/images/white.png";
 import React from "react";
-import "./_proDescription.scss";
+import "./_descriptionTab.scss";
 
-const ProDescription = (props) => {
+const DescriptionTab = (props) => {
   const { longDescrip } = props;
 
   const renderDescrips = (descrips) => {
@@ -34,4 +34,4 @@ const ProDescription = (props) => {
   );
 };
 
-export default ProDescription;
+export default React.memo(DescriptionTab);

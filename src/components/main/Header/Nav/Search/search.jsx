@@ -6,7 +6,9 @@ import "./_search.scss";
 function Search() {
   const [data, setData] = useState({ results: null, otherResults: null });
   const [searchTerm, setSearchTerm] = useState("");
+  
   const typingTimeoutRef = useRef(null);
+  //console.log(typingTimeoutRef.current)
 
   const handleChangeSearchTerm = (e) => {
     const value = e.target.value;

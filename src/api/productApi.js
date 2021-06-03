@@ -26,14 +26,16 @@ const ProductApi = {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
-  getRelatedCategoryPro: async (category) => {
-    const url = `${UrlConstant.GET_RELATED_PRODUCT}/${category}`;
+  getRelatedCategoryPro: async (id) => {
+    const url = `${UrlConstant.GET_RELATED_CATEGORY_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
-  getRelatedBrandPro: async (brand) => {
-    const url = `${UrlConstant.GET_RELATED_PRODUCT}/${brand}`;
+  getRelatedBrandPro: async (id) => {
+    const url = `${UrlConstant.GET_RELATED_BRAND_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
+
+
   getSpecsPro: async (id) => {
     const url = `${UrlConstant.GET_SPECS_PRODUCT}/${id}`;
     return axiosClient.get(url);

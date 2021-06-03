@@ -1,21 +1,22 @@
+import ProductApi from "api/productApi";
 import React, { useEffect, useState } from "react";
-//import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import ProductApi from "api/productApi";
+import { Col, Spinner } from "reactstrap";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb
 } from "utilities/slices/breadcrumbSlice";
 import SingleProInfo from "./SingleProInfo/singleProInfo";
-import SingleProTab from './SingleProTab/singleProTab'
-
+import SingleProTab from "./SingleProTab/singleProTab";
 
 function ProductDetail() {
-  //console.log('detail')
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [product, setProduct] = useState({});
+  
+  const [product, setProduct] = useState(null);
+  const [relatedCategoryProducts, setRelatedCategoryProducts] = useState(null);
+  const [relatedBrandProducts, setRelatedBrandProducts] = useState(null);
   useEffect(() => {
     const fetchProduct = async () => {
       let response = await ProductApi.getDetailedProduct(id);
@@ -26,19 +27,65 @@ function ProductDetail() {
         })
       );
       setProduct(response);
+      
+    };
+
+    let fetchRelatedCategoryProduct = async () => {
+      let response = await ProductApi.getRelatedCategoryPro(id);
+      setRelatedCategoryProducts(response);
+    };
+
+    let fetchRelatedBrandProduct = async () => {
+      let response = await ProductApi.getRelatedBrandPro(id);
+      setRelatedBrandProducts(response);
     };
     fetchProduct();
+    fetchRelatedBrandProduct();
+    fetchRelatedCategoryProduct();
+
+    // Promise.all([
+    //   fetchProduct(),
+    //   fetchRelatedCategoryProduct(),
+    //   fetchRelatedBrandProduct(),
+    // ]).then(function ([
+    //   product,
+    //   relatedCategoryProducts,
+    //   relatedBrandProducts,
+    // ]) {
+    //   setLoading(false);
+    //   setAllProductInfo({
+    //     product,
+    //     relatedCategoryProducts,
+    //     relatedBrandProducts,
+    //   });
+    // });
+
     return () => {
       dispatch(removeLastBreadcrumb());
     };
   }, [dispatch, id]);
 
-  return (
-    <React.Fragment>
-      <SingleProInfo product={product}/>
-      <SingleProTab product={product}/>
-    </React.Fragment>
-  );
+  const renderProductDetail = () => {
+    if (product===null) {
+      return (
+        <Col xs="12" sm="12" md="12" lg="12" className="text-center">
+          <Spinner color="primary" />
+        </Col>
+      );
+    }
+    return (
+      <React.Fragment>
+        <SingleProInfo product={product} />
+        <SingleProTab
+          product={product}
+          relatedCategoryProducts={relatedCategoryProducts}
+          relatedBrandProducts={relatedBrandProducts}
+        />
+      </React.Fragment>
+    );
+  };
+
+  return <React.Fragment>{renderProductDetail()}</React.Fragment>;
 }
 
 //ProductDetail.propTypes = {};

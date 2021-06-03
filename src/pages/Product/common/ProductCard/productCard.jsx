@@ -69,7 +69,12 @@ function ProductCard(props) {
             </button>
             <button
               onClick={(e) => {
-                handleAddToCart(e, product.productID, product.productName, product.productPrice);
+                handleAddToCart(
+                  e,
+                  product.productID,
+                  product.productName,
+                  product.productPrice
+                );
               }}
               disabled={loading}
             >
@@ -78,12 +83,14 @@ function ProductCard(props) {
           </div>
         </div>
         <div className="product-info">
-          <div className="product-title mb-2">
-            <span>{product.productName}</span>
+          <div className="mb-2">
+            <div className="product-title">{product.productName}</div>
+            <div className="product-brand">Brand: {product.brandName}</div>
           </div>
           <div className="product-sub-title">
-            <div className="product-price">{handlePrice(product.productPrice)} <u>đ</u></div>
-
+            <div className="product-price">
+              {handlePrice(product.productPrice)} <u>đ</u>
+            </div>
             <ProductRating rate={product.productRate} />
           </div>
         </div>

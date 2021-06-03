@@ -5,40 +5,31 @@ import HeaderSection from "components/common/HeaderSection/headerSection";
 import ProductModal from "components/common/ProductModal/productModal";
 import RelatedCategoryPro from "./relatedCategoryPro";
 
-
-function RelatedPro(props) {
-  //console.log("related");
-  const { category, brand } = props;
-
+function RelatedTab(props) {
+  const { relatedCategoryProducts, relatedBrandProducts } = props;
+  
   const stateProductModal = useSelector((state) => state.productModal);
 
-  const categoryData = {
-    type: "category",
-    content: category,
-  };
-  const brandData = {
-    type: "brand",
-    content: brand,
-  };
   return (
     <React.Fragment>
       <HeaderSection content="Related Products" />
-      <RelatedCategoryPro {...categoryData} />
+      <RelatedCategoryPro productList={relatedCategoryProducts} />
+
       <HeaderSection content="Same Brand Products" />
-      <RelatedCategoryPro {...brandData} />
+      <RelatedCategoryPro productList={relatedBrandProducts} />
 
       <ProductModal product={stateProductModal.data} />
     </React.Fragment>
   );
 }
 
-RelatedPro.propTypes = {
+RelatedTab.propTypes = {
   category: PropTypes.string,
   brand: PropTypes.string,
 };
-RelatedPro.defaultProps = {
+RelatedTab.defaultProps = {
   category: "",
   brand: "",
 };
 
-export default RelatedPro;
+export default RelatedTab;
