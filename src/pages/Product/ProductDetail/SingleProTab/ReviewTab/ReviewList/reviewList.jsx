@@ -4,117 +4,64 @@ import Review from "./review";
 import "./_reviewList.scss";
 import Pagination from "pages/Product/ProductDetail/SingleProTab/ReviewTab/Pagination/pagination";
 import { REVIEWS_PER_PAGE } from "utilities/Constant";
+import ProductApi from "api/productApi";
 
 function ReviewList(props) {
-  console.log('list')
-  const { totalReviews } = props;
+  const { id, totalReviews, firstReviews } = props;
   const [currentPage, setCurrentPage] = useState(1);
-  const [reviews, setReviews] = useState(null);
-  const reviewsPerPage = REVIEWS_PER_PAGE;
+  const [reviews, setReviews] = useState(firstReviews);
 
   useEffect(() => {
-    const reviews = [
-      {
-        review:
-          "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "6. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "7. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "8. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "9. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "10. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "11. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "12. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "13. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-      {
-        review:
-          "14. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam veritatis atque repudiandae dolorem molestiae ad.",
-      },
-    ];
+    // totalReviews = 0 => no comment for this product =>  no need to call api
+    // current page = 1 => get review from props => no need to call api
+    if (totalReviews === 0 || currentPage === 1) return;
 
     // call api to get review suitable with current page
-    let response = [];
-    // temp
-    let indexOfFirstReview = currentPage * reviewsPerPage - reviewsPerPage;
-    let indexOfLastReview = indexOfFirstReview + reviewsPerPage;
-    for (
-      let i = indexOfFirstReview;
-      i < reviews.length && i < indexOfLastReview;
-      i++
-    ) {
-      response.push(reviews[i]);
-    }
-    setReviews(response);
-  }, [currentPage, reviewsPerPage]);
+    const fetchReviews = async (id, currentPage) => {
+      let pageInDB = currentPage - 1
+      let response = await ProductApi.getReviewsByProductIDByPagination(
+        id,
+        pageInDB,
+        REVIEWS_PER_PAGE
+      );
+      setReviews(response);
+    };
+
+    fetchReviews(id, currentPage);
+  }, [currentPage, totalReviews, id]);
 
   const changeCurrentPage = (page) => {
-    if(page === currentPage) return;
+    if (page === currentPage) return;
     setCurrentPage(page);
   };
-  const renderListReview = (reviewList) => {
-    return reviewList.map((review, index) => (
-      <Col xs="12" sm="12" md="6" lg="6" className="col-review" key={index}>
-        <Review key={index} review={review.review} />
-      </Col>
-    ));
+
+  const renderReviewPage = (reviewList) => {
+    if (reviewList === null) return "";
+    if (totalReviews === 0) return <div>Ko tồn tại review nào</div>;
+    return (
+      <React.Fragment>
+        <Row>
+          {reviewList.map((review, index) => (
+            <Col
+              xs="12"
+              sm="12"
+              md="6"
+              lg="6"
+              className="col-review"
+              key={index}
+            >
+              <Review key={index} review={review} />
+            </Col>
+          ))}
+        </Row>
+        <Pagination
+          totalReviews={totalReviews}
+          changeCurrentPage={changeCurrentPage}
+        />
+      </React.Fragment>
+    );
   };
-  return (
-    <div className="review-list">
-      {reviews !== null ? (
-        <React.Fragment>
-          {" "}
-          <Row>{renderListReview(reviews)}</Row>
-          <Pagination
-            reviewsPerPage={reviewsPerPage}
-            totalReviews={totalReviews}
-            changeCurrentPage={changeCurrentPage}
-          />
-        </React.Fragment>
-      ) : (
-        ""
-      )}
-    </div>
-  );
+  return <div className="review-list">{renderReviewPage(reviews)}</div>;
 }
 
 ReviewList.propTypes = {};

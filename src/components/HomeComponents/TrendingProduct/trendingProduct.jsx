@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import image from "assets/images/city_2.jpg";
 import "./_trendingProduct.scss";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function TrendingProduct(props) {
   const { product } = props;

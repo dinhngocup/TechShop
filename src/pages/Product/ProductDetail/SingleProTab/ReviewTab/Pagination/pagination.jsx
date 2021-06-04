@@ -1,10 +1,11 @@
 import React from "react";
 import "./_pagination.scss";
+import { REVIEWS_PER_PAGE } from "utilities/Constant";
 
 function Pagination(props) {
-  const { reviewsPerPage, totalReviews, changeCurrentPage } = props;
+  const { totalReviews, changeCurrentPage } = props;
   const renderPagination = () => {
-    let pageNumbers = Math.ceil(totalReviews / reviewsPerPage);
+    let pageNumbers = Math.ceil(totalReviews / REVIEWS_PER_PAGE);
     let result = [];
     for (let i = 1; i <= pageNumbers; i++) {
       result.push(

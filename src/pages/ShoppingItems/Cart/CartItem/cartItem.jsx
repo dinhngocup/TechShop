@@ -5,7 +5,7 @@ import ProductApi from "api/productApi";
 import image from "assets/images/pic7.jpeg";
 import { removeFromCart } from "utilities/slices/cartSlice";
 import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function CartItem(props) {
   const { productInCart } = props;

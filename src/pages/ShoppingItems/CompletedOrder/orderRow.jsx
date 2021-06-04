@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./_orderRow.scss";
 import { NavLink } from "react-router-dom";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 function OrderRow(props) {
   const {invoice} = props
   return (

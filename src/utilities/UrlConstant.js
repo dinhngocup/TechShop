@@ -20,6 +20,9 @@ export const GET_ALL_CATEGORIES = "/api/v1/category"
 // BRANDS
 export const GET_ALL_BRANDS = "/api/v1/brand"
 
+// REVIEW
+export const GET_ALL_REVIEWS_BY_PRODUCTID = "/api/v1/review"
+
 // COUPON
 export const GET_COUPON_BY_ID = "/coupons"
 

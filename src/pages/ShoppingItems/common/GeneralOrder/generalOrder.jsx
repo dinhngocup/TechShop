@@ -2,7 +2,7 @@ import PaymentDetail from "components/ShoppingItemsComponents/PaymentDetail/paym
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./_generalOrder.scss";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function GeneralOrder() {
   const productsInCart = useSelector((state) => state.cart.products);

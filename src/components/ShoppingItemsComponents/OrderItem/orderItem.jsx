@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import './_orderItem.scss'
 import image from "assets/images/pic7.jpeg";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 
 function OrderItem(props) {

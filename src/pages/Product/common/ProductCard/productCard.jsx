@@ -8,7 +8,7 @@ import "./_productCard.scss";
 import { Link } from "react-router-dom";
 import ProductRating from "components/common/ProductRating/productRating";
 import { addToCart } from "utilities/slices/cartSlice";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function ProductCard(props) {
   const { product } = props;

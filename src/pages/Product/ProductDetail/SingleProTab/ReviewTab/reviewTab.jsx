@@ -4,14 +4,19 @@ import "./_reviewTab.scss";
 
 function ReviewTab(props) {
   console.log("review");
+  const { rate, id, totalReviews, firstReviews } = props;
   return (
     <div className="review-tab">
       <div className="review-tab-title d-flex">
         <i className="fas fa-star"></i>
-        <span className="rate ml-2">4.5 (230 reviews)</span>
+        <span className="rate ml-2">{rate} ({totalReviews} reviews)</span>
       </div>
       <div className="review-tab-content">
-        <ReviewList  totalReviews={14}/>
+        <ReviewList
+          totalReviews={totalReviews}
+          id={id}
+          firstReviews={firstReviews}
+        />
       </div>
     </div>
   );

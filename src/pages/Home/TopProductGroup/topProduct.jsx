@@ -4,7 +4,7 @@ import image from "assets/images/city_7.jpg";
 import BtnAdd from "components/common/Button/btnAdd";
 import BtnMore from "components/common/Button/btnMore";
 import "./_topProduct.scss";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function TopProduct(props) {
   const { product } = props;

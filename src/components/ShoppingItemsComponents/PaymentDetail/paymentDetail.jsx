@@ -1,6 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import handlePrice from "utilities/formatPrice";
+import handlePrice from "helpers/formatPrice";
 
 function PaymentDetail(props) {
     const { product } = props;
