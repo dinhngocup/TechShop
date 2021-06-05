@@ -1,5 +1,5 @@
 import OrderApi from "api/orderApi";
-import OrderItem from "components/ShoppingItemsComponents/OrderItem/orderItem";
+import OrderItem from "pages/ShoppingItems/CompletedOrder/DetailedOrder/OrderItem/orderItem";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
@@ -8,7 +8,9 @@ import {
   removeLastBreadcrumb,
 } from "utilities/slices/breadcrumbSlice";
 import "./_detailedOrder.scss";
-import { Spinner } from 'reactstrap';
+import { Spinner } from "reactstrap";
+import handlePrice from "helpers/formatPrice";
+import ReviewModal from "components/ShoppingItemsComponents/ReviewModal/reviewModal";
 
 function DetailedOrder(props) {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function DetailedOrder(props) {
   useEffect(() => {
     const getDetailedOrder = async () => {
       let response = await OrderApi.getDetailedOrder(orderID);
-      //console.log(response);
+      console.log(response);
       setLoading(false);
       setDetailedInfo(response);
     };
@@ -85,12 +87,12 @@ function DetailedOrder(props) {
       return (
         <React.Fragment>
           <div className="basic-info">
-              Shipping date: {detailedInfo.shippingDate}
-            </div>
-            <div className="basic-info">Freeship</div>
-            <div className="basic-info">
-              Invoice creation date: {detailedInfo.invoiceDate}
-            </div>
+            Shipping date: {detailedInfo.shippingDate}
+          </div>
+          <div className="basic-info">Freeship</div>
+          <div className="basic-info">
+            Invoice creation date: {detailedInfo.invoiceDate}
+          </div>
         </React.Fragment>
       );
     }
@@ -101,15 +103,11 @@ function DetailedOrder(props) {
       <div className="row">
         <div className="col">
           <div className="title">Shipping Address</div>
-          <div className="content">
-            {renderShippingAddress(detailedInfo)}
-          </div>
+          <div className="content">{renderShippingAddress(detailedInfo)}</div>
         </div>
         <div className="col">
           <div className="title">Shipping Method</div>
-          <div className="content">
-          {renderShippingMethod(detailedInfo)}
-          </div>
+          <div className="content">{renderShippingMethod(detailedInfo)}</div>
         </div>
         <div className="col">
           <div className="title">Payment Method</div>
@@ -129,8 +127,21 @@ function DetailedOrder(props) {
             </tr>
           </thead>
           <tbody>{renderOrderItem(detailedInfo.detailedInvoices)}</tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="3">
+                <span>Total</span>
+              </td>
+              <td className="sum">
+                <span>
+                  {handlePrice(detailedInfo.totalPrice)} <u>đ</u>
+                </span>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
+      <ReviewModal />
     </div>
   );
 }

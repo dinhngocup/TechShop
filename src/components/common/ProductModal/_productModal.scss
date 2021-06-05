@@ -1,6 +1,7 @@
 .modal-content {
     height: 500px;
 }
+
 .product-modal-photo {
     float: left;
     width: 40%;
@@ -54,7 +55,7 @@
             button {
                 background-color: #444;
                 &:hover {
-                    color:black;
+                    color: black;
                     background-color: rgb(252, 235, 198);
                 }
             }

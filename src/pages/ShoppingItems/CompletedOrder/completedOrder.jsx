@@ -4,9 +4,9 @@ import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
 } from "utilities/slices/breadcrumbSlice";
-import OrderRow from "./orderRow";
+import OrderRow from "./OrderRow/orderRow";
 import "./_completedOrder.scss";
-import DetailedOrder from "./detailedOrder";
+import DetailedOrder from "./DetailedOrder/detailedOrder";
 import { Route } from "react-router-dom";
 import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import { Spinner } from 'reactstrap';

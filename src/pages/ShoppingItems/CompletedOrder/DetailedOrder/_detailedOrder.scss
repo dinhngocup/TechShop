@@ -31,8 +31,17 @@
                     padding: 10px;
                 }
             }
+            tfoot {
+                td {
+                    padding: 10px 10px;
+                    text-align: right;
+                }
+                .sum {
+                    color: red;
+                    font-weight: 600;
+                    text-align: center;
+                }
+            }
         }
-
-        
     }
 }
