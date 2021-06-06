@@ -10,6 +10,7 @@ import {
 } from "utilities/slices/breadcrumbSlice";
 import SingleProInfo from "./SingleProInfo/singleProInfo";
 import SingleProTab from "./SingleProTab/singleProTab";
+import ReviewApi from 'api/reviewApi';
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function ProductDetail() {
     };
 
     let fetchFirstReviews = async () => {
-      let response = await ProductApi.getReviewsByProductIDByPagination(
+      let response = await ReviewApi.getReviewsByProductIDByPagination(
         id,
         DEFAULT_REVIEW_PAGE,
         REVIEWS_PER_PAGE

@@ -16,7 +16,25 @@ function DetailedOrder(props) {
   const dispatch = useDispatch();
   const [detailedInfo, setDetailedInfo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [productModalInfo, setProductModalInfo] = useState(null);
   const { orderID } = useParams();
+  const updateReviewStatus = (id) => {
+    let invoices = detailedInfo.detailedInvoices;
+    for (let invoice of invoices) {
+      if (invoice.productID === parseInt(id)) {
+        invoice.isReviewed = true;
+        break;
+      }
+    }
+    setDetailedInfo({ detailedInvoices: invoices });
+  };
+  const getProductModalInfo = (info) => {
+    setProductModalInfo({
+      orderID,
+      productID: info.productID,
+      productName: info.productName,
+    });
+  };
 
   useEffect(() => {
     dispatch(
@@ -34,7 +52,7 @@ function DetailedOrder(props) {
   useEffect(() => {
     const getDetailedOrder = async () => {
       let response = await OrderApi.getDetailedOrder(orderID);
-      console.log(response);
+      //console.log(response);
       setLoading(false);
       setDetailedInfo(response);
     };
@@ -46,6 +64,7 @@ function DetailedOrder(props) {
     return detailedInvoices.length !== 0
       ? detailedInvoices.map((detailedInvoice) => (
           <OrderItem
+            getProductModalInfo={getProductModalInfo}
             key={detailedInvoice.productID}
             product={detailedInvoice}
           />
@@ -141,7 +160,14 @@ function DetailedOrder(props) {
           </tfoot>
         </table>
       </div>
-      <ReviewModal />
+      {productModalInfo !== null ? (
+        <ReviewModal
+          productModalInfo={productModalInfo}
+          updateReviewStatus={updateReviewStatus}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -5,7 +5,8 @@ import image from "assets/images/pic7.jpeg";
 import handlePrice from "helpers/formatPrice";
 
 function OrderItem(props) {
-  const { product } = props;
+  const { getProductModalInfo, product } = props;
+  
   return (
     <tr className="order-item">
       <td className="product-info">
@@ -15,12 +16,26 @@ function OrderItem(props) {
         <div className="short-info d-flex">
           <p className="product-name">{product.productName}</p>
           <p className="authen-tag">
-            <span>Provided by</span> <i className="fas fa-check-circle"></i>TechShop
+            <span>Provided by</span> <i className="fas fa-check-circle"></i>
+            TechShop
           </p>
           <div className="action">
-            <button data-toggle="modal"
-              data-target="#reviewModal">Write your review</button>
-            
+            {product.isReviewed ? (
+              ""
+            ) : (
+              <button
+                data-toggle="modal"
+                data-target="#reviewModal"
+                onClick={() => {
+                  getProductModalInfo({
+                    productID: product.productID,
+                    productName: product.productName,
+                  });
+                }}
+              >
+                Write your review
+              </button>
+            )}
             <button>Buy it again</button>
           </div>
         </div>

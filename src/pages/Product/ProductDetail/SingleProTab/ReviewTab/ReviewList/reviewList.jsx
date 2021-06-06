@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "reactstrap";
+import ReviewApi from "api/reviewApi";
+import Pagination from "pages/Product/ProductDetail/SingleProTab/ReviewTab/Pagination/pagination";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "reactstrap";
+import { REVIEWS_PER_PAGE } from "utilities/Constant";
 import Review from "./review";
 import "./_reviewList.scss";
-import Pagination from "pages/Product/ProductDetail/SingleProTab/ReviewTab/Pagination/pagination";
-import { REVIEWS_PER_PAGE } from "utilities/Constant";
-import ProductApi from "api/productApi";
 
 function ReviewList(props) {
   const { id, totalReviews, firstReviews } = props;
@@ -14,12 +14,15 @@ function ReviewList(props) {
   useEffect(() => {
     // totalReviews = 0 => no comment for this product =>  no need to call api
     // current page = 1 => get review from props => no need to call api
-    if (totalReviews === 0 || currentPage === 1) return;
+    if (totalReviews === 0 || currentPage === 1) {
+      setReviews(firstReviews);
+      return;
+    }
 
     // call api to get review suitable with current page
     const fetchReviews = async (id, currentPage) => {
-      let pageInDB = currentPage - 1
-      let response = await ProductApi.getReviewsByProductIDByPagination(
+      let pageInDB = currentPage - 1;
+      let response = await ReviewApi.getReviewsByProductIDByPagination(
         id,
         pageInDB,
         REVIEWS_PER_PAGE
@@ -28,7 +31,7 @@ function ReviewList(props) {
     };
 
     fetchReviews(id, currentPage);
-  }, [currentPage, totalReviews, id]);
+  }, [currentPage, totalReviews, id, firstReviews]);
 
   const changeCurrentPage = (page) => {
     if (page === currentPage) return;

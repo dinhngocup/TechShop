@@ -34,10 +34,7 @@ const ProductApi = {
     const url = `${UrlConstant.GET_RELATED_BRAND_PRODUCT}/${id}`;
     return axiosClient.get(url);
   },
-  getReviewsByProductIDByPagination: async (id, page, reviewsPerPage) => {
-    const url = `${UrlConstant.GET_ALL_REVIEWS_BY_PRODUCTID}/${id}?limit=${reviewsPerPage}&page=${page}`;
-    return axiosClient.get(url);
-  },
+  
 
 
   getSpecsPro: async (id) => {

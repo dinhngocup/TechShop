@@ -1,17 +1,17 @@
-import UserApi from "api/userApi";
+import OrderApi from 'api/orderApi';
 import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Spinner } from 'reactstrap';
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "utilities/slices/breadcrumbSlice";
 import { clearAll } from "utilities/slices/cartSlice";
 import BillingDetails from "./BillingDetails/billingDetails";
 import Order from "./Order/order";
 import "./_checkOut.scss";
-import { Spinner } from 'reactstrap';
 
 function CheckOut(props) {
   const productsInCart = useSelector((state) => state.cart.products);
@@ -53,7 +53,7 @@ function CheckOut(props) {
 
     const placeOrder = async (data) => {
       setLoading(true);
-      return UserApi.placeOrder(data)
+      return OrderApi.placeOrder(data)
         .then((res) => {
           //console.log(res);
           setLoading(false)

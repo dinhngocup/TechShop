@@ -60,12 +60,19 @@
     }
     .btn-review {
         float: right;
-        padding: 5px 15px;
         background-color: rgb(253, 216, 53);
-        border: rgb(253, 216, 53);
+
         color: rgb(36, 36, 36);
         border-radius: 4px;
         font-size: small;
+        button {
+            padding: 5px 15px;
+            background-color: rgb(253, 216, 53);
+            border: rgb(253, 216, 53);
+        }
+        .loading-review {
+            padding: 5px 30px;
+        }
     }
 }
 .reviewed-modal-body {

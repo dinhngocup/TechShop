@@ -2,14 +2,18 @@ import image1 from "assets/images/product3.jpeg";
 import React, { useState } from "react";
 import "./_reviewModal.scss";
 import starIcon from "assets/images/review.jpeg";
+import ReviewApi from "api/reviewApi";
+import { Spinner } from "reactstrap";
 
 function ReviewModal(props) {
-  console.log("review");
+  const { productModalInfo, updateReviewStatus } = props;
+  //console.log("review");
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState();
   const [isReviewed, setIsReviewed] = useState(false);
+  const [loading, setLoading] = useState(false);
   const rate = (rate) => {
-    console.log(rate);
+    //console.log(rate);
     let stars = document.getElementById("rate").querySelectorAll("svg");
     for (let index = 4; index >= 0; index--) {
       //console.log(stars[index]);
@@ -22,19 +26,53 @@ function ReviewModal(props) {
     setRating(5 - rate);
   };
 
-  const submitReview = () => {
-    console.log(rating);
-    console.log(review);
-    // call api post review 
-    
-    
+  const submitReview = (productID, orderID) => {
+    // call api post review
+    // productID, orderID, review Content, rate
+    let body = {
+      orderID,
+      productID,
+      reviewContent: review,
+      rate: rating,
+    };
+    const addReview = async (data) => {
+      console.log(data);
+      setLoading(true);
+      return ReviewApi.addReview(data)
+        .then((res) => {
+          //console.log(res);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    addReview(body);
+    updateReviewStatus(productID);
     setIsReviewed(true);
   };
-
+  const renderReviewBtn = (loading, productModalInfo) => {
+    if (loading) {
+      return (
+        <div className="text-center loading-review">
+          <Spinner color="primary" />
+        </div>
+      );
+    }
+    return (
+      <button
+        onClick={() =>
+          submitReview(productModalInfo.productID, productModalInfo.orderID)
+        }
+      >
+        Submit your review
+      </button>
+    );
+  };
   const renderReviewArea = () => {
     return isReviewed ? (
       <div className="modal-body reviewed-modal-body">
-        <img src={starIcon} alt="" srcset="" />
+        <img src={starIcon} alt="" srcSet="" />
         <div className="response">
           <div className="thank-you">Thank you for your valuable review!</div>
           <div>
@@ -155,9 +193,9 @@ function ReviewModal(props) {
             }}
           ></textarea>
           <div>
-            <button className="btn-review" onClick={() => submitReview(rating)}>
-              Submit your review
-            </button>
+            <div className="btn-review">
+              {renderReviewBtn(loading, productModalInfo)}
+            </div>
           </div>
         </div>
       </React.Fragment>

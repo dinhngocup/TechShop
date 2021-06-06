@@ -36,18 +36,6 @@ const UserApi = {
         return Promise.reject(error);
       });
   },
-  placeOrder: async (params) => {
-    
-    const url = `${UrlConstant.PLACE_ORDER}`;
-    const body = JSON.stringify(params);
-
-    return axiosClientAuthen
-      .post(url, body)
-
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => Promise.reject(error));
-  },
+  
 };
 export default UserApi;
