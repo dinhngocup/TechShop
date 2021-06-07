@@ -19,14 +19,14 @@ function DetailedOrder(props) {
   const [productModalInfo, setProductModalInfo] = useState(null);
   const { orderID } = useParams();
   const updateReviewStatus = (id) => {
-    let invoices = detailedInfo.detailedInvoices;
-    for (let invoice of invoices) {
+    let info = { ...detailedInfo };
+    for (let invoice of info.detailedInvoices) {
       if (invoice.productID === parseInt(id)) {
         invoice.isReviewed = true;
         break;
       }
     }
-    setDetailedInfo({ detailedInvoices: invoices });
+    setDetailedInfo(info);
   };
   const getProductModalInfo = (info) => {
     setProductModalInfo({

@@ -1,5 +1,5 @@
 import image1 from "assets/images/product3.jpeg";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./_reviewModal.scss";
 import starIcon from "assets/images/review.jpeg";
 import ReviewApi from "api/reviewApi";
@@ -12,11 +12,15 @@ function ReviewModal(props) {
   const [review, setReview] = useState();
   const [isReviewed, setIsReviewed] = useState(false);
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setIsReviewed(false);
+    setReview("");
+  }, [productModalInfo, isReviewed]);
+
   const rate = (rate) => {
     //console.log(rate);
     let stars = document.getElementById("rate").querySelectorAll("svg");
     for (let index = 4; index >= 0; index--) {
-      //console.log(stars[index]);
       if (index >= rate)
         stars[index]
           .querySelector("path")
@@ -61,6 +65,7 @@ function ReviewModal(props) {
     }
     return (
       <button
+        disabled={rating === 0 ? true : false}
         onClick={() =>
           submitReview(productModalInfo.productID, productModalInfo.orderID)
         }
