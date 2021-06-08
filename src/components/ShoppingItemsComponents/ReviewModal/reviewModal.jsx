@@ -7,15 +7,21 @@ import { Spinner } from "reactstrap";
 
 function ReviewModal(props) {
   const { productModalInfo, updateReviewStatus } = props;
-  //console.log("review");
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState();
+  console.log("review", productModalInfo);
+  //const [rating, setRating] = useState(0);
+  const [review, setReview] = useState({
+    reviewContent: "",
+    rating: 0,
+  });
   const [isReviewed, setIsReviewed] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setIsReviewed(false);
-    setReview("");
-  }, [productModalInfo, isReviewed]);
+    setReview({
+      reviewContent: "",
+      rating: 0,
+    });
+  }, [productModalInfo]);
 
   const rate = (rate) => {
     //console.log(rate);
@@ -27,7 +33,11 @@ function ReviewModal(props) {
           .setAttribute("fill", "rgb(253, 216, 53)");
       else stars[index].querySelector("path").setAttribute("fill", "none");
     }
-    setRating(5 - rate);
+    setReview({
+      reviewContent: review.reviewContent,
+      rating: 5 - rate,
+    });
+    //setRating(5 - rate);
   };
 
   const submitReview = (productID, orderID) => {
@@ -36,8 +46,8 @@ function ReviewModal(props) {
     let body = {
       orderID,
       productID,
-      reviewContent: review,
-      rate: rating,
+      reviewContent: review.reviewContent,
+      rate: review.rating,
     };
     const addReview = async (data) => {
       console.log(data);
@@ -65,7 +75,7 @@ function ReviewModal(props) {
     }
     return (
       <button
-        disabled={rating === 0 ? true : false}
+        disabled={review.rating === 0 ? true : false}
         onClick={() =>
           submitReview(productModalInfo.productID, productModalInfo.orderID)
         }
@@ -95,7 +105,7 @@ function ReviewModal(props) {
           <div className="review-modal-header">
             <img src={image1} alt="product" />
             <div>
-              <div className="product-name">Apple watch series 3</div>
+              <div className="product-name">{productModalInfo.productName}</div>
               <div className="supplier">Provided by TechShop</div>
             </div>
           </div>
@@ -192,7 +202,7 @@ function ReviewModal(props) {
           <textarea
             rows="5"
             placeholder="Your review"
-            value={review}
+            value={review.reviewContent}
             onChange={(e) => {
               setReview(e.target.value);
             }}
