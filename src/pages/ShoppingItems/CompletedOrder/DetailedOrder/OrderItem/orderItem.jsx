@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./_orderItem.scss";
 import image from "assets/images/pic7.jpeg";
 import handlePrice from "helpers/formatPrice";
+import PropTypes from "prop-types";
+import React from "react";
+import "./_orderItem.scss";
 
 function OrderItem(props) {
   const { getProductModalInfo, product } = props;
-  
+
   return (
     <tr className="order-item">
       <td className="product-info">
@@ -21,7 +21,7 @@ function OrderItem(props) {
           </p>
           <div className="action">
             {product.isReviewed ? (
-              ""
+              <div className="reviewed-tag">Reviewed</div>
             ) : (
               <button
                 data-toggle="modal"
@@ -36,7 +36,7 @@ function OrderItem(props) {
                 Write your review
               </button>
             )}
-            <button>Buy it again</button>
+            {/* <button>Buy it again</button> */}
           </div>
         </div>
       </td>
