@@ -1,5 +1,5 @@
 import Footer from "components/main/Footer/footer";
-import Header from "components/main/Header/header";
+import Header from "pages/Header/header";
 import ScrollToTop from "components/main/ScrollToTop/scrollToTop";
 import ScrollToTopRouter from "components/main/ScrollToTop/scrollToTopRouter";
 import News from "components/news";

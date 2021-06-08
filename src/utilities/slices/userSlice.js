@@ -5,18 +5,15 @@
  * isLoggedIn:false}
  */
 
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import UserApi from "api/userApi";
-import { cookiesService } from 'helpers/cookiesService';
+import { cookiesService } from "helpers/cookiesService";
 
 // thunk action to login and get token
 export const login = createAsyncThunk("user/login", async (params) => {
   const token = await UserApi.login(params);
-
   return token;
 });
-
 
 export const initialStateUseLoggedIn = () => {
   let result = cookiesService.getCookies("user");
@@ -30,8 +27,8 @@ const user = createSlice({
   },
   reducers: {
     updateLoggedInStatus: (state, action) => {
-      
       state.data.isLoggedIn = action.payload.isLoggedIn;
+
     },
   },
   extraReducers: {
