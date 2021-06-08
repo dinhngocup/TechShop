@@ -7,7 +7,7 @@ import { Spinner } from "reactstrap";
 
 function ReviewModal(props) {
   const { productModalInfo, updateReviewStatus } = props;
-  console.log("review", productModalInfo);
+  //console.log("review", productModalInfo);
   //const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     reviewContent: "",
@@ -43,6 +43,7 @@ function ReviewModal(props) {
   const submitReview = (productID, orderID) => {
     // call api post review
     // productID, orderID, review Content, rate
+    console.log(review.reviewContent);
     let body = {
       orderID,
       productID,
@@ -204,7 +205,10 @@ function ReviewModal(props) {
             placeholder="Your review"
             value={review.reviewContent}
             onChange={(e) => {
-              setReview(e.target.value);
+              setReview({
+                reviewContent: e.target.value,
+                rating: review.rating,
+              });
             }}
           ></textarea>
           <div>
