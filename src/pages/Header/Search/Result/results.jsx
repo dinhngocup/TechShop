@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { PropTypes } from "prop-types";
 import { nanoid } from "nanoid";
-import Result from "components/main/Header/Results/result";
+import Result from "components/main/Footer/Header/Results/result";
 import "./_results.scss";
 
 function Results(props) {
