@@ -1,18 +1,17 @@
+import ProductRating from "components/common/ProductRating/productRating";
+import WishIcon from "components/common/WishIcon/wishIcon";
+import handlePrice from "helpers/formatPrice";
+import parseImages from "helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import image1 from "assets/images/product1.jpeg";
-import { getProductModal } from "utilities/slices/productModalSlice";
-import WishIcon from "components/common/WishIcon/wishIcon";
-import "./_productCard.scss";
 import { Link } from "react-router-dom";
-import ProductRating from "components/common/ProductRating/productRating";
 import { addToCart } from "utilities/slices/cartSlice";
-import handlePrice from "helpers/formatPrice";
+import { getProductModal } from "utilities/slices/productModalSlice";
+import "./_productCard.scss";
 
 function ProductCard(props) {
   const { product } = props;
-
   const dispatch = useDispatch();
   const [content, setContent] = useState(<i className="fa fa-cart-plus"></i>);
   const [loading, setLoading] = useState(false);
@@ -48,11 +47,13 @@ function ProductCard(props) {
       alert();
     }
   };
+
+  const images = parseImages(product.images);
   return (
     <div className="product-card">
       <Link to={`/products/${product.categorySlug}/${product.productID}`}>
         <div className="product-photo">
-          <img src={image1} alt="Apple watch" />
+          {images[0] !== "" ? <img src={images[0]} alt="Apple watch" /> : ""}
           <WishIcon id={product.productID} />
           <div
             className="product-action"

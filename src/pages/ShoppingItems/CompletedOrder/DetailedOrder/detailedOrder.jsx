@@ -33,6 +33,7 @@ function DetailedOrder(props) {
       orderID,
       productID: info.productID,
       productName: info.productName,
+      productImage: info.productImage
     });
   };
 

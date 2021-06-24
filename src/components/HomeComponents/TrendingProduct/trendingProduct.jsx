@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import image from "assets/images/city_2.jpg";
-import "./_trendingProduct.scss";
 import handlePrice from "helpers/formatPrice";
+import parseImages from 'helpers/parseImages';
+import PropTypes from "prop-types";
+import React from "react";
+import "./_trendingProduct.scss";
 
 function TrendingProduct(props) {
   const { product } = props;
-  
+  const images = parseImages(product.images)
   return (
     <div className="trending-product d-flex">
-      <img src={image} alt={product.productName}/>
+      <img src={images[0]} alt={product.productName}/>
       <div className="ml-3">
         <div className="name">{product.productName}</div>
         <div className="price">{handlePrice(product.productPrice)} <u>đ</u></div>

@@ -1,17 +1,17 @@
-import image from "assets/images/pic7.jpeg";
 import handlePrice from "helpers/formatPrice";
+import parseImages from "helpers/parseImages";
 import PropTypes from "prop-types";
 import React from "react";
 import "./_orderItem.scss";
 
 function OrderItem(props) {
   const { getProductModalInfo, product } = props;
-
+  const images = parseImages(product.images);
   return (
     <tr className="order-item">
       <td className="product-info">
         <div>
-          <img src={image} alt="" className="" />
+          <img src={images[0]} alt="" className="" />
         </div>
         <div className="short-info d-flex">
           <p className="product-name">{product.productName}</p>
@@ -30,6 +30,7 @@ function OrderItem(props) {
                   getProductModalInfo({
                     productID: product.productID,
                     productName: product.productName,
+                    productImage: images[0],
                   });
                 }}
               >

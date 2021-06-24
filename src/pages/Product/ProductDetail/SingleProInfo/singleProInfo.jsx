@@ -1,13 +1,10 @@
+import WishIcon from "components/common/WishIcon/wishIcon";
+import  parseImages  from 'helpers/parseImages';
+import PropTypes from "prop-types";
 import React, { useState } from "react";
-import image4 from "assets/images/pic7.jpeg";
-import image1 from "assets/images/product1.jpeg";
-import image2 from "assets/images/product2.jpeg";
-import image3 from "assets/images/product3.jpeg";
+import { Col, Row } from "reactstrap";
 import ProductInfo from "../ProductInfo/productInfo";
 import "./_singleProInfo.scss";
-import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
-import WishIcon from "components/common/WishIcon/wishIcon";
 
 SingleProInfo.propTypes = {
   product: PropTypes.object,
@@ -18,8 +15,8 @@ SingleProInfo.defaultProps = {
 
 function SingleProInfo(props) {
   const { product } = props;
-  const images = [{ image1 }, { image2 }, { image3 }, { image4 }];
-  const [activeImage, setActiveImage] = useState({ image1 });
+  const images = parseImages(product.images)
+  const [activeImage, setActiveImage] = useState(images[0]);
 
   const displayImage = (src) => {
     setActiveImage(src);
@@ -42,7 +39,7 @@ function SingleProInfo(props) {
               }}
             >
               <img
-                src={Object.values(image)[0]}
+                src={image}
                 alt="apple-watch"
                 className=""
               />
@@ -56,7 +53,7 @@ function SingleProInfo(props) {
       <div className="row">
         <div className="col-lg-5">
           <div className="single-pro-slider">
-            <img src={Object.values(activeImage)[0]} alt="apple-watch" />
+            <img src={activeImage} alt="apple-watch" />
             <WishIcon id={product.productID} />
           </div>
         </div>

@@ -1,6 +1,6 @@
-import React from "react";
+import parseImages from 'helpers/parseImages';
 import PropTypes from "prop-types";
-import image from "assets/images/pic3.jpg";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./_result.scss";
 
@@ -12,10 +12,10 @@ Result.defaultProps = {
 };
 function Result(props) {
   const { product } = props;
-  //console.log(product.id);
+  const images = parseImages(product.images)
   return (
     <Link className="result" to={`/products/${product.categorySlug}/${product.productID}`}>
-      <img src={image} alt={product.productName} />
+      <img src={images[0]} alt={product.productName} />
       <div className="info">
         <div className="name">{product.productName}</div>
         <div className="price">{product.productPrice}</div>

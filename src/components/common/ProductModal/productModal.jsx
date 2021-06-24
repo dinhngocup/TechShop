@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./_productModal.scss";
-import image1 from "assets/images/product3.jpeg";
+import parseImages from 'helpers/parseImages';
 
 function ProductModal(props) {
   
   const { product } = props;
+  const images = parseImages(product.images)
   return (
     <div
       className="modal fade"
@@ -32,7 +33,7 @@ function ProductModal(props) {
           </div>
           <div className="modal-body" id="modalMenu">
             <div className="product-modal-photo">
-              <img src={image1} alt="apple watch" />
+              <img src={images[0]} alt="apple watch" />
             </div>
             <div className="product-modal-info">
               <div className="title info-deco">{product.productName}</div>

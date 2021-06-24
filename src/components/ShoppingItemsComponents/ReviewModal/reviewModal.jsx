@@ -1,14 +1,12 @@
-import image1 from "assets/images/product3.jpeg";
-import React, { useState, useEffect } from "react";
-import "./_reviewModal.scss";
-import starIcon from "assets/images/review.jpeg";
 import ReviewApi from "api/reviewApi";
+import starIcon from "assets/images/review.jpeg";
+import React, { useEffect, useState } from "react";
 import { Spinner } from "reactstrap";
+import "./_reviewModal.scss";
 
 function ReviewModal(props) {
   const { productModalInfo, updateReviewStatus } = props;
-  //console.log("review", productModalInfo);
-  //const [rating, setRating] = useState(0);
+  
   const [review, setReview] = useState({
     reviewContent: "",
     rating: 0,
@@ -43,7 +41,6 @@ function ReviewModal(props) {
   const submitReview = (productID, orderID) => {
     // call api post review
     // productID, orderID, review Content, rate
-    console.log(review.reviewContent);
     let body = {
       orderID,
       productID,
@@ -104,7 +101,7 @@ function ReviewModal(props) {
       <React.Fragment>
         <div className="modal-header">
           <div className="review-modal-header">
-            <img src={image1} alt="product" />
+            <img src={productModalInfo.productImage} alt="product" />
             <div>
               <div className="product-name">{productModalInfo.productName}</div>
               <div className="supplier">Provided by TechShop</div>

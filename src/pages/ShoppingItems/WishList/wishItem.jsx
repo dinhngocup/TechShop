@@ -1,18 +1,18 @@
+import ProductApi from "api/productApi";
+import parseImages from 'helpers/parseImages';
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ProductApi from "api/productApi";
-import image from "assets/images/pic7.jpeg";
-import { editWishList } from "utilities/slices/wishListSlice";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addToCart } from "utilities/slices/cartSlice";
+import { editWishList } from "utilities/slices/wishListSlice";
 
 function WishItem(props) {
   const { productInWishList } = props;
   //console.log("wish item", productInWishList);
 
   const [product, setProduct] = useState({});
-
+  const images = parseImages(product.images)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function WishItem(props) {
   return (
     <tr className="table-item">
       <td className="product">
-        <img src={image} alt="" className="" />
+        <img src={images[0]} alt="" className="" />
         <div className="short-info">
           <Link
             className="name"

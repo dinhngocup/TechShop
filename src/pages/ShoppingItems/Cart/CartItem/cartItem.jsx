@@ -1,17 +1,16 @@
+import ProductApi from "api/productApi";
+import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
+import handlePrice from "helpers/formatPrice";
+import parseImages from 'helpers/parseImages';
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ProductApi from "api/productApi";
-import image from "assets/images/pic7.jpeg";
 import { removeFromCart } from "utilities/slices/cartSlice";
-import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
-import handlePrice from "helpers/formatPrice";
-
 function CartItem(props) {
   const { productInCart } = props;
 
   const [product, setProduct] = useState({});
-
+  const images = parseImages(product.images)
   //console.log("item", productInCart.id);
 
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ function CartItem(props) {
   return (
     <tr className="table-item">
       <td className="product">
-        <img src={image} alt="" className="" />
+        <img src={images[0]} alt="" className="" />
         <div className="short-info">
           <Link
             className="name"
