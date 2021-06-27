@@ -9,7 +9,6 @@ import { editWishList } from "utilities/slices/wishListSlice";
 
 function WishItem(props) {
   const { productInWishList } = props;
-  //console.log("wish item", productInWishList);
 
   const [product, setProduct] = useState({});
   const images = parseImages(product.images)
@@ -84,7 +83,7 @@ function WishItem(props) {
 }
 
 WishItem.propTypes = {
-  productInWishList: PropTypes.string.isRequired,
+  productInWishList: PropTypes.number.isRequired,
 };
 WishItem.defaultProps = {
   productInWishList: "",
