@@ -1,36 +1,67 @@
 # TechShop
 
-E-commerce app providing best tech products
+E-commerce app providing best tech products.
 
-## `Main functions`
+## `Our mission`
 
-### `Dashboard`
+Serve consumers through online and focus on selection, price, and convenience.
 
-Dashboard displays `trending products` and `sales promotion`.\
+## `Special functions`
 
-### `Product`
+- Track the status of your order.
+- Cart and `buy online`.
+- `Wishlist`.
+- Leaving a `Review `on TechShop.
+- Follow `trending` or `top purchased products`.
+- Suggest `related products`.
+- Update personal & shipping info.
 
-This page display `products classified by category`.\
+## `Special Screenshots`
 
-### `Wishlist`
+<p align="center"><i>Trending Products</i></p>
+    <p align="center">
+    <kbd>
+    <img src='./src/assets/images/dashboard.png' width="650" title="Trending Products">
+    </kbd>
+    </p>
+  <br/>
+  <p align="center"><i>Product Description</i></p>
+    <p align="center">
+    <kbd>
+    <img src='./src/assets/images/detailed.png' width="650" title="Product Description">
+    </kbd>
+    </p>
+  <br/>
+  <p align="center"><i>Related Products</i></p>
+    <p align="center">
+    <kbd>
+    <img src='./src/assets/images/relatedProducts.png' width="650" title="Related Products">
+    </kbd>
+    </p>
+  <br/>
+  <p align="center"><i>Shopping Cart</i></p>
+    <p align="center">
+    <kbd>
+    <img src='./src/assets/images/cart.png' width="650" title="Shopping Cart">
+    </kbd>
+    </p>
+  <br/>
+  <p align="center"><i>Completed Order</i></p>
+    <p align="center">
+    <kbd>
+    <img src='./src/assets/images/order.png' width="650" title="Completed Order">
+    </kbd>
+    </p>
+  <br/>
 
-`Collections of desired products` saved by customers to their user account.\
-
-### `Shopping Cart`
-
-Shopping cart enables consumers to `select products`, `make modifications` or `add extra items` if needed, and `purchase the products`
-
-### `Orders`
-
-This page displays s`tatus of all user's orders`
-
-### `Profile`
-
-It enables user modify their information such as `shipping method`, `personal information`.
 
 ## `Libraries`
 
-[React Navigation](https://reactnavigation.org/docs/hello-react-navigation/)
+- [Redux Toolkit](https://redux-toolkit.js.org/) <br/>
+- [React Router](https://reactrouter.com/web/guides/quick-start)<br/>
+- [Boostrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)<br/>
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)<br/>
+- [ReactJS](https://reactjs.org/)
 
 ## `Tools:`
 
@@ -38,8 +69,9 @@ It enables user modify their information such as `shipping method`, `personal in
 - Group facebook: discuss basic problems.
 - Git: control versions of source code between local repository of each member and GitHub repository.
 - GitHub: store source code of the whole project.
-- Programming language: React Native.
+- Programming language: ReactJS.
 - MySQL Server.
+- Backend: [Java Spring Boot](https://github.com/ngocthinhboyy/TechShopBackend)
 
 ## `Contributors:`
 
