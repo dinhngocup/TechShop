@@ -2,6 +2,7 @@ import handlePrice from "helpers/formatPrice";
 import parseImages from "helpers/parseImages";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./_orderItem.scss";
 
 function OrderItem(props) {
@@ -37,7 +38,7 @@ function OrderItem(props) {
                 Write your review
               </button>
             )}
-            {/* <button>Buy it again</button> */}
+            <Link to={`/products/${product.categorySlug}/${product.productID}`}><button>Buy it again</button></Link>
           </div>
         </div>
       </td>

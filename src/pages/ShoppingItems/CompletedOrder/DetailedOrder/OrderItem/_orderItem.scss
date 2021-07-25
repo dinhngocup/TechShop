@@ -29,11 +29,14 @@
                 }
             }
             .action {
+                display: flex;
+                align-items: center;
                 .reviewed-tag {
-                    color:#009900;
+                    color: #009900;
                     font-size: small;
                     font-style: italic;
                     font-weight: 600;
+                    margin-right: 10px;
                 }
                 button {
                     margin-right: 10px;

@@ -13,7 +13,7 @@ function OrderRow(props) {
       <td className="">{invoice.invoiceDate}</td>
       {/* <td>Apple watch series 5</td> */}
       <td className="">{handlePrice(invoice.totalCost)} <u>đ</u></td>
-      <td className="">{invoice.statusInvoice}</td>
+      <td className="">COMPLETED</td>
     </tr>
   );
 }

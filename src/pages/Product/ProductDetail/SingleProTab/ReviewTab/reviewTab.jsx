@@ -9,7 +9,9 @@ function ReviewTab(props) {
     <div className="review-tab">
       <div className="review-tab-title d-flex">
         <i className="fas fa-star"></i>
-        <span className="rate ml-2">{rate} ({totalReviews} reviews)</span>
+        <span className="rate ml-2">
+          {Math.round(rate * 100) / 100} ({totalReviews} reviews)
+        </span>
       </div>
       <div className="review-tab-content">
         <ReviewList

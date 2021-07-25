@@ -18,20 +18,21 @@ function WishItem(props) {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
       setProduct(response);
+      console.log(response)
     };
     fetchDetailedProduct(productInWishList);
   }, [productInWishList]);
 
-  const handleAddToCart = (id, name, price) => {
+  const handleAddToCart = (product) => {
     dispatch(
       addToCart({
-        id: id,
+        id: product.productID,
         quantity: 1,
-        name: name,
-        price: price,
+        name: product.productName,
+        price: product.productPrice,
       })
     );
-    dispatch(editWishList(id));
+    dispatch(editWishList(product.productID));
   };
 
   return (
@@ -55,19 +56,21 @@ function WishItem(props) {
       </td>
       <td className="price">{product.productPrice}</td>
 
-      <td className={product.status?.stockStatus}>
-        {product.status?.stockStatus === "in-stock"
+      <td className={product.stockStatus}>
+        {product.stockStatus === "in-stock"
           ? "In Stock"
           : "Out of Stock"}
       </td>
       <td className="cart-icon">
         <button
-          disabled={product.status?.stockStatus === "in-stock" ? false : true}
+          disabled={product.stockStatus === "in-stock" ? false : true}
           onClick={() => {
-            handleAddToCart(product.productID, product.productName, product.productPrice);
+            handleAddToCart(product);
           }}
         >
-          <i className="fas fa-shopping-cart"></i>
+          <i className="fas fa-shopping-cart">
+
+          </i>
         </button>
       </td>
       <td className="btn-remove">

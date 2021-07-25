@@ -40,7 +40,7 @@ function DetailedOrder(props) {
   useEffect(() => {
     dispatch(
       addNewBreadcrumb({
-        name: "12321",
+        name: orderID,
         slug: "",
       })
     );
@@ -48,12 +48,12 @@ function DetailedOrder(props) {
     return () => {
       dispatch(removeLastBreadcrumb());
     };
-  }, [dispatch]);
+  }, [dispatch, orderID]);
 
   useEffect(() => {
     const getDetailedOrder = async () => {
       let response = await OrderApi.getDetailedOrder(orderID);
-      //console.log(response);
+      console.log(response);
       setLoading(false);
       setDetailedInfo(response);
     };

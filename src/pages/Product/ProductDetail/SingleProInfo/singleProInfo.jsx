@@ -1,7 +1,7 @@
 import WishIcon from "components/common/WishIcon/wishIcon";
-import  parseImages  from 'helpers/parseImages';
+import parseImages from "helpers/parseImages";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import ProductInfo from "../ProductInfo/productInfo";
 import "./_singleProInfo.scss";
@@ -15,7 +15,8 @@ SingleProInfo.defaultProps = {
 
 function SingleProInfo(props) {
   const { product } = props;
-  const images = parseImages(product.images)
+  const images = parseImages(product.images);
+  //console.log(images)
   const [activeImage, setActiveImage] = useState(images[0]);
 
   const displayImage = (src) => {
@@ -38,16 +39,15 @@ function SingleProInfo(props) {
                 displayImage(image);
               }}
             >
-              <img
-                src={image}
-                alt="apple-watch"
-                className=""
-              />
+              <img src={image} alt="apple-watch" className="" />
             </div>
           </Col>
         ))
       : "";
   };
+  useEffect(() => {
+    setActiveImage(images[0]);
+  }, [product.images]);
   return (
     <div className="single-pro-info">
       <div className="row">
