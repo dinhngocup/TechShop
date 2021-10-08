@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cookiesService } from "helpers/cookiesService";
-import * as ExpireHours from "utilities/Constant";
+import { cookiesService } from "../../helpers/cookiesService";
+import * as ExpireHours from "../../utilities/Constant";
 
 /**
  * payload of ADD TO CART action is {
@@ -111,13 +111,13 @@ const cart = createSlice({
       );
     },
     clearAll: (state, action) => {
-      state.products.splice(0,state.products.length)
+      state.products.splice(0, state.products.length);
       cookiesService.setCookies(
         "cart",
         JSON.stringify(state.products),
         ExpireHours.CART_EXPIRE_HOURS
       );
-    }
+    },
   },
 });
 export default cart.reducer;

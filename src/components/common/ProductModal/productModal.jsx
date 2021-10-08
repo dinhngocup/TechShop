@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./_productModal.scss";
-import parseImages from 'helpers/parseImages';
+import parseImages from "../../../helpers/parseImages";
 
 function ProductModal(props) {
-  
   const { product } = props;
-  const images = parseImages(product.images)
+  const images = parseImages(product.images);
   return (
     <div
       className="modal fade"

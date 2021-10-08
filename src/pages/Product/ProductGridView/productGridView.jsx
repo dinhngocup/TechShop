@@ -1,8 +1,8 @@
 import React from "react";
-import Categories from "components/ProductComponents/Categories/categories";
+import Categories from "../../../components/ProductComponents/Categories/categories";
 import ExistedBrand from "./ExistedBrand/existedBrand";
-import Filter from "components/ProductComponents/Filter/filter";
-import Heading from "components/ProductComponents/Heading/heading";
+import Filter from "../../../components/ProductComponents/Filter/filter";
+import Heading from "../../../components/ProductComponents/Heading/heading";
 import ProductList from "./ProductList/productList";
 import "./_productGridView.scss";
 

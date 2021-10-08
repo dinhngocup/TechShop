@@ -1,4 +1,4 @@
-import HeaderSection from "components/common/HeaderSection/headerSection";
+import HeaderSection from "../../../../../components/common/HeaderSection/headerSection";
 import React from "react";
 import "./_specsTab.scss";
 function SpecsTab(props) {

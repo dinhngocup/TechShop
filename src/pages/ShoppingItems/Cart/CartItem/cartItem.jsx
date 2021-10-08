@@ -1,16 +1,16 @@
-import ProductApi from "api/productApi";
-import CartAction from "components/ShoppingItemsComponents/CartAction/cartAction";
-import handlePrice from "helpers/formatPrice";
-import parseImages from 'helpers/parseImages';
+import ProductApi from "../../../../api/productApi";
+import CartAction from "../../../../components/ShoppingItemsComponents/CartAction/cartAction";
+import handlePrice from "../../../../helpers/formatPrice";
+import parseImages from "../../../../helpers/parseImages";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeFromCart } from "utilities/slices/cartSlice";
+import { removeFromCart } from "../../../../utilities/slices/cartSlice";
 function CartItem(props) {
   const { productInCart } = props;
 
   const [product, setProduct] = useState({});
-  const images = parseImages(product.images)
+  const images = parseImages(product.images);
   //console.log("item", productInCart.id);
 
   const dispatch = useDispatch();
@@ -42,7 +42,9 @@ function CartItem(props) {
           </div>
         </div>
       </td>
-      <td className="price">{handlePrice(product.productPrice)} <u>đ</u></td>
+      <td className="price">
+        {handlePrice(product.productPrice)} <u>đ</u>
+      </td>
       <td>
         <CartAction
           stockQuantity={product.stock}
@@ -50,9 +52,7 @@ function CartItem(props) {
         />
       </td>
       <td className={product.stockStatus}>
-        {product.stock === 0
-          ? "Out Of Stock"
-          : product.stock}
+        {product.stock === 0 ? "Out Of Stock" : product.stock}
       </td>
       <td className="total-price">
         {handlePrice(productInCart.price * productInCart.quantity)} <u>đ</u>

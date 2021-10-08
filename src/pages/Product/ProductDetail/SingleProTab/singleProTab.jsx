@@ -1,4 +1,4 @@
-import ProTab from "components/ProductComponents/ProTab/proTab";
+import ProTab from "../../../../components/ProductComponents/ProTab/proTab";
 import { PropTypes } from "prop-types";
 import React, { useEffect, useState } from "react";
 import DescriptionTab from "./DescriptionTab/descriptionTab";

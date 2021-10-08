@@ -5,7 +5,6 @@ import { Spinner } from 'reactstrap';
 
 function AddressInfo(props) {
   const { info, confirm } = props;
-  //console.log("address info");
   const renderConfirmTag = (confirm) => {
     return confirm ? (
       <div className="basic-info confirm">Confirmed Address</div>

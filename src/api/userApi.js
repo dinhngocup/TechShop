@@ -1,5 +1,5 @@
-import { cookiesService } from "helpers/cookiesService";
-import * as UrlConstant from "utilities/UrlConstant";
+import { cookiesService } from "../helpers/cookiesService";
+import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 import axiosClientAuthen from "./axiosClientAuthen";
 /**
@@ -36,6 +36,5 @@ const UserApi = {
         return Promise.reject(error);
       });
   },
-  
 };
 export default UserApi;

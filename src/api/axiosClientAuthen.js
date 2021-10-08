@@ -3,8 +3,8 @@
  */
 
 import axios from "axios";
-import { authHeader } from "helpers/authHeader";
-import { refreshToken } from "helpers/refreshToken";
+import { authHeader } from "../helpers/authHeader";
+import { refreshToken } from "../helpers/refreshToken";
 import queryString from "query-string";
 
 const axiosClientAuthen = axios.create({

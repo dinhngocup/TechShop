@@ -1,7 +1,7 @@
-import BtnAdd from "components/common/Button/btnAdd";
-import BtnMore from "components/common/Button/btnMore";
-import handlePrice from "helpers/formatPrice";
-import parseImages from "helpers/parseImages";
+import BtnAdd from "../../../components/common/Button/btnAdd";
+import BtnMore from "../../../components/common/Button/btnMore";
+import handlePrice from "../../../helpers/formatPrice";
+import parseImages from "../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React from "react";
 import "./_topProduct.scss";

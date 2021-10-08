@@ -1,5 +1,5 @@
-import handlePrice from "helpers/formatPrice";
-import parseImages from "helpers/parseImages";
+import handlePrice from "../../../../../helpers/formatPrice";
+import parseImages from "../../../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -38,7 +38,9 @@ function OrderItem(props) {
                 Write your review
               </button>
             )}
-            <Link to={`/products/${product.categorySlug}/${product.productID}`}><button>Buy it again</button></Link>
+            <Link to={`/products/${product.categorySlug}/${product.productID}`}>
+              <button>Buy it again</button>
+            </Link>
           </div>
         </div>
       </td>

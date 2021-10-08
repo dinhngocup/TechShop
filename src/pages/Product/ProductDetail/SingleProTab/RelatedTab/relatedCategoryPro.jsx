@@ -1,4 +1,4 @@
-import ProductCard from "pages/Product/common/ProductCard/productCard";
+import ProductCard from "../../../../../pages/Product/common/ProductCard/productCard";
 import React from "react";
 import { Col, Row } from "reactstrap";
 

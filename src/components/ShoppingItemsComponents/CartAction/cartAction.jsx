@@ -5,7 +5,7 @@ import {
   updateQuantity,
   decreaseQuantity,
   increaseQuantity,
-} from "utilities/slices/cartSlice";
+} from "../../../utilities/slices/cartSlice";
 
 function CartAction(props) {
   const { stockQuantity, productInCart } = props;
@@ -16,7 +16,7 @@ function CartAction(props) {
     dispatch(
       updateQuantity({
         id: productInCart.id,
-        quantity: quantity
+        quantity: quantity,
       })
     );
   };

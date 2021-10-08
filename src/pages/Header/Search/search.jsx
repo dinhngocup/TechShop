@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import ProductApi from "api/productApi";
+import ProductApi from "../../../api/productApi";
 import Results from "./Result/results";
 import "./_search.scss";
 

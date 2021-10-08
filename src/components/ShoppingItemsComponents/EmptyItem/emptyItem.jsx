@@ -1,5 +1,5 @@
-import image from "assets/images/footer1.jpeg";
-import image1 from "assets/images/white.png";
+import image from "../../../assets/images/footer1.jpeg";
+import image1 from "../../../assets/images/white.png";
 import { PropTypes } from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";

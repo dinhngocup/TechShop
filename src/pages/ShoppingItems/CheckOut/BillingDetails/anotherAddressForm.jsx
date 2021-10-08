@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PropTypes } from "prop-types";
-import AddressInfo from "components/ShoppingItemsComponents/AddressInfo/addressInfo";
+import AddressInfo from "../../../../components/ShoppingItemsComponents/AddressInfo/addressInfo";
 
 function AnotherAddressForm(props) {
   //console.log("form");

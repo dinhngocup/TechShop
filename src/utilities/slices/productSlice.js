@@ -6,7 +6,7 @@
  * TAM THOI CHUA DUNG DEN
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import ProductApi from "api/productApi";
+import ProductApi from "../../api/productApi";
 
 // 'product/getListProduct' is prefix
 export const getListProductByCategory = createAsyncThunk(

@@ -1,5 +1,5 @@
-import WishIcon from "components/common/WishIcon/wishIcon";
-import parseImages from "helpers/parseImages";
+import WishIcon from "../../../../components/common/WishIcon/wishIcon";
+import parseImages from "../../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";

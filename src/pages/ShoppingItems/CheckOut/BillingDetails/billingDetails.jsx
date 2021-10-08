@@ -1,5 +1,5 @@
-import UserApi from "api/userApi";
-import AddressInfo from "components/ShoppingItemsComponents/AddressInfo/addressInfo";
+import UserApi from "../../../../api/userApi";
+import AddressInfo from "../../../../components/ShoppingItemsComponents/AddressInfo/addressInfo";
 import React, { useEffect, useState } from "react";
 import AnotherAddressForm from "./anotherAddressForm";
 import "./_billingDetails.scss";

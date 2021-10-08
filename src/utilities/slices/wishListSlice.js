@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cookiesService } from "helpers/cookiesService";
+import { cookiesService } from "../../helpers/cookiesService";
 /**
  * payload of actions is ID OF PRODUCTS
  */

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
-import HeaderSection from "components/common/HeaderSection/headerSection";
-import ProductModal from "components/common/ProductModal/productModal";
+import HeaderSection from "../../../../../components/common/HeaderSection/headerSection";
+import ProductModal from "../../../../../components/common/ProductModal/productModal";
 import RelatedCategoryPro from "./relatedCategoryPro";
 
 function RelatedTab(props) {

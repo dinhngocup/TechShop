@@ -1,14 +1,14 @@
-import OrderApi from 'api/orderApi';
-import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import OrderApi from "../../../api/orderApi";
+import EmptyItem from "../../../components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Spinner } from 'reactstrap';
+import { Spinner } from "reactstrap";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
-} from "utilities/slices/breadcrumbSlice";
-import { clearAll } from "utilities/slices/cartSlice";
+  removeLastBreadcrumb,
+} from "../../../utilities/slices/breadcrumbSlice";
+import { clearAll } from "../../../utilities/slices/cartSlice";
 import BillingDetails from "./BillingDetails/billingDetails";
 import Order from "./Order/order";
 import "./_checkOut.scss";
@@ -56,7 +56,7 @@ function CheckOut(props) {
       return OrderApi.placeOrder(data)
         .then((res) => {
           //console.log(res);
-          setLoading(false)
+          setLoading(false);
           history.push("/completed-order");
           // clear all data in check out and cart
           dispatch(clearAll());

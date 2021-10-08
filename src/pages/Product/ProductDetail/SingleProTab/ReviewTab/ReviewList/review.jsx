@@ -1,6 +1,6 @@
-import image from "assets/images/city_7.jpg";
-import ProductRating from "components/common/ProductRating/productRating";
-import formatDate from "helpers/formatDate";
+import image from "../../../../../../assets/images/city_7.jpg";
+import ProductRating from "../../../../../../components/common/ProductRating/productRating";
+import formatDate from "../../../../../../helpers/formatDate";
 import React from "react";
 import "./_review.scss";
 

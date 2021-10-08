@@ -1,6 +1,6 @@
 import React from "react";
 import "./_pagination.scss";
-import { REVIEWS_PER_PAGE } from "utilities/Constant";
+import { REVIEWS_PER_PAGE } from "../../../../../../utilities/Constant";
 
 function Pagination(props) {
   const { totalReviews, changeCurrentPage } = props;

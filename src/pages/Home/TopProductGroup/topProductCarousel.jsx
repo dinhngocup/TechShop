@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import { Row } from "reactstrap";
-import ProductApi from "api/productApi";
-import HeaderSection from "components/common/HeaderSection/headerSection";
-import FilterTopProduct from "components/HomeComponents/FilterTopProduct/filterTopProduct";
+import ProductApi from "../../../api/productApi";
+import HeaderSection from "../../../components/common/HeaderSection/headerSection";
+import FilterTopProduct from "../../../components/HomeComponents/FilterTopProduct/filterTopProduct";
 import TopProduct from "./topProduct";
 import "./_topProduct.scss";
 

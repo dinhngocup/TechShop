@@ -1,8 +1,8 @@
-import { cookiesService } from "helpers/cookiesService";
+import { cookiesService } from "../helpers/cookiesService";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
-import { updateLoggedInStatus } from "utilities/slices/userSlice";
+import { updateLoggedInStatus } from "../utilities/slices/userSlice";
 /**
  * restData like path, exact
  *
@@ -21,7 +21,7 @@ function PrivateRoute({ children, ...restData }) {
   };
 
   checkLoggedInStatus(status, isLoggedIn);
-  
+
   const redirectRoute = (loginStatus, children, location) => {
     return loginStatus !== undefined ? (
       children

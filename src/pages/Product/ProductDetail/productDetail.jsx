@@ -1,16 +1,16 @@
-import ProductApi from "api/productApi";
+import ProductApi from "../../../api/productApi";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Col, Spinner } from "reactstrap";
-import { DEFAULT_REVIEW_PAGE, REVIEWS_PER_PAGE } from "utilities/Constant";
+import { DEFAULT_REVIEW_PAGE, REVIEWS_PER_PAGE } from "../../../utilities/Constant";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "utilities/slices/breadcrumbSlice";
+} from "../../../utilities/slices/breadcrumbSlice";
 import SingleProInfo from "./SingleProInfo/singleProInfo";
 import SingleProTab from "./SingleProTab/singleProTab";
-import ReviewApi from 'api/reviewApi';
+import ReviewApi from "../../../api/reviewApi";
 
 function ProductDetail() {
   const dispatch = useDispatch();

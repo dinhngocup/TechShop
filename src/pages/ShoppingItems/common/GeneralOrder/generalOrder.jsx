@@ -1,8 +1,8 @@
-import PaymentDetail from "components/ShoppingItemsComponents/PaymentDetail/paymentDetail";
+import PaymentDetail from "../../../../components/ShoppingItemsComponents/PaymentDetail/paymentDetail";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./_generalOrder.scss";
-import handlePrice from "helpers/formatPrice";
+import handlePrice from "../../../../helpers/formatPrice";
 
 function GeneralOrder() {
   const productsInCart = useSelector((state) => state.cart.products);
@@ -21,8 +21,6 @@ function GeneralOrder() {
     }
   }, [productsInCart]);
 
-  
-
   const renderPaymentDetails = (productsInCart) => {
     return productsInCart.map((product, index) => {
       return <PaymentDetail key={product.id} product={product} />;
@@ -40,7 +38,9 @@ function GeneralOrder() {
       <tfoot>
         <tr className="payment-detail">
           <td>Order Total</td>
-          <td className="price">{handlePrice(totalPrice)} <u>đ</u></td>
+          <td className="price">
+            {handlePrice(totalPrice)} <u>đ</u>
+          </td>
         </tr>
       </tfoot>
     </table>

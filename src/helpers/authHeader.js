@@ -1,4 +1,4 @@
-import { cookiesService } from "helpers/cookiesService";
+import { cookiesService } from "./cookiesService";
 
 export function authHeader() {
   let token = cookiesService.getCookies("user");

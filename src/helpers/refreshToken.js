@@ -1,6 +1,6 @@
-import axiosClient from "api/axiosClient";
-import { cookiesService } from "helpers/cookiesService";
-import * as UrlConstant from "utilities/UrlConstant";
+import axiosClient from "../api/axiosClient";
+import { cookiesService } from "../helpers/cookiesService";
+import * as UrlConstant from "../utilities/UrlConstant";
 
 export async function refreshToken(refreshTokenRequest) {
   const url = `${UrlConstant.REFRESH_TOKEN}`;
@@ -17,6 +17,6 @@ export async function refreshToken(refreshTokenRequest) {
       console.log("error", error.response.data.message);
       cookiesService.removeCookies("user");
       window.location.href = "/login";
-      return  Promise.reject(error);
+      return Promise.reject(error);
     });
 }

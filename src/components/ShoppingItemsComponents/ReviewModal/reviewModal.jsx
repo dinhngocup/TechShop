@@ -1,5 +1,5 @@
-import ReviewApi from "api/reviewApi";
-import starIcon from "assets/images/review.jpeg";
+import ReviewApi from "../../../api/reviewApi";
+import starIcon from "../../../assets/images/review.jpeg";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "reactstrap";
 import "./_reviewModal.scss";

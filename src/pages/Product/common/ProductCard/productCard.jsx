@@ -1,13 +1,13 @@
-import ProductRating from "components/common/ProductRating/productRating";
-import WishIcon from "components/common/WishIcon/wishIcon";
-import handlePrice from "helpers/formatPrice";
-import parseImages from "helpers/parseImages";
+import ProductRating from "../../../../components/common/ProductRating/productRating";
+import WishIcon from "../../../../components/common/WishIcon/wishIcon";
+import handlePrice from "../../../../helpers/formatPrice";
+import parseImages from "../../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "utilities/slices/cartSlice";
-import { getProductModal } from "utilities/slices/productModalSlice";
+import { addToCart } from "../../../../utilities/slices/cartSlice";
+import { getProductModal } from "../../../../utilities/slices/productModalSlice";
 import "./_productCard.scss";
 
 function ProductCard(props) {

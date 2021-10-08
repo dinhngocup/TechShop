@@ -1,24 +1,24 @@
-import ProductApi from "api/productApi";
-import parseImages from 'helpers/parseImages';
+import ProductApi from "../../../api/productApi";
+import parseImages from "../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "utilities/slices/cartSlice";
-import { editWishList } from "utilities/slices/wishListSlice";
+import { addToCart } from "../../../utilities/slices/cartSlice";
+import { editWishList } from "../../../utilities/slices/wishListSlice";
 
 function WishItem(props) {
   const { productInWishList } = props;
 
   const [product, setProduct] = useState({});
-  const images = parseImages(product.images)
+  const images = parseImages(product.images);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
       setProduct(response);
-      console.log(response)
+      console.log(response);
     };
     fetchDetailedProduct(productInWishList);
   }, [productInWishList]);
@@ -57,9 +57,7 @@ function WishItem(props) {
       <td className="price">{product.productPrice}</td>
 
       <td className={product.stockStatus}>
-        {product.stockStatus === "in-stock"
-          ? "In Stock"
-          : "Out of Stock"}
+        {product.stockStatus === "in-stock" ? "In Stock" : "Out of Stock"}
       </td>
       <td className="cart-icon">
         <button
@@ -68,9 +66,7 @@ function WishItem(props) {
             handleAddToCart(product);
           }}
         >
-          <i className="fas fa-shopping-cart">
-
-          </i>
+          <i className="fas fa-shopping-cart"></i>
         </button>
       </td>
       <td className="btn-remove">

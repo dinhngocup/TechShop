@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./_banner.scss";
-import image from "assets/images/pic1.jpg";
+import image from "../../../assets/images/pic1.jpg";
 
 function Banner() {
   const [bannerImages, setBannerImages] = useState("");

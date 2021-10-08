@@ -4,7 +4,7 @@
  */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import CategoryApi from "api/categoryApi";
+import CategoryApi from "../../api/categoryApi";
 
 // thunk action to get list category
 export const getCategories = createAsyncThunk(

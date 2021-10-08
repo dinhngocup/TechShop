@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ProductAction from "components/ProductComponents/ProductAction/productAction";
-import ProductRating from "components/common/ProductRating/productRating";
+import ProductAction from "../../../../components/ProductComponents/ProductAction/productAction";
+import ProductRating from "../../../../components/common/ProductRating/productRating";
 import "./_productInfo.scss";
-import handlePrice from "helpers/formatPrice";
+import handlePrice from "../../../../helpers/formatPrice";
 
 ProductInfo.propTypes = {
   product: PropTypes.object,

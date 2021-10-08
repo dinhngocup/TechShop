@@ -1,8 +1,8 @@
-import { cookiesService } from "helpers/cookiesService";
+import { cookiesService } from "../../helpers/cookiesService";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { login, updateLoggedInStatus } from "utilities/slices/userSlice";
+import { login, updateLoggedInStatus } from "../../utilities/slices/userSlice";
 import "./_login.scss";
 
 function Login() {

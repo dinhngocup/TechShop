@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "utilities/slices/breadcrumbSlice";
-import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+} from "../../../utilities/slices/breadcrumbSlice";
+import EmptyItem from "../../../components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import WishItem from "./wishItem";
 
 function WishList(props) {

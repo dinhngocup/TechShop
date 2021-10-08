@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import image1 from "assets/images/heart.png";
-import image2 from "assets/images/heart1.png";
+import image1 from "../../../assets/images/heart.png";
+import image2 from "../../../assets/images/heart1.png";
 import "./_wishIcon.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { editWishList } from "utilities/slices/wishListSlice";
+import { editWishList } from "../../../utilities/slices/wishListSlice";
 import { PropTypes } from "prop-types";
 
 function WishIcon(props) {

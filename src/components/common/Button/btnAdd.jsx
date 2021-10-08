@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./_btn.scss";
 import { useDispatch } from "react-redux";
-import { addToCart } from "utilities/slices/cartSlice";
+import { addToCart } from "../../../utilities/slices/cartSlice";
 
 function BtnAdd(props) {
   const { product } = props;
-  
+
   const dispatch = useDispatch();
   const [content, setContent] = useState("Add to cart");
   const [loading, setLoading] = useState(false);

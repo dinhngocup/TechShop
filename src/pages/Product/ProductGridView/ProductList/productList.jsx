@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import ProductApi from "api/productApi";
-import ProductCard from "pages/Product/common/ProductCard/productCard";
-import ProductModal from "components/common/ProductModal/productModal";
+import ProductApi from "../../../../api/productApi";
+import ProductCard from "../../../../pages/Product/common/ProductCard/productCard";
+import ProductModal from "../../../../components/common/ProductModal/productModal";
 import { Spinner } from 'reactstrap';
 
 function ProductList() {

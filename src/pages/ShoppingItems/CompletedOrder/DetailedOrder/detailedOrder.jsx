@@ -1,16 +1,16 @@
-import OrderApi from "api/orderApi";
-import OrderItem from "pages/ShoppingItems/CompletedOrder/DetailedOrder/OrderItem/orderItem";
+import OrderApi from "../../../../api/orderApi";
+import OrderItem from "../../../../pages/ShoppingItems/CompletedOrder/DetailedOrder/OrderItem/orderItem";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "utilities/slices/breadcrumbSlice";
+} from "../../../../utilities/slices/breadcrumbSlice";
 import "./_detailedOrder.scss";
 import { Spinner } from "reactstrap";
-import handlePrice from "helpers/formatPrice";
-import ReviewModal from "components/ShoppingItemsComponents/ReviewModal/reviewModal";
+import handlePrice from "../../../../helpers/formatPrice";
+import ReviewModal from "../../../../components/ShoppingItemsComponents/ReviewModal/reviewModal";
 
 function DetailedOrder(props) {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function DetailedOrder(props) {
       orderID,
       productID: info.productID,
       productName: info.productName,
-      productImage: info.productImage
+      productImage: info.productImage,
     });
   };
 

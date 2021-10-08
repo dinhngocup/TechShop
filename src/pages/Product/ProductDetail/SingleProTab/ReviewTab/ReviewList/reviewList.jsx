@@ -1,8 +1,8 @@
-import ReviewApi from "api/reviewApi";
-import Pagination from "pages/Product/ProductDetail/SingleProTab/ReviewTab/Pagination/pagination";
+import ReviewApi from "../../../../../../api/reviewApi";
+import Pagination from "../../../../../../pages/Product/ProductDetail/SingleProTab/ReviewTab/Pagination/pagination";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
-import { REVIEWS_PER_PAGE } from "utilities/Constant";
+import { REVIEWS_PER_PAGE } from "../../../../../../utilities/Constant";
 import Review from "./review";
 import "./_reviewList.scss";
 

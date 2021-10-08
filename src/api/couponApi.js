@@ -1,4 +1,4 @@
-import * as UrlConstant from "utilities/UrlConstant";
+import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 const CouponApi = {
   getCouponById: async (id) => {
@@ -7,7 +7,7 @@ const CouponApi = {
     return await axiosClient
       .get(url)
       .then((res) => res)
-      .catch(err => {
+      .catch((err) => {
         return null;
       });
   },

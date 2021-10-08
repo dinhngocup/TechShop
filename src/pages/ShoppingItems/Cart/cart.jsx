@@ -1,10 +1,10 @@
-import EmptyItem from "components/ShoppingItemsComponents/EmptyItem/emptyItem";
+import EmptyItem from "../../../components/ShoppingItemsComponents/EmptyItem/emptyItem";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
-} from "utilities/slices/breadcrumbSlice";
+} from "../../../utilities/slices/breadcrumbSlice";
 import GeneralOrder from "../common/GeneralOrder/generalOrder";
 import CartItem from "./CartItem/cartItem";
 import Coupon from "./Coupon/coupon";
@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 function Cart() {
   //console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {

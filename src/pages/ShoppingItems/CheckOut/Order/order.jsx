@@ -1,4 +1,4 @@
-import GeneralOrder from "pages/ShoppingItems/common/GeneralOrder/generalOrder";
+import GeneralOrder from "../../../../pages/ShoppingItems/common/GeneralOrder/generalOrder";
 import React from "react";
 
 function Order() {

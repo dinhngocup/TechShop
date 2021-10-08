@@ -1,5 +1,5 @@
-import image from "assets/images/footer.jpeg";
-import image1 from "assets/images/white.png";
+import image from "../../../../../assets/images/footer.jpeg";
+import image1 from "../../../../../assets/images/white.png";
 import React from "react";
 import "./_descriptionTab.scss";
 
