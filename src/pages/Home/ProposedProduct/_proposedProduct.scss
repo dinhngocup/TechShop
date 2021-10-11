@@ -12,11 +12,8 @@
         justify-content: space-around;
         .count-down {
             display: flex;
-
-            
         }
-        
-        
+
         .description {
             color: #888;
             line-height: 22px;
@@ -25,9 +22,8 @@
         .price {
             span {
                 font-weight: 700;
-                color:#e77733;
+                color: var(--primary-background);
                 font-size: x-large;
-                
             }
         }
     }

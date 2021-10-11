@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import './_headerSection.scss'
+import { HeaderSectionStyle } from './style';
 
 function HeaderSection(props) {
   const { content } = props;
-  return <h4>{content}</h4>;
+  return <HeaderSectionStyle>{content}</HeaderSectionStyle>;
 }
 
 HeaderSection.propTypes = {

@@ -1,8 +1,8 @@
 .shipping-info {
-    border: 1px dashed rgb(0, 153, 0);
+    border: 1px dashed var(--reviewed-tag);
     padding: 10px 10px;
-    background-color: #f6f6f6;
-    
+    background-color: var(--main-info-background);
+
     .name {
         font-weight: 600;
     }
@@ -11,6 +11,6 @@
     }
     .confirm {
         font-weight: 600;
-        color:rgb(0, 153, 0);
+        color: var(--reviewed-tag);
     }
 }

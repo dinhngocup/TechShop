@@ -16,16 +16,13 @@
     float: left;
     padding-left: 30px;
     width: 60%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
     .title {
         font-size: 22px;
         font-weight: bold;
-        color: #434343;
+        color: var(--main-bold-info-font-color);
     }
     .price {
-        color: #666;
+        color: var(--main-info-font-color);
         font-weight: bold;
     }
     .info-deco {
@@ -36,12 +33,12 @@
         width: 50%;
         .all-info {
             line-height: 10px;
-            color: #434343;
+            color: var(--main-bold-info-font-color);
             text-decoration: underline;
             font-size: smaller;
             transition: 0.3s;
             &:hover {
-                color: #e77733;
+                color: var(--primary-background);
             }
         }
         .quick-add-to-cart {
@@ -56,13 +53,13 @@
                 background-color: #444;
                 &:hover {
                     color: black;
-                    background-color: rgb(252, 235, 198);
+                    background-color: var(--foreground);
                 }
             }
         }
     }
     .short-desc {
-        color: #909295;
+        color: var(--description-font-color);
         font-size: 14px;
         font-weight: bold;
     }

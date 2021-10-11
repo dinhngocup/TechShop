@@ -33,7 +33,7 @@
             }
             .authen-tag {
                 font-size: small;
-                color: rgb(0, 153, 0);
+                color: var(--reviewed-tag);
             }
         }
     }
@@ -47,17 +47,17 @@
         .reply-review {
             float: right;
             font-style: italic;
-            color: #e77733;
+            color: var(--primary-background);
             button {
                 margin-left: 10px;
-                border: 1px solid #e77733;
+                border: 1px solid var(--primary-background);
                 background-color: white;
                 border-radius: 5px;
-                color: #e77733;
+                color: var(--primary-background);
                 padding: 5px 10px;
                 &:hover {
                     color: white;
-                    background-color: #e77733;
+                    background-color: var(--primary-background);
                     transition: 0.5s;
                 }
             }

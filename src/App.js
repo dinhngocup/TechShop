@@ -13,11 +13,13 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./_app.scss";
+import GlobalStyle from './assets/styles/GlobalStyle';
 
 function App() {
   console.log("app");
   return (
     <div className="wrapper">
+      <GlobalStyle />
       <div className="main-content">
         <Router>
           <Header />
@@ -50,7 +52,7 @@ function App() {
                 <Route path="/sales">
                   <Sale />
                 </Route>
-                <PrivateRoute path={["/check-out", "/completed-order"]}>
+                <PrivateRoute path={["/check-out", "/your-orders"]}>
                   <ShoppingCart />
                 </PrivateRoute>
               </Switch>

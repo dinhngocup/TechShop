@@ -6,7 +6,7 @@
     min-width: 135px;
     min-height: 46px;
     &:hover {
-        background-color: #fcebc6 !important;
+        background-color: var(--foreground) !important;
         color: black !important;
     }
     &.btn-tranform {
@@ -36,15 +36,15 @@
     &.btn-learn-more {
         margin-right: 10px;
         margin: 10px;
-        border: 1px solid #e77733;
+        border: 1px solid var(--primary-background);
         background-color: #fff;
-        color: #e77733;
+        color: var(--primary-background);
         font-weight: 700;
     }
     &.btn-add {
         margin-right: 10px;
         margin: 10px;
-        background-color: #e77733;
+        background-color: var(--primary-background);
         color: #fff;
         font-weight: 700;
     }

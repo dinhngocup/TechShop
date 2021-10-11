@@ -4,7 +4,7 @@
     display: flex;
     border-bottom: 1px solid #d8d8d8;
     align-items: center;
-    color: black;y
+    color: black;
     &:hover {
         text-decoration: none;
         .info {
@@ -33,7 +33,7 @@
         }
         .price {
             transition: 0.5s;
-            color: #e77733;
+            color: var(--primary-background);
             opacity: 0.5;
             font-weight: bold;
         }

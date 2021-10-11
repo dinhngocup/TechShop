@@ -1,7 +1,7 @@
 .login-background {
     background-image: url("../../assets/images/footer1.jpeg");
     height: 700px;
-    
+
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -20,7 +20,7 @@
         .login-title {
             text-align: center;
             font-size: x-large;
-            color: #e77733;
+            color: var(--primary-background);
             font-weight: 700;
         }
         form {
@@ -42,13 +42,13 @@
                 }
             }
             button {
-                background: #e77733;
-                border: 1px solid #e77733;
+                background: var(--primary-background);
+                border: 1px solid var(--primary-background);
                 color: white;
                 &:hover {
                     background: white;
-                border: 1px solid #e77733;
-                color: #e77733;
+                    border: 1px solid var(--primary-background);
+                    color: var(--primary-background);
                 }
             }
         }

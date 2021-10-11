@@ -3,7 +3,7 @@
     justify-content: space-between;
     line-height: 40px;
     .tag {
-        color: #666;
+        color: var(--main-info-font-color);
         font-style: italic;
     }
 }
@@ -12,11 +12,11 @@
     justify-content: space-between;
     align-items: center;
     line-height: 40px;
-    &-tag{
-        color: #666;
+    &-tag {
+        color: var(--main-info-font-color);
         font-style: italic;
     }
     &.specs-deco {
-        background-color: rgb(246, 246, 246);;
+        background-color: var(--primary-body-background);
     }
 }

@@ -6,7 +6,7 @@
         border-radius: 100%;
         &:hover {
             transition: 0.8s;
-            box-shadow: 10px 0px 40px -5px #e77733, 0 0 0px 2px #e77733;
+            box-shadow: 10px 0px 40px -5px var(--primary-background), 0 0 0px 2px var(--primary-background);
         }
     }
     .dropdown-switcher {
@@ -31,21 +31,22 @@
 
             display: flex;
             flex-direction: column;
-            div, a {
+            div,
+            a {
                 text-align: right;
                 font-weight: normal;
                 line-height: 32px;
-                color: #606060;
+                color: var(--nav-modal-font-color);
                 transition: 0.4s;
                 &:hover {
                     transition: 0.4s;
                     text-decoration: none;
                     padding-right: 8px;
-                    color: #e77733;
+                    color: var(--primary-background);
                 }
                 &.active {
                     padding-right: 15px;
-                    color: #e77733;
+                    color: var(--primary-background);
                 }
             }
         }

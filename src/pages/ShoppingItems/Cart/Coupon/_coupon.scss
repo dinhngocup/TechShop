@@ -1,9 +1,9 @@
 .coupon {
     font-size: smaller;
-    color: #999;
+    color: var(--cart-info-font-color);
     input {
         padding: 10px 20px;
-        background-color: #f6f6f6;
+        background-color: var(--main-info-background);
         border: none;
     }
     .alert {
@@ -16,7 +16,7 @@
     }
     // button {
     //     border: none;
-    //     background-color: #c8a165;
+    //     background-color:  var(--cart-primary-header);
     //     color: white;
     //     padding: 10px 20px;
     //     font-weight: 600;

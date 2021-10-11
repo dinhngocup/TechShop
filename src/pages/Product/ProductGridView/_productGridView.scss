@@ -3,9 +3,9 @@
         background-color: white;
         margin-bottom: 30px;
         &-heading {
-            color: #666666;
+            color: var(--main-info-font-color);
             font-weight: bold;
-            border-bottom: 1px solid rgb(246, 246, 246);
+            border-bottom: 1px solid var(--primary-body-background);
             padding: 10px 30px;
             letter-spacing: 0.8px;
         }

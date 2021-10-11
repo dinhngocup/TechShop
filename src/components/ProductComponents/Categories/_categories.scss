@@ -8,20 +8,20 @@
             li {
                 font-weight: 600;
                 padding-left: 15px;
-                color: #e77733;
+                color: var(--primary-background);
             }
         }
     }
     li {
         font-size: 13px;
         font-weight: 500;
-        color: #666;
+        color: var(--main-info-font-color);
         line-height: 30px;
         transition: 0.5s;
         &:hover {
             transition: 0.5s;
             padding-left: 15px;
-            color: #e77733;
+            color: var(--primary-background);
         }
     }
 }

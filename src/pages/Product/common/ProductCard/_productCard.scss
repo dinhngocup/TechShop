@@ -17,26 +17,25 @@
             transition: 0.5s;
             position: absolute;
             display: flex;
-            bottom:2%;
-            right:2%;
+            bottom: 2%;
+            right: 2%;
             transform: scaleY(0);
             button {
                 background-color: #f1f1f1;
                 border: none;
                 padding: 12px 16px;
-                margin:0 2px;
+                margin: 0 2px;
                 &:hover {
                     transition: 0.5s;
                     color: white !important;
-                    background-color: #e77733;
+                    background-color: var(--primary-background);
                 }
-                
             }
         }
     }
     .product-info {
         padding: 20px 0;
-        
+
         .product-title {
             text-transform: uppercase;
             font-weight: 600;
@@ -49,7 +48,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
         }
     }
     &:hover {
@@ -58,6 +56,6 @@
             transform: scaleY(1);
         }
         transition: 0.3s;
-        box-shadow: 1px 25px 54px rgba(0,0,0,0.2);
+        box-shadow: 1px 25px 54px rgba(0, 0, 0, 0.2);
     }
 }

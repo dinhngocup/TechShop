@@ -1,18 +1,17 @@
 .pro-tab {
-
     padding: 10px 30px;
     background-color: white;
     font-weight: 600;
-    color: #666;
+    color: var(--main-info-font-color);
     text-align: center;
     margin-bottom: 5px;
     &.active {
-        background-color: #C8A165;
+        background-color: var(--cart-primary-header);
         color: white;
     }
     &:hover {
-        background-color: #C8A165;
+        background-color: var(--cart-primary-header);
         color: white;
-        box-shadow: 1px 25px 54px rgba(0,0,0,0.2);
+        box-shadow: 1px 25px 54px rgba(0, 0, 0, 0.2);
     }
 }

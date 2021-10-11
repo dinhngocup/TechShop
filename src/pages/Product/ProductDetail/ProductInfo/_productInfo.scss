@@ -4,17 +4,17 @@
     .product-name {
         text-transform: uppercase;
         font-weight: 600;
-        color: #434343;
+        color: var(--main-bold-info-font-color);
     }
     .product-price {
-        color: #e77733;
+        color: var(--primary-background);
         font-weight: 600;
     }
 }
 .short-tech-info {
     overflow: scroll;
     height: 220px;
-    color: #666;
+    color: var(--main-info-font-color);
     font-weight: 400;
     font-size: small;
 }
@@ -37,12 +37,11 @@
             position: absolute;
         }
         &:hover {
-            border: 1px solid #e77733;
-            box-shadow: 1px 25px 54px rgba(0,0,0,0.2);
+            border: 1px solid var(--primary-background);
+            box-shadow: 1px 25px 54px rgba(0, 0, 0, 0.2);
         }
         &:active {
-            border: 1px solid #e77733;
+            border: 1px solid var(--primary-background);
         }
-
     }
 }

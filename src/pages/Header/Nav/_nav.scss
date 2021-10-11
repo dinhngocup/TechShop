@@ -10,24 +10,24 @@
                 font-size: smaller;
                 font-weight: bold;
                 position: relative;
-                
+
                 &:hover {
                     a {
                         text-decoration: none;
-                        color: #e77733;
+                        color: var(--primary-background);
                         &:after {
                             width: 50%;
                         }
                     }
                 }
                 a {
-                    color: black;
+                    color: var(--unactive-nav);
                     transition: 0.5s;
                     &:after {
                         transition: 0.5s;
                         position: absolute;
                         content: "";
-                        background-color: #e77733;
+                        background-color: var(--primary-background);
 
                         height: 2px;
                         width: 0%;
@@ -40,11 +40,11 @@
                     }
                 }
                 .active {
-                    color: #e77733;
+                    color: var(--primary-background);
                     &:after {
                         position: absolute;
                         content: "";
-                        background-color: #e77733;
+                        background-color: var(--primary-background);
 
                         height: 2px;
                         width: 50%;
@@ -81,10 +81,10 @@
                             a {
                                 font-weight: normal;
                                 line-height: 32px;
-                                color: #606060;
+                                color: var(--nav-modal-font-color);
                                 &:hover {
                                     padding-left: 8px;
-                                    color: #e77733;
+                                    color: var(--primary-background);
                                 }
                                 &:after {
                                     width: 0;
@@ -92,7 +92,7 @@
                                 &.active {
                                     font-weight: 600;
                                     padding-left: 15px;
-                                    color: #e77733;
+                                    color: var(--primary-background);
                                 }
                             }
                         }

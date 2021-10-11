@@ -17,7 +17,7 @@
     }
     .pro-descrip-content {
         width: 70%;
-        background-color: #f6f6f6;
+        background-color: var(--main-info-background);
         position: absolute;
         //top: 0;
         right: 0;
@@ -26,7 +26,7 @@
         max-height: 450px;
         padding: 40px 30px 30px 40px;
         h4 {
-            color: #434343;
+            color: var(--main-bold-info-font-color);
             font-weight: 600;
             font-size: 16px;
             &::after {
@@ -35,7 +35,7 @@
         }
         p {
             font-size: 14px;
-            color: #666;
+            color: var(--main-info-font-color);
         }
     }
 }

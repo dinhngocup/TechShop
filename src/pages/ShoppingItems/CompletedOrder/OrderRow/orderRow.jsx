@@ -8,7 +8,7 @@ function OrderRow(props) {
   return (
     <tr className="table-item order-row">
       <td className="order-ID">
-        <NavLink to={`/completed-order/${invoice.invoiceID}`}>
+        <NavLink to={`/your-orders/${invoice.invoiceID}`}>
           {invoice.invoiceID}
         </NavLink>
       </td>

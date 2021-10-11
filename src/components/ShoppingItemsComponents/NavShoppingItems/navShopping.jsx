@@ -18,8 +18,8 @@ function NavShopping() {
       slug: "/check-out",
     },
     {
-      name: "Completed Order",
-      slug: "/completed-order",
+      name: "Your Orders",
+      slug: "/your-orders",
     },
   ];
 

@@ -4,7 +4,7 @@
     .cart-action {
         display: flex;
         justify-content: center;
-        color: #666;
+        color: var(--main-info-font-color);
         // hide default button of input
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
@@ -12,20 +12,20 @@
             margin: 0;
         }
         .quantity-btn {
-            background-color: #f6f6f6;
+            background-color: var(--main-info-background);
             display: flex;
             align-items: center;
             justify-content: center;
             &:hover {
-                color: #c8a165;
+                color: var(--cart-primary-header);
             }
         }
         input {
             border: none;
             text-align: center;
-            background-color: #f6f6f6;
+            background-color: var(--main-info-background);
             font-size: small;
-            color: #666;
+            color: var(--main-info-font-color);
         }
         .flex {
             width: 20%;

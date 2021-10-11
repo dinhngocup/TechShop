@@ -17,7 +17,7 @@
     }
     .empty-compo-content {
         width: 70%;
-        background-color: #f6f6f6;
+        background-color: var(--main-info-background);
         position: absolute;
         //top: 0;
         right: 0;
@@ -29,7 +29,7 @@
         flex-direction: column;
         justify-content: space-around;
         h4 {
-            color: #434343;
+            color: var(--main-bold-info-font-color);
             font-weight: 600;
             font-size: 16px;
             &::after {
@@ -39,31 +39,30 @@
         a {
             text-decoration: none;
             font-size: 14px;
-            color: #666;
+            color: var(--main-info-font-color);
             &:hover {
-                color: #c8a165;
+                color: var(--cart-primary-header);
             }
         }
-        button {
-            padding: 10px 20px;
-            margin-right: 30px;
-            border: none;
-            border-radius: 5px;
-            background: #ffd814;
-            border-color: #fcd200;
-            font-weight: 600;
-            &:hover {
-                background: #f7ca00;
-                border-color: #f2c200;
-                //box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-            }
-            &.btn-sign-up {
-                background-color: white;
-                &:hover {
-                    background-color: #f7fafa;
-                    border-color: #d5d9d9;
-                }
-            }
-        }
+        // button {
+        //     padding: 10px 20px;
+        //     margin-right: 30px;
+        //     border: none;
+        //     border-radius: 5px;
+        //     background: #ffd814;
+        //     border-color: #fcd200;
+        //     font-weight: 600;
+        //     &:hover {
+        //         background: #f7ca00;
+        //         border-color: #f2c200;
+        //     }
+        //     &.btn-sign-up {
+        //         background-color: white;
+        //         &:hover {
+        //             background-color: #f7fafa;
+        //             border-color: #d5d9d9;
+        //         }
+        //     }
+        // }
     }
 }

@@ -1,5 +1,5 @@
 .shopping-cart-area {
-    background-color: rgb(246, 246, 246);
+    background-color: var(--primary-body-background);
     .shopping-cart-banner {
         background-image: url("../../assets/images/banner1.jpeg");
     }
@@ -15,7 +15,7 @@
                 padding: 5px 20px;
                 border: none;
                 &:hover {
-                    background-color: #c8a165;
+                    background-color: var(--cart-primary-header);
                     box-shadow: 1px 25px 54px rgba(0, 0, 0, 0.2);
                 }
             }
@@ -30,8 +30,8 @@
                     width: 100%;
                     text-align: center;
                     thead {
-                        background-color: #f6f6f6;
-                        color: #666;
+                        background-color: var(--main-info-background);
+                        color: var(--main-info-font-color);
                         th {
                             text-transform: uppercase;
                             font-size: smaller;
@@ -40,7 +40,7 @@
                     }
                     tbody {
                         .table-item {
-                            color: #666;
+                            color: var(--main-info-font-color);
                             td {
                                 padding-top: 20px;
                             }
@@ -54,7 +54,7 @@
                                 .short-info {
                                     text-align: left;
                                     margin-left: 30px;
-                                    color: #666;
+                                    color: var(--main-info-font-color);
                                     .name {
                                         text-transform: uppercase;
                                         font-size: smaller;
@@ -69,14 +69,14 @@
                             }
                             a {
                                 text-decoration: none;
-                                color: #666;
+                                color: var(--main-info-font-color);
                                 &:hover {
-                                    color: #c8a165;
+                                    color: var(--cart-primary-header);
                                 }
                             }
 
                             .price {
-                                color: #999;
+                                color: var(--cart-info-font-color);
                                 font-size: 16px;
                                 font-weight: 900;
                             }
@@ -96,18 +96,18 @@
                                 button {
                                     border: none;
                                     background-color: white;
-                                    color: #666;
+                                    color: var(--main-info-font-color);
                                     &:hover {
-                                        color: #c8a165;
+                                        color: var(--cart-primary-header);
                                     }
                                 }
                             }
                             .btn-remove {
                                 i {
-                                    background-color: #f6f6f6;
+                                    background-color: var(--main-info-background);
                                     padding: 10px;
                                     &:hover {
-                                        color: #c8a165;
+                                        color: var(--cart-primary-header);
                                     }
                                 }
                             }
@@ -117,7 +117,7 @@
             }
             h4 {
                 text-transform: uppercase;
-                color: #434343;
+                color: var(--main-bold-info-font-color);
                 font-weight: 600;
                 font-size: 16px;
                 &::after {

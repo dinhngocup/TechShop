@@ -42,14 +42,14 @@
             svg {
                 margin: 0px 8px;
                 font-size: xx-large;
-                color: rgb(255, 181, 0);
+                color: var(--review-star-border);
             }
         }
     }
     svg:hover,
     svg:hover ~ svg {
         path {
-            fill: rgb(253, 216, 53);
+            fill: var(--review-star-background);
         }
     }
     textarea {
@@ -60,15 +60,15 @@
     }
     .btn-review {
         float: right;
-        background-color: rgb(253, 216, 53);
+        background-color: var(--review-star-background);
 
         color: rgb(36, 36, 36);
         border-radius: 4px;
         font-size: small;
         button {
             padding: 5px 15px;
-            background-color: rgb(253, 216, 53);
-            border: rgb(253, 216, 53);
+            background-color: var(--review-star-background);
+            border: var(--review-star-background);
         }
         .loading-review {
             padding: 5px 30px;
@@ -96,8 +96,8 @@
     }
     button {
         padding: 10px 70px;
-        background-color: #e77733;
-        border: 1px solid #e77733;
+        background-color: var(--primary-background);
+        border: 1px solid var(--primary-background);
         border-radius: 5px;
         color: white;
     }

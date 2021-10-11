@@ -2,13 +2,12 @@
     .review-tab-title {
         align-items: center;
         i {
-            color: #e77733;
+            color: var(--primary-background);
         }
         .rate {
             letter-spacing: 1px;
             font-size: x-large;
             font-weight: 600;
-            
         }
     }
 }

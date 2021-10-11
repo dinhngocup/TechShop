@@ -33,7 +33,7 @@ function ShoppingItems(props) {
             <Route path="/check-out">
               <CheckOut />
             </Route>
-            <Route path="/completed-order">
+            <Route path="/your-orders">
               <CompletedOrder />
             </Route>
 

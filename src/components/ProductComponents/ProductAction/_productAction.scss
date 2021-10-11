@@ -1,5 +1,5 @@
 .product-quantity {
-    background-color: #f6f6f6;
+    background-color: var(--main-info-background);
     display: flex;
     padding: 10px 0px;
     // hide default button of input
@@ -13,13 +13,13 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        color: #666;
+        color: var(--main-info-font-color);
         &::before {
             content: "";
             height: 14px;
             width: 1px;
             position: absolute;
-            background-color: #666;
+            background-color: var(--main-info-font-color);
         }
         &:first-child::before {
             right: 0;
@@ -28,14 +28,14 @@
             left: 0;
         }
         &:hover {
-            color: #e77733;
+            color: var(--primary-background);
         }
     }
     .flex {
         width: 33.33%;
     }
     input {
-        color: #666;
+        color: var(--main-info-font-color);
         text-align: center;
         border: none;
         background-color: inherit;
@@ -43,19 +43,19 @@
     }
 }
 .product-actions {
-    background-color: #f6f6f6;
+    background-color: var(--main-info-background);
     display: flex;
     padding: 10px 0px;
-    color: #666;
+    color: var(--main-info-font-color);
     padding: 10px 0;
     justify-content: center;
     text-align: center;
     &:hover {
-        color: #e77733;
+        color: var(--primary-background);
     }
 }
 .stock-status {
-    color: #666;
+    color: var(--main-info-font-color);
     font-weight: 400;
     font-size: small;
     display: flex;
@@ -63,12 +63,12 @@
     span {
         font-weight: 600;
         font-size: medium;
-        color: #5cb85c;
+        color: var(--in-stock-status);
         &.in-stock {
-            color: #5cb85c;
+            color: var(--in-stock-status);
         }
         &.out-of-stock {
-            color: red;
+            color: var(--out-of-stock-status);
         }
     }
 }

@@ -3,7 +3,7 @@
         width: 50%;
         .header-subs {
             span {
-                color: #f96167;
+                color: var(--subs-font-color);
             }
         }
         h3 {
@@ -11,7 +11,7 @@
             letter-spacing: 1px;
             span {
                 font-weight: 900;
-                color: #f96167;
+                color: var(--subs-font-color);
             }
         }
         .sub-content {
@@ -34,12 +34,12 @@
                 border-radius: 30px;
                 padding: 14px 30px;
                 right: 0px;
-                background-color: #f96167;
+                background-color: var(--subs-font-color);
                 border: none;
                 &:hover {
                     background-color: #fff;
-                    border: 1px #f96167 solid;
-                    color: #f96167;
+                    border: 1px var(--subs-font-color) solid;
+                    color: var(--subs-font-color);
                 }
             }
         }

@@ -4,9 +4,9 @@
         font-weight: 600;
     }
     .content {
-        border: 1px dashed rgb(0, 153, 0);
+        border: 1px dashed var(--reviewed-tag);
         padding: 10px 10px;
-        background-color: #f6f6f6;
+        background-color: var(--main-info-background);
         min-height: 100px;
         display: flex;
         justify-content: space-between;
@@ -23,8 +23,8 @@
             width: 100%;
             text-align: center;
             thead {
-                background-color: #f6f6f6;
-                color: #666;
+                background-color: var(--main-info-background);
+                color: var(--main-info-font-color);
                 th {
                     text-transform: uppercase;
                     font-size: smaller;

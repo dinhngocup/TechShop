@@ -20,10 +20,10 @@
             flex-direction: column;
             text-align: left;
             margin-left: 30px;
-            color: #666;
+            color: var(--main-info-font-color);
             .authen-tag {
                 font-size: x-small;
-                color: rgb(0, 153, 0);
+                color: var(--reviewed-tag);
                 span {
                     color: black;
                 }
@@ -32,7 +32,7 @@
                 display: flex;
                 align-items: center;
                 .reviewed-tag {
-                    color: #009900;
+                    color: var(--reviewed-tag);
                     font-size: small;
                     font-style: italic;
                     font-weight: 600;
@@ -40,15 +40,15 @@
                 }
                 button {
                     margin-right: 10px;
-                    border: 1px solid #e77733;
+                    border: 1px solid var(--primary-background);
                     background-color: white;
                     font-size: small;
                     border-radius: 5px;
-                    color: #e77733;
+                    color: var(--primary-background);
                     padding: 5px 10px;
                     &:hover {
                         color: white;
-                        background-color: #e77733;
+                        background-color: var(--primary-background);
                         transition: 0.5s;
                     }
                 }

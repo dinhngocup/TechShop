@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./_productRating.scss";
 
 ProductRating.propTypes = {
   rate: PropTypes.number,
@@ -38,7 +37,7 @@ function ProductRating(props) {
     }
     return result;
   };
-  return <div className="product-rate">{renderRateProduct(rate)}</div>;
+  return <div className="d-flex" style={{color: 'var(--primary-background)'}}>{renderRateProduct(rate)}</div>;
 }
 
 

@@ -6,21 +6,21 @@
         li {
             line-height: 30px;
             font-size: 13px;
-        font-weight: 500;
-        color: #666;
+            font-weight: 500;
+            color: var(--main-info-font-color);
             i {
                 margin-right: 20px;
             }
-            span:last-child{
+            span:last-child {
                 float: right;
             }
             &:hover {
                 i {
-                    outline: 1px solid #e77733;
+                    outline: 1px solid var(--primary-background);
                     outline-offset: 1px;
                 }
                 span {
-                    color: #e77733;
+                    color: var(--primary-background);
                 }
             }
         }

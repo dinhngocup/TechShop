@@ -20,8 +20,8 @@ function CompletedOrder(props) {
   useEffect(() => {
     dispatch(
       addNewBreadcrumb({
-        name: "Completed Order",
-        slug: "/completed-order",
+        name: "Your Orders",
+        slug: "/your-orders",
       })
     );
 
@@ -62,7 +62,7 @@ function CompletedOrder(props) {
           <div>
             <h4>Your Orders</h4>
           </div>
-          <Route exact path="/completed-order">
+          <Route exact path="/your-orders">
             <div className="table-content">
               <table className="completed-order-table">
                 <thead>
@@ -78,7 +78,7 @@ function CompletedOrder(props) {
               </table>
             </div>
           </Route>
-          <Route path="/completed-order/:orderID">
+          <Route path="/your-orders/:orderID">
             <DetailedOrder />
           </Route>
         </React.Fragment>

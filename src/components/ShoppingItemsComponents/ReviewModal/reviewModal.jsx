@@ -28,7 +28,7 @@ function ReviewModal(props) {
       if (index >= rate)
         stars[index]
           .querySelector("path")
-          .setAttribute("fill", "rgb(253, 216, 53)");
+          .setAttribute("fill", " var(--review-star-background)");
       else stars[index].querySelector("path").setAttribute("fill", "none");
     }
     setReview({
@@ -130,7 +130,7 @@ function ReviewModal(props) {
                 <path
                   fill="none"
                   fillRule="evenodd"
-                  stroke="#FFB500"
+                  stroke="var(--review-star-border)"
                   strokeWidth="1.5"
                   d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
                 ></path>
@@ -145,7 +145,7 @@ function ReviewModal(props) {
                 <path
                   fill="none"
                   fillRule="evenodd"
-                  stroke="#FFB500"
+                  stroke="var(--review-star-border)"
                   strokeWidth="1.5"
                   d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
                 ></path>
@@ -160,7 +160,7 @@ function ReviewModal(props) {
                 <path
                   fill="none"
                   fillRule="evenodd"
-                  stroke="#FFB500"
+                  stroke="var(--review-star-border)"
                   strokeWidth="1.5"
                   d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
                 ></path>
@@ -175,7 +175,7 @@ function ReviewModal(props) {
                 <path
                   fill="none"
                   fillRule="evenodd"
-                  stroke="#FFB500"
+                  stroke="var(--review-star-border)"
                   strokeWidth="1.5"
                   d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
                 ></path>
@@ -190,7 +190,7 @@ function ReviewModal(props) {
                 <path
                   fill="none"
                   fillRule="evenodd"
-                  stroke="#FFB500"
+                  stroke="var(--review-star-border)"
                   strokeWidth="1.5"
                   d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
                 ></path>

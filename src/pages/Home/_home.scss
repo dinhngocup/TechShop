@@ -14,16 +14,16 @@
                 color: black;
                 border-radius: 20px;
                 &:hover {
-                    border: 1px solid #e77733;
+                    border: 1px solid var(--primary-background);
                     background-color: transparent;
                 }
                 &.active,
                 &:focus {
                     background-color: transparent;
-                    border: 1px solid #e77733;
+                    border: 1px solid var(--primary-background);
                     outline: none;
                     box-shadow: none;
-                    color: #e77733;
+                    color: var(--primary-background);
                     font-weight: 700;
                 }
             }
@@ -36,7 +36,7 @@
 
             a {
                 font-size: x-large;
-                color: #e77733;
+                color: var(--primary-background);
                 margin: 0px 10px;
                 &:hover {
                     opacity: 0.5;
@@ -45,7 +45,7 @@
         }
         .top-row {
             .carousel-indicators li {
-                background-color: #e77733;
+                background-color: var(--primary-background);
             }
             .carousel-inner {
                 padding-bottom: 30px;
@@ -62,7 +62,6 @@
         display: flex;
         align-items: center;
         text-align: center;
-        
     }
     .supported-brand {
         width: 90%;
@@ -75,13 +74,13 @@
         .content {
             width: 100%;
             h1 {
-                color: #e77733;
+                color: var(--primary-background);
                 font-weight: 700;
             }
             .title-deco {
                 span {
                     width: 100px;
-                    background-color: #e77733;
+                    background-color: var(--primary-background);
                     height: 2px;
                     display: inline-block;
                     position: relative;
@@ -106,8 +105,11 @@
                 }
             }
             .brands {
-                .col-4, .col-sm-4, .col-md-3, .col-lg-3 {
-                    padding:0;
+                .col-4,
+                .col-sm-4,
+                .col-md-3,
+                .col-lg-3 {
+                    padding: 0;
                 }
             }
         }
