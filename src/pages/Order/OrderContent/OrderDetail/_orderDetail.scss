@@ -1,0 +1,158 @@
+.order-detail {
+    // background-color: #f5f5f5;
+    box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.2);
+    .header {
+        border-bottom: 1px dotted #e8e8e8;
+        font-size: smaller;
+        a {
+            color: rgba(0, 0, 0, 0.54);
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .sub-title {
+            .order-status {
+                position: relative;
+                color: var(--primary-background);
+                &:after {
+                    position: absolute;
+                    content: "";
+                    background-color: black;
+                    width: 1px;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                }
+            }
+        }
+    }
+    .order-process {
+        border: 1px dashed #e8e8e8;
+        .bs-wizard-step {
+            .order-status-label {
+                margin-bottom: 40px;
+                text-transform: none !important;
+            }
+            .order-time {
+                margin-top: 40px;
+                color: rgba(0, 0, 0, 0.26);
+                font-size: smaller;
+            }
+            .progress {
+                position: relative;
+                border-radius: 0;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                height: 8px;
+                .progress-bar {
+                    background-color: #2dc258;
+                    transition: none !important;
+                }
+            }
+            &.active .progress .progress-bar {
+                width: 50%;
+            }
+            &.complete .progress .progress-bar {
+                width: 100%;
+            }
+            &:first-child {
+                .progress {
+                    left: 50%;
+                    width: 50%;
+                }
+                &.active .progress .progress-bar {
+                    width: 0%;
+                }
+            }
+
+            &:last-child {
+                .progress {
+                    width: 50%;
+                }
+                &.active .progress .progress-bar {
+                    width: 100%;
+                }
+            }
+            .bs-wizard-dot {
+                position: absolute; // so với progress
+                width: 30px;
+                height: 30px;
+                left: 50%; // left so với cái progess, vì progress dùng relative nên này dùng absolute
+                margin-left: -15px;
+                margin-top: -40px;
+                &:hover {
+                    text-decoration: none;
+                }
+                i {
+                    font-size: xx-large;
+                    color: #e8e8e8;
+                    padding: 15px;
+                    border: 3px #e8e8e8 solid;
+                    border-radius: 50%;
+                    background: white;
+                }
+            }
+            // &.complete,
+            &.active,
+            &.complete {
+                .bs-wizard-dot {
+                    i {
+                        color: #2dc258;
+                        border: 3px #2dc258 solid;
+                    }
+                }
+            }
+        }
+    }
+    .shipping-address {
+        border: 1px dashed #e8e8e8;
+        background-color: #fffcf5;
+        .shipper,
+        .buyer-info {
+            color: rgba(0, 0, 0, 0.54);
+        }
+        .buyer {
+            border-right: 1px solid #e8e8e8;
+        }
+        .order-action {
+            .action-container {
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px 0;
+                border-bottom: 1px dotted #e8e8e8;
+                button {
+                    width: 35% !important;
+                    background-color: white;
+                    color: #555;
+                    border: 1px solid rgba(0, 0, 0, 0.09);
+                    &:hover {
+                        background-color: #fffcf5;
+                    }
+                    &.main-btn {
+                        background-color: var(--primary-background);
+                        color: white;
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .total {
+        border-bottom: 1px dotted #e8e8e8;
+        font-size: small;
+        .total-order-label {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .total-order {
+            border-left: 1px dotted #e8e8e8;
+            width: 20%;
+            text-align: right;
+        }
+        .final-price {
+            font-size: x-large;
+            color: var(--primary-background);
+        }
+    }
+}

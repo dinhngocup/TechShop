@@ -1,16 +1,14 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import "../../assets/styles/_childBanner.scss";
 import Breadcrumb from "../../components/common/Breadcrumb/breadcrumb";
 import NavShopping from "../../components/ShoppingItemsComponents/NavShoppingItems/navShopping";
-import "./_shoppingItems.scss";
-import WishList from "./WishList/wishList";
 import Cart from "./Cart/cart";
-import { Route } from "react-router-dom";
 import CheckOut from "./CheckOut/checkOut";
-import CompletedOrder from './CompletedOrder/completedOrder';
+import WishList from "./WishList/wishList";
+import "./_shoppingItems.scss";
 
 function ShoppingItems(props) {
-  //console.log("cart main");
 
   return (
     <div className="wrapper-dashboard shopping-cart-area">
@@ -33,10 +31,9 @@ function ShoppingItems(props) {
             <Route path="/check-out">
               <CheckOut />
             </Route>
-            <Route path="/your-orders">
+            {/* <Route path="/your-orders">
               <CompletedOrder />
-            </Route>
-
+            </Route> */}
           </div>
         </div>
       </div>

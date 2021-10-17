@@ -1,0 +1,20 @@
+.product-info {
+    border-bottom: 1px solid #e8e8e8;
+    img {
+        border-radius: 0.2em;
+        height: 6em;
+        width: 6em;
+    }
+    .product-body {
+        .sub-info {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .old-price {
+            color: rgba(0, 0, 0, 0.5);
+            text-decoration: line-through;
+        }
+        .price {
+            color: var(--primary-background);
+        }
+    }
+}

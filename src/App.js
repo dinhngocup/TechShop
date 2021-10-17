@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./_app.scss";
 import GlobalStyle from './assets/styles/GlobalStyle';
+import OrderPage from './pages/Order/main';
 
 function App() {
   console.log("app");
@@ -43,17 +44,17 @@ function App() {
 
                 <Route path="/contacts" component={News} />
 
-                {/* <News />
-                </Route> */}
-
                 <Route path="/login">
                   <Login />
                 </Route>
                 <Route path="/sales">
                   <Sale />
                 </Route>
-                <PrivateRoute path={["/check-out", "/your-orders"]}>
+                <PrivateRoute path="/check-out">
                   <ShoppingCart />
+                </PrivateRoute>
+                <PrivateRoute path={["/your-orders"]}>
+                  <OrderPage />
                 </PrivateRoute>
               </Switch>
             </ScrollToTopRouter>

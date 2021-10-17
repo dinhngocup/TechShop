@@ -9,7 +9,7 @@ ProductRating.defaultProps = {
 };
 
 function ProductRating(props) {
-  const {rate} = props;
+  const { rate } = props;
   const renderRateProduct = (rate) => {
     let result = [];
 
@@ -37,9 +37,11 @@ function ProductRating(props) {
     }
     return result;
   };
-  return <div className="d-flex" style={{color: 'var(--primary-background)'}}>{renderRateProduct(rate)}</div>;
+  return (
+    <div className="d-flex" style={{ color: "var(--primary-background)" }}>
+      {renderRateProduct(rate)}
+    </div>
+  );
 }
-
-
 
 export default ProductRating;

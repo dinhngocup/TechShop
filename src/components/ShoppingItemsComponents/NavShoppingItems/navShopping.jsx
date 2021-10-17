@@ -16,11 +16,7 @@ function NavShopping() {
     {
       name: "Check out",
       slug: "/check-out",
-    },
-    {
-      name: "Your Orders",
-      slug: "/your-orders",
-    },
+    }
   ];
 
   return (
@@ -30,7 +26,7 @@ function NavShopping() {
           key={index}
           to={element.slug}
           activeClassName="active"
-          className="nav-shopping col-lg-3 col-md-6 col-sm-6 col-xs-6 "
+          className="nav-shopping col-lg-4 col-md-6 col-sm-6 col-xs-6 "
         >
           {element.name}
         </NavLink>

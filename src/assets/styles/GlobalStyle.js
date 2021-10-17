@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import _get from 'lodash/get';
-const GlobalStyle = createGlobalStyle `{
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`{
     html { 
         /**
          * Common
@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle `{
         --main-bold-info-font-color: #434343;
         --unactive-nav: black;
         --nav-modal-font-color: #606060;
+        --border-color: #e8e8e8;
 
         /**
          * Shopping cart header 
@@ -45,50 +46,19 @@ const GlobalStyle = createGlobalStyle `{
          */ 
         --description-font-color: #909295;
 
-        // /**
-        //  * Common
-        //  */ 
-        // --primary-background: green;
-        // --foreground: red;
-        // --primary-body-background: pink;
-        // --main-info-font-color: green;
-        // --main-info-background: brown;
-        // --main-bold-info-font-color: aqua;
-        // --unactive-nav: white;
-        // --nav-modal-font-color: red;
+        /**
+         * Order Status
+         */ 
+        --order-status-detail: rgb(0, 153, 0);
 
-        // /**
-        //  * Shopping cart header 
-        //  */ 
-        // --cart-primary-header: yellow;
-        // --cart-info-font-color: purple;
-        
-        // /**
-        //  * Review
-        //  */ 
-        // --review-star-background: purple;
-        // --review-star-border: brown;
-        // --reviewed-tag: pink;
-
-        // /**
-        //  * Subscription
-        //  */ 
-        // --subs-font-color: pink;
-        // --review-star-border: red;
-        // --reviewed-tag: pink;
-
-        // /**
-        //  * Stock status
-        //  */ 
-        // --in-stock-status: green;
-        // --out-of-stock-status: red;
-
-        // /**
-        //  * Product
-        //  */ 
-        // --description-font-color: aqua;
-
-        
+        /**
+         * List Order
+         */ 
+        --nav-container-icon-background: #5c4bdb;
+        --nav-order-list-background: #6857F6;
+        --nav-order-primary-font-color: #6a5bde;
+        --nav-order-primary-font-color1: #6a5bd4;
+        --nav-order-primary-font-color3: #6a5bd4;
 
 
 }`;
