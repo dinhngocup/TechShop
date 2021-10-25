@@ -28,7 +28,7 @@
         color: rgba(0, 0, 0, 0.5);
     }
     .total-container {
-        background-color: #fffefb;
+        background-color: var(--order-detail-background);
         .total {
             margin-left: 80%;
             display: flex;
@@ -43,20 +43,6 @@
         .status-description {
             color: rgba(0, 0, 0, 0.5);
         }
-        .btn-details {
-            background-color: var(--primary-background);
-            border: none;
-            &:hover {
-                opacity: 0.8;
-            }
-        }
-        .btn-cancel {
-            color: black;
-            border: 1px solid white;
-            background-color: white;
-            &:hover {
-                border: 1px solid var(--primary-background);
-            }
-        }
+        
     }
 }

@@ -1,29 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Media from "react-bootstrap/Media";
 import image1 from "../../../assets/images/headphone1.jpeg";
 import "./_orderProduct.scss";
+import handlePrice from "../../../helpers/formatPrice";
 
 function OrderProduct(props) {
+  const { product } = props;
   return (
     <Media className="py-3 product-info">
-      <img alt="Sample Image" className="mr-3" src={image1} />
+      <img alt="" className="mr-3" src={image1} />
       <Media.Body className="product-body">
-        <h5>Macbook Pro Retina 13-inch 512GB</h5>
+        <h5>{product.name}</h5>
         <div className="sub-info">
-          <small>Color: Space Gray</small>
+          <small>Color: {product.color}</small>
         </div>
         <div className="d-flex justify-content-between">
           <p>
-            <small>x 1</small>
+            <small>x {product.quantity}</small>
           </p>
           <div>
-            <span className="old-price mx-2">
-              <small>23.000.000đ</small>
-            </span>
+            {product.oldPrice && (
+              <span className="old-price mx-2">
+                <small>
+                  {handlePrice(product.oldPrice)} <u>đ</u>
+                </small>
+              </span>
+            )}
+
             <span className="price">
-              <small className="font-weight-bold">23.000.000đ</small>
+              <small className="font-weight-bold">
+                {handlePrice(product.salePrice)} <u>đ</u>
+              </small>
             </span>
           </div>
         </div>
@@ -31,7 +39,5 @@ function OrderProduct(props) {
     </Media>
   );
 }
-
-OrderProduct.propTypes = {};
 
 export default OrderProduct;

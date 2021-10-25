@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   NavIconContainer,
   Icon,
@@ -13,9 +12,10 @@ import {
   EmptyComponent,
 } from "./style";
 import { NavLink, useLocation } from "react-router-dom";
+import { OrderStatus } from '../../../pages/Order/type';
 
-function Navbar(props) {
-  const orderStatus = [
+function Navbar() {
+  const OrderStatusNav = [
     {
       icon: "fas fa-vote-yea",
       href: "/your-orders",
@@ -24,27 +24,27 @@ function Navbar(props) {
     {
       icon: "fas fa-ellipsis-h",
       href: "/your-orders/placed-order",
-      title: "Placed order",
+      title: OrderStatus.PLACED_ORDER
     },
     {
       icon: "far fa-check-circle",
       href: "/your-orders/handling",
-      title: "In handling",
+      title: OrderStatus.IN_HANDLING
     },
     {
       icon: "fas fa-truck",
       href: "/your-orders/shipped",
-      title: "Shipped",
+      title: OrderStatus.SHIPPED
     },
     {
       icon: "fas fa-home",
       href: "/your-orders/deliveried",
-      title: "Deliveried",
+      title: OrderStatus.DELIVERIED
     },
     {
       icon: "far fa-times-circle",
       href: "/your-orders/cancelled",
-      title: "Cancelled",
+      title: OrderStatus.CANCELLED
     },
   ];
 
@@ -57,9 +57,12 @@ function Navbar(props) {
     <div className="container-fluid h-100">
       <div className="row h-100" style={NavTitleBackground}>
         <NavIconContainer className="col-2 p-0">
-          <ul className="list-unstyled py-2 position-sticky" style={{top: '70px'}}>
+          <ul
+            className="list-unstyled py-2 position-sticky"
+            style={{ top: "70px" }}
+          >
             <EmptyComponent />
-            {orderStatus.map((status) => (
+            {OrderStatusNav.map((status) => (
               <LinkContainer
                 className={getNavLinkClass(status.href)}
                 key={status.href}
@@ -76,16 +79,16 @@ function Navbar(props) {
         <div className="col-10 p-0">
           <ul
             className="list-unstyled  position-sticky"
-            style={{ marginLeft: "2em", paddingTop: "0.8em", top: '70px' }}
+            style={{ marginLeft: "2em", paddingTop: "0.8em", top: "70px" }}
           >
-            {orderStatus.map((status, index) => {
+            {OrderStatusNav.map((status, index) => {
               var nextTab =
-                index < orderStatus.length - 1 && orderStatus[index + 1];
+                index < OrderStatusNav.length - 1 && OrderStatusNav[index + 1];
               var nextActiveTab =
                 nextTab && nextTab.href === location.pathname
                   ? BorderBottomRadius
                   : null;
-              var prevTab = index > 0 && orderStatus[index - 1];
+              var prevTab = index > 0 && OrderStatusNav[index - 1];
               var prevActiveTab =
                 prevTab && prevTab.href === location.pathname
                   ? BorderTopRadius
@@ -94,7 +97,7 @@ function Navbar(props) {
               return (
                 <React.Fragment key={status.href}>
                   {index === 0 ? (
-                    <NavTitleWrapper >
+                    <NavTitleWrapper>
                       <NavTitleContainer
                         style={
                           status.href === location.pathname
@@ -106,17 +109,17 @@ function Navbar(props) {
                       </NavTitleContainer>
                     </NavTitleWrapper>
                   ) : null}
-                  <NavTitleWrapper
-                    className={getNavLinkClass(status.href)}
-                  >
+                  <NavTitleWrapper className={getNavLinkClass(status.href)}>
                     <NavTitleContainer
                       className={getNavLinkClass(status.href)}
                       style={prevActiveTab || nextActiveTab}
                     >
-                      <NavTitle to={status.href} exact>{status.title}</NavTitle>
+                      <NavTitle to={status.href} exact>
+                        {status.title}
+                      </NavTitle>
                     </NavTitleContainer>
                   </NavTitleWrapper>
-                  {index === orderStatus.length - 1 &&
+                  {index === OrderStatusNav.length - 1 &&
                   status.href === location.pathname ? (
                     <NavTitleWrapper>
                       <NavTitleContainer style={BorderTopRadius}>
@@ -134,6 +137,5 @@ function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {};
 
 export default Navbar;

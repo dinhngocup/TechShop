@@ -53,7 +53,7 @@ function App() {
                 <PrivateRoute path="/check-out">
                   <ShoppingCart />
                 </PrivateRoute>
-                <PrivateRoute path={["/your-orders"]}>
+                <PrivateRoute path={["/your-orders", "/your-orders/:orderStatus","/your-orders/:orderStatus/:orderId"]}>
                   <OrderPage />
                 </PrivateRoute>
               </Switch>

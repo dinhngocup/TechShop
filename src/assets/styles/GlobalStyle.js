@@ -59,7 +59,8 @@ const GlobalStyle = createGlobalStyle`{
         --nav-order-primary-font-color: #6a5bde;
         --nav-order-primary-font-color1: #6a5bd4;
         --nav-order-primary-font-color3: #6a5bd4;
-
+        --order-detail-background: #fffefb;
+        --order-status-font-color: #2dc258;
 
 }`;
 export default GlobalStyle;

@@ -2,7 +2,7 @@
     // background-color: #f5f5f5;
     box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.2);
     .header {
-        border-bottom: 1px dotted #e8e8e8;
+        border-bottom: 1px dotted var(--border-color);
         font-size: smaller;
         a {
             color: rgba(0, 0, 0, 0.54);
@@ -27,7 +27,7 @@
         }
     }
     .order-process {
-        border: 1px dashed #e8e8e8;
+        border: 1px dashed var(--border-color);
         .bs-wizard-step {
             .order-status-label {
                 margin-bottom: 40px;
@@ -45,7 +45,7 @@
                 margin-bottom: 20px;
                 height: 8px;
                 .progress-bar {
-                    background-color: #2dc258;
+                    background-color: var(--order-status-font-color);
                     transition: none !important;
                 }
             }
@@ -85,9 +85,9 @@
                 }
                 i {
                     font-size: xx-large;
-                    color: #e8e8e8;
+                    color: var(--border-color);
                     padding: 15px;
-                    border: 3px #e8e8e8 solid;
+                    border: 3px var(--border-color) solid;
                     border-radius: 50%;
                     background: white;
                 }
@@ -97,56 +97,33 @@
             &.complete {
                 .bs-wizard-dot {
                     i {
-                        color: #2dc258;
-                        border: 3px #2dc258 solid;
+                        color: var(--order-status-font-color);
+                        border: 3px var(--order-status-font-color) solid;
                     }
                 }
             }
         }
     }
     .shipping-address {
-        border: 1px dashed #e8e8e8;
+        border: 1px dashed var(--border-color);
         background-color: #fffcf5;
         .shipper,
         .buyer-info {
             color: rgba(0, 0, 0, 0.54);
         }
         .buyer {
-            border-right: 1px solid #e8e8e8;
+            border-right: 1px solid var(--border-color);
         }
-        .order-action {
-            .action-container {
-                display: flex;
-                justify-content: flex-end;
-                padding: 10px 0;
-                border-bottom: 1px dotted #e8e8e8;
-                button {
-                    width: 35% !important;
-                    background-color: white;
-                    color: #555;
-                    border: 1px solid rgba(0, 0, 0, 0.09);
-                    &:hover {
-                        background-color: #fffcf5;
-                    }
-                    &.main-btn {
-                        background-color: var(--primary-background);
-                        color: white;
-                        &:hover {
-                            opacity: 0.8;
-                        }
-                    }
-                }
-            }
-        }
+        
     }
     .total {
-        border-bottom: 1px dotted #e8e8e8;
+        border-bottom: 1px dotted var(--border-color);
         font-size: small;
         .total-order-label {
             color: rgba(0, 0, 0, 0.5);
         }
         .total-order {
-            border-left: 1px dotted #e8e8e8;
+            border-left: 1px dotted var(--border-color);
             width: 20%;
             text-align: right;
         }
