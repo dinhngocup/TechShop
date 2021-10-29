@@ -161,14 +161,13 @@ function DetailedOrder(props) {
           </tfoot>
         </table>
       </div>
-      {productModalInfo !== null ? (
-        <ReviewModal
-          productModalInfo={productModalInfo}
-          updateReviewStatus={updateReviewStatus}
-        />
-      ) : (
-        ""
-      )}
+      {productModalInfo !== null
+        ? ""
+        : // <ReviewModal
+          //   productModalInfo={productModalInfo}
+          //   updateReviewStatus={updateReviewStatus}
+          // />
+          ""}
     </div>
   );
 }

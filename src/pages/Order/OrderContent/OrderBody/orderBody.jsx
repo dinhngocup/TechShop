@@ -34,7 +34,11 @@ function OrderBody(props) {
           <div className="status-description">
             <small>{order.orderStatusNote}</small>
           </div>
-          <OrderAction orderStatus={order.orderStatus} isDetailedOrder={false}/>
+          <OrderAction
+            orderStatus={order.orderStatus}
+            orderId={order.orderId}
+            isDetailedOrder={false}
+          />
         </div>
       </div>
     </div>
@@ -43,4 +47,4 @@ function OrderBody(props) {
 
 OrderBody.propTypes = {};
 
-export default OrderBody;
+export default React.memo(OrderBody);

@@ -1,0 +1,19 @@
+.modal-confirm {
+    textarea {
+        width: 100%;
+    }
+    .modal-body {
+        i {
+            font-size: 10em;
+        }
+        .unsuccess {
+            color: var(--icon-unsuccessful-modal);
+        }
+        .success {
+            color:var(--icon-successful-modal);
+        }
+        .cancel {
+            color:var(--icon-cancel-modal);
+        }
+    }
+}

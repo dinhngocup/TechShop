@@ -7,6 +7,7 @@ import reducerProduct from "../utilities/slices/productSlice";
 import reducerCart from "../utilities/slices/cartSlice";
 import reducerWishList from "../utilities/slices/wishListSlice";
 import reducerUser from "../utilities/slices/userSlice";
+import reducerOrderModal from '../utilities/slices/orderModalSlice'
 
 const rootReducer = {
   productModal: reducerProductModal,
@@ -17,6 +18,7 @@ const rootReducer = {
   cart: reducerCart,
   wishList: reducerWishList,
   user: reducerUser,
+  orderModal: reducerOrderModal,
 };
 const store = configureStore({
   reducer: rootReducer,

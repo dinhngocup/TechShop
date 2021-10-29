@@ -173,57 +173,348 @@ const OrderApi = {
     // });
   },
   getOrder: async (id) => {
-    return {
-      orderId: "3423948230X",
-      orderStatusDetail: "Waiting to confirm by TechShop",
-      orderStatus: "Placed Order",
-      totalItems: 3,
-      total: 23000000,
-      orderStatusNote: "Your order are being processed by TechShop",
-      products: [
-        {
-          productId: "1",
-          name: "Macbook Pro Retina 13-inch 512GB",
-          image: "",
-          color: "Space Gray",
-          quantity: 1,
-          oldPrice: "23.000.000đ",
-          salePrice: "23.000.000đ",
-          total: "23.000.000đ",
-        },
-        {
-          productId: "2",
-          name: "Macbook Pro Retina 13-inch 512GB",
-          image: "",
-          color: "Space Gray",
-          quantity: 1,
-          oldPrice: "23.000.000đ",
-          salePrice: "23.000.000đ",
-          total: "23.000.000đ",
-        },
-        {
-          productId: "3",
-          name: "Macbook Pro Retina 13-inch 512GB",
-          image: "",
-          color: "Space Gray",
-          quantity: 1,
-          oldPrice: "23.000.000đ",
-          salePrice: "23.000.000đ",
-          total: "23.000.000đ",
-        },
-      ],
-      shipperInfo: {
-        name: "Mr Nguyen Van A",
-        phone: "0904588091",
-        fee: 10000,
-      },
-      shippingInfo: {
-        fullname: "Dinh Ngoc Uyen Phuong",
-        address:
-          "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-        phone: "0904588091",
-      },
-    };
+    switch (id) {
+      case "order1":
+        return {
+          orderId: "order1",
+          orderStatusDetail: "Waiting to confirm by TechShop",
+          orderStatus: "Placed Order",
+          totalItems: 3,
+          total: 23000000,
+          orderStatusNote: "Your order are being processed by TechShop",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "3",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+          },
+        };
+      case "order2":
+        return {
+          orderId: "order2",
+          orderStatusDetail: "Packaging and delivering to shipper",
+          orderStatus: "In Handling",
+          totalItems: 2,
+          total: 12000000,
+          orderStatusNote: "Your order was already being packaged up.",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            inHandling: "13:09 02-10-2021",
+            shipped: "",
+            deliveried: "",
+          },
+        };
+      case "order3":
+        return {
+          orderId: "order3",
+          orderStatusDetail: "On the way",
+          orderStatus: "Shipped",
+          totalItems: 2,
+          total: 23000000,
+          orderStatusNote:
+            "Your package is going to be delivered on the scheduled delivery date",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 05-10-2021",
+            inHandling: "10:03 06-10-2021",
+            shipped: "10:03 07-10-2021",
+            deliveried: "",
+          },
+        };
+      case "order4":
+        return {
+          orderId: "order4",
+          orderStatusDetail: "Deliveried Successfully",
+          orderStatus: "Shipped",
+          totalItems: 3,
+          total: 23000000,
+          orderStatusNote:
+            "Your package is deliveried successfully. Please confirm it.",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            inHandling: "11:29 04-10-2021",
+            shipped: "10:03 06-10-2021",
+            deliveried: "",
+          },
+        };
+      case "order5":
+        return {
+          orderId: "order5",
+          orderStatusDetail: "Received Package Successfuly",
+          orderStatus: "Deliveried",
+          totalItems: 3,
+          total: 23000000,
+          orderStatusNote: "",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            inHandling: "11:29 01-10-2021",
+            shipped: "10:03 06-10-2021",
+            deliveried: "10:03 06-10-2021",
+          },
+        };
+      case "order6":
+        return {
+          orderId: "order6",
+          orderStatusDetail: "Return Package",
+          orderStatus: "Deliveried",
+          totalItems: 3,
+          total: 23000000,
+          orderStatusNote: "The reason why you want to return package",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            inHandling: "11:29 01-10-2021",
+            shipped: "10:03 06-10-2021",
+            deliveried: "10:03 06-10-2021",
+          },
+        };
+      case "order7":
+        return {
+          orderId: "order7",
+          orderStatusDetail: "Cancelled",
+          orderStatus: "Cancelled",
+          totalItems: 3,
+          total: 23000000,
+          orderStatusNote: "Your cancelled order: Oct 14, 2021",
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          ],
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            cancelled: "11:29 04-10-2021",
+          },
+        };
+        default:
+          break;
+    }
 
     // call api from BE
     // const url = `${UrlConstant.GET_DETAILED_ORDER}/${id}`;

@@ -57,7 +57,7 @@ function CheckOut(props) {
         .then((res) => {
           //console.log(res);
           setLoading(false);
-          history.push("/your-orders");
+          history.push("/your-orders/placed-order");
           // clear all data in check out and cart
           dispatch(clearAll());
         })

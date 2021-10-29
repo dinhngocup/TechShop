@@ -3,26 +3,33 @@ import starIcon from "../../../assets/images/review.jpeg";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "reactstrap";
 import "./_reviewModal.scss";
+import image1 from "../../../assets/images/headphone1.jpeg";
 
 function ReviewModal(props) {
-  const { productModalInfo, updateReviewStatus } = props;
-  
+  console.log("review")
+  // const { updateReviewStatus } = props;
+  const productModalInfo = {
+    productID: "2",
+    orderID: "23",
+    productImage: image1,
+    productName: "Macbook Pro Retina 13-inch 512GB",
+  };
   const [review, setReview] = useState({
     reviewContent: "",
     rating: 0,
   });
   const [isReviewed, setIsReviewed] = useState(false);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setIsReviewed(false);
-    setReview({
-      reviewContent: "",
-      rating: 0,
-    });
-  }, [productModalInfo]);
+  
+  // useEffect(() => {
+  //   setIsReviewed(false);
+  //   setReview({
+  //     reviewContent: "",
+  //     rating: 0,
+  //   });
+  // }, [productModalInfo]);
 
   const rate = (rate) => {
-    //console.log(rate);
     let stars = document.getElementById("rate").querySelectorAll("svg");
     for (let index = 4; index >= 0; index--) {
       if (index >= rate)
@@ -60,7 +67,7 @@ function ReviewModal(props) {
         });
     };
     addReview(body);
-    updateReviewStatus(productID);
+    // updateReviewStatus(productID);
     setIsReviewed(true);
   };
   const renderReviewBtn = (loading, productModalInfo) => {

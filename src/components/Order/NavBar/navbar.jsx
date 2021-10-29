@@ -12,45 +12,45 @@ import {
   EmptyComponent,
 } from "./style";
 import { NavLink, useLocation } from "react-router-dom";
-import { OrderStatus } from '../../../pages/Order/type';
+import { OrderStatus } from "../../../pages/Order/type";
 
 function Navbar() {
   const OrderStatusNav = [
-    {
-      icon: "fas fa-vote-yea",
-      href: "/your-orders",
-      title: "All",
-    },
+    // {
+    //   icon: "fas fa-vote-yea",
+    //   href: "/your-orders",
+    //   title: "All",
+    // },
     {
       icon: "fas fa-ellipsis-h",
       href: "/your-orders/placed-order",
-      title: OrderStatus.PLACED_ORDER
+      title: OrderStatus.PLACED_ORDER,
     },
     {
       icon: "far fa-check-circle",
       href: "/your-orders/handling",
-      title: OrderStatus.IN_HANDLING
+      title: OrderStatus.IN_HANDLING,
     },
     {
       icon: "fas fa-truck",
       href: "/your-orders/shipped",
-      title: OrderStatus.SHIPPED
+      title: OrderStatus.SHIPPED,
     },
     {
       icon: "fas fa-home",
       href: "/your-orders/deliveried",
-      title: OrderStatus.DELIVERIED
+      title: OrderStatus.DELIVERIED,
     },
     {
       icon: "far fa-times-circle",
       href: "/your-orders/cancelled",
-      title: OrderStatus.CANCELLED
+      title: OrderStatus.CANCELLED,
     },
   ];
 
   const location = useLocation();
   const getNavLinkClass = (path) => {
-    return location.pathname === path ? "active" : "";
+    return location.pathname.includes(path) ? "active" : "";
   };
 
   return (
@@ -85,12 +85,12 @@ function Navbar() {
               var nextTab =
                 index < OrderStatusNav.length - 1 && OrderStatusNav[index + 1];
               var nextActiveTab =
-                nextTab && nextTab.href === location.pathname
+                nextTab && location.pathname.includes(nextTab.href)
                   ? BorderBottomRadius
                   : null;
               var prevTab = index > 0 && OrderStatusNav[index - 1];
               var prevActiveTab =
-                prevTab && prevTab.href === location.pathname
+                prevTab && location.pathname.includes(prevTab.href)
                   ? BorderTopRadius
                   : null;
 
@@ -100,7 +100,7 @@ function Navbar() {
                     <NavTitleWrapper>
                       <NavTitleContainer
                         style={
-                          status.href === location.pathname
+                          location.pathname.includes(status.href)
                             ? BorderBottomRadius
                             : null
                         }
@@ -114,13 +114,13 @@ function Navbar() {
                       className={getNavLinkClass(status.href)}
                       style={prevActiveTab || nextActiveTab}
                     >
-                      <NavTitle to={status.href} exact>
+                      <NavTitle to={status.href}>
                         {status.title}
                       </NavTitle>
                     </NavTitleContainer>
                   </NavTitleWrapper>
                   {index === OrderStatusNav.length - 1 &&
-                  status.href === location.pathname ? (
+                  location.pathname.includes(status.href) ? (
                     <NavTitleWrapper>
                       <NavTitleContainer style={BorderTopRadius}>
                         <EmptyComponent />
@@ -136,6 +136,5 @@ function Navbar() {
     </div>
   );
 }
-
 
 export default Navbar;

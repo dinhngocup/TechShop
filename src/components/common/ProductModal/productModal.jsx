@@ -19,7 +19,7 @@ function ProductModal(props) {
         className="modal-dialog modal-lg modal-dialog-centered"
         role="document"
       >
-        <div className="modal-content">
+        <div className="modal-content large-content-modal">
           <div className="modal-header">
             <button
               type="button"

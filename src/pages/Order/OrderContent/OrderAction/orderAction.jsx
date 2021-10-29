@@ -1,18 +1,18 @@
 import React from "react";
-import { OrderStatus } from "../../type";
 import OrderButton from "../../../../components/Order/OrderAction/orderButton";
+import { OrderActionName, OrderStatus } from "../../type";
 
 function OrderAction(props) {
-  const { orderStatus, isDetailedOrder } = props;
+  const { orderStatus, isDetailedOrder, orderId } = props;
+
   const renderOrderActionButton = () => {
-    let orderButtons;
+    let orderButtons = [];
     switch (orderStatus) {
       case OrderStatus.PLACED_ORDER:
       case OrderStatus.IN_HANDLING:
         orderButtons = [
           {
-            btnName: "Cancel Order",
-            onclickFunc: () => {},
+            btnName: OrderActionName.CANCEL_ORDER,
             isMainBtn: true,
           },
         ];
@@ -20,63 +20,52 @@ function OrderAction(props) {
       case OrderStatus.SHIPPED:
         orderButtons = [
           {
-            btnName: "Received",
-            onclickFunc: () => {},
+            btnName: OrderActionName.RECEIVED,
             isMainBtn: true,
           },
           {
-            btnName: "Return Package",
-            onclickFunc: () => {},
+            btnName: OrderActionName.RETURN_PACKAGE,
             isMainBtn: false,
           },
         ];
         break;
       case OrderStatus.DELIVERIED:
-        orderButtons = [
-          {
-            btnName: "Rate & Review",
-            onclickFunc: () => {},
-            isMainBtn: true,
-          },
-          {
-            btnName: "Buy Again",
-            onclickFunc: () => {},
-            isMainBtn: false,
-          },
-        ];
-        break;
-      case OrderStatus.CANCELLED:
-        orderButtons = [
-          {
-            btnName: "Buy Again",
-            onclickFunc: () => {},
-            isMainBtn: true,
-          },
-        ];
+        if (isDetailedOrder) {
+          orderButtons = [
+            {
+              btnName: "Rate & Review",
+              onclickFunc: () => {},
+              isMainBtn: true,
+            },
+          ];
+        }
         break;
       default:
         break;
     }
-    orderButtons.push({
-      btnName: "View Details",
-      onclickFunc: () => {},
-      isMainBtn: false,
-    });
+    const isMainButton = orderButtons.length === 0 ? true : false;
+    if (!isDetailedOrder) {
+      orderButtons.push({
+        btnName: OrderActionName.VIEW_DETAIL,
+        onclickFunc: () => {},
+        isMainBtn: isMainButton,
+      });
+    }
     return orderButtons.map((button) =>
       isDetailedOrder ? (
         <div className="action-container" key={button.btnName}>
           <OrderButton
+            orderId={orderId}
             isMainBtn={button.isMainBtn}
             btnName={button.btnName}
-            onclickFunc={button.onclickFunc}
           />
         </div>
       ) : (
         <OrderButton
+          orderId={orderId}
           key={button.btnName}
           isMainBtn={button.isMainBtn}
           btnName={button.btnName}
-          onclickFunc={button.onclickFunc}
         />
       )
     );

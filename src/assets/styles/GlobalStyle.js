@@ -57,10 +57,11 @@ const GlobalStyle = createGlobalStyle`{
         --nav-container-icon-background: #5c4bdb;
         --nav-order-list-background: #6857F6;
         --nav-order-primary-font-color: #6a5bde;
-        --nav-order-primary-font-color1: #6a5bd4;
-        --nav-order-primary-font-color3: #6a5bd4;
         --order-detail-background: #fffefb;
         --order-status-font-color: #2dc258;
+        --icon-successful-modal: rgb(0,153,0);
+        --icon-unsuccessful-modal: red;
+        --icon-cancel-modal: red;
 
 }`;
 export default GlobalStyle;

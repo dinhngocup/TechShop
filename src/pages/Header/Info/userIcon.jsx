@@ -18,7 +18,7 @@ function UserIcon() {
     return (
       <div className="dropdown">
         <NavLink to={`/profile`}>Profile</NavLink>
-        <NavLink to={`/your-orders`}>Your Orders</NavLink>
+        <NavLink to={`/your-orders/placed-order`}>Your Orders</NavLink>
         <NavLink to={`/wish-list`}>Wish List</NavLink>
         <div onClick={logout}>Logout</div>
       </div>

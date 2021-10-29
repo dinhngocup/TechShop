@@ -73,22 +73,53 @@
                     width: 100%;
                 }
             }
+            // .bs-wizard-dot {
+            //     position: absolute; // so với progress
+            //     width: 30px;
+            //     height: 30px;
+            //     left: 50%; // left so với cái progess, vì progress dùng relative nên này dùng absolute
+            //     margin-left: -15px;
+            //     margin-top: -40px;
+            //     &:hover {
+            //         text-decoration: none;
+            //     }
+            //     i {
+            //         font-size: xx-large;
+            //         color: var(--border-color);
+            //         padding: 15px;
+            //         border: 3px var(--border-color) solid;
+            //         border-radius: 50%;
+            //         background: white;
+            //     }
+
+            // }
+            // // &.complete,
+            // &.active,
+            // &.complete {
+            //     .bs-wizard-dot {
+            //         i {
+            //             color: var(--order-status-font-color);
+            //             border: 3px var(--order-status-font-color) solid;
+            //         }
+            //     }
+            // }
             .bs-wizard-dot {
                 position: absolute; // so với progress
                 width: 30px;
                 height: 30px;
                 left: 50%; // left so với cái progess, vì progress dùng relative nên này dùng absolute
-                margin-left: -15px;
-                margin-top: -40px;
+                margin-left: -30px;
+                top: 30%;
+                background: white;
+                padding: 30px;
+                border-radius: 50%;
+                border: 3px var(--border-color) solid;
                 &:hover {
                     text-decoration: none;
                 }
                 i {
                     font-size: xx-large;
                     color: var(--border-color);
-                    padding: 15px;
-                    border: 3px var(--border-color) solid;
-                    border-radius: 50%;
                     background: white;
                 }
             }
@@ -96,9 +127,9 @@
             &.active,
             &.complete {
                 .bs-wizard-dot {
+                    border: 3px var(--order-status-font-color) solid;
                     i {
                         color: var(--order-status-font-color);
-                        border: 3px var(--order-status-font-color) solid;
                     }
                 }
             }
@@ -114,7 +145,6 @@
         .buyer {
             border-right: 1px solid var(--border-color);
         }
-        
     }
     .total {
         border-bottom: 1px dotted var(--border-color);

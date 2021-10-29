@@ -1,16 +1,44 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import './_orderButton.scss'
+import { useDispatch } from "react-redux";
+import { OrderActionName } from "../../../pages/Order/type";
+import { updateOrderModal } from "../../../utilities/slices/orderModalSlice";
+import "./_orderButton.scss";
+import { useLocation, useHistory } from "react-router-dom";
 
 function OrderButton(props) {
-  const { isMainBtn, btnName, onclickFunc } = props;
+  const { isMainBtn, btnName, orderId } = props;
+  const dispatch = useDispatch();
+  const currentPath = useLocation().pathname;
+  const history = useHistory();
+
+  const updateModalInfo = () => {
+    if (btnName === OrderActionName.VIEW_DETAIL) {
+      history.push(`${currentPath}/${orderId}`, { from: currentPath } );
+    }
+    dispatch(updateOrderModal({ btnName, orderId }));
+  };
+
+  const dataTargetButton = () => {
+    switch (btnName) {
+      case OrderActionName.CANCEL_ORDER:
+      case OrderActionName.RECEIVED:
+      case OrderActionName.RETURN_PACKAGE:
+        return "#modalConfirm";
+      case OrderActionName.RATE:
+        return "#reviewModal";
+      default:
+        break;
+    }
+  };
   return (
-      <Button
-        className={`${isMainBtn ? "main-btn" : ""}`}
-        onClick={onclickFunc}
-      >
-        {btnName}
-      </Button>
+    <button
+      data-toggle="modal"
+      data-target={`${dataTargetButton()}`}
+      className={`${isMainBtn ? "main-btn" : ""} btn`}
+      onClick={updateModalInfo}
+    >
+      {btnName}
+    </button>
   );
 }
 

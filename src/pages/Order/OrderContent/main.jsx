@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { Route, useLocation } from "react-router-dom";
 import OrderApi from "../../../api/orderApi";
+import ModalConfirm from '../../../components/Order/ModalConfirm/modalConfirm';
 import OrderBody from "./OrderBody/orderBody";
 import OrderDetail from "./OrderDetail/orderDetail";
 
 function OrderContent(props) {
   const tabName = useLocation().pathname.replace("/your-orders", "");
+
   const [listOrder, setListOrder] = useState();
+
+  const {modalType, orderId} = useSelector(state => state.orderModal);
+  
   useEffect(() => {
     let invoiceStatus;
     const orderData = async () => {
@@ -38,6 +44,7 @@ function OrderContent(props) {
     }
     orderData();
   }, [tabName]);
+
   return (
     <>
       <Route exact path="/your-orders/:orderStatus">
@@ -47,8 +54,10 @@ function OrderContent(props) {
           ))}
       </Route>
       <Route path="/your-orders/:orderStatus/:orderId">
-        <OrderDetail orderId="3423948230X" />
+        <OrderDetail/>
       </Route>
+      <ModalConfirm modalType={modalType} orderId={orderId}/>
+      
     </>
   );
 }

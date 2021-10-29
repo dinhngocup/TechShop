@@ -1,45 +1,95 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import OrderProduct from "../../../../components/Order/Product/orderProduct";
-import handlePrice from "../../../../helpers/formatPrice";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
+import OrderApi from "../../../../api/orderApi";
+import OrderProduct from "../../../../components/Order/Product/orderProduct";
+import ReviewModal from "../../../../components/Order/ReviewModal/reviewModal";
+import handlePrice from "../../../../helpers/formatPrice";
+import { OrderStatus } from "../../type";
 import OrderAction from "../OrderAction/orderAction";
 import "./_orderDetail.scss";
-import OrderApi from "../../../../api/orderApi";
 
 function OrderDetail(props) {
-  const { orderId } = props;
+  const history = useHistory();
+  const params = useParams();
+  const orderId = params.orderId;
+
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState(true);
-  const progressList = [
+
+  let progressList = [
     {
-      orderStatusLabel: "Placed Order",
+      orderStatusLabel: OrderStatus.PLACED_ORDER,
       icon: "fas fa-ellipsis-h",
-      orderTime: "11:29 01-10-2021",
-      active: "complete",
     },
     {
-      orderStatusLabel: "In Handling",
+      orderStatusLabel: OrderStatus.IN_HANDLING,
       icon: "fas fa-check",
-      orderTime: "11:29 01-10-2021",
-      active: "complete",
     },
     {
-      orderStatusLabel: "Shipped",
+      orderStatusLabel: OrderStatus.SHIPPED,
       icon: "fas fa-truck",
-      orderTime: "11:29 01-10-2021",
-      active: "active",
     },
     {
-      orderStatusLabel: "Deliveried",
+      orderStatusLabel: OrderStatus.DELIVERIED,
       icon: "fas fa-home",
-      orderTime: "11:29 01-10-2021",
-      active: "disable",
     },
   ];
 
-  const renderProgress = () => {
-    return progressList.map((progress) => (
+  const renderProgress = (orderProgessDetail) => {
+    if (orderProgessDetail.cancelled) {
+      progressList = [
+        {
+          orderStatusLabel: OrderStatus.PLACED_ORDER,
+          icon: "fas fa-ellipsis-h",
+        },
+        {
+          orderStatusLabel: OrderStatus.CANCELLED,
+          icon: "fas fa-times",
+        },
+      ];
+    }
+    const progressDetail = progressList.map((progress) => {
+      switch (progress.orderStatusLabel) {
+        case OrderStatus.PLACED_ORDER:
+          progress.orderTime = orderProgessDetail.placedOrder;
+          progress.active =
+            orderProgessDetail.inHandling || orderProgessDetail.cancelled
+              ? "complete"
+              : "active";
+          break;
+        case OrderStatus.IN_HANDLING:
+          progress.orderTime = orderProgessDetail.inHandling || "";
+          progress.active = orderProgessDetail.inHandling
+            ? orderProgessDetail.shipped
+              ? "complete"
+              : "active"
+            : "disable";
+          break;
+        case OrderStatus.SHIPPED:
+          progress.orderTime = orderProgessDetail.shipped || "";
+          progress.active = orderProgessDetail.shipped
+            ? orderProgessDetail.deliveried
+              ? "complete"
+              : "active"
+            : "disable";
+          break;
+        case OrderStatus.DELIVERIED:
+          progress.orderTime = orderProgessDetail.deliveried || "";
+          progress.active = orderProgessDetail.deliveried
+            ? "active"
+            : "disable";
+          break;
+        case OrderStatus.CANCELLED:
+          progress.orderTime = orderProgessDetail.cancelled || "";
+          progress.active = "active";
+          break;
+        default:
+          break;
+      }
+      return progress;
+    });
+    return progressDetail.map((progress) => (
       <div
         className={`col bs-wizard-step ${progress.active} p-0`}
         key={progress.icon}
@@ -78,7 +128,9 @@ function OrderDetail(props) {
   ) : (
     <div className="order-detail">
       <div className="d-flex justify-content-between py-3 px-4 text-uppercase header">
-        <NavLink to="/your-orders">
+        <NavLink
+          to={history.location.state?.from || "/your-orders/placed-order"}
+        >
           <i className="fas fa-chevron-left mr-2"></i>Back
         </NavLink>
         <div className="sub-title">
@@ -88,7 +140,9 @@ function OrderDetail(props) {
       </div>
       <div className="order-process px-4 py-5">
         <div className="container-fluid">
-          <div className="row bs-wizard">{renderProgress()}</div>
+          <div className="row bs-wizard">
+            {renderProgress(order.orderProgessDetail)}
+          </div>
         </div>
       </div>
 
@@ -120,6 +174,7 @@ function OrderDetail(props) {
           </div>
           <div className="col-8 order-action">
             <OrderAction
+              orderId={order.orderId}
               orderStatus={order.orderStatus}
               isDetailedOrder={true}
             />
@@ -153,20 +208,21 @@ function OrderDetail(props) {
       ) : (
         ""
       )} */}
-      <div className="total d-flex justify-content-end pr-4 align-items-center">
+      {/* <div className="total d-flex justify-content-end pr-4 align-items-center">
         <div className="total-order-label pr-3 py-2">Coupon</div>
         <div className="total-order py-2">-10.000đ</div>
-      </div>
+      </div> */}
       <div className="total d-flex justify-content-end pr-4 align-items-center">
         <div className="total-order-label pr-3 py-2">Total</div>
         <div className="total-order py-2 final-price">
           {handlePrice(order.total)} <u>đ</u>
         </div>
       </div>
+      {order.orderStatus === OrderStatus.DELIVERIED ? <ReviewModal /> : ""}
     </div>
   );
 }
 
 OrderDetail.propTypes = {};
 
-export default OrderDetail;
+export default React.memo(OrderDetail);
