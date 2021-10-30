@@ -4,29 +4,34 @@
         height: 450px;
     }
 }
-.review-modal-header {
-    line-height: 20px;
-    display: flex;
-    align-items: center;
-    img {
-        height: 50px;
-        width: 50px;
-        margin: 0px 12px 0px 0px;
-    }
-    .product-name {
-        font-weight: 600;
-        letter-spacing: 1px;
-    }
-    .supplier {
-        font-size: small;
-        color: rgb(153, 153, 153);
-    }
-}
 .review-modal-body {
+    overflow: scroll;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
+    .product-review {
+        border-bottom: 1px dashed var(--border-color);
+        img {
+            height: 100%;
+            width: 100px;
+        }
+        .rate-star {
+            font-size: smaller;
+            display: flex;
+            justify-content: center;
+            svg {
+                width: 20px;
+                height: 20px;
+                color: var(--review-star-border);
+            }
+            flex-direction: row;
+            &.rated {
+                flex-direction: row;
+            }
+            &.unrated {
+                flex-direction: row-reverse;
+            }
+        }
+    }
     .rate-area {
         margin: 20px 0;
         font-weight: 600;
@@ -35,20 +40,10 @@
         div {
             margin-bottom: 12px;
         }
-        .rate-star {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: center;
-            svg {
-                margin: 0px 8px;
-                font-size: xx-large;
-                color: var(--review-star-border);
-            }
-        }
     }
     svg:hover,
     svg:hover ~ svg {
-        path {
+        .unrate-star {
             fill: var(--review-star-background);
         }
     }
@@ -58,21 +53,21 @@
         padding: 12px;
         border-radius: 4px;
     }
-    .btn-review {
-        float: right;
-        background-color: var(--review-star-background);
+}
+.btn-review {
+    float: right;
+    background-color: var(--review-star-background);
 
-        color: rgb(36, 36, 36);
-        border-radius: 4px;
-        font-size: small;
-        button {
-            padding: 5px 15px;
-            background-color: var(--review-star-background);
-            border: var(--review-star-background);
-        }
-        .loading-review {
-            padding: 5px 30px;
-        }
+    color: rgb(36, 36, 36);
+    border-radius: 4px;
+    font-size: small;
+    button {
+        padding: 5px 15px;
+        background-color: var(--review-star-background);
+        border: var(--review-star-background);
+    }
+    .loading-review {
+        padding: 5px 30px;
     }
 }
 .reviewed-modal-body {

@@ -141,6 +141,23 @@ const OrderApi = {
               total: "23.000.000đ",
             },
           },
+          {
+            orderId: "order8",
+            orderStatusDetail: "Received Package Successfuly",
+            orderStatus: "Deliveried",
+            totalItems: 3,
+            total: 23000000,
+            orderStatusNote: "",
+            firstProduct: {
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+            },
+          },
         ];
       case "cancelled":
         return [
@@ -380,7 +397,7 @@ const OrderApi = {
           orderId: "order5",
           orderStatusDetail: "Received Package Successfuly",
           orderStatus: "Deliveried",
-          totalItems: 3,
+          totalItems: 5,
           total: 23000000,
           orderStatusNote: "",
           products: [
@@ -512,13 +529,82 @@ const OrderApi = {
             cancelled: "11:29 04-10-2021",
           },
         };
-        default:
-          break;
+      case "order8":
+        return {
+          orderId: "order8",
+          orderStatusDetail: "Received Package Successfuly",
+          orderStatus: "Deliveried",
+          totalItems: 5,
+          total: 23000000,
+          orderStatusNote: "",
+          isReviewed: true,
+          products: [
+            {
+              productId: "1",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+              reviewInfo: {
+                reviewContent: "Nice product!",
+                rating: 4,
+              },
+            },
+            {
+              productId: "2",
+              name: "Macbook Pro Retina 13-inch 512GB",
+              image: "",
+              color: "Space Gray",
+              quantity: 1,
+              oldPrice: "23.000.000đ",
+              salePrice: "23.000.000đ",
+              total: "23.000.000đ",
+              reviewInfo: {
+                reviewContent: "Incredible color",
+                rating: 4,
+              },
+            },
+          ],
+          shipperInfo: {
+            name: "Mr Nguyen Van A",
+            phone: "0904588091",
+            fee: 10000,
+          },
+          shippingInfo: {
+            fullname: "Dinh Ngoc Uyen Phuong",
+            address:
+              "28/27/44 Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+            phone: "0904588091",
+          },
+          orderProgessDetail: {
+            placedOrder: "11:29 01-10-2021",
+            inHandling: "11:29 01-10-2021",
+            shipped: "10:03 06-10-2021",
+            deliveried: "10:03 06-10-2021",
+          },
+        };
+      default:
+        break;
     }
 
     // call api from BE
     // const url = `${UrlConstant.GET_DETAILED_ORDER}/${id}`;
     // return axiosClientAuthen.get(url);
+  },
+  cancelOrder: async (id) => {
+    console.log(id);
+    return Promise.resolve();
+  },
+  returnOrder: async (id) => {
+    console.log(id);
+    return Promise.resolve();
+  },
+  receivedOrder: async (id) => {
+    console.log(id);
+    return Promise.resolve();
   },
 };
 export default OrderApi;

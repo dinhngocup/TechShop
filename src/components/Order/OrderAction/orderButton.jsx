@@ -25,6 +25,7 @@ function OrderButton(props) {
       case OrderActionName.RETURN_PACKAGE:
         return "#modalConfirm";
       case OrderActionName.RATE:
+      case OrderActionName.VIEW_RATE:
         return "#reviewModal";
       default:
         break;

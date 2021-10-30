@@ -3,7 +3,7 @@ import OrderButton from "../../../../components/Order/OrderAction/orderButton";
 import { OrderActionName, OrderStatus } from "../../type";
 
 function OrderAction(props) {
-  const { orderStatus, isDetailedOrder, orderId } = props;
+  const { orderStatus, isDetailedOrder, orderId, isReviewed } = props;
 
   const renderOrderActionButton = () => {
     let orderButtons = [];
@@ -33,7 +33,9 @@ function OrderAction(props) {
         if (isDetailedOrder) {
           orderButtons = [
             {
-              btnName: "Rate & Review",
+              btnName: isReviewed
+                ? OrderActionName.VIEW_RATE
+                : OrderActionName.RATE,
               onclickFunc: () => {},
               isMainBtn: true,
             },

@@ -9,14 +9,15 @@ const ReviewApi = {
   addReview: async (params) => {
     const url = `${UrlConstant.ADD_REVIEW}`;
     const body = JSON.stringify(params);
+    return Promise.resolve();
 
-    return axiosClientAuthen
-      .post(url, body)
+    // return axiosClientAuthen
+    //   .post(url, body)
 
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => Promise.reject(error));
+    //   .then((response) => {
+    //     return response;
+    //   })
+    //   .catch((error) => Promise.reject(error));
   },
 };
 export default ReviewApi;

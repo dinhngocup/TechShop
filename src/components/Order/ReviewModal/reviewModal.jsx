@@ -1,36 +1,23 @@
-import ReviewApi from "../../../api/reviewApi";
-import starIcon from "../../../assets/images/review.jpeg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Media from "react-bootstrap/Media";
 import { Spinner } from "reactstrap";
-import "./_reviewModal.scss";
 import image1 from "../../../assets/images/headphone1.jpeg";
+import "./_reviewModal.scss";
+import ReviewApi from '../../../api/reviewApi';
+import starIcon from "../../../assets/images/review.jpeg";
 
 function ReviewModal(props) {
-  console.log("review")
-  // const { updateReviewStatus } = props;
-  const productModalInfo = {
-    productID: "2",
-    orderID: "23",
-    productImage: image1,
-    productName: "Macbook Pro Retina 13-inch 512GB",
-  };
-  const [review, setReview] = useState({
-    reviewContent: "",
-    rating: 0,
-  });
+  const { order } = props;
   const [isReviewed, setIsReviewed] = useState(false);
-  const [loading, setLoading] = useState(false);
-  
-  // useEffect(() => {
-  //   setIsReviewed(false);
-  //   setReview({
-  //     reviewContent: "",
-  //     rating: 0,
-  //   });
-  // }, [productModalInfo]);
+  const [reviews, setReviews] = useState([]);
 
-  const rate = (rate) => {
-    let stars = document.getElementById("rate").querySelectorAll("svg");
+  
+  const [loading, setLoading] = useState(false);
+
+  const rate = (rate, productId) => {
+    let stars = document
+      .getElementById(`rating-${productId}`)
+      .querySelectorAll("svg");
     for (let index = 4; index >= 0; index--) {
       if (index >= rate)
         stars[index]
@@ -38,39 +25,124 @@ function ReviewModal(props) {
           .setAttribute("fill", " var(--review-star-background)");
       else stars[index].querySelector("path").setAttribute("fill", "none");
     }
-    setReview({
-      reviewContent: review.reviewContent,
+    const listReview = reviews;
+    for (let i = 0; i < listReview.length; i++) {
+      if (listReview[i].productId === productId) {
+        listReview[i].rating = 5 - rate;
+        setReviews([...listReview]);
+        return;
+      }
+    }
+    listReview.push({
       rating: 5 - rate,
+      productId,
     });
-    //setRating(5 - rate);
+    setReviews([...listReview]);
   };
 
-  const submitReview = (productID, orderID) => {
+  const updateReview = (review, productId) => {
+    const listReview = reviews;
+    for (let i = 0; i < listReview.length; i++) {
+      if (listReview[i].productId === productId) {
+        listReview[i].reviewContent = review;
+        setReviews([...listReview]);
+        return;
+      }
+    }
+    listReview.push({
+      reviewContent: review,
+      productId,
+    });
+    setReviews([...listReview]);
+  };
+
+  const renderStarRating = (productId, reviewInfo) => {
+    let result = [];
+    for (let i = 0; i < 5; i++) {
+      result.push(
+        <svg
+          key={i}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+          onClick={reviewInfo ? null : () => rate(i, productId)}
+        >
+          <path
+            className={`${!reviewInfo ? "unrate-star" : ""}`}
+            fill={
+              reviewInfo && reviewInfo.rating > i
+                ? "var(--review-star-background)"
+                : "none"
+            }
+            fillRule="evenodd"
+            stroke="var(--review-star-border)"
+            strokeWidth="1.5"
+            d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
+          ></path>
+        </svg>
+      );
+    }
+    return result;
+  };
+
+  const renderAReview = (product) => (
+    <Media className="p-3 product-review">
+      <img alt="" className="mr-3" src={image1} />
+      <Media.Body className="d-flex flex-column justify-content-between">
+        <div className="d-flex justify-content-between">
+          <div>
+            <div>
+              <b>{product.name}</b>
+            </div>
+            <div>
+              <small>Provided by TechShop</small>
+            </div>
+          </div>
+          <div
+            className={`rate-star${product.reviewInfo ? " rated" : " unrated"}`}
+            id={`rating-${product.productId}`}
+          >
+            {renderStarRating(product.productId, product.reviewInfo)}
+          </div>
+        </div>
+        {product.reviewInfo ? (
+          <div>{product.reviewInfo.reviewContent}</div>
+        ) : (
+          <textarea
+            rows="1"
+            placeholder="Your review"
+            onChange={(e) => {
+              updateReview(e.target.value, product.productId);
+            }}
+          ></textarea>
+        )}
+      </Media.Body>
+    </Media>
+  );
+
+  const submitReview = () => {
     // call api post review
     // productID, orderID, review Content, rate
-    let body = {
-      orderID,
-      productID,
-      reviewContent: review.reviewContent,
-      rate: review.rating,
-    };
     const addReview = async (data) => {
       console.log(data);
       setLoading(true);
       return ReviewApi.addReview(data)
         .then((res) => {
-          //console.log(res);
+          console.log(res);
           setLoading(false);
+          setIsReviewed(true);
         })
         .catch((err) => {
           console.log(err);
         });
     };
+    let body = {
+      orderId: order.orderId,
+      reviewInfo: reviews
+    };
     addReview(body);
-    // updateReviewStatus(productID);
-    setIsReviewed(true);
   };
-  const renderReviewBtn = (loading, productModalInfo) => {
+
+  const renderReviewBtn = () => {
     if (loading) {
       return (
         <div className="text-center loading-review">
@@ -78,17 +150,17 @@ function ReviewModal(props) {
         </div>
       );
     }
+    let emptyRating = reviews.filter((review) => review.rating);
     return (
       <button
-        disabled={review.rating === 0 ? true : false}
-        onClick={() =>
-          submitReview(productModalInfo.productID, productModalInfo.orderID)
-        }
+        disabled={emptyRating.length !== order.products.length ? true : false}
+        onClick={submitReview}
       >
         Submit your review
       </button>
     );
   };
+
   const renderReviewArea = () => {
     return isReviewed ? (
       <div className="modal-body reviewed-modal-body">
@@ -107,13 +179,7 @@ function ReviewModal(props) {
     ) : (
       <React.Fragment>
         <div className="modal-header">
-          <div className="review-modal-header">
-            <img src={productModalInfo.productImage} alt="product" />
-            <div>
-              <div className="product-name">{productModalInfo.productName}</div>
-              <div className="supplier">Provided by TechShop</div>
-            </div>
-          </div>
+          <h5>Review your experience</h5>
           <button
             type="button"
             className="close"
@@ -123,107 +189,24 @@ function ReviewModal(props) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div className="modal-body review-modal-body">
-          <div className="rate-area">
-            <div>Vui lòng đánh giá</div>
-            <div className="rate-star" id="rate">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                onClick={() => rate(0)}
-              >
-                <path
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="var(--review-star-border)"
-                  strokeWidth="1.5"
-                  d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-                ></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                onClick={() => rate(1)}
-              >
-                <path
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="var(--review-star-border)"
-                  strokeWidth="1.5"
-                  d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-                ></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                onClick={() => rate(2)}
-              >
-                <path
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="var(--review-star-border)"
-                  strokeWidth="1.5"
-                  d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-                ></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                onClick={() => rate(3)}
-              >
-                <path
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="var(--review-star-border)"
-                  strokeWidth="1.5"
-                  d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-                ></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                onClick={() => rate(4)}
-              >
-                <path
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="var(--review-star-border)"
-                  strokeWidth="1.5"
-                  d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <textarea
-            rows="5"
-            placeholder="Your review"
-            value={review.reviewContent}
-            onChange={(e) => {
-              setReview({
-                reviewContent: e.target.value,
-                rating: review.rating,
-              });
-            }}
-          ></textarea>
-          <div>
-            <div className="btn-review">
-              {renderReviewBtn(loading, productModalInfo)}
-            </div>
-          </div>
+        <div className="modal-body review-modal-body p-0">
+          {order.products.map((product) => (
+            <React.Fragment key={product.productId}>
+              {renderAReview(product)}
+            </React.Fragment>
+          ))}
         </div>
+        {order.isReviewed ? (
+          ""
+        ) : (
+          <div className="modal-footer">
+            <div className="btn-review">{renderReviewBtn()}</div>
+          </div>
+        )}
       </React.Fragment>
     );
   };
+
   return (
     <div
       className="modal fade"

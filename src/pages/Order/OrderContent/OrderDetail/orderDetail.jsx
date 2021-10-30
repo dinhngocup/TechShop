@@ -176,6 +176,7 @@ function OrderDetail(props) {
             <OrderAction
               orderId={order.orderId}
               orderStatus={order.orderStatus}
+              isReviewed={order.isReviewed}
               isDetailedOrder={true}
             />
           </div>
@@ -218,7 +219,7 @@ function OrderDetail(props) {
           {handlePrice(order.total)} <u>đ</u>
         </div>
       </div>
-      {order.orderStatus === OrderStatus.DELIVERIED ? <ReviewModal /> : ""}
+      {order.orderStatus === OrderStatus.DELIVERIED ? <ReviewModal order={order} /> : ""}
     </div>
   );
 }
