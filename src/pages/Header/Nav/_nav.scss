@@ -14,7 +14,7 @@
                 &:hover {
                     a {
                         text-decoration: none;
-                        color: var(--primary-background);
+                        color: var(--header-font-color);
                         &:after {
                             width: 50%;
                         }
@@ -27,7 +27,7 @@
                         transition: 0.5s;
                         position: absolute;
                         content: "";
-                        background-color: var(--primary-background);
+                        background-color: var(--header-font-color);
 
                         height: 2px;
                         width: 0%;
@@ -40,11 +40,11 @@
                     }
                 }
                 .active {
-                    color: var(--primary-background);
+                    color: var(--header-font-color);
                     &:after {
                         position: absolute;
                         content: "";
-                        background-color: var(--primary-background);
+                        background-color: var(--header-font-color);
 
                         height: 2px;
                         width: 50%;
@@ -84,7 +84,7 @@
                                 color: var(--nav-modal-font-color);
                                 &:hover {
                                     padding-left: 8px;
-                                    color: var(--primary-background);
+                                    color: var(--header-font-color);
                                 }
                                 &:after {
                                     width: 0;
@@ -92,7 +92,7 @@
                                 &.active {
                                     font-weight: 600;
                                     padding-left: 15px;
-                                    color: var(--primary-background);
+                                    color: var(--header-font-color);
                                 }
                             }
                         }

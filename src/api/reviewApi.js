@@ -1,5 +1,4 @@
 import * as UrlConstant from "../utilities/UrlConstant";
-import axiosClientAuthen from "./axiosClientAuthen";
 import axiosClient from "./axiosClient";
 const ReviewApi = {
   getReviewsByProductIDByPagination: async (id, page, reviewsPerPage) => {
@@ -7,8 +6,8 @@ const ReviewApi = {
     return axiosClient.get(url);
   },
   addReview: async (params) => {
-    const url = `${UrlConstant.ADD_REVIEW}`;
-    const body = JSON.stringify(params);
+    // const url = `${UrlConstant.ADD_REVIEW}`;
+    // const body = JSON.stringify(params);
     return Promise.resolve();
 
     // return axiosClientAuthen

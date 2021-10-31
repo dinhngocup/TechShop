@@ -43,7 +43,8 @@
     }
 }
 .product-actions {
-    background-color: var(--main-info-background);
+    background-color: white;
+    border: 1px dashed var(--btn-add-to-cart-font);
     display: flex;
     padding: 10px 0px;
     color: var(--main-info-font-color);
@@ -51,6 +52,7 @@
     justify-content: center;
     text-align: center;
     &:hover {
+        border: 1px solid var(--btn-add-to-cart-font);
         color: var(--primary-background);
     }
 }

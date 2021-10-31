@@ -4,10 +4,9 @@
     .product-name {
         text-transform: uppercase;
         font-weight: 600;
-        color: var(--main-bold-info-font-color);
+        color: var(--product-card-name);
     }
     .product-price {
-        color: var(--primary-background);
         font-weight: 600;
     }
 }

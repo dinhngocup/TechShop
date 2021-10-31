@@ -1,5 +1,6 @@
 import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
+
 const ProductApi = {
   getAllProducts: async (params) => {
     //let { order } = params;
@@ -53,8 +54,86 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   getProposedProducts: async () => {
-    const url = `${UrlConstant.GET_PROPOSED_PRODUCTS}`;
-    return axiosClient.get(url);
+    const result = [
+      {
+        id: "1",
+        img: "",
+        name: "Apple Watch",
+        images:
+          "['images/headphone4.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-01 00:00:00",
+      },
+      {
+        id: "2",
+        img: "",
+        name: "IPhone X",
+        images:
+          "['images/headphone1.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-02 00:00:00",
+      },
+      {
+        id: "3",
+        img: "",
+        name: "IPhone XR",
+        images:
+          "['images/headphone2.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-23 00:00:00",
+      },
+      {
+        id: "4",
+        img: "",
+        name: "IPhone 12",
+        images:
+          "['images/headphone3.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-01 00:00:00",
+      },
+      {
+        id: "5",
+        img: "",
+        name: "Macbook Pro",
+        images:
+          "['images/headphone6.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-10 00:00:00",
+      },
+      {
+        id: "6",
+        img: "",
+        name: "Macbook Air",
+        images:
+          "['images/headphone7.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-05 00:00:00",
+      },
+      {
+        id: "7",
+        img: "",
+        name: "Airpod 2",
+        images:
+          "['images/headphone8.jpeg','images/headphone6.jpeg','images/headphone8.jpeg','images/headphone1.jpeg']",
+        price: 10000000,
+        description:
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, tempore veniam ullam hic architecto maiores! Laborum accusamus reiciendis magni consectetur incidunt, suscipit, unde qui assumenda ratione voluptas, esse fugiat ipsam.",
+        EXP: "2021-12-10 00:00:00",
+      },
+    ];
+    return result;
   },
 };
 export default ProductApi;

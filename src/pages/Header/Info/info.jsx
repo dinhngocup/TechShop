@@ -1,4 +1,4 @@
-import CartIcon from "../../../components/main/Footer/Header/CartIcon/cartIcon";
+import CartIcon from "../../../components/main/Header/CartIcon/cartIcon";
 import React from "react";
 
 

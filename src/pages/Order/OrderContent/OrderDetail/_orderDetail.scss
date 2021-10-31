@@ -13,7 +13,7 @@
         .sub-title {
             .order-status {
                 position: relative;
-                color: var(--primary-background);
+                color: var(--order-status);
                 &:after {
                     position: absolute;
                     content: "";
@@ -73,36 +73,6 @@
                     width: 100%;
                 }
             }
-            // .bs-wizard-dot {
-            //     position: absolute; // so với progress
-            //     width: 30px;
-            //     height: 30px;
-            //     left: 50%; // left so với cái progess, vì progress dùng relative nên này dùng absolute
-            //     margin-left: -15px;
-            //     margin-top: -40px;
-            //     &:hover {
-            //         text-decoration: none;
-            //     }
-            //     i {
-            //         font-size: xx-large;
-            //         color: var(--border-color);
-            //         padding: 15px;
-            //         border: 3px var(--border-color) solid;
-            //         border-radius: 50%;
-            //         background: white;
-            //     }
-
-            // }
-            // // &.complete,
-            // &.active,
-            // &.complete {
-            //     .bs-wizard-dot {
-            //         i {
-            //             color: var(--order-status-font-color);
-            //             border: 3px var(--order-status-font-color) solid;
-            //         }
-            //     }
-            // }
             .bs-wizard-dot {
                 position: absolute; // so với progress
                 width: 30px;
@@ -159,7 +129,10 @@
         }
         .final-price {
             font-size: x-large;
-            color: var(--primary-background);
+            color: var(--order-total);
         }
+    }
+    h4 {
+        color: var(--order-title)
     }
 }

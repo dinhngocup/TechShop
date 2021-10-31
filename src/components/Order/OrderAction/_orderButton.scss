@@ -13,7 +13,7 @@
                 background-color: #fffcf5;
             }
             &.main-btn {
-                background-color: var(--primary-background);
+                background-color: var(--order-action-btn);
                 color: white;
                 &:hover {
                     opacity: 0.8;
@@ -27,13 +27,13 @@
         border: 1px solid white;
         background-color: white;
         &:hover {
-            border: 1px solid var(--primary-background);
+            border: 1px solid var(--order-action-btn);
             background-color: white;
             color: black;
         }
         &.main-btn {
             color: white;
-            background-color: var(--primary-background);
+            background-color: var(--order-action-btn);
             border: none;
             &:hover {
                 opacity: 0.6;

@@ -70,7 +70,7 @@ function Cart() {
   const renderOrderComponent = (productsInCart) => {
     return productsInCart.length !== 0 ? (
       <div className="table-wrapper">
-        <div>
+        <div className="header">
           <h4>Payment Details</h4>
         </div>
         <GeneralOrder />

@@ -27,14 +27,14 @@
         padding: 0 10px;
         font-weight: lighter;
         .name {
-            transition: 0.5s;
+            transition: 0.9s;
             font-size: smaller;
             color: #686767;
         }
         .price {
-            transition: 0.5s;
-            color: var(--primary-background);
-            opacity: 0.5;
+            transition: 0.9s;
+            color: var(--search-result);
+            opacity: 0.6;
             font-weight: bold;
         }
     }

@@ -5,6 +5,8 @@ import parseImages from "../../../helpers/parseImages";
 import { PropTypes } from "prop-types";
 import React from "react";
 import "./_proposedProduct.scss";
+import handlePrice from '../../../helpers/formatPrice';
+
 ProposedProduct.propTypes = {
   product: PropTypes.object,
 };
@@ -28,7 +30,7 @@ function ProposedProduct(props) {
       <div className="col-sm-12 proposed-product-content col-xs-12 col-md-12 col-lg-4">
         <h2>{product.name}</h2>
         <p className="price">
-          Best price: <span>{product.price}</span>
+          Best price: <span>{handlePrice(product.price)}</span>
         </p>
         <div className="count-down">
           <Timer EXP={product.EXP} />

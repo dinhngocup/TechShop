@@ -10,13 +10,13 @@
             padding: 10px;
             border-radius: 50%;
             &:hover {
-                box-shadow: 10px 0px 40px -5px var(--primary-background), inset 0px 0px 40px 0px white;
+                box-shadow: 10px 0px 40px -5px var(--search-background), inset 0px 0px 40px 0px white;
             }
         }
         &.active {
             i {
                 transition: 0.8s;
-                box-shadow: 0 0 0px 2px var(--primary-background), inset 0px 0px 40px 0px white;
+                box-shadow: 0 0 0px 2px var(--search-background), inset 0px 0px 40px 0px white;
             }
         }
     }

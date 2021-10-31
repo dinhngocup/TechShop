@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./_productModal.scss";
 import parseImages from "../../../helpers/parseImages";
+import handlePrice from "../../../helpers/formatPrice";
 
 function ProductModal(props) {
   const { product } = props;
@@ -36,7 +37,7 @@ function ProductModal(props) {
             </div>
             <div className="product-modal-info">
               <div className="title info-deco">{product.productName}</div>
-              <div className="price info-deco">{product.productPrice}</div>
+              <div className="price info-deco"> {handlePrice(product.productPrice)} <u>đ</u></div>
               <div className="more-info info-deco">
                 <a className="all-info " href="/">
                   See more information

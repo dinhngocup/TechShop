@@ -41,9 +41,9 @@ function BtnAdd(props) {
       }}
     >
       <span className="name">{content}</span>
-      {/* <span className="icon">
+      <span className="icon">
         <i className="fa fa-shopping-cart"></i>
-      </span> */}
+      </span>
     </button>
   );
 }

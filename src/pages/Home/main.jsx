@@ -6,9 +6,9 @@ import BrandGroup from "./BrandGroup/brandGroup";
 import TopProductCarousel from "./TopProductGroup/topProductCarousel";
 import TrendingProductList from "./TrendingProduct/trendingProductList";
 import "./_home.scss";
+import ProposedProductList from './ProposedProduct/proposedProductList';
 
 function Home() {
-  //console.log('home')
   return (
     <React.Fragment>
       <Banner />
@@ -27,7 +27,7 @@ function Home() {
         </div>
 
         {/* Hot proposes */}
-        {/* <div className="trending-dashboard mt-5">
+        <div className="trending-dashboard mt-5">
           <div className="header-hot-proposes">
             <HeaderSection content="Hot Proposes" />
             <div>
@@ -51,7 +51,7 @@ function Home() {
             </div>
           </div>
           <ProposedProductList />
-        </div> */}
+        </div>
 
         {/* Subscription */}
         <div className="subscription mt-5">

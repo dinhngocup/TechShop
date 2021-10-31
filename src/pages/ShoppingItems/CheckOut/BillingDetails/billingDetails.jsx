@@ -54,7 +54,7 @@ function BillingDetails(props) {
 
   return (
     <div className="billing-details">
-      <div>
+      <div className='header'>
         <h4>Billing Details</h4>
       </div>
       <div className="mt-2">

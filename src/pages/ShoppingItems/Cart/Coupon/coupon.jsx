@@ -35,7 +35,7 @@ function Coupon() {
 
   return (
     <div className="coupon">
-      <div>
+      <div className="header">
         <h4>Coupon Discount</h4>
       </div>
       <p>Enter your coupon code if you have one!</p>

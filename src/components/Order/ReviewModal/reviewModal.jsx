@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
+import { useHistory } from "react-router-dom";
 import { Spinner } from "reactstrap";
+import ReviewApi from "../../../api/reviewApi";
 import image1 from "../../../assets/images/headphone1.jpeg";
-import "./_reviewModal.scss";
-import ReviewApi from '../../../api/reviewApi';
 import starIcon from "../../../assets/images/review.jpeg";
+import "./_reviewModal.scss";
 
 function ReviewModal(props) {
   const { order } = props;
+
+  const history = useHistory();
+
   const [isReviewed, setIsReviewed] = useState(false);
   const [reviews, setReviews] = useState([]);
 
-  
   const [loading, setLoading] = useState(false);
 
   const rate = (rate, productId) => {
@@ -137,7 +140,7 @@ function ReviewModal(props) {
     };
     let body = {
       orderId: order.orderId,
-      reviewInfo: reviews
+      reviewInfo: reviews,
     };
     addReview(body);
   };
@@ -161,6 +164,10 @@ function ReviewModal(props) {
     );
   };
 
+  const closeModal = () => {
+    history.push("/your-orders/deliveried");
+  };
+
   const renderReviewArea = () => {
     return isReviewed ? (
       <div className="modal-body reviewed-modal-body">
@@ -172,7 +179,7 @@ function ReviewModal(props) {
             us. We look forward to seeing you again soon
           </div>
         </div>
-        <button data-dismiss="modal" onClick={() => setIsReviewed(false)}>
+        <button data-dismiss="modal" onClick={closeModal}>
           OK
         </button>
       </div>

@@ -35,6 +35,8 @@ const OrderApi = {
             total: 23000000,
             orderStatusNote: "Your order are being processed by TechShop",
             firstProduct: {
+              productId:"1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -56,6 +58,7 @@ const OrderApi = {
             orderStatusNote: "Your order was already being packaged up.",
             firstProduct: {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -77,6 +80,8 @@ const OrderApi = {
             orderStatusNote:
               "Your package is going to be delivered on the scheduled delivery date",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -95,6 +100,8 @@ const OrderApi = {
             orderStatusNote:
               "Your package is deliveried successfully. Please confirm it.",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -113,8 +120,10 @@ const OrderApi = {
             orderStatus: "Deliveried",
             totalItems: 3,
             total: 23000000,
-            orderStatusNote: "",
+            orderStatusNote: "Did you enjoy working with us? Leave a review!",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -132,6 +141,8 @@ const OrderApi = {
             total: 23000000,
             orderStatusNote: "The reason why you want to return package",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -143,12 +154,14 @@ const OrderApi = {
           },
           {
             orderId: "order8",
-            orderStatusDetail: "Received Package Successfuly",
+            orderStatusDetail: "Reviewed",
             orderStatus: "Deliveried",
             totalItems: 3,
             total: 23000000,
             orderStatusNote: "",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -169,6 +182,8 @@ const OrderApi = {
             total: 23000000,
             orderStatusNote: "Your cancelled order: Oct 14, 2021",
             firstProduct: {
+              productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -202,6 +217,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -212,6 +228,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -222,6 +239,7 @@ const OrderApi = {
             },
             {
               productId: "3",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -257,6 +275,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -267,6 +286,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -306,6 +326,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -316,6 +337,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -355,6 +377,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -365,6 +388,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -399,10 +423,11 @@ const OrderApi = {
           orderStatus: "Deliveried",
           totalItems: 5,
           total: 23000000,
-          orderStatusNote: "",
+          orderStatusNote: "Did you enjoy working with us? Leave a review!",
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -413,6 +438,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -447,10 +473,11 @@ const OrderApi = {
           orderStatus: "Deliveried",
           totalItems: 3,
           total: 23000000,
-          orderStatusNote: "The reason why you want to return package",
+          orderStatusNote: "",
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -461,6 +488,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -499,6 +527,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -509,6 +538,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -532,7 +562,7 @@ const OrderApi = {
       case "order8":
         return {
           orderId: "order8",
-          orderStatusDetail: "Received Package Successfuly",
+          orderStatusDetail: "Reviewed",
           orderStatus: "Deliveried",
           totalItems: 5,
           total: 23000000,
@@ -541,6 +571,7 @@ const OrderApi = {
           products: [
             {
               productId: "1",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",
@@ -555,6 +586,7 @@ const OrderApi = {
             },
             {
               productId: "2",
+              categorySlug:"smart-phone",
               name: "Macbook Pro Retina 13-inch 512GB",
               image: "",
               color: "Space Gray",

@@ -5,7 +5,7 @@ function Order() {
   //console.log('order')
   return (
     <div>
-      <div>
+      <div className='header'>
         <h4>Your order</h4>
       </div>
       <GeneralOrder />

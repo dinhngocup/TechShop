@@ -19,7 +19,7 @@
 
         .order-status {
             text-transform: uppercase;
-            color: var(--primary-background);
+            color: var(--order-status);
         }
     }
 
@@ -36,7 +36,7 @@
             align-items: center;
             span {
                 font-size: larger;
-                color: var(--primary-background);
+                color: var(--order-total);
                 font-weight: 600;
             }
         }

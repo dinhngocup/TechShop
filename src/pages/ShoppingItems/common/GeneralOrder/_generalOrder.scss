@@ -3,13 +3,13 @@
     tfoot tr {
         border-bottom: none !important;
         td {
-            color: #c87065;
+            color: var(--payment-total);
             border-bottom: none;
         }
     }
     .payment-detail {
         border-bottom: 1px solid #e5e5e5;
-        color: var(--cart-info-font-color);
+        color: var(--cart-info-font);
         font-weight: 700;
         font-size: small;
         td {

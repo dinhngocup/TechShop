@@ -12,7 +12,6 @@ export const OrderActionName = {
   RETURN_PACKAGE: "Return Package",
   RATE: "Rate & Review",
   VIEW_RATE: "View your review",
-  BUY_AGAIN: "Buy Again",
   VIEW_DETAIL: "View Details",
 };
 

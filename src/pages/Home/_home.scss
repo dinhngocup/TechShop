@@ -9,21 +9,21 @@
             display: flex;
             justify-content: space-between;
             button {
+                border: 1px solid white;
                 margin: 0 10px;
-                border: none;
                 color: black;
                 border-radius: 20px;
                 &:hover {
-                    border: 1px solid var(--primary-background);
+                    border: 1px solid var(--top-product-nav-border);
                     background-color: transparent;
                 }
                 &.active,
                 &:focus {
                     background-color: transparent;
-                    border: 1px solid var(--primary-background);
+                    border: 1px solid var(--top-product-nav-border);
                     outline: none;
                     box-shadow: none;
-                    color: var(--primary-background);
+                    color: var(--top-product-nav-border);
                     font-weight: 700;
                 }
             }
@@ -36,7 +36,7 @@
 
             a {
                 font-size: x-large;
-                color: var(--primary-background);
+                color: var(--top-product-nav-border);
                 margin: 0px 10px;
                 &:hover {
                     opacity: 0.5;
@@ -45,7 +45,7 @@
         }
         .top-row {
             .carousel-indicators li {
-                background-color: var(--primary-background);
+                background-color: var(--top-product-nav-border);
             }
             .carousel-inner {
                 padding-bottom: 30px;
@@ -74,13 +74,13 @@
         .content {
             width: 100%;
             h1 {
-                color: var(--primary-background);
+                color: var(--supported-brand-title);
                 font-weight: 700;
             }
             .title-deco {
                 span {
                     width: 100px;
-                    background-color: var(--primary-background);
+                    background-color: var(--supported-brand-title);
                     height: 2px;
                     display: inline-block;
                     position: relative;

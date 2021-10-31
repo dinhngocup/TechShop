@@ -216,10 +216,16 @@ function OrderDetail(props) {
       <div className="total d-flex justify-content-end pr-4 align-items-center">
         <div className="total-order-label pr-3 py-2">Total</div>
         <div className="total-order py-2 final-price">
-          {handlePrice(order.total)} <u>đ</u>
+          <b>
+            {handlePrice(order.total)} <u>đ</u>
+          </b>
         </div>
       </div>
-      {order.orderStatus === OrderStatus.DELIVERIED ? <ReviewModal order={order} /> : ""}
+      {order.orderStatus === OrderStatus.DELIVERIED ? (
+        <ReviewModal order={order} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

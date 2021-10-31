@@ -10,12 +10,12 @@
             width: 30%;
             button {
                 width: 100%;
-                background-color: #c87065;
+                background-color: var(--btn-pay-background);
                 color: white;
                 padding: 5px 20px;
                 border: none;
                 &:hover {
-                    background-color: var(--cart-primary-header);
+                    opacity: 0.5;
                     box-shadow: 1px 25px 54px rgba(0, 0, 0, 0.2);
                 }
             }
@@ -56,6 +56,7 @@
                                     margin-left: 30px;
                                     color: var(--main-info-font-color);
                                     .name {
+                                        color: var(--product-card-name);
                                         text-transform: uppercase;
                                         font-size: smaller;
                                         font-weight: 600;
@@ -71,12 +72,12 @@
                                 text-decoration: none;
                                 color: var(--main-info-font-color);
                                 &:hover {
-                                    color: var(--cart-primary-header);
+                                    color: var(--primary-background);
                                 }
                             }
 
                             .price {
-                                color: var(--cart-info-font-color);
+                                color: var(--cart-info-font);
                                 font-size: 16px;
                                 font-weight: 900;
                             }
@@ -98,7 +99,7 @@
                                     background-color: white;
                                     color: var(--main-info-font-color);
                                     &:hover {
-                                        color: var(--cart-primary-header);
+                                        color: var(--primary-background);
                                     }
                                 }
                             }
@@ -107,7 +108,7 @@
                                     background-color: var(--main-info-background);
                                     padding: 10px;
                                     &:hover {
-                                        color: var(--cart-primary-header);
+                                        color: var(--cart-icon-remove-background);
                                     }
                                 }
                             }
@@ -115,13 +116,13 @@
                     }
                 }
             }
-            h4 {
-                text-transform: uppercase;
-                color: var(--main-bold-info-font-color);
-                font-weight: 600;
-                font-size: 16px;
-                &::after {
-                    background-color: #eee;
+            .header {
+                h4 {
+                    text-transform: uppercase;
+                    color: var(--cart-title);
+                    font-weight: 600;
+                    position: relative;
+                    font-size: large;
                 }
             }
         }

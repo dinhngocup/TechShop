@@ -3,9 +3,13 @@ import { OrderActionName } from "../../../pages/Order/type";
 import "./_modalConfirm.scss";
 import OrderApi from "../../../api/orderApi";
 import { Spinner } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 function ModalConfirm(props) {
   const { modalType, orderId } = props;
+
+  const history = useHistory();
+
   const [loading, setLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
   useEffect(() => {
@@ -121,6 +125,20 @@ function ModalConfirm(props) {
     setLoading(false);
     setIsSucceed(true);
   };
+  
+  const closeModal = () => {
+    if(isSucceed) {
+      if (
+        modalType === OrderActionName.RETURN_PACKAGE ||
+        modalType === OrderActionName.RECEIVED
+      ) {
+        history.push("/your-orders/deliveried");
+      } else {
+        history.push("/your-orders/cancelled");
+      }
+    }
+  }
+
   return (
     <div
       className="modal fade modal-confirm"
@@ -141,6 +159,7 @@ function ModalConfirm(props) {
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              onClick={closeModal}
             >
               <span aria-hidden="true">&times;</span>
             </button>

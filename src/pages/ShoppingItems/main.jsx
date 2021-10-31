@@ -31,9 +31,6 @@ function ShoppingItems(props) {
             <Route path="/check-out">
               <CheckOut />
             </Route>
-            {/* <Route path="/your-orders">
-              <CompletedOrder />
-            </Route> */}
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@
             font-size: smaller;
             transition: 0.3s;
             &:hover {
-                color: var(--primary-background);
+                color: rgb(119, 35, 215);
             }
         }
         .quick-add-to-cart {
@@ -52,8 +52,8 @@
             button {
                 background-color: #444;
                 &:hover {
-                    color: black;
-                    background-color: var(--foreground);
+                    color: rgb(119, 35, 215);
+                    background-color: white;
                 }
             }
         }

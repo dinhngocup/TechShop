@@ -5,46 +5,40 @@
     transition: 0.5s;
     min-width: 135px;
     min-height: 46px;
-    &:hover {
-        background-color: var(--foreground) !important;
-        color: black !important;
-    }
+    background-color: var(--btn-add-to-cart-background);
+        color: var(--btn-add-to-cart-font);
     &.btn-tranform {
         position: relative;
         .icon {
-            transition: 0.2s;
             position: absolute;
             left: -30px;
             opacity: 0;
         }
         .name {
-            transition: 0.3s;
+            transition: 0.9s;
         }
-        // &:hover {
-        //     .icon {
-        //         transition: 0.5s;
-        //         left: 0;
-        //         right: 0;
-        //         opacity: 1;
-        //     }
-        //     .name {
-        //         opacity: 0;
-        //     }
-        // }
+        &:hover {
+            .icon {
+                transition: 0.9s;
+                left: 0;
+                right: 0;
+                opacity: 1;
+            }
+            .name {
+                opacity: 0;
+            }
+        }
     }
     &.btn-learn-more {
         margin-right: 10px;
         margin: 10px;
-        border: 1px solid var(--primary-background);
-        background-color: #fff;
-        color: var(--primary-background);
+        border: 1px solid var(--btn-add-to-cart-font);
         font-weight: 700;
     }
     &.btn-add {
         margin-right: 10px;
         margin: 10px;
-        background-color: var(--primary-background);
-        color: #fff;
+        border: 1px dashed var(--btn-add-to-cart-font);
         font-weight: 700;
     }
 }

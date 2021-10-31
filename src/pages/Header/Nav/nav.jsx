@@ -63,8 +63,8 @@ function Nav(props) {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName="active" to="/contacts">
-              Contacts
+            <NavLink activeClassName="active" to="/your-orders/handling">
+              Your Orders
             </NavLink>
           </li>
         </ul>
