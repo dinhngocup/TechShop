@@ -16,7 +16,27 @@ const UserApi = {
       .post(url, data)
 
       .then((response) => {
-        cookiesService.setCookies("user", JSON.stringify(response), 98);
+        let fakeResponse;
+        if (email === "phuongdinh1802@gmail.com") {
+          fakeResponse = {
+            token: "fake_token",
+            access: "CUSTOMER",
+          };
+        } else {
+          fakeResponse = {
+            token: "fake_token",
+            access: "ADMIN",
+          };
+        }
+
+        
+        cookiesService.setCookies(
+          "user",
+          JSON.stringify(fakeResponse.token),
+          2
+        );
+        cookiesService.setCookies("access", fakeResponse.access, 2);
+        // cookiesService.setCookies("user", JSON.stringify(response), 98);
         return response;
       })
       .catch((error) => {

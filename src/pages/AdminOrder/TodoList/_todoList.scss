@@ -1,0 +1,40 @@
+.todo-list {
+    h4 {
+        color: rgb(44, 2, 134);
+        font-weight: 600;
+    }
+    background-color: white;
+    border: 1px dashed var(--primary-background);
+    .task-container {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.5);
+        .quantity {
+            color: black;
+        }
+        .name {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: "";
+                height: 2px;
+                width: 50%;
+                background-color: white;
+                bottom:0;
+                left:0;
+            }
+        }
+        &.active {
+            .quantity {
+                color: rgb(44, 2, 134);
+            }
+            color: #f37084;
+            font-weight: 600;
+            .name::after {
+                transition: 0.3s;
+                background-color: pink;
+                left:50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}

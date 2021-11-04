@@ -122,12 +122,14 @@ function ModalConfirm(props) {
       default:
         break;
     }
-    setLoading(false);
-    setIsSucceed(true);
+    if (response) {
+      setLoading(false);
+      setIsSucceed(true);
+    }
   };
-  
+
   const closeModal = () => {
-    if(isSucceed) {
+    if (isSucceed) {
       if (
         modalType === OrderActionName.RETURN_PACKAGE ||
         modalType === OrderActionName.RECEIVED
@@ -137,7 +139,7 @@ function ModalConfirm(props) {
         history.push("/your-orders/cancelled");
       }
     }
-  }
+  };
 
   return (
     <div

@@ -14,6 +14,7 @@ function PrivateRoute({ children, ...restData }) {
   const dispatch = useDispatch();
 
   const status = cookiesService.getCookies("user");
+  const role = cookiesService.getCookies("access")
 
   const checkLoggedInStatus = (status, isLoggedIn) => {
     if (status === undefined && isLoggedIn)
@@ -22,20 +23,41 @@ function PrivateRoute({ children, ...restData }) {
 
   checkLoggedInStatus(status, isLoggedIn);
 
-  const redirectRoute = (loginStatus, children, location) => {
-    return loginStatus !== undefined ? (
-      children
-    ) : (
+  const redirectRoute = (children) => {
+    console.log(status)
+    console.log(role)
+    console.log(location)
+    // logged in
+    if (status) {
+      const prefix = role === "ADMIN" ? "/admin" : "";
+      if (location.pathname.startsWith("/admin") && role === "ADMIN") {
+        return children;
+      }
+      if (!location.pathname.startsWith("/admin") && role === "CUSTOMER") {
+        return children;
+      }
+      return (
+        <Redirect
+          to={{
+            pathname: `${prefix}/home`,
+          }}
+        />
+      );
+    }
+
+    // have not logged in yet
+    const prefix = location.pathname.startsWith("/admin") ? "/admin" : "";
+    return (
       <Redirect
         to={{
-          pathname: "/login",
+          pathname: `${prefix}/login`,
           state: { referrer: location },
         }}
       />
     );
   };
   return (
-    <Route {...restData}>{redirectRoute(status, children, location)}</Route>
+    <Route {...restData}>{redirectRoute(children)}</Route>
   );
 }
 

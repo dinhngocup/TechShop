@@ -23,8 +23,6 @@ const OrderApi = {
   },
   getListOrder: async (invoiceStatus) => {
     switch (invoiceStatus) {
-      case "all":
-        return [];
       case "placedOrder":
         return [
           {
@@ -638,5 +636,33 @@ const OrderApi = {
     console.log(id);
     return Promise.resolve();
   },
+  getTodoList: async() => {
+    return [
+      {
+        orderStatus: 'Placed Order',
+        quantity: 6,
+      },
+      {
+        orderStatus: 'In Handling',
+        quantity: 3,
+      },
+      {
+        orderStatus: 'Shipped',
+        quantity: 2,
+      },
+      {
+        orderStatus: 'Deliveried',
+        quantity: 4,
+      },
+      {
+        orderStatus: 'Cancelled',
+        quantity: 1,
+      },
+      {
+        orderStatus: 'Return Package',
+        quantity: 1,
+      }
+    ]
+  }
 };
 export default OrderApi;

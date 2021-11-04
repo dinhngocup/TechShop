@@ -4,6 +4,7 @@ export const OrderStatus = {
   SHIPPED: "Shipped",
   DELIVERIED: "Deliveried",
   CANCELLED: "Cancelled",
+  RETURN: "Return Package",
 };
 
 export const OrderActionName = {

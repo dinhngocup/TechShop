@@ -34,11 +34,11 @@ function Login() {
         dispatch(updateLoggedInStatus({ isLoggedIn: false }));
     };
     checkLoggedInStatus();
-
+    const prefix = cookiesService.getCookies("access") === "ADMIN" ? "/admin" :"";
     if (isLoggedIn) {
       if (location.state?.referrer.pathname) {
         history.push(location.state.referrer.pathname);
-      } else history.push("/home");
+      } else history.push(`${prefix}/home`);
     }
   }, [isLoggedIn, history, location, dispatch]);
 
