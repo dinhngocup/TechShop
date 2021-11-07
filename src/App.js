@@ -33,7 +33,7 @@ function App() {
           <Header />
           <Switch>
             <Route path={["/admin/home", "/admin/order/:orderStatus"]}>
-              <div className="container-fluid">
+              <div className="container-fluid pt-1">
                 <Row style={{ height: "100vh", background: "white" }}>
                   <Col xs="3" className="p-0">
                     <AdminNav />
@@ -43,7 +43,7 @@ function App() {
                       <PrivateRoute path="/admin/home">
                         <AdminHome />
                       </PrivateRoute>
-                      <PrivateRoute path="/admin/order">
+                      <PrivateRoute path="/admin/order/:orderStatus">
                         <AdminOrder />
                       </PrivateRoute>
                     </Switch>

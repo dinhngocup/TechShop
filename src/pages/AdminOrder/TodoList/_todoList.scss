@@ -3,8 +3,8 @@
         color: rgb(44, 2, 134);
         font-weight: 600;
     }
-    background-color: white;
-    border: 1px dashed var(--primary-background);
+    background-color: rgb(215,238,246);
+    border: 1px dashed rgb(42,157,214);
     .task-container {
         text-decoration: none;
         color: rgba(0, 0, 0, 0.5);
@@ -18,7 +18,7 @@
                 content: "";
                 height: 2px;
                 width: 50%;
-                background-color: white;
+                // background-color: white;
                 bottom:0;
                 left:0;
             }
@@ -27,11 +27,11 @@
             .quantity {
                 color: rgb(44, 2, 134);
             }
-            color: #f37084;
+            color: rgb(253,57,92);
             font-weight: 600;
             .name::after {
                 transition: 0.3s;
-                background-color: pink;
+                background-color: rgb(253,57,92);
                 left:50%;
                 transform: translateX(-50%);
             }

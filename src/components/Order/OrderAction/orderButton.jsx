@@ -13,7 +13,7 @@ function OrderButton(props) {
 
   const updateModalInfo = () => {
     if (btnName === OrderActionName.VIEW_DETAIL) {
-      history.push(`${currentPath}/${orderId}`, { from: currentPath } );
+      history.push(`${currentPath}/${orderId}`, { from: currentPath });
     }
     dispatch(updateOrderModal({ btnName, orderId }));
   };
@@ -21,12 +21,20 @@ function OrderButton(props) {
   const dataTargetButton = () => {
     switch (btnName) {
       case OrderActionName.CANCEL_ORDER:
-      case OrderActionName.RECEIVED:
       case OrderActionName.RETURN_PACKAGE:
+      case OrderActionName.ADMIN_CANCEL_ORDER:
         return "#modalConfirm";
+      case OrderActionName.RECEIVED:
+        return "#modalReceived";
       case OrderActionName.RATE:
       case OrderActionName.VIEW_RATE:
         return "#reviewModal";
+      case OrderActionName.TRANSFER_TO_SHIPPER:
+      case OrderActionName.EDIT_SHIPPER_INFO:
+        return "#modalShipperInfo";
+
+      case OrderActionName.CONFIRMED:
+        return "";
       default:
         break;
     }

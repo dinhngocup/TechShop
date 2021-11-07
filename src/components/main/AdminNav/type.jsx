@@ -4,11 +4,7 @@ export const AdminNavList = [
         "href": "/admin/home",
         "icon": "fa fa-chart-bar"
     },
-    {
-        "name": "Order",
-        "href": "/admin/order/pending",
-        "icon": "fa fa-list"
-    },
+    
     {
         "name": "Product",
         "href": "/admin/product",

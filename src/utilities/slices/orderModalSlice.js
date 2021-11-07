@@ -5,6 +5,7 @@ const orderModal = createSlice({
   initialState: {
     modalType: "",
     orderId: "",
+    shipperInfo:""
   },
   reducers: {
     updateOrderModal: (state, action) => {

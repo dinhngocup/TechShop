@@ -1,11 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import OrderButton from "../../../../components/Order/OrderAction/orderButton";
 import { OrderActionName, OrderStatus } from "../../type";
 
 function OrderAction(props) {
   const { orderStatus, isDetailedOrder, orderId, isReviewed } = props;
+  const history = useHistory();
 
-  const renderOrderActionButton = () => {
+  const renderCustomerActionButton = () => {
     let orderButtons = [];
     switch (orderStatus) {
       case OrderStatus.PLACED_ORDER:
@@ -72,7 +74,79 @@ function OrderAction(props) {
       )
     );
   };
-  return <div className="order-action">{renderOrderActionButton()}</div>;
+
+  const renderAdminActionButton = () => {
+    let orderButtons = [];
+    switch (orderStatus) {
+      case OrderStatus.PLACED_ORDER:
+        orderButtons = [
+          {
+            btnName: OrderActionName.CONFIRMED,
+            isMainBtn: true,
+          },
+          {
+            btnName: OrderActionName.ADMIN_CANCEL_ORDER,
+            isMainBtn: false,
+          },
+        ];
+        break;
+      case OrderStatus.IN_HANDLING:
+        orderButtons = [
+          {
+            btnName: OrderActionName.TRANSFER_TO_SHIPPER,
+            isMainBtn: true,
+          },
+          {
+            btnName: OrderActionName.ADMIN_CANCEL_ORDER,
+            isMainBtn: false,
+          },
+        ];
+        break;
+      case OrderStatus.SHIPPED:
+        orderButtons = [
+          {
+            btnName: OrderActionName.EDIT_SHIPPER_INFO,
+            isMainBtn: true,
+          },
+          {
+            btnName: OrderActionName.ADMIN_CANCEL_ORDER,
+            isMainBtn: false,
+          },
+        ];
+        break;
+      case OrderStatus.DELIVERIED:
+        orderButtons = isReviewed
+          ? [
+              {
+                btnName: OrderActionName.VIEW_RATE,
+                onclickFunc: () => {},
+                isMainBtn: true,
+              },
+            ]
+          : [];
+        break;
+      default:
+        break;
+    }
+
+    return orderButtons.map((button) => (
+      <div className="action-container" key={button.btnName}>
+        <OrderButton
+          orderId={orderId}
+          isMainBtn={button.isMainBtn}
+          btnName={button.btnName}
+        />
+      </div>
+    ));
+  };
+
+  return (
+    <div className="order-action">
+      {history.location.pathname.startsWith("/admin")
+        ? renderAdminActionButton()
+        : renderCustomerActionButton()}
+    </div>
+  );
 }
 
 OrderAction.propTypes = {};

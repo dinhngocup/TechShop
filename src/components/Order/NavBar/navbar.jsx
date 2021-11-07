@@ -16,11 +16,6 @@ import { OrderStatus } from "../../../pages/Order/type";
 
 function Navbar() {
   const OrderStatusNav = [
-    // {
-    //   icon: "fas fa-vote-yea",
-    //   href: "/your-orders",
-    //   title: "All",
-    // },
     {
       icon: "fas fa-ellipsis-h",
       href: "/your-orders/placed-order",

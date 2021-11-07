@@ -8,7 +8,6 @@ import Nav from "./Nav/nav";
 import "./_header.scss";
 
 function Header() {
-  console.log("ho")
   const isAdminPage = useLocation().pathname.startsWith("/admin")
     ? true
     : false;

@@ -15,7 +15,7 @@ function OrderDetail(props) {
   const orderId = params.orderId;
 
   const [order, setOrder] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   let progressList = [
     {

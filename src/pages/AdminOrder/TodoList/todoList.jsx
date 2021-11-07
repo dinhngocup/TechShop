@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import "./_todoList.scss";
-import { Row, Col } from "reactstrap";
-import OrderApi from "../../../api/orderApi";
-import OrderAction from "../../Order/OrderContent/OrderAction/orderAction";
-import { OrderStatus } from "../../Order/type";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Col, Row } from "reactstrap";
+import OrderApi from "../../../api/orderApi";
+import { OrderStatus } from "../../Order/type";
+import "./_todoList.scss";
 
 function TodoList(props) {
   const [toDoList, setToDoList] = useState();
@@ -18,7 +17,7 @@ function TodoList(props) {
           switch (task.orderStatus) {
             case OrderStatus.PLACED_ORDER:
               taskName = "Pending Confirm";
-              path="/admin/order/pending"
+              path="/admin/order/placed-order"
               break;
             case OrderStatus.IN_HANDLING:
               taskName = "In Handling";
@@ -30,15 +29,11 @@ function TodoList(props) {
               break;
             case OrderStatus.DELIVERIED:
               taskName = "Completed";
-              path="/admin/order/completed"
+              path="/admin/order/deliveried"
               break;
             case OrderStatus.CANCELLED:
               taskName = "Cancelled";
               path="/admin/order/cancelled"
-              break;
-            case OrderStatus.RETURN:
-              taskName = "Request to return";
-              path="/admin/order/refund"
               break;
             default:
               break;

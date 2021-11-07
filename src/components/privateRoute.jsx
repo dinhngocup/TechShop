@@ -24,9 +24,6 @@ function PrivateRoute({ children, ...restData }) {
   checkLoggedInStatus(status, isLoggedIn);
 
   const redirectRoute = (children) => {
-    console.log(status)
-    console.log(role)
-    console.log(location)
     // logged in
     if (status) {
       const prefix = role === "ADMIN" ? "/admin" : "";

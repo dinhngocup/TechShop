@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { Route, useLocation } from "react-router-dom";
 import OrderApi from "../../../api/orderApi";
-import ModalConfirm from '../../../components/Order/ModalConfirm/modalConfirm';
+import ModalCancelOrder from "../../../components/Order/ModalCancelOrder/modalCancelOrder";
 import OrderBody from "./OrderBody/orderBody";
 import OrderDetail from "./OrderDetail/orderDetail";
+import ModalReceived from "../../../components/Order/ModalReceived/modalReceived";
 
 function OrderContent(props) {
   const tabName = useLocation().pathname.replace("/your-orders", "");
 
   const [listOrder, setListOrder] = useState();
 
-  const {modalType, orderId} = useSelector(state => state.orderModal);
-  
+  const { orderId } = useSelector((state) => state.orderModal);
+
   useEffect(() => {
     let invoiceStatus;
     const orderData = async () => {
@@ -21,9 +22,6 @@ function OrderContent(props) {
     };
 
     switch (tabName) {
-      case "":
-        invoiceStatus = "all";
-        break;
       case "/placed-order":
         invoiceStatus = "placedOrder";
         break;
@@ -54,10 +52,10 @@ function OrderContent(props) {
           ))}
       </Route>
       <Route path="/your-orders/:orderStatus/:orderId">
-        <OrderDetail/>
+        <OrderDetail />
       </Route>
-      <ModalConfirm modalType={modalType} orderId={orderId}/>
-      
+      <ModalCancelOrder orderId={orderId} />
+      <ModalReceived orderId={orderId} />
     </>
   );
 }
