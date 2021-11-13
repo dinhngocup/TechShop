@@ -1,73 +1,172 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
-import { Col, Row } from "reactstrap";
-import ProductApi from "../../../../api/productApi";
-import ProductCard from "../../../../pages/Product/common/ProductCard/productCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { Col, Row, Spinner } from "reactstrap";
 import ProductModal from "../../../../components/common/ProductModal/productModal";
-import { Spinner } from 'reactstrap';
+import ProductPagination from "../../../../components/ProductComponents/ProductPagination/productPagination";
+import ProductCard from "../../../../pages/Product/common/ProductCard/productCard";
+import { PRODUCTS_PER_PAGE } from "../../../../utilities/Constant";
+import { getAllProducts } from "../../../../utilities/slices/productSlice";
+import "./_productList.scss";
 
 function ProductList() {
-  const [products, setProducts] = useState([]);
+  const stateProducts = useSelector((state) => state.product.products);
   const stateProductModal = useSelector((state) => state.productModal);
+  const [products, setProducts] = useState();
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const { filter } = useSelector((state) => state.filter);
-  /**
-   * Firstly, I use {slug} to get params => filter of useEffect is a string.
-   * But if filter is a string, when click repeatedly in 1 category,
-   * useEffect is not fired to get new data
-   * => I HAVE TO use params as an object.
-   */
+  // const { filter } = useSelector((state) => state.filter);
 
-  const params = useParams();
-  const location = useLocation();
+  const productCategory = useParams().productCategory;
+  const dispatch = useDispatch();
+  // const location = useLocation();
   const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   async function fetchProduct() {
+  //     setLoading(true);
+  //     let response = [];
+  //     if (params.slug === undefined) {
+  //       let searchTerm = new URLSearchParams(location.search).get("keyword");
+  //       if (searchTerm === null) {
+  //         response = await ProductApi.getAllProducts({
+  //           order: filter,
+  //         });
+  //       } else {
+  //         response = await ProductApi.searchProductsIncludeFilter({
+  //           keyword: searchTerm,
+  //           order: filter,
+  //         });
+  //       }
+  //     } else {
+  //       response = await ProductApi.getProductsByCategory({
+  //         category: params.slug,
+  //         order: filter,
+  //       });
+  //     }
+  //     setProducts(response);
+  //     setLoading(false);
+  //   }
+
+  //     fetchProduct();
+
+  // }, [params, filter, location]);
 
   useEffect(() => {
     async function fetchProduct() {
       setLoading(true);
-      let response = [];
-      if (params.slug === undefined) {
-        let searchTerm = new URLSearchParams(location.search).get("keyword");
-        if (searchTerm === null) {
-          response = await ProductApi.getAllProducts({
-            order: filter,
-          });
-        } else {
-          response = await ProductApi.searchProductsIncludeFilter({
-            keyword: searchTerm,
-            order: filter,
-          });
-        }
-      } else {
-        response = await ProductApi.getProductsByCategory({
-          category: params.slug,
-          order: filter,
-        });
-      }
-      setProducts(response);
+      await dispatch(getAllProducts());
+    }
+    if (!stateProducts.allProducts) {
+      fetchProduct();
+    } else {
       setLoading(false);
     }
-    fetchProduct();
-  }, [params, filter, location]);
+  }, [dispatch, stateProducts]);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [productCategory]);
+
+  useEffect(() => {
+    if (!stateProducts.allProducts) {
+      return;
+    }
+    let result = [];
+    let baseProducts;
+    if (!productCategory) {
+      baseProducts = stateProducts.allProducts;
+    } else {
+      baseProducts = stateProducts.filterProducts[productCategory];
+    }
+    console.log(baseProducts);
+    const startProductIndx = currentPage * PRODUCTS_PER_PAGE;
+    const endProductIndx = startProductIndx + PRODUCTS_PER_PAGE;
+    for (
+      let i = startProductIndx;
+      i < baseProducts?.length && i < endProductIndx;
+      i++
+    ) {
+      result.push(baseProducts[i]);
+    }
+    setProducts(result);
+  }, [currentPage, stateProducts, productCategory]);
+
+  const changeCurrentPage = (page) => {
+    if (page === currentPage) return;
+    setCurrentPage(page);
+  };
 
   const renderProductCards = (products) => {
-    if(loading) {
-      return <Col xs="12" sm="12" md="12" lg="12"className='text-center'>
-        <Spinner color="primary" />
-      </Col>
-    } else 
-    return products.length !== 0
-      ? products.map((product, index) => (
-          <Col key={index} xs="12" sm="6" md="4" lg="4">
-            <ProductCard product={product} />
-          </Col>
-        ))
-      : "";
+    if (loading) {
+      return (
+        <Col xs="12" sm="12" md="12" lg="12" className="text-center">
+          <Spinner color="primary" />
+        </Col>
+      );
+    } else
+      return products.length !== 0
+        ? products.map((product, index) => (
+            <Col key={index} xs="12" sm="6" md="4" lg="4">
+              <ProductCard product={product} />
+            </Col>
+          ))
+        : "";
   };
+
+  const renderHeading = () => {
+    let totalProducts;
+    if (!productCategory) {
+      totalProducts = stateProducts.allProducts.length;
+    } else if (stateProducts.filterProducts[productCategory]) {
+      totalProducts = stateProducts.filterProducts[productCategory].length;
+    } else {
+      return <div className='text-center'>No products is avaiable</div>;
+    }
+
+    const startIndex = currentPage * PRODUCTS_PER_PAGE;
+    const endIndex =
+      startIndex + PRODUCTS_PER_PAGE > totalProducts
+        ? totalProducts
+        : startIndex + PRODUCTS_PER_PAGE;
+    return (
+      <>
+        <div></div>
+        <div className="showing">
+          Showing {startIndex + 1}-{endIndex} of {totalProducts} results
+        </div>
+      </>
+    );
+  };
+
+  const renderPagination = () => {
+    let totalProducts;
+    if (!productCategory) {
+      totalProducts = stateProducts.allProducts.length;
+    } else if (stateProducts.filterProducts[productCategory]) {
+      totalProducts = stateProducts.filterProducts[productCategory].length;
+    } else {
+      return;
+    }
+    return (
+      <ProductPagination
+        totalProducts={totalProducts}
+        changeCurrentPage={changeCurrentPage}
+        currentPage={currentPage}
+      />
+    );
+  };
+
   return (
     <React.Fragment>
-      <Row>{renderProductCards(products)}</Row>
+      {products && (
+        <div className="product-heading">
+          {renderHeading()}
+        </div>
+      )}
+      <Row>{products && renderProductCards(products)}</Row>
+      {stateProducts.allProducts && renderPagination()}
+
       <ProductModal product={stateProductModal.data} />
     </React.Fragment>
   );

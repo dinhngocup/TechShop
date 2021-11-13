@@ -35,10 +35,10 @@ function Product() {
       <div className="product-grid-view">
         <div className="container-fluid">
           <div className="row">
-            <Route exact path={["/products", "/products/:slug"]}>
+            <Route exact path={["/products", "/products/:productCategory"]}>
               <ProductGridView />
             </Route>
-            <Route path="/products/:slug/:id">
+            <Route path="/products/:productCategory/:id">
               <ProductDetail />
             </Route>
           </div>

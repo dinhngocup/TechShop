@@ -1,0 +1,13 @@
+.pagination {
+    .page-item {
+        &.active {
+            .page-link {
+                background-color: #5c4bdb;
+                border: none;
+            }
+        }
+    }
+    .page-link {
+        color: rgb(119, 35, 215);
+    }
+}

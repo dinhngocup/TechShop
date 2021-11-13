@@ -15,19 +15,21 @@ function Nav(props) {
     async function fetchCategories() {
       await dispatch(getCategories());
     }
-    fetchCategories();
-  }, [dispatch]);
+    if (!stateCategories.data.length) {
+      fetchCategories();
+    }
+  }, [dispatch, stateCategories.data]);
 
   const renderCategoryModal = (categories) => {
     return categories.length !== 0
       ? categories.map((category, index) => (
           <Col key={index} xs="4" sm="4" md="4" lg="4">
             <NavLink
-              to={`/products/${category.categorySlug}`}
+              to={`/products/${category.slug}`}
               activeClassName="active"
-              exact={category.categoryExact}
+              exact={category.exact}
             >
-              {category.categoryName}
+              {category.name}
             </NavLink>
           </Col>
         ))

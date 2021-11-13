@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import BrandApi from "../../../api/brandApi";
 import image from "../../../assets/images/razer.png";
 import "./_brandGroup.scss";
+import { getBrands } from '../../../utilities/slices/brandSlice';
 
 function BrandGroup() {
-  const [brands, setBrands] = useState([]);
+  const stateBrands = useSelector((state) => state.brand.data);
+  const dispatch = useDispatch();
+
+  // get brands
   useEffect(() => {
-    const fetchBrands = async () => {
-      let response = await BrandApi.getBrands();
-      setBrands(response);
-    };
-    fetchBrands();
-  }, []);
+    async function fetchBrands() {
+      await dispatch(getBrands());
+    }
+
+    if (!stateBrands.length) {
+      fetchBrands();
+    }
+  }, [dispatch, stateBrands]);
+
   const renderBrandGroup = (brands) => {
     return brands.length !== 0
       ? brands.map((brand, index) => (
@@ -29,7 +36,7 @@ function BrandGroup() {
         ))
       : "";
   };
-  return <Row>{renderBrandGroup(brands)}</Row>;
+  return <Row>{renderBrandGroup(stateBrands)}</Row>;
 }
 
 export default BrandGroup;

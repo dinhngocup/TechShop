@@ -20,6 +20,7 @@ import Product from "./pages/Product/main";
 import ShoppingCart from "./pages/ShoppingItems/main";
 import "./_app.scss";
 import AdminOrder from "./pages/AdminOrder/main";
+import AdminProduct from "./pages/AdminProduct/main";
 
 function App() {
   console.log("app");
@@ -32,7 +33,7 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path={["/admin/home", "/admin/order/:orderStatus"]}>
+            <Route path={["/admin/home", "/admin/order/:orderStatus", "/admin/product"]}>
               <div className="container-fluid pt-1">
                 <Row style={{ height: "100vh", background: "white" }}>
                   <Col xs="3" className="p-0">
@@ -40,12 +41,15 @@ function App() {
                   </Col>
                   <Col xs="9" className="pl-0 pr-5">
                     <Switch>
-                      <PrivateRoute path="/admin/home">
+                      <Route path="/admin/home">
                         <AdminHome />
-                      </PrivateRoute>
-                      <PrivateRoute path="/admin/order/:orderStatus">
+                      </Route>
+                      <Route path="/admin/order/:orderStatus">
                         <AdminOrder />
-                      </PrivateRoute>
+                      </Route>
+                      <Route path="/admin/product">
+                        <AdminProduct/>
+                      </Route>
                     </Switch>
                   </Col>
                 </Row>
@@ -62,7 +66,7 @@ function App() {
                 "/shopping-cart",
                 "/wish-list",
                 "/products",
-                "/products/:slug",
+                "/products/:productCategory",
                 "/login",
                 "/check-out",
                 "/your-orders/:orderStatus",
@@ -79,7 +83,7 @@ function App() {
                     <Route path={["/shopping-cart", "/wish-list"]}>
                       <ShoppingCart />
                     </Route>
-                    <Route path={["/products", "/products/:slug"]}>
+                    <Route path={["/products", "/products/:productCategory"]}>
                       <Product />
                     </Route>
                     <Route path="/login">

@@ -1,0 +1,32 @@
+.product-table {
+    .product-table-header {
+        position: relative;
+        h3 {
+            color: rgb(27, 42, 72);
+        }
+        button {
+            position: absolute;
+            right: 0;
+            top:0;
+        }
+    }
+    .btn-add {
+        background-color: rgb(45, 55, 225);
+
+        &:hover {
+            background-color: white;
+            border: 1px solid rgb(45, 55, 225);
+            color: rgb(45, 55, 225);
+        }
+    }
+    table {
+        box-shadow: 1px 1px 5px 5px rgb(241, 241, 241);
+        th,
+        td {
+            padding: 10px 30px;
+        }
+        thead {
+            color: rgb(44, 2, 134);
+        }
+    }
+}
