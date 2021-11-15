@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import "./_filter.scss";
 import {updateFilterType} from '../../../utilities/slices/filterSlice'
 const Filter = () => {
-  
   const dispatch = useDispatch();
 
   const handleFilterChange = (e) => {

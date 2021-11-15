@@ -22,4 +22,4 @@ function ProductGridView() {
   );
 }
 
-export default ProductGridView;
+export default React.memo(ProductGridView);

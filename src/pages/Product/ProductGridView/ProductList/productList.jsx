@@ -1,26 +1,77 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Col, Row, Spinner } from "reactstrap";
 import ProductModal from "../../../../components/common/ProductModal/productModal";
 import ProductPagination from "../../../../components/ProductComponents/ProductPagination/productPagination";
 import ProductCard from "../../../../pages/Product/common/ProductCard/productCard";
 import { PRODUCTS_PER_PAGE } from "../../../../utilities/Constant";
+import { updateBreadcrumb } from "../../../../utilities/slices/breadcrumbSlice";
 import { getAllProducts } from "../../../../utilities/slices/productSlice";
 import "./_productList.scss";
 
 function ProductList() {
   const stateProducts = useSelector((state) => state.product.products);
   const stateProductModal = useSelector((state) => state.productModal);
-  const [products, setProducts] = useState();
-  const [currentPage, setCurrentPage] = useState(0);
-
   // const { filter } = useSelector((state) => state.filter);
+
+  const [products, setProducts] = useState();
+  const [loading, setLoading] = useState(false);
 
   const productCategory = useParams().productCategory;
   const dispatch = useDispatch();
-  // const location = useLocation();
-  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const currentPage = location.search
+    ? new URLSearchParams(location.search).get("page")
+    : 0;
+
+  useEffect(() => {
+    dispatch(
+      updateBreadcrumb({
+        name: "products",
+        slug: `${location.pathname}${
+          currentPage === 0 ? "" : `?page=${currentPage}`
+        }`,
+      })
+    );
+  }, [productCategory, currentPage]);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      setLoading(true);
+      await dispatch(getAllProducts());
+    }
+    if (!stateProducts.allProducts) {
+      fetchProduct();
+    } else {
+      setLoading(false);
+    }
+  }, [dispatch, stateProducts]);
+
+  useEffect(() => {
+    if (!stateProducts.allProducts) {
+      return;
+    }
+    let result = [];
+    let baseProducts;
+    if (!productCategory) {
+      baseProducts = stateProducts.allProducts;
+    } else {
+      baseProducts = stateProducts.filterProducts[productCategory];
+    }
+
+    const startProductIndx = currentPage * PRODUCTS_PER_PAGE;
+    const endProductIndx = startProductIndx + PRODUCTS_PER_PAGE;
+    for (
+      let i = startProductIndx;
+      i < baseProducts?.length && i < endProductIndx;
+      i++
+    ) {
+      result.push(baseProducts[i]);
+    }
+
+    setProducts(result);
+  }, [currentPage, stateProducts, productCategory]);
 
   // useEffect(() => {
   //   async function fetchProduct() {
@@ -52,51 +103,6 @@ function ProductList() {
 
   // }, [params, filter, location]);
 
-  useEffect(() => {
-    async function fetchProduct() {
-      setLoading(true);
-      await dispatch(getAllProducts());
-    }
-    if (!stateProducts.allProducts) {
-      fetchProduct();
-    } else {
-      setLoading(false);
-    }
-  }, [dispatch, stateProducts]);
-
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [productCategory]);
-
-  useEffect(() => {
-    if (!stateProducts.allProducts) {
-      return;
-    }
-    let result = [];
-    let baseProducts;
-    if (!productCategory) {
-      baseProducts = stateProducts.allProducts;
-    } else {
-      baseProducts = stateProducts.filterProducts[productCategory];
-    }
-    console.log(baseProducts);
-    const startProductIndx = currentPage * PRODUCTS_PER_PAGE;
-    const endProductIndx = startProductIndx + PRODUCTS_PER_PAGE;
-    for (
-      let i = startProductIndx;
-      i < baseProducts?.length && i < endProductIndx;
-      i++
-    ) {
-      result.push(baseProducts[i]);
-    }
-    setProducts(result);
-  }, [currentPage, stateProducts, productCategory]);
-
-  const changeCurrentPage = (page) => {
-    if (page === currentPage) return;
-    setCurrentPage(page);
-  };
-
   const renderProductCards = (products) => {
     if (loading) {
       return (
@@ -121,7 +127,7 @@ function ProductList() {
     } else if (stateProducts.filterProducts[productCategory]) {
       totalProducts = stateProducts.filterProducts[productCategory].length;
     } else {
-      return <div className='text-center'>No products is avaiable</div>;
+      return <div className="text-center">No products is avaiable</div>;
     }
 
     const startIndex = currentPage * PRODUCTS_PER_PAGE;
@@ -151,19 +157,14 @@ function ProductList() {
     return (
       <ProductPagination
         totalProducts={totalProducts}
-        changeCurrentPage={changeCurrentPage}
-        currentPage={currentPage}
+        currentPage={parseInt(currentPage)}
       />
     );
   };
 
   return (
     <React.Fragment>
-      {products && (
-        <div className="product-heading">
-          {renderHeading()}
-        </div>
-      )}
+      {products && <div className="product-heading">{renderHeading()}</div>}
       <Row>{products && renderProductCards(products)}</Row>
       {stateProducts.allProducts && renderPagination()}
 

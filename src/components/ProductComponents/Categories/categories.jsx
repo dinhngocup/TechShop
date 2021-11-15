@@ -6,12 +6,14 @@ import "./_categories.scss";
 function Categories() {
   // console.log('product item')
   const stateCategories = useSelector((state) => state.category);
+
+  
   const renderCategoryTable = (categories) => {
     return categories.length !== 0
       ? categories.map((category, index) => (
           <NavLink
             activeClassName="active"
-            to={`/products/${category.slug}`}
+            to={`/products${category.slug ? `/${category.slug}` : ""}`}
             key={category.id}
             exact={category.exact}
           >
@@ -23,7 +25,7 @@ function Categories() {
   return (
     <div className="option-table">
       <div className="option-table-heading">CATEGORIES</div>
-      <div className="option-table-content category-table">
+      <div className="option-table-content category-table filter-table">
         <ul>{renderCategoryTable(stateCategories.data)}</ul>
       </div>
     </div>

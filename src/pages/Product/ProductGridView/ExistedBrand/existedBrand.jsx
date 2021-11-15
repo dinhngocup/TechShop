@@ -8,7 +8,7 @@ function ExistedBrand() {
   //console.log('brands')
   const stateBrands = useSelector((state) => state.brand.data);
   const stateProducts = useSelector((state) => state.product.products);
-  console.log(stateProducts.allProducts);
+  
   const dispatch = useDispatch();
 
   // get brands
@@ -60,7 +60,7 @@ function ExistedBrand() {
   return (
     <div className="option-table">
       <div className="option-table-heading">BRANDS</div>
-      <div className="option-table-content brand-table">
+      <div className="option-table-content brand-table filter-table">
         <ul>{stateProducts.filterProducts && renderListBrand()}</ul>
       </div>
     </div>

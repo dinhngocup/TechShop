@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   MAX_PAGINATION_NAV_ITEM,
   PRODUCTS_PER_PAGE,
@@ -7,11 +8,28 @@ import {
 import "./_productPagination.scss";
 
 function ProductPagination(props) {
-  const { totalProducts, changeCurrentPage, currentPage } = props;
+  const { totalProducts, currentPage } = props;
+
   const [firstPage, setFirstPage] = useState(0);
   const pageNumbers = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+  const pathname = useLocation().pathname;
+  const prevPage = currentPage > 0 ? currentPage - 1 : 0;
+  const nextPage =
+    currentPage < pageNumbers - 1 ? currentPage + 1 : pageNumbers - 1;
+  const generateUrl = (pageId) => {
+    const page = pageId !== 0 ? `?page=${pageId}` : "";
+    return `${pathname}${page}`;
+  };
 
-  const updatePagination = (newPage) => {
+  useEffect(() => {
+    setFirstPage(0);
+  }, [pathname]);
+
+  const updatePagination = (e, newPage) => {
+    if (newPage === currentPage) {
+      e.preventDefault();
+      return;
+    }
     let currentFirstPage = firstPage;
     const pagninationNavItem =
       pageNumbers < MAX_PAGINATION_NAV_ITEM
@@ -31,7 +49,6 @@ function ProductPagination(props) {
       }
     }
     setFirstPage(currentFirstPage);
-    changeCurrentPage(newPage);
   };
 
   const renderPagination = () => {
@@ -42,38 +59,56 @@ function ProductPagination(props) {
       i++
     ) {
       result.push(
-        <Pagination.Item
-          key={i}
-          onClick={() => updatePagination(i)}
-          active={currentPage === i}
+        <NavLink
+          className="pagination-item"
+          key={`${pathname}${i}`}
+          to={() => generateUrl(i)}
+          onClick={(e) => updatePagination(e, i)}
+          activeClassName="active"
+          isActive={() => currentPage === i}
         >
           {i + 1}
-        </Pagination.Item>
+        </NavLink>
       );
     }
     return result;
   };
+
   return (
     <Pagination>
-      <Pagination.First onClick={() => updatePagination(0)}>
+      <NavLink
+        to={() => generateUrl(0)}
+        className="pagination-item"
+        isActive={() => false}
+        onClick={(e) => updatePagination(e, 0)}
+      >
         First
-      </Pagination.First>
-      <Pagination.Prev
-        onClick={() => currentPage > 0 && updatePagination(currentPage - 1)}
+      </NavLink>
+      <NavLink
+        to={() => generateUrl(prevPage)}
+        className="pagination-item"
+        isActive={() => false}
+        onClick={(e) => updatePagination(e, prevPage)}
       >
         Previous
-      </Pagination.Prev>
+      </NavLink>
       {renderPagination()}
-      <Pagination.Next
-        onClick={() =>
-          currentPage < pageNumbers - 1 && updatePagination(currentPage + 1)
-        }
+      <NavLink
+        className="pagination-item"
+        to={() => generateUrl(nextPage)}
+        isActive={() => false}
+        onClick={(e) => updatePagination(e, nextPage)}
       >
         Next
-      </Pagination.Next>
-      <Pagination.Last onClick={() => updatePagination(pageNumbers - 1)}>
+      </NavLink>
+      <NavLink
+        to={() => generateUrl(pageNumbers - 1)}
+        className="pagination-item"
+        isActive={() => false}
+        onClick={(e) => updatePagination(e, pageNumbers - 1)}
+      >
         Last
-      </Pagination.Last>
+      </NavLink>
     </Pagination>
   );
 }

@@ -5,15 +5,16 @@ import "../../assets/styles/_childBanner.scss";
 import Breadcrumb from "../../components/common/Breadcrumb/breadcrumb";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb,
+  removeLastBreadcrumb
 } from "../../utilities/slices/breadcrumbSlice";
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";
 
 function Product() {
-  //console.log("main");
+  console.log("main");
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(
       addNewBreadcrumb({

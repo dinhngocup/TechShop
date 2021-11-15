@@ -1,13 +1,16 @@
 .pagination {
-    .page-item {
-        &.active {
-            .page-link {
-                background-color: #5c4bdb;
-                border: none;
-            }
-        }
-    }
-    .page-link {
+    
+    .pagination-item {
         color: rgb(119, 35, 215);
+        padding: 0.5rem 0.75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        &.active {
+            background-color: #5c4bdb;
+            color: white;
+            border: none;
+        }
     }
 }
