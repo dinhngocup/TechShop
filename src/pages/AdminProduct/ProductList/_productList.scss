@@ -1,0 +1,12 @@
+.product-table {
+    table {
+        box-shadow: 1px 1px 5px 5px rgb(241, 241, 241);
+        th,
+        td {
+            padding: 10px 30px;
+        }
+        thead {
+            color: var(--admin-header);
+        }
+    }
+}

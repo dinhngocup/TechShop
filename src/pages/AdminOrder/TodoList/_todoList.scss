@@ -1,10 +1,10 @@
 .todo-list {
     h4 {
-        color: rgb(44, 2, 134);
+        color: var(--admin-header);
         font-weight: 600;
     }
-    background-color: rgb(215,238,246);
-    border: 1px dashed rgb(42,157,214);
+    background-color: var(--todo-list-containter-background);
+    border: 1px dashed var(--todo-list-container-border);
     .task-container {
         text-decoration: none;
         color: rgba(0, 0, 0, 0.5);
@@ -19,20 +19,20 @@
                 height: 2px;
                 width: 50%;
                 // background-color: white;
-                bottom:0;
-                left:0;
+                bottom: 0;
+                left: 0;
             }
         }
         &.active {
             .quantity {
-                color: rgb(44, 2, 134);
+                color: var(--admin-header);
             }
-            color: rgb(253,57,92);
+            color: var(--todo-name-active);
             font-weight: 600;
             .name::after {
                 transition: 0.3s;
-                background-color: rgb(253,57,92);
-                left:50%;
+                background-color: var(--todo-name-active);
+                left: 50%;
                 transform: translateX(-50%);
             }
         }

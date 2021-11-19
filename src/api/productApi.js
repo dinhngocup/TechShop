@@ -134,5 +134,35 @@ const ProductApi = {
     ];
     return result;
   },
+
+  getProductSpecificationAttribute: async (categoryId, brandId) => {
+    return [
+      {
+        id: "1",
+        name: "color",
+        dataType: "VAR_CHAR",
+      },
+      {
+        id: "2",
+        name: "weight",
+        dataType: "FLOAT",
+      },
+      {
+        id: "3",
+        name: "description",
+        dataType: "TEXT",
+      },
+      {
+        id: "4",
+        name: "touch bar",
+        dataType: "BOOL",
+      },
+      {
+        id: "5",
+        name: "battery",
+        dataType: "INT",
+      },
+    ];
+  },
 };
 export default ProductApi;

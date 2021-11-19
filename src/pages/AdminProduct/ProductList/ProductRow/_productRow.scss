@@ -18,7 +18,7 @@
             padding: 10px;
 
             &:hover {
-                color: rgb(231, 74, 97);
+                color: var(--icon-remove-background);
             }
         }
     }
@@ -30,16 +30,16 @@
             z-index: 999;
             border: 1px solid white;
             background-color: rgb(209, 234, 209);
-            color: rgb(0, 153, 0);
+            color: var(--sale-event-font-color);
             &:hover {
-                border: 1px dashed rgb(0, 153, 0);
+                border: 1px dashed var(--sale-event-font-color);
             }
         }
         .no-sale {
             background-color: white;
-            color: rgb(0, 153, 0);
+            color: var(--sale-event-font-color);
             &:hover {
-                border: 1px dashed rgb(0, 153, 0);
+                border: 1px dashed var(--sale-event-font-color);
             }
         }
     }

@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`{
         --main-bold-info-font-color: #434343;
         --border-color: #e8e8e8;
         --scroll-to-top: rgb(119,35,215);
+        --icon-remove-background: rgb(231,74,97);
         
         /**
          * Header
@@ -33,7 +34,6 @@ const GlobalStyle = createGlobalStyle`{
          --cart-nav-background: rgb(44,2,134);
          --cart-nav-font: rgb(252, 229, 25);
          --cart-info-font: #999;
-         --cart-icon-remove-background: rgb(231,74,97);
          --btn-pay-background: rgb(231,74,97);
          --cart-title: rgb(231,74,97);
          --cart-primary-header: rgb(231,74,97);
@@ -107,7 +107,33 @@ const GlobalStyle = createGlobalStyle`{
         --btn-add-to-cart-background: white; 
         --btn-add-to-cart-font: rgb(119,35,215);
 
+        /**
+         * Pagination
+         */ 
+        --pagination-color: rgb(119, 35, 215);
+        --pagination-active-background: #5c4bdb;
         
-        
+        /**
+         * Admin Order 
+         */ 
+        --admin-header: rgb(44, 2, 134);
+        --todo-list-containter-background: rgb(215, 238, 246);
+        --todo-list-container-border: rgb(42, 157, 214);
+        --todo-name-active: rgb(253, 57, 92);
+
+        /**
+         * Admin Product Filter
+         */ 
+        --search-bar-background: rgb(235, 224, 255);
+        --search-bar-item-border: rgb(164, 118, 255);
+        --admin-header: rgb(44, 2, 134);
+        --todo-list-containter-background: rgb(215, 238, 246);
+        --todo-list-container-border: rgb(42, 157, 214);
+        --todo-name-active: rgb(253, 57, 92);
+
+        --product-table-header: rgb(27, 42, 72);
+        --product-table-button: rgb(45, 55, 225);
+
+        --sale-event-font-color: rgb(0,153,0);
     }`;
 export default GlobalStyle;

@@ -30,6 +30,7 @@ function ProductDetail() {
           slug: "",
         })
       );
+      console.log(response)
       setProduct(response);
     };
 

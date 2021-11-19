@@ -10,6 +10,7 @@ import reducerWishList from "../utilities/slices/wishListSlice";
 import reducerUser from "../utilities/slices/userSlice";
 import reducerOrderModal from "../utilities/slices/orderModalSlice";
 import reducerFilterProduct from "../utilities/slices/filterProduct";
+import reducerNewProduct from "../utilities/slices/newProductSlide";
 
 const rootReducer = {
   productModal: reducerProductModal,
@@ -23,6 +24,7 @@ const rootReducer = {
   wishList: reducerWishList,
   user: reducerUser,
   orderModal: reducerOrderModal,
+  newProduct: reducerNewProduct,
 };
 const store = configureStore({
   reducer: rootReducer,

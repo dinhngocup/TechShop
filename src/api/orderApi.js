@@ -12,7 +12,7 @@ const OrderApi = {
   placeOrder: async (params) => {
     const url = `${UrlConstant.PLACE_ORDER}`;
     const body = JSON.stringify(params);
-
+console.log(body)
     return axiosClientAuthen
       .post(url, body)
 
