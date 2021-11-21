@@ -41,7 +41,7 @@ function CheckOut(props) {
     let orderInfo = [];
     for (let product of productsInCart) {
       let tempProduct = {
-        productID: product.id,
+        id: product.id,
         quantity: product.quantity,
       };
       orderInfo.push(tempProduct);

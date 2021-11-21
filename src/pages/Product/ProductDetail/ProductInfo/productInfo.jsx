@@ -26,14 +26,14 @@ function ProductInfo(props) {
   return (
     <React.Fragment>
       <div className="title">
-        <div className="product-name">{product.productName}</div>
+        <div className="product-name">{product.name}</div>
         <div className="product-rating">
-          <ProductRating rate={product.productRate} />
+          <ProductRating rate={product.rate} />
         </div>
       </div>
       <div className="title">
         <div className="product-price">
-          {handlePrice(product.productPrice)} <u>đ</u>
+          {handlePrice(product.price)} <u>đ</u>
         </div>
         <div className="">
           <i>Brand: </i>
@@ -48,9 +48,9 @@ function ProductInfo(props) {
           <ProductAction
             stock={product.stock}
             stockStatus={product.stockStatus}
-            id={product.productID}
-            name={product.productName}
-            price={product.productPrice}
+            id={product.id}
+            name={product.name}
+            price={product.price}
           />
         </div>
       </div>

@@ -7,7 +7,6 @@ import SpecificationInputGroup from "./SpecificationInputGroup/specificationInpu
 import "./_productSpecification.scss";
 
 function ProductSpecification(props) {
-  console.log("specs");
   const stateCategories = useSelector((state) => state.category.data);
   const stateBrands = useSelector((state) => state.brand.data);
   

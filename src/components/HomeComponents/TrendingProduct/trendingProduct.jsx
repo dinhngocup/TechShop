@@ -9,11 +9,11 @@ function TrendingProduct(props) {
   const images = parseImages(product.images);
   return (
     <div className="trending-product d-flex">
-      <img src={images[0]} alt={product.productName} />
+      <img src={images[0]} alt={product.name} />
       <div className="ml-3">
-        <div className="name">{product.productName}</div>
+        <div className="name">{product.name}</div>
         <div className="price">
-          {handlePrice(product.productPrice)} <u>đ</u>
+          {handlePrice(product.price)} <u>đ</u>
         </div>
       </div>
     </div>

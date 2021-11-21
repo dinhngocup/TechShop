@@ -18,7 +18,6 @@ import {
 import "./_filterBar.scss";
 
 function FilterBar(props) {
-  console.log("filter bar")
   const stateCategories = useSelector((state) => state.category.data);
   const filterItem = useSelector((state) => state.filterProduct.filters);
   const stateBrands = useSelector((state) => state.brand.data);

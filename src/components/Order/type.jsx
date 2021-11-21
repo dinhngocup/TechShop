@@ -1,6 +1,7 @@
 export const MESSAGE_ORDER = {
   RECEIVED_QUESTION: "Do you receive your package successfully?",
-  SUCCESSFUL_REQUEST: "Successful request",
+  SHIPPED_QUESTION: "Does the shipper ship package successfully?",
+  SUCCESSFUL_REQUEST: "Successful action",
   CANCEL_ORDER: "Are you sure that you want to cancel this order?",
   SUBMIT_SHIPPER_INFO: "Shipper's Information",
   SUBMIT_SHIPPER_INFO_SUCCESS: "Successful update"
@@ -13,7 +14,7 @@ export const REASON_CANCEL_ORDER = [
   },
   {
     name: "CHANGE_OPTION",
-    reason: "I change my mind andopt for another brand instead",
+    reason: "I change my mind and opt for another brand instead",
   },
   {
     name: "CASH_UNAVAIABLE",
@@ -26,6 +27,5 @@ export const REASON_CANCEL_ORDER = [
   },
   {
     name: "OTHER_REASON",
-    reason: "Other",
   },
 ];

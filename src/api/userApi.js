@@ -16,27 +16,26 @@ const UserApi = {
       .post(url, data)
 
       .then((response) => {
-        let fakeResponse;
-        if (email === "phuongdinh1802@gmail.com") {
-          fakeResponse = {
-            token: "fake_token",
-            access: "CUSTOMER",
-          };
-        } else {
-          fakeResponse = {
-            token: "fake_token",
-            access: "ADMIN",
-          };
-        }
+        // let fakeResponse;
+        // if (email === "phuongdinh1802@gmail.com") {
+        //   fakeResponse = {
+        //     token: "fake_token",
+        //     access: "CUSTOMER",
+        //   };
+        // } else {
+        //   fakeResponse = {
+        //     token: "fake_token",
+        //     access: "ADMIN",
+        //   };
+        // }
 
-        
-        cookiesService.setCookies(
-          "user",
-          JSON.stringify(fakeResponse.token),
-          2
-        );
-        cookiesService.setCookies("access", fakeResponse.access, 2);
-        // cookiesService.setCookies("user", JSON.stringify(response), 98);
+        // cookiesService.setCookies(
+        //   "user",
+        //   JSON.stringify(fakeResponse.token),
+        //   2
+        // );
+        cookiesService.setCookies("access", "CUSTOMER", 24);
+        cookiesService.setCookies("user", JSON.stringify(response), 24);
         return response;
       })
       .catch((error) => {

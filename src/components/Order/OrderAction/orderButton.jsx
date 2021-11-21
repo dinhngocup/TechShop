@@ -1,20 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
 import { OrderActionName } from "../../../pages/Order/type";
 import { updateOrderModal } from "../../../utilities/slices/orderModalSlice";
 import "./_orderButton.scss";
-import { useLocation, useHistory } from "react-router-dom";
 
 function OrderButton(props) {
   const { isMainBtn, btnName, orderId } = props;
+
   const dispatch = useDispatch();
   const currentPath = useLocation().pathname;
-  const history = useHistory();
 
   const updateModalInfo = () => {
-    if (btnName === OrderActionName.VIEW_DETAIL) {
-      history.push(`${currentPath}/${orderId}`, { from: currentPath });
-    }
     dispatch(updateOrderModal({ btnName, orderId }));
   };
 
@@ -23,8 +20,9 @@ function OrderButton(props) {
       case OrderActionName.CANCEL_ORDER:
       case OrderActionName.RETURN_PACKAGE:
       case OrderActionName.ADMIN_CANCEL_ORDER:
-        return "#modalConfirm";
+        return "#modalCancel";
       case OrderActionName.RECEIVED:
+      case OrderActionName.SHIPPED_SUCCESSFULLY:
         return "#modalReceived";
       case OrderActionName.RATE:
       case OrderActionName.VIEW_RATE:
@@ -34,11 +32,12 @@ function OrderButton(props) {
         return "#modalShipperInfo";
 
       case OrderActionName.CONFIRMED:
-        return "";
+        return "#modalConfirm";
       default:
         break;
     }
   };
+
   return (
     <button
       data-toggle="modal"
@@ -46,7 +45,11 @@ function OrderButton(props) {
       className={`${isMainBtn ? "main-btn" : ""} btn`}
       onClick={updateModalInfo}
     >
-      {btnName}
+      {btnName === OrderActionName.VIEW_DETAIL ? (
+        <NavLink to={`${currentPath}?id=${orderId}`}>{btnName}</NavLink>
+      ) : (
+        <>{btnName}</>
+      )}
     </button>
   );
 }

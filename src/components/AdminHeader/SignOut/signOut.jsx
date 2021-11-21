@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { cookiesService } from "../../../helpers/cookiesService";
-import { updateLoggedInStatus } from "../../../utilities/slices/userSlice";
+import {
+  clearData
+} from "../../../utilities/slices/userSlice";
 
 function SignOut(props) {
   const dispatch = useDispatch();
@@ -10,7 +12,8 @@ function SignOut(props) {
     cookiesService.removeCookies("user");
     cookiesService.removeCookies("access");
     window.location.href = "/home";
-    dispatch(updateLoggedInStatus({ isLoggedIn: false }));
+    // dispatch(updateLoggedInStatus({ isLoggedIn: false }));
+    dispatch(clearData());
   };
   return (
     <div
@@ -42,6 +45,7 @@ function SignOut(props) {
             <button
               type="button"
               className="btn btn-danger btn-sm"
+              data-dismiss="modal"
               onClick={logout}
             >
               Sign out

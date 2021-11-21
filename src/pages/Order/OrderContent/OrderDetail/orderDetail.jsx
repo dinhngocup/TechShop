@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import OrderApi from "../../../../api/orderApi";
 import OrderProduct from "../../../../components/Order/Product/orderProduct";
@@ -10,9 +10,8 @@ import OrderAction from "../OrderAction/orderAction";
 import "./_orderDetail.scss";
 
 function OrderDetail(props) {
+  const { orderId } = props;
   const history = useHistory();
-  const params = useParams();
-  const orderId = params.orderId;
 
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState(false);
@@ -37,7 +36,7 @@ function OrderDetail(props) {
   ];
 
   const renderProgress = (orderProgessDetail) => {
-    if (orderProgessDetail.cancelled) {
+    if (order?.cancelled) {
       progressList = [
         {
           orderStatusLabel: OrderStatus.PLACED_ORDER,
@@ -52,36 +51,35 @@ function OrderDetail(props) {
     const progressDetail = progressList.map((progress) => {
       switch (progress.orderStatusLabel) {
         case OrderStatus.PLACED_ORDER:
-          progress.orderTime = orderProgessDetail.placedOrder;
+          progress.orderTime = orderProgessDetail[0];
           progress.active =
-            orderProgessDetail.inHandling || orderProgessDetail.cancelled
+            orderProgessDetail[1] || order.cancelledDate
               ? "complete"
               : "active";
           break;
         case OrderStatus.IN_HANDLING:
-          progress.orderTime = orderProgessDetail.inHandling || "";
-          progress.active = orderProgessDetail.inHandling
-            ? orderProgessDetail.shipped
+          progress.orderTime = orderProgessDetail[1] || "";
+          progress.active = orderProgessDetail[1]
+            ? orderProgessDetail[2]
               ? "complete"
               : "active"
             : "disable";
           break;
         case OrderStatus.SHIPPED:
-          progress.orderTime = orderProgessDetail.shipped || "";
-          progress.active = orderProgessDetail.shipped
-            ? orderProgessDetail.deliveried
+          progress.orderTime =
+            orderProgessDetail[3] || orderProgessDetail[2] || "";
+          progress.active = orderProgessDetail[2]
+            ? orderProgessDetail[4]
               ? "complete"
               : "active"
             : "disable";
           break;
         case OrderStatus.DELIVERIED:
-          progress.orderTime = orderProgessDetail.deliveried || "";
-          progress.active = orderProgessDetail.deliveried
-            ? "active"
-            : "disable";
+          progress.orderTime = orderProgessDetail[4] || "";
+          progress.active = orderProgessDetail[4] ? "active" : "disable";
           break;
         case OrderStatus.CANCELLED:
-          progress.orderTime = orderProgessDetail.cancelled || "";
+          progress.orderTime = order.cancelledDate || "";
           progress.active = "active";
           break;
         default:
@@ -128,20 +126,18 @@ function OrderDetail(props) {
   ) : (
     <div className="order-detail">
       <div className="d-flex justify-content-between py-3 px-4 text-uppercase header">
-        <NavLink
-          to={history.location.state?.from || "/your-orders/placed-order"}
-        >
+        <div onClick={history.goBack}>
           <i className="fas fa-chevron-left mr-2"></i>Back
-        </NavLink>
+        </div>
         <div className="sub-title">
-          <span className="pr-3">Order Id: {order.orderId}</span>
-          <span className="pl-3 order-status">{order.orderStatus}</span>
+          <span className="pr-3">Order Id: {orderId}</span>
+          <span className="pl-3 order-status">{order.status}</span>
         </div>
       </div>
       <div className="order-process px-4 py-5">
         <div className="container-fluid">
           <div className="row bs-wizard">
-            {renderProgress(order.orderProgessDetail)}
+            {renderProgress(order.processDate)}
           </div>
         </div>
       </div>
@@ -174,9 +170,10 @@ function OrderDetail(props) {
           </div>
           <div className="col-8 order-action">
             <OrderAction
-              orderId={order.orderId}
-              orderStatus={order.orderStatus}
-              isReviewed={order.isReviewed}
+              orderId={orderId}
+              orderStatus={order.status}
+              statusDetail={order.statusDetail}
+              isReviewed={order.processDate.length === 6}
               isDetailedOrder={true}
             />
           </div>
@@ -185,11 +182,8 @@ function OrderDetail(props) {
 
       <div className="list-product px-4 pt-4">
         <h4>Your Order</h4>
-        {order.products.map((product) => (
-          <OrderProduct
-            key={`${orderId}${product.productId}`}
-            product={product}
-          />
+        {order.detailedInvoices.map((product) => (
+          <OrderProduct key={`${orderId}${product.id}`} product={product} />
         ))}
       </div>
 
@@ -221,7 +215,7 @@ function OrderDetail(props) {
           </b>
         </div>
       </div>
-      {order.orderStatus === OrderStatus.DELIVERIED ? (
+      {order.status === OrderStatus.DELIVERIED ? (
         <ReviewModal order={order} />
       ) : (
         ""

@@ -7,13 +7,14 @@ import OrderAction from "../OrderAction/orderAction";
 
 function OrderBody(props) {
   const { order } = props;
+  console.log(order)
   return (
     <div className="p-3 order-body mb-4">
       <div className="text-right order-status-container pb-2">
         <span className="order-detailed-status px-3">
-          <i className="fas fa-truck"></i> {order.orderStatusDetail}
+          <i className="fas fa-truck"></i> {order.statusDetail}
         </span>
-        <span className="order-status pl-3">{order.orderStatus}</span>
+        <span className="order-status pl-3">{order.status}</span>
       </div>
       <OrderProduct product={order.firstProduct} />
       {order.totalItems > 1 ? (
@@ -32,11 +33,12 @@ function OrderBody(props) {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div className="status-description">
-            <small>{order.orderStatusNote}</small>
+            <small>{order.statusNote}</small>
           </div>
           <OrderAction
-            orderStatus={order.orderStatus}
-            orderId={order.orderId}
+            statusDetail={order.statusDetail}
+            orderStatus={order.status}
+            orderId={order.id}
             isDetailedOrder={false}
           />
         </div>

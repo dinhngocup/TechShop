@@ -51,10 +51,10 @@ function ProductCard(props) {
   const images = parseImages(product.images);
   return (
     <div className="product-card">
-      <Link to={`/products/${product.categorySlug}/${product.productID}`}>
+      <Link to={`/products/${product.categorySlug}/${product.id}`}>
         <div className="product-photo">
           {images[0] !== "" ? <img src={images[0]} alt="Apple watch" /> : ""}
-          <WishIcon id={product.productID} />
+          <WishIcon id={product.id} />
           <div
             className="product-action"
             onClick={(e) => {
@@ -70,12 +70,7 @@ function ProductCard(props) {
             </button>
             <button
               onClick={(e) => {
-                handleAddToCart(
-                  e,
-                  product.productID,
-                  product.productName,
-                  product.productPrice
-                );
+                handleAddToCart(e, product.id, product.name, product.price);
               }}
               disabled={loading}
             >
@@ -85,14 +80,14 @@ function ProductCard(props) {
         </div>
         <div className="product-info">
           <div className="mb-2">
-            <div className="product-title">{product.productName}</div>
+            <div className="product-title">{product.name}</div>
             <div className="product-brand">Brand: {product.brandName}</div>
           </div>
           <div className="product-sub-title">
             <div className="product-price">
-              {handlePrice(product.productPrice)} <u>đ</u>
+              {handlePrice(product.price)} <u>đ</u>
             </div>
-            <ProductRating rate={product.productRate} />
+            <ProductRating rate={product.rate} />
           </div>
         </div>
       </Link>

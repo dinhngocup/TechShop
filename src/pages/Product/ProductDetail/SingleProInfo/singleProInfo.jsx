@@ -54,7 +54,7 @@ function SingleProInfo(props) {
         <div className="col-lg-5">
           <div className="single-pro-slider">
             <img src={activeImage} alt="apple-watch" />
-            <WishIcon id={product.productID} />
+            <WishIcon id={product.id} />
           </div>
         </div>
         <div className="col-lg-7 product-info">

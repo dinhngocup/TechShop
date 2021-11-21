@@ -4,7 +4,8 @@ import OrderButton from "../../../../components/Order/OrderAction/orderButton";
 import { OrderActionName, OrderStatus } from "../../type";
 
 function OrderAction(props) {
-  const { orderStatus, isDetailedOrder, orderId, isReviewed } = props;
+  const { orderStatus, isDetailedOrder, orderId, isReviewed, statusDetail } =
+    props;
   const history = useHistory();
 
   const renderCustomerActionButton = () => {
@@ -19,18 +20,29 @@ function OrderAction(props) {
           },
         ];
         break;
-      case OrderStatus.SHIPPED:
-        orderButtons = [
-          {
-            btnName: OrderActionName.RECEIVED,
-            isMainBtn: true,
-          },
-          {
-            btnName: OrderActionName.RETURN_PACKAGE,
-            isMainBtn: false,
-          },
-        ];
+      case OrderStatus.SHIPPED: {
+        if (statusDetail === "On the way") {
+          orderButtons = [
+            {
+              btnName: OrderActionName.RETURN_PACKAGE,
+              isMainBtn: true,
+            },
+          ];
+        } else {
+          orderButtons = [
+            {
+              btnName: OrderActionName.RECEIVED,
+              isMainBtn: true,
+            },
+            {
+              btnName: OrderActionName.RETURN_PACKAGE,
+              isMainBtn: false,
+            },
+          ];
+        }
         break;
+      }
+
       case OrderStatus.DELIVERIED:
         if (isDetailedOrder) {
           orderButtons = [
@@ -102,18 +114,22 @@ function OrderAction(props) {
           },
         ];
         break;
-      case OrderStatus.SHIPPED:
-        orderButtons = [
-          {
-            btnName: OrderActionName.EDIT_SHIPPER_INFO,
-            isMainBtn: true,
-          },
-          {
-            btnName: OrderActionName.ADMIN_CANCEL_ORDER,
-            isMainBtn: false,
-          },
-        ];
+      case OrderStatus.SHIPPED: {
+        if (statusDetail === "On the way") {
+          orderButtons = [
+            {
+              btnName: OrderActionName.SHIPPED_SUCCESSFULLY,
+              isMainBtn: true,
+            },
+            {
+              btnName: OrderActionName.ADMIN_CANCEL_ORDER,
+              isMainBtn: false,
+            },
+          ];
+        }
         break;
+      }
+
       case OrderStatus.DELIVERIED:
         orderButtons = isReviewed
           ? [

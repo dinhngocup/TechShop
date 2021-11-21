@@ -36,8 +36,11 @@ function ProductModal(props) {
               <img src={images[0]} alt="apple watch" />
             </div>
             <div className="product-modal-info">
-              <div className="title info-deco">{product.productName}</div>
-              <div className="price info-deco"> {handlePrice(product.productPrice)} <u>đ</u></div>
+              <div className="title info-deco">{product.name}</div>
+              <div className="price info-deco">
+                {" "}
+                {handlePrice(product.price)} <u>đ</u>
+              </div>
               <div className="more-info info-deco">
                 <a className="all-info " href="/">
                   See more information

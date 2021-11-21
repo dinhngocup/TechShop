@@ -5,14 +5,18 @@ const orderModal = createSlice({
   initialState: {
     modalType: "",
     orderId: "",
-    shipperInfo:""
+    shipperInfo: "",
   },
   reducers: {
     updateOrderModal: (state, action) => {
       state.orderId = action.payload.orderId;
-      state.modalType= action.payload.btnName;
+      state.modalType = action.payload.btnName;
+    },
+    resetOrderModal: (state) => {
+      state.orderId = "";
+      state.modalType = "";
     },
   },
 });
-export const { updateOrderModal } = orderModal.actions;
+export const { updateOrderModal, resetOrderModal } = orderModal.actions;
 export default orderModal.reducer;

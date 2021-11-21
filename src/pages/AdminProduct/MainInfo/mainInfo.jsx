@@ -6,8 +6,6 @@ import ProductMainInfoInput from "../../../components/AdminProduct/ProductMainIn
 import "./_mainInfo.scss";
 
 function MainInfo(props) {
-  console.log("main info");
-
   const [images, setImages] = useState([]);
   const [listErrors, setListErrors] = useState();
 

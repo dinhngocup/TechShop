@@ -30,8 +30,8 @@ function SingleProTab(props) {
       case "review":
         setTabContent(
           <ReviewTab
-            rate={product.productRate}
-            id={product.productID}
+            rate={product.rate}
+            id={product.id}
             totalReviews={product.totalReviews}
             firstReviews={firstReviews}
           />

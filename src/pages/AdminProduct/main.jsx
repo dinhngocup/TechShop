@@ -9,7 +9,6 @@ import MainInfo from "./MainInfo/mainInfo";
 import ProductSpecification from "./Specification/productSpecification";
 
 function AdminProduct(props) {
-  console.log("main");
   const [isProductList, setIsProductList] = useState(true);
   
   const handleSubmit = (event) => {

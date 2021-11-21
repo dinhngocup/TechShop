@@ -3,8 +3,7 @@ import { FormGroup, Input, Label } from "reactstrap";
 
 function ProductMainInfoInput(props) {
   const { label, handleValidation, listErrors, dataType, name } = props;
-  console.log(listErrors);
-  console.log(name);
+  
   return (
     <FormGroup>
       <Label className="text-capitalize">{label}</Label>

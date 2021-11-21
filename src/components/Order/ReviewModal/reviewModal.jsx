@@ -3,8 +3,8 @@ import Media from "react-bootstrap/Media";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import ReviewApi from "../../../api/reviewApi";
-import image1 from "../../../assets/images/headphone1.jpeg";
 import starIcon from "../../../assets/images/review.jpeg";
+import parseImages from "../../../helpers/parseImages";
 import "./_reviewModal.scss";
 
 function ReviewModal(props) {
@@ -17,114 +17,119 @@ function ReviewModal(props) {
 
   const [loading, setLoading] = useState(false);
 
-  const rate = (rate, productId) => {
-    let stars = document
-      .getElementById(`rating-${productId}`)
-      .querySelectorAll("svg");
-    for (let index = 4; index >= 0; index--) {
-      if (index >= rate)
-        stars[index]
-          .querySelector("path")
-          .setAttribute("fill", " var(--review-star-background)");
-      else stars[index].querySelector("path").setAttribute("fill", "none");
-    }
-    const listReview = reviews;
-    for (let i = 0; i < listReview.length; i++) {
-      if (listReview[i].productId === productId) {
-        listReview[i].rating = 5 - rate;
-        setReviews([...listReview]);
-        return;
-      }
-    }
-    listReview.push({
-      rating: 5 - rate,
-      productId,
-    });
-    setReviews([...listReview]);
-  };
+  // const rate = (rate, productId) => {
+  //   let stars = document
+  //     .getElementById(`rating-${productId}`)
+  //     .querySelectorAll("svg");
+  //   for (let index = 4; index >= 0; index--) {
+  //     if (index >= rate)
+  //       stars[index]
+  //         .querySelector("path")
+  //         .setAttribute("fill", " var(--review-star-background)");
+  //     else stars[index].querySelector("path").setAttribute("fill", "none");
+  //   }
+  //   const listReview = reviews;
+  //   for (let i = 0; i < listReview.length; i++) {
+  //     if (listReview[i].productId === productId) {
+  //       listReview[i].rating = 5 - rate;
+  //       setReviews([...listReview]);
+  //       return;
+  //     }
+  //   }
+  //   listReview.push({
+  //     rating: 5 - rate,
+  //     productId,
+  //   });
+  //   setReviews([...listReview]);
+  // };
 
-  const updateReview = (review, productId) => {
-    const listReview = reviews;
-    for (let i = 0; i < listReview.length; i++) {
-      if (listReview[i].productId === productId) {
-        listReview[i].reviewContent = review;
-        setReviews([...listReview]);
-        return;
-      }
-    }
-    listReview.push({
-      reviewContent: review,
-      productId,
-    });
-    setReviews([...listReview]);
-  };
+  // const updateReview = (review, productId) => {
+  //   const listReview = reviews;
+  //   for (let i = 0; i < listReview.length; i++) {
+  //     if (listReview[i].productId === productId) {
+  //       listReview[i].reviewContent = review;
+  //       setReviews([...listReview]);
+  //       return;
+  //     }
+  //   }
+  //   listReview.push({
+  //     reviewContent: review,
+  //     productId,
+  //   });
+  //   setReviews([...listReview]);
+  // };
 
-  const renderStarRating = (productId, reviewInfo) => {
-    let result = [];
-    for (let i = 0; i < 5; i++) {
-      result.push(
-        <svg
-          key={i}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 32 32"
-          onClick={reviewInfo ? null : () => rate(i, productId)}
-        >
-          <path
-            className={`${!reviewInfo ? "unrate-star" : ""}`}
-            fill={
-              reviewInfo && reviewInfo.rating > i
-                ? "var(--review-star-background)"
-                : "none"
-            }
-            fillRule="evenodd"
-            stroke="var(--review-star-border)"
-            strokeWidth="1.5"
-            d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
-          ></path>
-        </svg>
-      );
-    }
-    return result;
-  };
+  // const renderStarRating = (productId, reviewInfo) => {
+  //   let result = [];
+  //   for (let i = 0; i < 5; i++) {
+  //     result.push(
+  //       <svg
+  //         key={i}
+  //         xmlns="http://www.w3.org/2000/svg"
+  //         viewBox="0 0 32 32"
+  //         onClick={reviewInfo ? null : () => rate(i, productId)}
+  //       >
+  //         <path
+  //           className={`${!reviewInfo ? "unrate-star" : ""}`}
+  //           fill={
+  //             reviewInfo && reviewInfo.rating > i
+  //               ? "var(--review-star-background)"
+  //               : "none"
+  //           }
+  //           fillRule="evenodd"
+  //           stroke="var(--review-star-border)"
+  //           strokeWidth="1.5"
+  //           d="M16 1.695l-4.204 8.518-9.401 1.366 6.802 6.631-1.605 9.363L16 23.153l8.408 4.42-1.605-9.363 6.802-6.63-9.4-1.367L16 1.695z"
+  //         ></path>
+  //       </svg>
+  //     );
+  //   }
+  //   return result;
+  // };
 
-  const renderAReview = (product) => (
-    <Media className="p-3 product-review">
-      <img alt="" className="mr-3" src={image1} />
-      <Media.Body className="d-flex flex-column justify-content-between">
-        <div className="d-flex justify-content-between">
-          <div>
+  const renderAReview = (product) => {
+    const images = parseImages(product.images);
+    return (
+      <Media className="p-3 product-review">
+        <img alt="" className="mr-3" src={images[0]} />
+        <Media.Body className="d-flex flex-column justify-content-between">
+          <div className="d-flex justify-content-between">
             <div>
-              <b>{product.name}</b>
+              <div>
+                <b>{product.name}</b>
+              </div>
+              <div>
+                <small>Provided by TechShop</small>
+              </div>
             </div>
-            <div>
-              <small>Provided by TechShop</small>
-            </div>
+            {/* <div
+              className={`rate-star${
+                product.reviewInfo ? " rated" : " unrated"
+              }`}
+              id={`rating-${product.id}`}
+            >
+              {renderStarRating(product.id, product.reviewInfo)}
+            </div> */}
           </div>
-          <div
-            className={`rate-star${product.reviewInfo ? " rated" : " unrated"}`}
-            id={`rating-${product.productId}`}
-          >
-            {renderStarRating(product.productId, product.reviewInfo)}
-          </div>
-        </div>
-        {product.reviewInfo ? (
-          <div>{product.reviewInfo.reviewContent}</div>
-        ) : (
-          <textarea
-            rows="1"
-            placeholder="Your review"
-            onChange={(e) => {
-              updateReview(e.target.value, product.productId);
-            }}
-          ></textarea>
-        )}
-      </Media.Body>
-    </Media>
-  );
+          {/* {product.reviewInfo ? (
+            <div>{product.reviewInfo.reviewContent}</div>
+          ) : (
+            <textarea
+              rows="1"
+              placeholder="Your review"
+              onChange={(e) => {
+                updateReview(e.target.value, product.productId);
+              }}
+            ></textarea>
+          )} */}
+        </Media.Body>
+      </Media>
+    );
+  };
 
   const submitReview = () => {
     // call api post review
-    // productID, orderID, review Content, rate
+    // id, orderID, review Content, rate
     const addReview = async (data) => {
       console.log(data);
       setLoading(true);
@@ -156,7 +161,9 @@ function ReviewModal(props) {
     let emptyRating = reviews.filter((review) => review.rating);
     return (
       <button
-        disabled={emptyRating.length !== order.products.length ? true : false}
+        disabled={
+          emptyRating.length !== order.detailedInvoices.length ? true : false
+        }
         onClick={submitReview}
       >
         Submit your review
@@ -197,13 +204,13 @@ function ReviewModal(props) {
           </button>
         </div>
         <div className="modal-body review-modal-body p-0">
-          {order.products.map((product) => (
-            <React.Fragment key={product.productId}>
+          {order.detailedInvoices.map((product) => (
+            <React.Fragment key={product.id}>
               {renderAReview(product)}
             </React.Fragment>
           ))}
         </div>
-        {order.isReviewed ? (
+        {order.processDate.length === 6 ? (
           ""
         ) : (
           <div className="modal-footer">

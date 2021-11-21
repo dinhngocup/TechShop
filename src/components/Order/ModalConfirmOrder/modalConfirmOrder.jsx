@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import OrderApi from "../../../api/orderApi";
 import { getAllAdminOrders } from "../../../utilities/slices/adminOrderSlice";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER } from "../type";
-import { OrderActionName } from "../../../pages/Order/type";
 
-function ModalReceived(props) {
-  const { orderId, modalType } = props;
+function ModalConfirmOrder(props) {
+  const { orderId } = props;
   const history = useHistory();
 
   const [loading, setLoading] = useState(false);
@@ -23,65 +22,21 @@ function ModalReceived(props) {
   }, [orderId]);
 
   const redirectToCompletedOrder = () => {
-    const url = history.location.pathname.startsWith("/admin")
-      ? "/admin/order/shipped"
-      : "/your-orders/deliveried";
-    isSucceed && history.push(url);
+    isSucceed && history.push("/admin/order/handling");
   };
 
-  const renderCustomerBody = () => {
+  const renderBody = () => {
     if (!isSucceed) {
       return (
         <>
-          <div className="text-center pb-2">
-            <i className="far fa-check-circle success"></i>
-          </div>
-          <div>
-            <b>Thank you for your purchase. </b>We are grateful if you take a
-            few minutes to write your review.
-          </div>
-          <br />
-          <div>
-            <small>
-              Note:{" "}
-              <em>
-                If you click OK, you cannot request a refund for this order.
-              </em>
-            </small>
-          </div>
+          <div className="text-center pb-2">Handle order</div>
         </>
       );
     } else {
       return (
         <div>
-          Your request is recorded by TechShop. If you have any questions,
-          contact TechShop now!
-        </div>
-      );
-    }
-  };
-
-  const renderAdminBody = () => {
-    if (!isSucceed) {
-      return (
-        <>
-          <div className="text-center pb-2">
-            <i className="far fa-check-circle success"></i>
-          </div>
-          <div>Are you sure this package shipped to customer successfuly?</div>
-          <br />
-          <div>
-            <small>
-              <em>Waiting for valuable feedback from customer!</em>
-            </small>
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <div>
-          Your request is recorded by TechShop. Waiting for valuable feedback
-          from customer!
+          You have just confirmed to handle this order completely. Please
+          package the order and tranfer to shipper as soon as possible.
         </div>
       );
     }
@@ -99,11 +54,10 @@ function ModalReceived(props) {
       dispatch(getAllAdminOrders());
     }
   };
-
   return (
     <div
       className="modal fade modal-confirm"
-      id="modalReceived"
+      id="modalConfirm"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="menuModalLabel"
@@ -116,8 +70,6 @@ function ModalReceived(props) {
               <b>
                 {isSucceed
                   ? MESSAGE_ORDER.SUCCESSFUL_REQUEST
-                  : modalType === OrderActionName.SHIPPED_SUCCESSFULLY
-                  ? MESSAGE_ORDER.SHIPPED_QUESTION
                   : MESSAGE_ORDER.RECEIVED_QUESTION}
               </b>
             </h6>
@@ -131,11 +83,7 @@ function ModalReceived(props) {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body">
-            {modalType === OrderActionName.SHIPPED_SUCCESSFULLY
-              ? renderAdminBody()
-              : renderCustomerBody()}
-          </div>
+          <div className="modal-body">{renderBody()}</div>
           <div className="modal-footer">
             <ModalFooter
               isSucceed={isSucceed}
@@ -149,6 +97,6 @@ function ModalReceived(props) {
   );
 }
 
-ModalReceived.propTypes = {};
+ModalConfirmOrder.propTypes = {};
 
-export default React.memo(ModalReceived);
+export default React.memo(ModalConfirmOrder);

@@ -11,7 +11,8 @@ import reducerUser from "../utilities/slices/userSlice";
 import reducerOrderModal from "../utilities/slices/orderModalSlice";
 import reducerFilterProduct from "../utilities/slices/filterProduct";
 import reducerNewProduct from "../utilities/slices/newProductSlide";
-
+import reducerAdminOrder from "../utilities/slices/adminOrderSlice";
+  
 const rootReducer = {
   productModal: reducerProductModal,
   category: reducerCategory,
@@ -25,6 +26,7 @@ const rootReducer = {
   user: reducerUser,
   orderModal: reducerOrderModal,
   newProduct: reducerNewProduct,
+  adminOrder: reducerAdminOrder,
 };
 const store = configureStore({
   reducer: rootReducer,

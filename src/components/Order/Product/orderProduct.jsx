@@ -1,22 +1,25 @@
 import React from "react";
 
 import Media from "react-bootstrap/Media";
-import image1 from "../../../assets/images/headphone1.jpeg";
+import parseImages from "../../../helpers/parseImages";
 import "./_orderProduct.scss";
 import handlePrice from "../../../helpers/formatPrice";
 import { Link } from "react-router-dom";
 
 function OrderProduct(props) {
   const { product } = props;
+  const images = parseImages(product.images);
+  
   return (
-    <Link to={`/products/${product.categorySlug}/${product.productId}`} className="product-info-container">
+    <Link
+      to={`/products/${product.categorySlug}/${product.id}`}
+      className="product-info-container"
+    >
       <Media className="py-3 product-info">
-        <img alt="" className="mr-3" src={image1} />
+        <img alt="" className="mr-3" src={images[0]} />
         <Media.Body className="product-body">
           <h5>{product.name}</h5>
-          <div className="sub-info">
-            <small>Color: {product.color}</small>
-          </div>
+
           <div className="d-flex justify-content-between">
             <p>
               <small>x {product.quantity}</small>

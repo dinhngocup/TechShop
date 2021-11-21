@@ -26,13 +26,13 @@ function WishItem(props) {
   const handleAddToCart = (product) => {
     dispatch(
       addToCart({
-        id: product.productID,
+        id: product.id,
         quantity: 1,
-        name: product.productName,
-        price: product.productPrice,
+        name: product.name,
+        price: product.price,
       })
     );
-    dispatch(editWishList(product.productID));
+    dispatch(editWishList(product.id));
   };
 
   return (
@@ -42,9 +42,9 @@ function WishItem(props) {
         <div className="short-info">
           <Link
             className="name"
-            to={`/products/${product.categorySlug}/${product.productID}`}
+            to={`/products/${product.categorySlug}/${product.id}`}
           >
-            {product.productName}
+            {product.name}
           </Link>
           <div className="brand">
             Brand: <i>{product.brandName}</i>
@@ -54,7 +54,7 @@ function WishItem(props) {
           </div>
         </div>
       </td>
-      <td className="price">{product.productPrice}</td>
+      <td className="price">{product.price}</td>
 
       <td className={product.stockStatus}>
         {product.stockStatus === "in-stock" ? "In Stock" : "Out of Stock"}
@@ -73,7 +73,7 @@ function WishItem(props) {
         <i
           className="fa fa-times"
           onClick={() => {
-            dispatch(editWishList(product.productID));
+            dispatch(editWishList(product.id));
           }}
         ></i>
       </td>

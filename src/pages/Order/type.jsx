@@ -17,13 +17,12 @@ export const OrderActionName = {
   VIEW_DETAIL: "View Details",
   CONFIRMED: "Confirm to Handle Order",
   TRANSFER_TO_SHIPPER: "Transfer to Shipper",
-  RECEIVED_BY_CUSTOMER: "Received by Customer",
+  SHIPPED_SUCCESSFULLY: "Received by Customer",
   VIEW_CUSTOMER_RATE: "View Customer's Review",
-  EDIT_SHIPPER_INFO: "Edit Shipper's Information"
+  EDIT_SHIPPER_INFO: "Edit Shipper's Information",
 };
 
 export const OrderModalType = {
   CONFIRM_MODAL: "CONFIRM_MODAL",
   RATING_MODAL: "RATING_MODAL",
 };
-

@@ -5,11 +5,14 @@ import OrderApi from "../../../api/orderApi";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER, REASON_CANCEL_ORDER } from "../type";
 import "./_modalCancelOrder.scss";
+import { useDispatch } from "react-redux";
+import { getAllUserOrders } from "../../../utilities/slices/userSlice";
 
 function ModalCancelOrder(props) {
   const { orderId } = props;
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
@@ -17,6 +20,7 @@ function ModalCancelOrder(props) {
 
   useEffect(() => {
     if (isSucceed) {
+      setReasonCancelling(null);
       setIsSucceed(false);
     }
   }, [orderId]);
@@ -27,6 +31,7 @@ function ModalCancelOrder(props) {
     if (response) {
       setLoading(false);
       setIsSucceed(true);
+      dispatch(getAllUserOrders());
     }
   };
 
@@ -39,24 +44,16 @@ function ModalCancelOrder(props) {
   };
 
   const updateReasonCancelOrder = (reasonName, reasonContent) => {
-    if (reasonName === "OTHER_REASON" && !reasonContent) {
-      setReasonCancelling((prevState) => ({
-        ...prevState,
-        reasonName,
-      }));
-    } else {
-      setReasonCancelling((prevState) => ({
-        ...prevState,
-        reasonName,
-        reasonContent,
-      }));
-    }
+    setReasonCancelling({
+      reasonName,
+      reasonContent,
+    });
   };
 
   return (
     <div
       className="modal fade modal-confirm"
-      id="modalConfirm"
+      id="modalCancel"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="menuModalLabel"
@@ -98,53 +95,45 @@ function ModalCancelOrder(props) {
                 </h4>
                 <h5 className="complain">What made you cancel?</h5>
                 {REASON_CANCEL_ORDER.map((reason) => {
-                  if (reason.name !== "OTHER_REASON") {
-                    return (
+                  return (
+                    <React.Fragment key={reason.name}>
                       <FormGroup
                         check
                         className="py-2"
-                        key={reason.name}
                         onChange={() => {
-                          updateReasonCancelOrder(reason.name);
+                          updateReasonCancelOrder(reason.name, reason.reason);
                         }}
                       >
                         <Label check>
                           <Input type="radio" name="reasonCancel" />
-                          {reason.reason}
+                          {reason.reason ? (
+                            reason.reason
+                          ) : reasonCancelling?.reasonName === reason.name ? (
+                            <>
+                              Other<span className="text-danger">(*)</span>
+                            </>
+                          ) : (
+                            "Other"
+                          )}
                         </Label>
                       </FormGroup>
-                    );
-                  }
-                  return (
-                    <FormGroup
-                      check
-                      className="py-2"
-                      key={reason.name}
-                      onChange={() => {
-                        updateReasonCancelOrder(reason.name);
-                      }}
-                    >
-                      <Label check className="other-reason">
-                        <Input type="radio" name="reasonCancel" />
-                        {reason.reason}
-                        {reasonCancelling?.reasonName === reason.name ? (
-                          <textarea
-                            type="text"
-                            className="ml-2"
-                            // value={reasonCancelling?.reasonContent}
-                            placeholder="Your Valuable Feedback"
-                            onChange={(e) => {
-                              updateReasonCancelOrder(
-                                reason.name,
-                                e.target.value
-                              );
-                            }}
-                          />
-                        ) : (
-                          ""
-                        )}
-                      </Label>
-                    </FormGroup>
+                      {reason.name === "OTHER_REASON" &&
+                      reasonCancelling?.reasonName === "OTHER_REASON" ? (
+                        <Input
+                          type="textarea"
+                          className="ml-2"
+                          placeholder="Your Valuable Feedback"
+                          onChange={(e) => {
+                            updateReasonCancelOrder(
+                              reason.name,
+                              e.target.value
+                            );
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </React.Fragment>
                   );
                 })}
               </>
@@ -155,6 +144,7 @@ function ModalCancelOrder(props) {
               isSucceed={isSucceed}
               loading={loading}
               confirmRequest={confirmRequest}
+              isDisabled={!reasonCancelling?.reasonContent}
             />
           </div>
         </div>

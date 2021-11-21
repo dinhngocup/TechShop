@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Col, Spinner } from "reactstrap";
-import { DEFAULT_REVIEW_PAGE, REVIEWS_PER_PAGE } from "../../../utilities/Constant";
+import {
+  DEFAULT_REVIEW_PAGE,
+  REVIEWS_PER_PAGE,
+} from "../../../utilities/Constant";
 import {
   addNewBreadcrumb,
   removeLastBreadcrumb,
@@ -26,11 +29,11 @@ function ProductDetail() {
       let response = await ProductApi.getDetailedProduct(id);
       dispatch(
         addNewBreadcrumb({
-          name: response.productName,
+          name: response.name,
           slug: "",
         })
       );
-      console.log(response)
+      console.log(response);
       setProduct(response);
     };
 

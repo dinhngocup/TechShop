@@ -9,7 +9,7 @@ function RelatedCategoryPro(props) {
   const renderProductList = (products) => {
     return (
       <Row>
-        {products.length !== 0
+        {products
           ? products.map((product, index) => {
               if (index >= 4) return "";
               return (

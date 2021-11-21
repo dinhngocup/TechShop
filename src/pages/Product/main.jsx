@@ -12,7 +12,6 @@ import ProductGridView from "./ProductGridView/productGridView";
 import "./_product.scss";
 
 function Product() {
-  console.log("main");
   const dispatch = useDispatch();
   
   useEffect(() => {

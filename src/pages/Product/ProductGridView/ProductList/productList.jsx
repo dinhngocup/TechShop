@@ -14,7 +14,6 @@ function ProductList() {
   const stateProducts = useSelector((state) => state.product.products);
   const stateProductModal = useSelector((state) => state.productModal);
   // const { filter } = useSelector((state) => state.filter);
-  console.log(stateProducts);
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
 
