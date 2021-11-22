@@ -5,7 +5,6 @@ import "./_productRow.scss";
 
 function ProductRow(props) {
   const { product } = props;
-
   return (
     <tr
       className="product-table-item"
@@ -16,11 +15,11 @@ function ProductRow(props) {
         <img src={image} alt="" />
       </td>
       <td className="">
-        <b>Apple watch series 3 38mm</b>
+        <b>{product.name}</b>
       </td>
 
-      <td className="">{handlePrice(7000000)}</td>
-      <td className="">Smart Watch</td>
+      <td className="">{handlePrice(product.price)}</td>
+      <td className="">{product.brandName}</td>
       <td className="text-center sale-program">
         {product.saleProgram ? (
           <button

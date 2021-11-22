@@ -118,6 +118,10 @@ function OrderAction(props) {
         if (statusDetail === "On the way") {
           orderButtons = [
             {
+              btnName: OrderActionName.EDIT_SHIPPER_INFO,
+              isMainBtn: true,
+            },
+            {
               btnName: OrderActionName.SHIPPED_SUCCESSFULLY,
               isMainBtn: true,
             },

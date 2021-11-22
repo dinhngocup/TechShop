@@ -3,19 +3,20 @@ import "./_productList.scss";
 import ProductRow from "./ProductRow/productRow";
 
 function ProductList(props) {
-  const productSaleEvent = {
-    saleProgram: {
-      type: "Sale Event",
-      value: "In Sale Event",
-    },
-  };
-  const productSaleProduct = {
-    saleProgram: {
-      type: "Sale Product",
-      value: "40%",
-    },
-  };
-  const productNoSale = {};
+  const { products } = props;
+  // const productSaleEvent = {
+  //   saleProgram: {
+  //     type: "Sale Event",
+  //     value: "In Sale Event",
+  //   },
+  // };
+  // const productSaleProduct = {
+  //   saleProgram: {
+  //     type: "Sale Product",
+  //     value: "40%",
+  //   },
+  // };
+  // const productNoSale = {};
   return (
     <table className="w-100">
       <thead>
@@ -29,9 +30,8 @@ function ProductList(props) {
         </tr>
       </thead>
       <tbody>
-        <ProductRow product={productSaleEvent} />
-        <ProductRow product={productSaleProduct} />
-        <ProductRow product={productNoSale} />
+        {products &&
+          products.map((product) => <ProductRow product={product} key={product.id} />)}
       </tbody>
     </table>
   );

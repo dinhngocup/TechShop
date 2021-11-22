@@ -18,7 +18,7 @@ const OrderApi = {
       .catch((error) => Promise.reject(error));
   },
   getAllUserOrders: async () => {
-    const url = `${UrlConstant.GET_ALL_ORDERS}`;
+    const url = `${UrlConstant.GET_ALL_USER_ORDERS}`;
     return axiosClientAuthen.get(url);
   },
   getOrder: async (id) => {
@@ -38,7 +38,6 @@ const OrderApi = {
       .catch((error) => Promise.reject(error));
   },
   returnOrder: async (id) => {
-    console.log(id);
     return Promise.resolve(1);
   },
   updateOrderStatus: async (id) => {
@@ -76,112 +75,10 @@ const OrderApi = {
     ];
   },
 
-  getAllAdminOrders: async () => {
-    const url = `${UrlConstant.GET_ALL_ORDERS}`;
+  getAllAdminOrders: async ({ month, year }) => {
+    console.log(month, year);
+    const url = `${UrlConstant.GET_ALL_ADMIN_ORDERS}/${month}/${year}`;
     return axiosClientAuthen.get(url);
-    // return [
-    //   {
-    //     id: 1,
-    //     status: "Placed Order",
-    //     statusDetail: "Waiting to confirm by TechShop",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-
-    //   {
-    //     id: 2,
-    //     statusDetail: "Packaging and delivering to shipper",
-    //     status: "In Handling",
-    //     totalItems: 2,
-    //     total: 12000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-
-    //   {
-    //     id: 3,
-    //     statusDetail: "On the way",
-    //     status: "Shipped",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 4,
-    //     statusDetail: "Deliveried Successfully",
-    //     status: "Shipped",
-    //     totalItems: 2,
-    //     total: 5000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-
-    //   {
-    //     id: 5,
-    //     statusDetail: "Received Package Successfuly",
-    //     status: "Deliveried",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 6,
-    //     statusDetail: "Reviewed",
-    //     status: "Deliveried",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //     isReviewed: true,
-    //   },
-
-    //   {
-    //     id: 7,
-    //     statusDetail: "Cancelled",
-    //     status: "Cancelled",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 8,
-    //     statusDetail: "Return package",
-    //     status: "Cancelled",
-    //     totalItems: 1,
-    //     total: 1000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 9,
-    //     statusDetail: "Cancelled",
-    //     status: "Cancelled",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 10,
-    //     statusDetail: "Return package",
-    //     status: "Cancelled",
-    //     totalItems: 1,
-    //     total: 1000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 11,
-    //     statusDetail: "Cancelled",
-    //     status: "Cancelled",
-    //     totalItems: 3,
-    //     total: 23000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    //   {
-    //     id: 12,
-    //     statusDetail: "Return package",
-    //     status: "Cancelled",
-    //     totalItems: 1,
-    //     total: 1000000,
-    //     lastConfirm: "01/01/2020",
-    //   },
-    // ];
   },
   transferToShipper: async (id, shipperInfo) => {
     console.log("call transfer", shipperInfo);

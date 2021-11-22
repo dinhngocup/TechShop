@@ -1,39 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import { Col, Row } from "reactstrap";
-import OrderSummary from "../../../components/AdminOrder/OrderSummary/orderSummary";
-import { getAllAdminOrders } from "../../../utilities/slices/adminOrderSlice";
+import { Col, Input, Row } from "reactstrap";
+import OrderApi from "../../../api/orderApi";
+import { AdminOrderUrl } from "../../../pages/AdminOrder/adminOrderType";
+import { OrderStatus } from "../../../pages/Order/type";
 import { AdminOrderTypeLabel } from "../adminOrderType";
+import TodoTable from "./TodoTable/todoTable";
 import "./_todoList.scss";
 
 function TodoList(props) {
-  const stateAdminOrders = useSelector((state) => state.adminOrder.orders);
-
+  const [allOrders, setAllOrders] = useState();
   const [orders, setOrders] = useState();
+  const [orderPeriod, setOrderPeriod] = useState();
 
-  const dispatch = useDispatch();
   const tabName = useLocation().pathname.replace("/admin/order/", "");
+  const classifyAdminOrders = (listOrders) => {
+    let filterResults = {
+      [AdminOrderUrl.PENDING_CONFIRM]: [],
+      [AdminOrderUrl.IN_HANDLING]: [],
+      [AdminOrderUrl.SHIPPED]: [],
+      [AdminOrderUrl.COMPLETED]: [],
+      [AdminOrderUrl.CANCELLED]: [],
+    };
+    listOrders.forEach((order) => {
+      switch (order.status) {
+        case OrderStatus.PLACED_ORDER:
+          filterResults[AdminOrderUrl.PENDING_CONFIRM].push(order);
+          break;
+        case OrderStatus.IN_HANDLING:
+          filterResults[AdminOrderUrl.IN_HANDLING].push(order);
+          break;
+        case OrderStatus.DELIVERIED:
+          filterResults[AdminOrderUrl.COMPLETED].push(order);
+          break;
+        case OrderStatus.SHIPPED:
+          filterResults[AdminOrderUrl.SHIPPED].push(order);
+          break;
+        case OrderStatus.CANCELLED:
+          filterResults[AdminOrderUrl.CANCELLED].push(order);
+          break;
+        default:
+          break;
+      }
+    });
+    return filterResults;
+  };
 
   useEffect(() => {
-    async function fetchAllAdminOrders() {
-      await dispatch(getAllAdminOrders());
+    async function fetchAllAdminOrders(parseDateTime) {
+      const response = await OrderApi.getAllAdminOrders({
+        month: parseDateTime[1],
+        year: parseDateTime[0],
+      });
+
+      if (response) {
+        const filterOrders = classifyAdminOrders(response);
+        setAllOrders(filterOrders);
+      }
     }
-    if (!stateAdminOrders) {
-      fetchAllAdminOrders();
+    if (orderPeriod) {
+      const parseDateTime = orderPeriod.split("-");
+      fetchAllAdminOrders(parseDateTime);
     }
-  }, [dispatch]);
+  }, [orderPeriod]);
 
   useEffect(() => {
     // dispatch(resetOrderModal());
-    if (stateAdminOrders) {
-      setOrders(stateAdminOrders[tabName]);
+    if (allOrders) {
+      setOrders(allOrders[tabName]);
     }
-  }, [tabName, stateAdminOrders]);
+  }, [tabName, allOrders]);
 
   const renderToDoList = () => {
     let result = [];
-    Object.entries(stateAdminOrders).forEach(([orderStatus, listOrders]) => {
+    Object.entries(allOrders).forEach(([orderStatus, listOrders]) => {
       result.push(
         <Col xs="6" sm="4" className="p-3" key={orderStatus}>
           <NavLink
@@ -56,32 +96,19 @@ function TodoList(props) {
       <div className="todo-list p-2">
         <h4>To Do List</h4>
         <p>You have to handle these orders as soon as possible</p>
+        <Input
+          type="month"
+          name="month"
+          min="2020-01"
+          onChange={(e) => setOrderPeriod(e.target.value)}
+          onKeyDown={() => false}
+        />
+
         <div className="container-fluid">
-          <Row className="text-center">
-            {stateAdminOrders && renderToDoList()}
-          </Row>
+          <Row className="text-center">{allOrders && renderToDoList()}</Row>
         </div>
       </div>
-      <div className="mt-4 to-do-order">
-        <table className="w-100">
-          <thead>
-            <tr>
-              <th className="">Order Id</th>
-              <th className="">Last Confirmed</th>
-              <th className="">Status Detail</th>
-              <th className="">Total items</th>
-              <th className="">Total</th>
-              <th className="">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders &&
-              orders.map((order) => {
-                return <OrderSummary key={order.id} order={order} />;
-              })}
-          </tbody>
-        </table>
-      </div>
+      <TodoTable orders={orders} />
     </>
   );
 }

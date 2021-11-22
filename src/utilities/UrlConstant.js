@@ -33,7 +33,8 @@ export const GET_USER_SHIPPING_INFO = "/api/v1/user/shippingInfo"
 export const PLACE_ORDER = "/api/v1/invoice"
 
 // ORDER
-export const GET_ALL_ORDERS= "/api/v1/invoice/user"
+export const GET_ALL_USER_ORDERS= "/api/v1/invoice/user"
+export const GET_ALL_ADMIN_ORDERS= "/api/v1/invoice"
 export const GET_DETAILED_ORDER = "/api/v1/invoice"
 export const CANCEL_ORDER = "/api/v1/invoice/cancel"
 export const UPDATE_ORDER_STATUS = "/api/v1/invoice/status"
