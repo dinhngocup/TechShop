@@ -14,7 +14,7 @@ const filterProduct = createSlice({
     removeFilter: (state, action) => {
       const { id, name } = action.payload;
       state.filters = state.filters.filter(
-        (item) => item.id !== id && item.name !== name
+        (item) => item.id !== id || item.name !== name
       );
     },
     updateSaleFilter: (state, action) => {

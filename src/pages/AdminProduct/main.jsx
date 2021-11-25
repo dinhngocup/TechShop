@@ -27,13 +27,55 @@ function AdminProduct(props) {
   };
 
   useEffect(() => {
-    setRenderProducts(stateProducts.allProducts)
+    // setRenderProducts(stateProducts.allProducts)
 
     // console.log(stateProducts)
-    console.log("filter bar", filterItem);
-    console.log("search input", searchInput);
+    const result = filterSearchProducts(filterItem, searchInput, stateProducts.allProducts);
+    setRenderProducts(result);
+
 
   }, [filterItem, searchInput, stateProducts]);
+
+  const filterSearchProducts = (filterValue, searchValue, products) => {
+    let result;
+    if (filterValue.length || searchValue) {
+      if (filterValue.length) {
+        let category = [];
+        let brand = [];
+        filterValue.forEach(value => {
+          if (value.itemCategory === 'Category') {
+            category.push(value.name);
+          } else if(value.itemCategory === 'Brand') {
+            brand.push(value.name);
+          }
+        });
+        if( category.length) {
+          result = products.filter(product => category.includes(product.categoryName));
+        }
+        if (brand.length) {
+          if (category.length) {
+            result = result.filter(product => brand.includes(product.brandName));
+          } else {
+            result = products.filter(product => brand.includes(product.brandName));
+          }
+        }
+      }
+      if (searchValue) {
+        searchValue = searchValue.trim();
+        searchValue = searchValue.toLowerCase();
+        if(filterValue.length) {
+          result = result.filter(product => product.name.toLowerCase().includes(searchValue));
+        }
+        else {
+          result = products.filter(product => product.name.toLowerCase().includes(searchValue));
+        }
+      }
+    }
+    else {
+      result = products;
+    }
+    return result;
+  }
 
 
   useEffect(() => {
