@@ -16,7 +16,7 @@ function Result(props) {
   return (
     <Link
       className="result"
-      to={`/products/${product.categorySlug}/${product.id}`}
+      to={`/product/${product.categorySlug}/${product.id}`}
     >
       <img src={images[0]} alt={product.name} />
       <div className="info">

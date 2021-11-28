@@ -6,6 +6,11 @@ const ProductApi = {
     const url = `${UrlConstant.GET_ALL_PRODUCTS}`;
     return axiosClient.get(url);
   },
+  remove: (id) => {
+    // const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`;
+    // return axiosClient.delete(url);
+    return Promise.resolve();
+  },
   getProductsByCategory: async (params) => {
     let { category } = params;
     const url = `${UrlConstant.GET_PRODUCTS_BY_CATEGORY}/category/${category}`;
@@ -135,34 +140,94 @@ const ProductApi = {
     return result;
   },
 
-  getProductSpecificationAttribute: async (categoryId, brandId) => {
-    return [
-      {
-        id: "1",
-        name: "color",
-        dataType: "VAR_CHAR",
-      },
-      {
-        id: "2",
-        name: "weight",
-        dataType: "FLOAT",
-      },
-      {
-        id: "3",
-        name: "description",
-        dataType: "TEXT",
-      },
-      {
-        id: "4",
-        name: "touch bar",
-        dataType: "BOOL",
-      },
-      {
-        id: "5",
-        name: "battery",
-        dataType: "INT",
-      },
-    ];
+  getProductSpecificationAttribute: async (params) => {
+    const url = `${UrlConstant.GET_EXISTED_SPECIFICATION}/${params.category}/${params.brand}`;
+    return axiosClient.get(url);
+  },
+  updateProductInfo: async (product) => {
+  //   {
+  //     "existedSpecifications": [
+  //         {
+  //             "id": "10VAR_CHAR",
+  //             "value": "Black"
+  //         },
+  //         {
+  //             "id": "7FLOAT",
+  //             "value": "4"
+  //         },
+  //         {
+  //             "id": "8FLOAT",
+  //             "value": "12.6"
+  //         },
+  //         {
+  //             "id": "4TEXT",
+  //             "value": "hii"
+  //         }
+  //     ],
+  //     "id": "6",
+  //     "newSpecifications": [
+  //         {
+  //             "name": "ColorNew",
+  //             "dataType": "VAR",
+  //             "value": "hii"
+  //         },
+  //         {
+  //             "name": "Color",
+  //             "dataType": "BOOL",
+  //             "value": "Yes"
+  //         }
+  //     ],
+  //     "price": "1200000",
+  //     "shortDescription": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus incidunt distinctio saepe laudantium, nam unde quaerat perferendis harum, \r\naspernatur atque blanditiis rerum possimus! Praesentium dolorum, accusamus repellat doloribus ex ipsam",
+  //     "stock": "50",
+  //     "warranty": "2"
+  // }
+    return Promise.reject();
+  },
+  addProduct: async (product) => {
+    //   {
+    //     "brand": "e572dcea-479d-4d8a-bb40-ea638e43e756",
+    //     "category": "4741b10d-a1de-4c9c-acaf-040185f58e85",
+    //     "existedSpecifications": [
+    //         {
+    //             "id": "1",
+    //             "value": "444"
+    //         },
+    //         {
+    //             "id": "91",
+    //             "value": "22"
+    //         },
+    //         {
+    //             "id": "92",
+    //             "value": "22"
+    //         },
+    //         {
+    //             "id": "93",
+    //             "value": "0"
+    //         },
+    //         {
+    //             "id": "94",
+    //             "value": "2"
+    //         },
+    //         {
+    //             "id": "95",
+    //             "value": "2"
+    //         }
+    //     ],
+    //     "name": "productName",
+    //     "newSpecifications": [
+    //         {
+    //             "name": "weightt",
+    //             "dataType": "VAR",
+    //             "value": "hii"
+    //         }
+    //     ],
+    //     "price": "23",
+    //     "shortDescription": "hi",
+    //     "stock": "243",
+    //     "warranty": "23"
+    // }
+    return Promise.resolve();
   },
 };
 export default ProductApi;

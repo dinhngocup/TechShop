@@ -41,7 +41,7 @@ function EmptyItem(props) {
         <div className="empty-compo-content">
           <h4>{showHeadingStatement(title)}</h4>
           <div>
-            <Link to="/products">Shop today's deals</Link>
+            <Link to="/product">Shop today's deals</Link>
           </div>
           <div>
             {/* <button className="btn-sign-in">

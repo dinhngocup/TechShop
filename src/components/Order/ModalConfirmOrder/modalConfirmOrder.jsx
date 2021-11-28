@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import OrderApi from "../../../api/orderApi";
-import { getAllAdminOrders } from "../../../utilities/slices/adminOrderSlice";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER } from "../type";
 
@@ -12,8 +10,6 @@ function ModalConfirmOrder(props) {
 
   const [loading, setLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSucceed) {
@@ -51,7 +47,6 @@ function ModalConfirmOrder(props) {
     if (response) {
       setLoading(false);
       setIsSucceed(true);
-      dispatch(getAllAdminOrders());
     }
   };
   return (

@@ -1,44 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../../utilities/slices/categorySlice";
 
 function FilterTopProduct(props) {
+  const stateCategories = useSelector((state) => state.category.data);
+  const dispatch = useDispatch();
+  // get categories
+  useEffect(() => {
+    async function fetchCategories() {
+      await dispatch(getCategories());
+    }
+    if (!stateCategories.length) {
+      fetchCategories();
+    }
+  }, [dispatch, stateCategories]);
+  const renderTopProducts = () => {
+    let result = [];
+    for (let i = 0; i < 4; i++) {
+      result.push(
+        <button
+          key={stateCategories[i].id}
+          type="button"
+          className={`btn btn-outline-secondary ${i === 0 ? "active" : ""}`}
+          name={stateCategories[i].id}
+          onClick={changeTypeTopProduct}
+        >
+          {stateCategories[i].name}
+        </button>
+      );
+    }
+    return result;
+  };
   const { changeTypeTopProduct } = props;
-  return (
-    <div>
-      <button
-        type="button"
-        className="btn btn-outline-secondary active"
-        name="10"
-        onClick={changeTypeTopProduct}
-      >
-        Smart Phone
-      </button>
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-        name="9"
-        onClick={changeTypeTopProduct}
-      >
-        Keyboard
-      </button>
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-        name="5"
-        onClick={changeTypeTopProduct}
-      >
-        Mouse
-      </button>
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-        name="8"
-        onClick={changeTypeTopProduct}
-      >
-        Monitor
-      </button>
-    </div>
-  );
+  return <div>{stateCategories.length && renderTopProducts()}</div>;
 }
 
 FilterTopProduct.propTypes = {

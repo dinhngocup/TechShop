@@ -17,9 +17,9 @@ function OrderBody(props) {
         <span className="order-status pl-3">{order.status}</span>
       </div>
       <OrderProduct product={order.firstProduct} />
-      {order.totalItems > 1 ? (
+      {order.totalItems - order.firstProduct.quantity > 1 ? (
         <div className="other-products text-center">
-          <small>and {order.totalItems - 1} other product(s)</small>
+          <small>and {order.totalItems - order.firstProduct.quantity} other product(s)</small>
         </div>
       ) : (
         ""

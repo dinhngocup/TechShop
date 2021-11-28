@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
-import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/Specification/type";
+import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/ProductDetail/Specification/type";
 
 function AddAttributeModal(props) {
   const { addNewAttribute, existedAttributes, newAttributes } = props;
@@ -43,12 +43,12 @@ function AddAttributeModal(props) {
   };
 
   const checkAndUpdateNewAttribute = () => {
-    addNewAttribute(newAttr);
+    addNewAttribute({ ...newAttr, id: newAttr.name + "_" + newAttr.dataType });
     resetForm();
   };
 
   const resetForm = () => {
-    // document.getElementById("create-course-form").reset();
+    setNewAttr({});
   };
 
   return (
@@ -71,6 +71,7 @@ function AddAttributeModal(props) {
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              onClick={resetForm}
             >
               <span aria-hidden="true">&times;</span>
             </button>

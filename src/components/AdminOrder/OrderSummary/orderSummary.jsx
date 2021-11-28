@@ -38,4 +38,4 @@ function OrderSummary(props) {
 
 OrderSummary.propTypes = {};
 
-export default OrderSummary;
+export default React.memo(OrderSummary);

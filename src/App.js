@@ -21,6 +21,7 @@ import ShoppingCart from "./pages/ShoppingItems/main";
 import "./_app.scss";
 import AdminOrder from "./pages/AdminOrder/main";
 import AdminProduct from "./pages/AdminProduct/main";
+import SupportedSupplier from "./pages/SupportedSupplier/main";
 
 function App() {
   console.log("app");
@@ -33,7 +34,14 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path={["/admin/home", "/admin/order/:orderStatus", "/admin/product"]}>
+            <Route
+              path={[
+                "/admin/home",
+                "/admin/order/:orderStatus",
+                "/admin/product",
+                "/admin/supplier",
+              ]}
+            >
               <div className="container-fluid pt-1">
                 <Row style={{ height: "100vh", background: "white" }}>
                   <Col xs="3" className="p-0">
@@ -41,6 +49,7 @@ function App() {
                   </Col>
                   <Col xs="9" className="pl-0 pr-5">
                     <Switch>
+                      {/*TODO: update to private route*/}
                       <Route path="/admin/home">
                         <AdminHome />
                       </Route>
@@ -48,7 +57,10 @@ function App() {
                         <AdminOrder />
                       </Route>
                       <Route path="/admin/product">
-                        <AdminProduct/>
+                        <AdminProduct />
+                      </Route>
+                      <Route path="/admin/supplier">
+                        <SupportedSupplier />
                       </Route>
                     </Switch>
                   </Col>
@@ -65,8 +77,8 @@ function App() {
                 "/home",
                 "/shopping-cart",
                 "/wish-list",
-                "/products",
-                "/products/:productCategory",
+                "/product",
+                "/product/:productCategory",
                 "/login",
                 "/check-out",
                 "/your-orders/:orderStatus",
@@ -83,7 +95,7 @@ function App() {
                     <Route path={["/shopping-cart", "/wish-list"]}>
                       <ShoppingCart />
                     </Route>
-                    <Route path={["/products", "/products/:productCategory"]}>
+                    <Route path={["/product", "/product/:productCategory"]}>
                       <Product />
                     </Route>
                     <Route path="/login">
@@ -113,6 +125,7 @@ function App() {
           </Switch>
         </Router>
       </div>
+      
     </div>
   );
 }

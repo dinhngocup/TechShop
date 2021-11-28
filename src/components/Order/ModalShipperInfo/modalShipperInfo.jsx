@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FormGroup, Input, Label } from "reactstrap";
 import OrderApi from "../../../api/orderApi";
 import { OrderActionName } from "../../../pages/Order/type";
-import { getAllAdminOrders } from "../../../utilities/slices/adminOrderSlice";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER } from "../type";
 
@@ -12,7 +10,6 @@ function ModalShipperInfo(props) {
   const { orderId, modalType } = props;
   const PREV_SHIPPER_INFO = useRef();
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const [shipperInfo, setShipperInfo] = useState();
   const [loading, setLoading] = useState(false);
@@ -98,7 +95,6 @@ function ModalShipperInfo(props) {
     if (response) {
       setLoading(false);
       setIsSucceed(true);
-      dispatch(getAllAdminOrders());
     }
   };
 

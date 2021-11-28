@@ -19,7 +19,7 @@ function AdminOrder(props) {
   return (
     <div className="body-content">
       <Route exact path="/admin/order/:orderStatus">
-        {urlId && orderId ? <OrderDetail orderId={orderId} /> : <TodoList />}
+        {urlId ? <OrderDetail orderId={urlId} /> : <TodoList />}
       </Route>
       <ModalConfirmOrder orderId={orderId} />
       <ModalCancelOrder orderId={orderId} />

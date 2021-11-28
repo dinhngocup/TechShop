@@ -1,9 +1,9 @@
-import ProductApi from "../../../api/productApi";
-import parseImages from "../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import ProductApi from "../../../api/productApi";
+import parseImages from "../../../helpers/parseImages";
 import { addToCart } from "../../../utilities/slices/cartSlice";
 import { editWishList } from "../../../utilities/slices/wishListSlice";
 
@@ -42,7 +42,8 @@ function WishItem(props) {
         <div className="short-info">
           <Link
             className="name"
-            to={`/products/${product.categorySlug}/${product.id}`}
+            to={`/product/${product.categorySlug}?id=${product.id}`}
+            // onClick={() => dispatch(updateProductTemp(product.id))}
           >
             {product.name}
           </Link>

@@ -34,7 +34,7 @@ function Results(props) {
               <Result product={result} key={result.id} />
               <Link
                 className="result justify-content-center"
-                to={`/products?keyword=${searchTerm}`}
+                to={`/product?keyword=${searchTerm}`}
                 key={nanoid()}
               >
                 {otherResults} different results were found

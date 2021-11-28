@@ -12,6 +12,7 @@ import { clearAll } from "../../../utilities/slices/cartSlice";
 import BillingDetails from "./BillingDetails/billingDetails";
 import Order from "./Order/order";
 import "./_checkOut.scss";
+import { getAllUserOrders } from "../../../utilities/slices/userSlice";
 
 function CheckOut(props) {
   const productsInCart = useSelector((state) => state.cart.products);
@@ -58,6 +59,7 @@ function CheckOut(props) {
           //console.log(res);
           setLoading(false);
           history.push("/your-orders/placed-order");
+          dispatch(getAllUserOrders());
           // clear all data in check out and cart
           dispatch(clearAll());
         })

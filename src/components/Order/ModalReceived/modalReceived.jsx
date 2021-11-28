@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import OrderApi from "../../../api/orderApi";
-import { getAllAdminOrders } from "../../../utilities/slices/adminOrderSlice";
+import { OrderActionName } from "../../../pages/Order/type";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER } from "../type";
-import { OrderActionName } from "../../../pages/Order/type";
+import { useDispatch } from "react-redux";
+import { getAllUserOrders } from "../../../utilities/slices/userSlice";
 
 function ModalReceived(props) {
   const { orderId, modalType } = props;
+
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSucceed) {
@@ -90,13 +91,15 @@ function ModalReceived(props) {
   const confirmRequest = async () => {
     let response;
     setLoading(true);
-
     response = await OrderApi.updateOrderStatus(orderId);
 
     if (response) {
+      console.log(response);
       setLoading(false);
       setIsSucceed(true);
-      dispatch(getAllAdminOrders());
+      if (!history.location.pathname.startsWith("/admin")) {
+        dispatch(getAllUserOrders());
+      }
     }
   };
 

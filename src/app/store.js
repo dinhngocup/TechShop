@@ -12,7 +12,9 @@ import reducerOrderModal from "../utilities/slices/orderModalSlice";
 import reducerFilterProduct from "../utilities/slices/filterProduct";
 import reducerNewProduct from "../utilities/slices/newProductSlide";
 import reducerAdminOrder from "../utilities/slices/adminOrderSlice";
-  
+import reducerProductTemp from "../utilities/slices/productTemp";
+import reducerNotification from "../utilities/slices/notificationSlice";
+
 const rootReducer = {
   productModal: reducerProductModal,
   category: reducerCategory,
@@ -27,6 +29,8 @@ const rootReducer = {
   orderModal: reducerOrderModal,
   newProduct: reducerNewProduct,
   adminOrder: reducerAdminOrder,
+  productTemp: reducerProductTemp,
+  notification: reducerNotification,
 };
 const store = configureStore({
   reducer: rootReducer,

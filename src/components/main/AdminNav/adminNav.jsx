@@ -11,28 +11,20 @@ function AdminNav(props) {
         <ul>
           {AdminNavList.map((nav) => (
             <li key={nav.href}>
-              <NavLink to={nav.href} activeClassName="active">
+              <NavLink
+                to={nav.href}
+                activeClassName="active"
+                className={`${
+                  pathname.startsWith(nav.mainHref) ? "active" : ""
+                }`}
+              >
                 <span className="menu-tab-icon">
                   <i className={nav.icon}></i>
                 </span>
-                <span>{nav.name}</span>
+                <span className="text-capitalize">{nav.name}</span>
               </NavLink>
             </li>
           ))}
-          <li>
-            <NavLink
-              to="/admin/order/placed-order"
-              activeClassName="active"
-              className={`${
-                pathname.startsWith("/admin/order") ? "active" : ""
-              }`}
-            >
-              <span className="menu-tab-icon">
-                <i className="fa fa-list"></i>
-              </span>
-              <span>Order</span>
-            </NavLink>
-          </li>
         </ul>
       </div>
     </div>

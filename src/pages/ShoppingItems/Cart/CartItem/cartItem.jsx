@@ -1,11 +1,12 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import ProductApi from "../../../../api/productApi";
 import CartAction from "../../../../components/ShoppingItemsComponents/CartAction/cartAction";
 import handlePrice from "../../../../helpers/formatPrice";
 import parseImages from "../../../../helpers/parseImages";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { removeFromCart } from "../../../../utilities/slices/cartSlice";
+
 function CartItem(props) {
   const { productInCart } = props;
 
@@ -30,7 +31,8 @@ function CartItem(props) {
         <div className="short-info">
           <Link
             className="name"
-            to={`/products/${product.categorySlug}/${product.id}`}
+            to={`/product/${product.categorySlug}?id=${product.id}`}
+            // onClick={() => dispatch(updateProductTemp(product.id))}
           >
             {product.name}
           </Link>

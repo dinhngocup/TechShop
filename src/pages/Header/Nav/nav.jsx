@@ -25,7 +25,7 @@ function Nav(props) {
       ? categories.map((category, index) => (
           <Col key={index} xs="4" sm="4" md="4" lg="4">
             <NavLink
-              to={`/products${category.slug ? `/${category.slug}` : ""}`}
+              to={`/product${category.slug ? `/${category.slug}` : ""}`}
               activeClassName="active"
               exact={category.exact}
             >
@@ -47,7 +47,7 @@ function Nav(props) {
             </NavLink>
           </li>
           <li className="dropdown-switcher">
-            <NavLink activeClassName="active" to="/products">
+            <NavLink activeClassName="active" to="/product/all">
               Products
             </NavLink>
             <div className="dropdown">

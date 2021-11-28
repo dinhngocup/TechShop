@@ -1,26 +1,30 @@
 import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import image from "../../../../assets/images/headphone1.jpeg";
 import handlePrice from "../../../../helpers/formatPrice";
 import "./_productRow.scss";
 
 function ProductRow(props) {
-  const { product } = props;
+  const { product, index, removeItem } = props;
+  const location = useLocation();
+  
   return (
-    <tr
-      className="product-table-item"
-      data-toggle="modal"
-      data-target="#signOutModal"
-    >
-      <td className="">
+    <tr className="product-table-item">
+      <td className="number">{index}</td>
+      <td className="photo">
         <img src={image} alt="" />
       </td>
-      <td className="">
-        <b>{product.name}</b>
+      <td className="name">
+        <div>
+          <b>{product.name}</b>
+        </div>
       </td>
 
-      <td className="">{handlePrice(product.price)}</td>
-      <td className="">{product.brandName}</td>
-      <td className="text-center sale-program">
+      <td className="price">{handlePrice(product.price)}</td>
+      <td className="brand">
+        <div>{product.brandName}</div>
+      </td>
+      <td className="text-center sale-program sale">
         {product.saleProgram ? (
           <button
             className="sale-event btn"
@@ -37,10 +41,17 @@ function ProductRow(props) {
           </button>
         )}
       </td>
-      <td className="product-action ">
+      <td className="product-action action">
         <div className="d-flex justify-content-between align-items-center">
-          <i className="far fa-eye"></i>
-          <i className="fa fa-times"></i>
+          <NavLink to={`${location.pathname}?action=edit&id=${product.id}`}>
+            <i className="far fa-eye"></i>
+          </NavLink>
+          <i
+            className="fa fa-times"
+            data-toggle="modal"
+            data-target="#modalRemoveSuppiler"
+            onClick={() => removeItem(product.id)}
+          ></i>
         </div>
       </td>
     </tr>

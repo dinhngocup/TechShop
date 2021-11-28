@@ -3,7 +3,6 @@ import React from "react";
 import "./_specsTab.scss";
 function SpecsTab(props) {
   const { specs, generalInfo } = props;
-
   const renderGeneralInfo = (generalInfo) => {
     return (
       <React.Fragment>
@@ -19,29 +18,31 @@ function SpecsTab(props) {
     );
   };
 
-  const renderSpecsInfo = (specsInfo) => {
-    if (specsInfo !== undefined) {
-      var specifications = specsInfo.replace(/'/g, '"');
-      specifications = JSON.parse(specifications);
-      return specifications.map((item, index) => {
+  const renderSpecsInfo = (specifications) => {
+    let result = [];
+    if (specifications && specifications.length !== 0) {
+      console.log(specifications);
+      Object.entries(specifications).forEach(([name, value], index) => {
+        console.log(name, value);
         if (index % 2 === 0) {
-          return (
+          result.push(
             <div className="row specs" key={index}>
-              <div className="col-4 specs-tag">{item.tag}</div>
-              <div className="col-8 specs-content">{item.content}</div>
+              <div className="col-4 specs-tag text-capitalize">{name}</div>
+              <div className="col-8 specs-content text-capitalize">{value}</div>
             </div>
           );
         } else {
-          return (
+          result.push(
             <div className="row specs specs-deco" key={index}>
-              <div className="col-4 specs-tag">{item.tag}</div>
-              <div className="col-8 specs-content">{item.content}</div>
+              <div className="col-4 specs-tag text-capitalize">{name}</div>
+              <div className="col-8 specs-content text-capitalize">{value}</div>
             </div>
           );
         }
       });
+      return result;
     }
-    return "";
+    return <div>No Specification Description</div>;
   };
 
   return (

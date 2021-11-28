@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, FormGroup, Spinner } from "reactstrap";
-import ProductApi from "../../../api/productApi";
-import ProductSelection from "../../../components/AdminProduct/ProductSelection/productSelection";
-import SpecificationInputGroup from "./SpecificationInputGroup/specificationInputGroup";
+import ProductApi from "../../../../api/productApi";
+import ProductSelection from "../../../../components/AdminProduct/ProductSelection/productSelection";
+import SpecificationInputGroup from "../../../../components/AdminProduct/SpecificationInputGroup/specificationInputGroup";
 import "./_productSpecification.scss";
 
 function ProductSpecification(props) {
+  const { product } = props;
+
   const stateCategories = useSelector((state) => state.category.data);
   const stateBrands = useSelector((state) => state.brand.data);
-  
+
   const [filterSpecification, setFilterSpecification] = useState({});
   const [specsAttributes, setSpecsAttributes] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchAttributes = async () => {
-      let response = await ProductApi.getProductSpecificationAttribute({
-        filterSpecification,
-      });
+      let response = await ProductApi.getProductSpecificationAttribute(
+        filterSpecification
+      );
       if (response) {
         setLoading(false);
         setSpecsAttributes(response);
@@ -29,7 +31,6 @@ function ProductSpecification(props) {
       filterSpecification.category &&
       filterSpecification.brand
     ) {
-      console.log("call api");
       setLoading(true);
       fetchAttributes();
     }
@@ -42,38 +43,56 @@ function ProductSpecification(props) {
     });
   };
 
+  const renderSpecsArea = () => {
+    // update specs
+    if (product) {
+      return (
+        <SpecificationInputGroup specsAttributes={product.specifications} />
+      );
+    } else {
+      // add specs for new product
+      if (loading) {
+        return (
+          <div className="text-center">
+            <Spinner color="primary" />
+          </div>
+        );
+      }
+      if (specsAttributes) {
+        return <SpecificationInputGroup specsAttributes={specsAttributes} />;
+      }
+    }
+  };
   return (
     <div className="product-specification my-2">
       <div className="text-center header">Specification</div>
-      <p className="text-center">
-        <small>
-          *Please choose category and brand of new product before adding
-          specification attributes
-        </small>
-      </p>
+      {product ? (
+        ""
+      ) : (
+        <p className="text-center">
+          <small>
+            *Please choose category and brand of new product before adding
+            specification attributes
+          </small>
+        </p>
+      )}
+
       <FormGroup row>
         <ProductSelection
           name="category"
           options={stateCategories}
           handleSelection={handleSelection}
+          defaultValue={product?.categoryName}
         />
         <Col sm={1}></Col>
         <ProductSelection
           name="brand"
           options={stateBrands}
+          defaultValue={product?.brandName}
           handleSelection={handleSelection}
         />
       </FormGroup>
-
-      {loading ? (
-        <div className="text-center">
-          <Spinner color="primary" />
-        </div>
-      ) : specsAttributes ? (
-        <SpecificationInputGroup specsAttributes={specsAttributes} />
-      ) : (
-        ""
-      )}
+      {renderSpecsArea()}
     </div>
   );
 }

@@ -11,26 +11,26 @@
     }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 2400px) {
     .main-content {
         width: 100%;
     }
 }
 
-@media (min-width: 1441px) {
-    .main-content {
-        width: 80%;
-    }
-}
-@media (min-width: 1600px) {
+// @media (min-width: 1441px) {
+//     .main-content {
+//         width: 100%;
+//     }
+// }
+// @media (min-width: 1600px) {
+//     .main-content {
+//         width: 100%;
+//     }
+// }
+
+@media (min-width: 2401px) {
     .main-content {
         width: 70%;
-    }
-}
-
-@media (min-width: 2400px) {
-    .main-content {
-        width: 50%;
     }
 }
 body {
