@@ -16,26 +16,8 @@ const UserApi = {
       .post(url, data)
 
       .then((response) => {
-        // let fakeResponse;
-        // if (email === "phuongdinh1802@gmail.com") {
-        //   fakeResponse = {
-        //     token: "fake_token",
-        //     access: "CUSTOMER",
-        //   };
-        // } else {
-        //   fakeResponse = {
-        //     token: "fake_token",
-        //     access: "ADMIN",
-        //   };
-        // }
-
-        // cookiesService.setCookies(
-        //   "user",
-        //   JSON.stringify(fakeResponse.token),
-        //   2
-        // );
-        cookiesService.setCookies("access", "CUSTOMER", 24);
-        cookiesService.setCookies("user", JSON.stringify(response), 24);
+        cookiesService.setCookies("access", response.role, 24);
+        cookiesService.setCookies("user", response.access_token, 24);
         return response;
       })
       .catch((error) => {
