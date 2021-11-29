@@ -51,7 +51,7 @@ function SingleProTab(props) {
           warranty: product.warranty,
         };
         setTabContent(
-          <SpecsTab specs={product.specs} generalInfo={generalInfo} />
+          <SpecsTab specs={product.specifications} generalInfo={generalInfo} />
         );
         break;
       default:

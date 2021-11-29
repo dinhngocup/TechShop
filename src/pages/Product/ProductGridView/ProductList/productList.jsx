@@ -13,7 +13,7 @@ import "./_productList.scss";
 function ProductList() {
   const stateProducts = useSelector((state) => state.product.products);
   const stateProductModal = useSelector((state) => state.productModal);
-  // const { filter } = useSelector((state) => state.filter);
+
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -23,11 +23,12 @@ function ProductList() {
   const currentPage = location.search
     ? new URLSearchParams(location.search).get("page")
     : 0;
+   
 
   useEffect(() => {
     dispatch(
       updateBreadcrumb({
-        name: "products",
+        name: "product",
         slug: `${location.pathname}${
           currentPage === 0 ? "" : `?page=${currentPage}`
         }`,
@@ -53,7 +54,8 @@ function ProductList() {
     }
     let result = [];
     let baseProducts;
-    if (!productCategory) {
+
+    if (productCategory === "all") {
       baseProducts = stateProducts.allProducts;
     } else {
       baseProducts = stateProducts.filterProducts[productCategory];
@@ -71,36 +73,6 @@ function ProductList() {
 
     setProducts(result);
   }, [currentPage, stateProducts, productCategory]);
-
-  // useEffect(() => {
-  //   async function fetchProduct() {
-  //     setLoading(true);
-  //     let response = [];
-  //     if (params.slug === undefined) {
-  //       let searchTerm = new URLSearchParams(location.search).get("keyword");
-  //       if (searchTerm === null) {
-  //         response = await ProductApi.getAllProducts({
-  //           order: filter,
-  //         });
-  //       } else {
-  //         response = await ProductApi.searchProductsIncludeFilter({
-  //           keyword: searchTerm,
-  //           order: filter,
-  //         });
-  //       }
-  //     } else {
-  //       response = await ProductApi.getProductsByCategory({
-  //         category: params.slug,
-  //         order: filter,
-  //       });
-  //     }
-  //     setProducts(response);
-  //     setLoading(false);
-  //   }
-
-  //     fetchProduct();
-
-  // }, [params, filter, location]);
 
   const renderProductCards = (products) => {
     if (loading) {
@@ -121,7 +93,7 @@ function ProductList() {
 
   const renderHeading = () => {
     let totalProducts;
-    if (!productCategory) {
+    if (productCategory === "all") {
       totalProducts = stateProducts.allProducts.length;
     } else if (stateProducts.filterProducts[productCategory]) {
       totalProducts = stateProducts.filterProducts[productCategory].length;
@@ -146,7 +118,7 @@ function ProductList() {
 
   const renderPagination = () => {
     let totalProducts;
-    if (!productCategory) {
+    if (productCategory === 'all') {
       totalProducts = stateProducts.allProducts.length;
     } else if (stateProducts.filterProducts[productCategory]) {
       totalProducts = stateProducts.filterProducts[productCategory].length;

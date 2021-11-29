@@ -1,10 +1,16 @@
 import React from "react";
 import { FormGroup, Input, Label, Col } from "reactstrap";
-import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/Specification/type";
+import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/ProductDetail/Specification/type";
 import "./_productAttributeInput.scss";
 
 function ProductAttributeInput(props) {
-  const { attribute, removeNewAttribute, handleValidation, listErrors } = props;
+  const {
+    attribute,
+    removeNewAttribute,
+    handleValidation,
+    listErrors,
+    defaultValue,
+  } = props;
 
   const editable = removeNewAttribute ? true : false;
 
@@ -14,13 +20,12 @@ function ProductAttributeInput(props) {
         return (
           <Input
             type="text"
-            name={`${attribute.name}${editable ? "_VAR_CHAR" : ""}`}
+            name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
+              attribute.id
+            }`}
+            defaultValue={defaultValue || ""}
             onBlur={(e) => handleValidation(e, attribute)}
-            invalid={
-              listErrors && listErrors[attribute.name + attribute.dataType]
-                ? true
-                : false
-            }
+            invalid={listErrors && listErrors[attribute.id] ? true : false}
             required
           />
         );
@@ -28,13 +33,11 @@ function ProductAttributeInput(props) {
         return (
           <Input
             type="select"
-            name={`${attribute.name}${editable ? "_BOOL" : ""}`}
+            name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
+              attribute.id
+            }`}
             onBlur={(e) => handleValidation(e, attribute)}
-            invalid={
-              listErrors && listErrors[attribute.name + attribute.dataType]
-                ? true
-                : false
-            }
+            invalid={listErrors && listErrors[attribute.id] ? true : false}
             required
           >
             <option></option>
@@ -47,13 +50,12 @@ function ProductAttributeInput(props) {
         return (
           <Input
             type="textarea"
-            name={`${attribute.name}${editable ? "_TEXT" : ""}`}
+            name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
+              attribute.id
+            }`}
             onBlur={(e) => handleValidation(e, attribute)}
-            invalid={
-              listErrors && listErrors[attribute.name + attribute.dataType]
-                ? true
-                : false
-            }
+            invalid={listErrors && listErrors[attribute.id] ? true : false}
+            defaultValue={defaultValue || ""}
             required
           />
         );
@@ -62,13 +64,12 @@ function ProductAttributeInput(props) {
         return (
           <Input
             type="number"
-            name={`${attribute.name}${editable ? "_INT" : ""}`}
+            name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
+              attribute.id
+            }`}
             onBlur={(e) => handleValidation(e, attribute)}
-            invalid={
-              listErrors && listErrors[attribute.name + attribute.dataType]
-                ? true
-                : false
-            }
+            invalid={listErrors && listErrors[attribute.id] ? true : false}
+            defaultValue={defaultValue || ""}
             required
           />
         );
@@ -77,13 +78,12 @@ function ProductAttributeInput(props) {
         return (
           <Input
             type="number"
-            name={`${attribute.name}${editable ? "_FLOAT" : ""}`}
+            name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
+              attribute.id
+            }`}
             onBlur={(e) => handleValidation(e, attribute)}
-            invalid={
-              listErrors && listErrors[attribute.name + attribute.dataType]
-                ? true
-                : false
-            }
+            invalid={listErrors && listErrors[attribute.id] ? true : false}
+            defaultValue={defaultValue || ""}
             required
           />
         );
@@ -112,7 +112,9 @@ function ProductAttributeInput(props) {
           ""
         )}
         <div className="text-danger error">
-          <small>{listErrors?.[attribute.name + attribute.dataType]}</small>
+          <small>
+            {listErrors?.[`${attribute.name}${attribute.dataType}`]}
+          </small>
         </div>
       </Col>
     </FormGroup>

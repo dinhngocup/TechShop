@@ -14,10 +14,14 @@
         font-size: 0.9em;
     }
     .product-action {
+        a {
+            color: inherit;
+        }
         i {
             padding: 10px;
 
             &:hover {
+                cursor: pointer;
                 color: var(--icon-remove-background);
             }
         }

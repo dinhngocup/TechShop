@@ -58,7 +58,11 @@ function FilterBar(props) {
     <div className="container-fluid my-1">
       <Row>
         <Col
-          sm="8"
+          sm="6"
+          xs="5"
+          md="5"
+          lg="6"
+          xl="7"
           className="p-0 d-flex justify-content-between align-items-center"
         >
           {filterItem.length > 0 ? (
@@ -73,7 +77,11 @@ function FilterBar(props) {
           )}
         </Col>
         <Col
-          sm="4"
+          sm="6"
+          xs="8"
+          md="7"
+          lg="6"
+          xl="5"
           className="d-flex justify-content-between align-items-center py-1"
         >
           <FilterSelection selections={stateCategories} name="Category" />

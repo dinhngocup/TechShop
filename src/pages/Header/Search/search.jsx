@@ -6,7 +6,7 @@ import "./_search.scss";
 function Search() {
   const [data, setData] = useState({ results: null, otherResults: null });
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   const typingTimeoutRef = useRef(null);
   //console.log(typingTimeoutRef.current)
 
@@ -37,7 +37,7 @@ function Search() {
     let object = {
       results: response,
       otherResults: otherResults,
-      searchTerm: info
+      searchTerm: info,
     };
     setData(object);
   };
@@ -45,7 +45,7 @@ function Search() {
   const resetSearchForm = () => {
     setTimeout(() => {
       setSearchTerm("");
-      setData({ results: null, otherResults: null, searchTerm:null });
+      setData({ results: null, otherResults: null, searchTerm: null });
     }, 200);
   };
 
@@ -60,9 +60,8 @@ function Search() {
         />
         <i className="fa fa-search"></i>
       </div>
-      
-        <Results data={data} />
-      
+
+      <Results data={data} />
     </form>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { Col, Input, Row } from "reactstrap";
 import OrderApi from "../../../api/orderApi";
 import { AdminOrderUrl } from "../../../pages/AdminOrder/adminOrderType";
 import { OrderStatus } from "../../../pages/Order/type";
+import { updateOrderPeriod } from "../../../utilities/slices/adminOrderSlice";
 import { AdminOrderTypeLabel } from "../adminOrderType";
 import TodoTable from "./TodoTable/todoTable";
 import "./_todoList.scss";
@@ -11,9 +13,15 @@ import "./_todoList.scss";
 function TodoList(props) {
   const [allOrders, setAllOrders] = useState();
   const [orders, setOrders] = useState();
-  const [orderPeriod, setOrderPeriod] = useState();
+
+  // const [loading, setLoading] = useState();
+
+  const orderPeriod = useSelector((state) => state.adminOrder.orderPeriod);
+
+  const dispatch = useDispatch();
 
   const tabName = useLocation().pathname.replace("/admin/order/", "");
+
   const classifyAdminOrders = (listOrders) => {
     let filterResults = {
       [AdminOrderUrl.PENDING_CONFIRM]: [],
@@ -46,26 +54,26 @@ function TodoList(props) {
     return filterResults;
   };
 
-  useEffect(() => {
-    async function fetchAllAdminOrders(parseDateTime) {
-      const response = await OrderApi.getAllAdminOrders({
-        month: parseDateTime[1],
-        year: parseDateTime[0],
-      });
+  const fetchAllAdminOrders = async () => {
+    const parseDateTime = orderPeriod.split("-");
+    const response = await OrderApi.getAllAdminOrders({
+      month: parseDateTime[1],
+      year: parseDateTime[0],
+    });
 
-      if (response) {
-        const filterOrders = classifyAdminOrders(response);
-        setAllOrders(filterOrders);
-      }
+    if (response) {
+      const filterOrders = classifyAdminOrders(response);
+      setAllOrders(filterOrders);
     }
+  };
+
+  useEffect(() => {
     if (orderPeriod) {
-      const parseDateTime = orderPeriod.split("-");
-      fetchAllAdminOrders(parseDateTime);
+      fetchAllAdminOrders(orderPeriod);
     }
   }, [orderPeriod]);
 
   useEffect(() => {
-    // dispatch(resetOrderModal());
     if (allOrders) {
       setOrders(allOrders[tabName]);
     }
@@ -80,7 +88,7 @@ function TodoList(props) {
             to={`/admin/order/${orderStatus}`}
             activeClassName="active"
             className="task-container"
-            onClick={() => setOrders(listOrders)}
+            // onClick={() => setOrders(listOrders)}
           >
             <div className="quantity">{listOrders.length}</div>
             <div className="name pb-1">{AdminOrderTypeLabel[orderStatus]}</div>
@@ -90,17 +98,27 @@ function TodoList(props) {
     });
     return result;
   };
-
   return (
     <>
       <div className="todo-list p-2">
-        <h4>To Do List</h4>
+        <div className="d-flex justify-content-between align-items-center">
+          <h4>To Do List</h4>
+          <button
+            className="btn btn-refresh"
+            onClick={() => fetchAllAdminOrders(orderPeriod)}
+          >
+            <i className="fas fa-sync-alt mr-2"></i>Refresh All
+          </button>
+        </div>
         <p>You have to handle these orders as soon as possible</p>
         <Input
           type="month"
           name="month"
           min="2020-01"
-          onChange={(e) => setOrderPeriod(e.target.value)}
+          defaultValue={orderPeriod}
+          onChange={(e) => {
+            dispatch(updateOrderPeriod(e.target.value));
+          }}
           onKeyDown={() => false}
         />
 
@@ -108,7 +126,7 @@ function TodoList(props) {
           <Row className="text-center">{allOrders && renderToDoList()}</Row>
         </div>
       </div>
-      <TodoTable orders={orders} />
+      {orders && <TodoTable orders={orders} />}
     </>
   );
 }

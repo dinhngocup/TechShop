@@ -13,7 +13,6 @@ function OrderContent(props) {
   const urlId = location.search
     ? new URLSearchParams(location.search).get("id")
     : 0;
-
   const { orderId } = useSelector((state) => state.orderModal);
   const stateOrders = useSelector((state) => state.user.data.listOrders);
   const dispatch = useDispatch();
@@ -36,8 +35,8 @@ function OrderContent(props) {
   return (
     <>
       <Route exact path="/your-orders/:orderStatus">
-        {urlId && orderId ? (
-          <OrderDetail orderId={orderId} />
+        {urlId ? (
+          <OrderDetail orderId={urlId} />
         ) : (
           stateOrders &&
           stateOrders[tabName].map((order) => (

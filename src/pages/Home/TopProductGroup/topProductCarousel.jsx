@@ -9,18 +9,19 @@ import "./_topProduct.scss";
 
 function TopProductCarousel() {
   const [topProducts, setTopProducts] = useState([]);
-  const [filterTopProduct, setFilterTopProduct] = useState("10");
+  const [filterTopProduct, setFilterTopProduct] = useState(
+    "3023a3ca-8f79-4968-9b41-a5b49eae35f7"
+  );
 
   const TOP_PRODUCT_NUMBER_PER_GROUP = 3;
 
   // get top purchased prods from DB depending on filterTopProd
   useEffect(() => {
     const fetchTopPurchasedProduct = async (filterTopProduct) => {
-      let response = await ProductApi.getTopPurchasedProducts(filterTopProduct)
-      setTopProducts(response)
-    }
-    fetchTopPurchasedProduct(filterTopProduct)
-    
+      let response = await ProductApi.getTopPurchasedProducts(filterTopProduct);
+      setTopProducts(response);
+    };
+    fetchTopPurchasedProduct(filterTopProduct);
   }, [filterTopProduct]);
 
   const showCarouselIndicators = (length) => {
@@ -119,6 +120,5 @@ function TopProductCarousel() {
     </React.Fragment>
   );
 }
-
 
 export default TopProductCarousel;

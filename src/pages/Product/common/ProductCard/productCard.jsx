@@ -1,11 +1,11 @@
-import ProductRating from "../../../../components/common/ProductRating/productRating";
-import WishIcon from "../../../../components/common/WishIcon/wishIcon";
-import handlePrice from "../../../../helpers/formatPrice";
-import parseImages from "../../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import ProductRating from "../../../../components/common/ProductRating/productRating";
+import WishIcon from "../../../../components/common/WishIcon/wishIcon";
+import handlePrice from "../../../../helpers/formatPrice";
+import parseImages from "../../../../helpers/parseImages";
 import { addToCart } from "../../../../utilities/slices/cartSlice";
 import { getProductModal } from "../../../../utilities/slices/productModalSlice";
 import "./_productCard.scss";
@@ -51,7 +51,10 @@ function ProductCard(props) {
   const images = parseImages(product.images);
   return (
     <div className="product-card">
-      <Link to={`/products/${product.categorySlug}/${product.id}`}>
+      <Link
+        to={`/product/${product.categorySlug}?id=${product.id}`}
+        // onClick={() => dispatch(updateProductTemp(product.id))}
+      >
         <div className="product-photo">
           {images[0] !== "" ? <img src={images[0]} alt="Apple watch" /> : ""}
           <WishIcon id={product.id} />

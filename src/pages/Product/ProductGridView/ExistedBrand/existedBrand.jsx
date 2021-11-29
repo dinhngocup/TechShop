@@ -8,7 +8,7 @@ function ExistedBrand() {
   //console.log('brands')
   const stateBrands = useSelector((state) => state.brand.data);
   const stateProducts = useSelector((state) => state.product.products);
-  
+
   const dispatch = useDispatch();
 
   // get brands
@@ -36,7 +36,7 @@ function ExistedBrand() {
         return (
           <NavLink
             activeClassName="active"
-            to={`/products/${brandName}`}
+            to={`/product/${brandName}`}
             key={brand.id}
           >
             <li>

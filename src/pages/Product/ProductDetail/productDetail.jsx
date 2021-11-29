@@ -1,8 +1,8 @@
-import ProductApi from "../../../api/productApi";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { Col, Spinner } from "reactstrap";
+import ProductApi from "../../../api/productApi";
+import ReviewApi from "../../../api/reviewApi";
 import {
   DEFAULT_REVIEW_PAGE,
   REVIEWS_PER_PAGE,
@@ -13,12 +13,11 @@ import {
 } from "../../../utilities/slices/breadcrumbSlice";
 import SingleProInfo from "./SingleProInfo/singleProInfo";
 import SingleProTab from "./SingleProTab/singleProTab";
-import ReviewApi from "../../../api/reviewApi";
 
-function ProductDetail() {
+function ProductDetail(props) {
+  const { productId } = props;
   const dispatch = useDispatch();
-  const { id } = useParams();
-
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(null);
   const [relatedCategoryProducts, setRelatedCategoryProducts] = useState(null);
   const [relatedBrandProducts, setRelatedBrandProducts] = useState(null);
@@ -26,70 +25,71 @@ function ProductDetail() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      let response = await ProductApi.getDetailedProduct(id);
-      dispatch(
-        addNewBreadcrumb({
-          name: response.name,
-          slug: "",
-        })
-      );
-      console.log(response);
-      setProduct(response);
+      return await ProductApi.getDetailedProduct(productId);
     };
 
     let fetchRelatedCategoryProduct = async () => {
-      let response = await ProductApi.getRelatedCategoryPro(id);
+      let response = await ProductApi.getRelatedCategoryPro(productId);
       setRelatedCategoryProducts(response);
     };
 
     let fetchRelatedBrandProduct = async () => {
-      let response = await ProductApi.getRelatedBrandPro(id);
+      let response = await ProductApi.getRelatedBrandPro(productId);
       setRelatedBrandProducts(response);
     };
 
     let fetchFirstReviews = async () => {
       let response = await ReviewApi.getReviewsByProductIDByPagination(
-        id,
+        productId,
         DEFAULT_REVIEW_PAGE,
         REVIEWS_PER_PAGE
       );
       setFirstReviews(response);
     };
-
-    fetchProduct();
-    fetchRelatedBrandProduct();
-    fetchRelatedCategoryProduct();
-    fetchFirstReviews();
-
-    // Promise.all([
-    //   fetchProduct(),
-    //   fetchRelatedCategoryProduct(),
-    //   fetchRelatedBrandProduct(),
-    // ]).then(function ([
-    //   product,
-    //   relatedCategoryProducts,
-    //   relatedBrandProducts,
-    // ]) {
-    //   setLoading(false);
-    //   setAllProductInfo({
-    //     product,
-    //     relatedCategoryProducts,
-    //     relatedBrandProducts,
-    //   });
-    // });
+    setLoading(true);
+    fetchProduct()
+      .then((response) => {
+        dispatch(
+          addNewBreadcrumb({
+            name: response.name,
+            slug: "",
+          })
+        );
+        setProduct(response);
+        console.log("success");
+        fetchRelatedBrandProduct();
+        fetchRelatedCategoryProduct();
+        fetchFirstReviews();
+        setLoading(false);
+      })
+      .catch((err) => {
+        // console.log(err)
+        dispatch(
+          addNewBreadcrumb({
+            name: "No product",
+            slug: "",
+          })
+        );
+        setLoading(false);
+        console.log("err");
+        setProduct(null);
+      });
 
     return () => {
       dispatch(removeLastBreadcrumb());
     };
-  }, [dispatch, id]);
+  }, [dispatch, productId]);
 
   const renderProductDetail = () => {
-    if (product === null) {
+    if (loading) {
       return (
         <Col xs="12" sm="12" md="12" lg="12" className="text-center">
           <Spinner color="primary" />
         </Col>
       );
+    }
+    if (!product) {
+      return <div>No product is avaiable.</div>;
     }
     return (
       <React.Fragment>

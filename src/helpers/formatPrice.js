@@ -1,7 +1,7 @@
 const handlePrice = (price) => {
     if(price !== undefined){
       var priceFormat = "";
-      while(price > 1000){
+      while(price >= 1000){
         if(price % 1000 !== 0){
             priceFormat = "." + price % 1000 + priceFormat;
         }

@@ -1,9 +1,10 @@
-import * as UrlConstant from "../utilities/UrlConstant";
-import axiosClient from "./axiosClient";
+// import * as UrlConstant from "../utilities/UrlConstant";
+// import axiosClient from "./axiosClient";
 const ReviewApi = {
   getReviewsByProductIDByPagination: async (id, page, reviewsPerPage) => {
-    const url = `${UrlConstant.GET_ALL_REVIEWS_BY_PRODUCTID}/${id}?limit=${reviewsPerPage}&page=${page}`;
-    return axiosClient.get(url);
+    // const url = `${UrlConstant.GET_ALL_REVIEWS_BY_PRODUCTID}/${id}?limit=${reviewsPerPage}&page=${page}`;
+    // return axiosClient.get(url);
+    return []
   },
   addReview: async (params) => {
     // const url = `${UrlConstant.ADD_REVIEW}`;

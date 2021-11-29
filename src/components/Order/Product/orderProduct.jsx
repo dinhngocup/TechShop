@@ -1,18 +1,18 @@
 import React from "react";
-
 import Media from "react-bootstrap/Media";
+import { Link } from "react-router-dom";
+import handlePrice from "../../../helpers/formatPrice";
 import parseImages from "../../../helpers/parseImages";
 import "./_orderProduct.scss";
-import handlePrice from "../../../helpers/formatPrice";
-import { Link } from "react-router-dom";
+
 
 function OrderProduct(props) {
   const { product } = props;
   const images = parseImages(product.images);
-  
   return (
     <Link
-      to={`/products/${product.categorySlug}/${product.id}`}
+      to={`/product/${product.categorySlug}?id=${product.id}`}
+      // onClick={() =>dispatch(updateProductTemp(product.id))}
       className="product-info-container"
     >
       <Media className="py-3 product-info">

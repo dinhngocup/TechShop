@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Button, Form } from "reactstrap";
-import SaleModal from "../../components/AdminProduct/SaleModal/saleModal";
-import ProductList from "./ProductList/productList";
-import "./_main.scss";
-import SearchBar from "./SearchBar/searchBar";
-import FilterBar from "./FilterBar/filterBar";
-import MainInfo from "./MainInfo/mainInfo";
-import ProductSpecification from "./Specification/productSpecification";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "reactstrap";
+import SaleModal from "../../components/AdminProduct/SaleModal/saleModal";
 import { getAllProducts } from "../../utilities/slices/productSlice";
+import FilterBar from "./FilterBar/filterBar";
+import ProductDetail from "./ProductDetail/productDetail";
+import ProductList from "./ProductList/productList";
+import SearchBar from "./SearchBar/searchBar";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import "./_main.scss";
 
 function AdminProduct(props) {
   const filterItem = useSelector((state) => state.filterProduct.filters);
   const stateProducts = useSelector((state) => state.product.products);
+
   const dispatch = useDispatch();
-  const [isProductList, setIsProductList] = useState(true);
+
   const [searchInput, setSearchInput] = useState();
   const [renderProducts, setRenderProducts] = useState();
+  // const [productDetailId, setProductDetailId] = useState();
 
-  const handleSubmit = (event) => {
-    const formData = new FormData(event.currentTarget);
-    event.preventDefault();
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-  };
+  const location = useLocation();
+  const history = useHistory();
+  const currentAction = location.search
+    ? new URLSearchParams(location.search).get("action")
+    : 0;
+  const productIdURL = location.search
+    ? new URLSearchParams(location.search).get("id")
+    : 0;
 
   useEffect(() => {
     // setRenderProducts(stateProducts.allProducts)
@@ -93,7 +96,7 @@ function AdminProduct(props) {
   return (
     <div className="body-content">
       <div className="product-table" style={{ height: "4500px" }}>
-        {isProductList ? (
+        {!currentAction ? (
           <>
             <SearchBar
               updateSearchInput={(keyword) => setSearchInput(keyword)}
@@ -105,30 +108,24 @@ function AdminProduct(props) {
         )}
         <div className="my-3 product-table-header">
           <h2 className="text-center">
-            {isProductList ? "Products" : "New Product"}
+            {!productIdURL ? "Products" : "New Product"}
           </h2>
-          {isProductList ? (
-            <Button onClick={() => setIsProductList(false)}>
-              <b>Add new</b>
-            </Button>
+          {!currentAction ? (
+            <NavLink to={`${location.pathname}?action=add`}>
+              <Button>
+                <b>Add new</b>
+              </Button>
+            </NavLink>
           ) : (
-            <Button onClick={() => setIsProductList(true)}>
+            <Button onClick={() => history.goBack()}>
               <b>Back</b>
             </Button>
           )}
         </div>
-        {isProductList ? (
+        {!currentAction ? (
           <ProductList products={renderProducts} />
         ) : (
-          <>
-            <Form onSubmit={handleSubmit}>
-              <MainInfo />
-              <ProductSpecification />
-              <Button type="submit" className="w-100 btn-submit">
-                Add
-              </Button>
-            </Form>
-          </>
+          <ProductDetail id={productIdURL} />
         )}
         <SaleModal />
       </div>

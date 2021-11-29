@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import AddAttributeModal from "../../../../components/AdminProduct/AddAttributeModal/addAttributeModal";
-import ProductAttributeInput from "../../../../components/AdminProduct/ProductAttributeInput/productAttributeInput";
+import AddAttributeModal from "../AddAttributeModal/addAttributeModal";
+import ProductAttributeInput from "../ProductAttributeInput/productAttributeInput";
 
 function SpecificationInputGroup(props) {
-  console.log("specs input");
   const { specsAttributes } = props;
 
   const [newAttributes, setNewAttributes] = useState([]);
@@ -33,16 +32,17 @@ function SpecificationInputGroup(props) {
         break;
       case "INT":
         // only include digit
-        if (!/^\d+$/.test(value)) {
-          newErrors[errorName] = "Positive number only.";
+        if (!/^\d+$/.test(value) || parseInt(value) < 0 || !value) {
+          newErrors[errorName] = "Natural numbers only.";
         } else {
           newErrors[errorName] = "";
         }
         break;
       case "FLOAT":
         // TODO: only decimal number
-        if (!/^\d+$/.test(value)) {
-          newErrors[errorName] = "Decimal number only.";
+        if (!/^\d*(\.\d{0,2})?$/.test(value) || parseFloat(value) < 0 || !value) {
+          console.log(parseFloat(value));
+          newErrors[errorName] = "Positive decimal numbers only.";
         } else {
           newErrors[errorName] = "";
         }
@@ -60,20 +60,32 @@ function SpecificationInputGroup(props) {
     setListErrors({ ...listErrors, ...newErrors });
   };
 
+  const renderExistedAttributes = () => {
+    return specsAttributes.length ? (
+      specsAttributes.map((attribute) => (
+        <ProductAttributeInput
+          attribute={attribute}
+          key={attribute.id}
+          handleValidation={handleValidation}
+          listErrors={listErrors}
+          defaultValue={attribute?.value}
+        />
+      ))
+    ) : (
+      <div className="text-center">
+        <small>
+          <b>Product has not any default attributes.</b>
+        </small>
+      </div>
+    );
+  };
   return (
     <>
       <div className="container-fluid">
         <Row>
           <Col xs={12} sm={5} className="pl-0 py-2">
             <h5 className="text-center">Existed Attributes</h5>
-            {specsAttributes.map((attribute) => (
-              <ProductAttributeInput
-                attribute={attribute}
-                key={attribute.id}
-                handleValidation={handleValidation}
-                listErrors={listErrors}
-              />
-            ))}
+            {renderExistedAttributes()}
           </Col>
           <Col sm={1}></Col>
           <Col xs={12} sm={6} className="new-attribute py-2">
@@ -91,6 +103,8 @@ function SpecificationInputGroup(props) {
 
             <div className="text-right">
               <button
+                data-backdrop="static"
+                data-keyboard="false"
                 type="button"
                 className="btn btn-add-specs"
                 data-toggle="modal"

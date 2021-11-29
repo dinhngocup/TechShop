@@ -31,7 +31,9 @@ function ModalCancelOrder(props) {
     if (response) {
       setLoading(false);
       setIsSucceed(true);
-      dispatch(getAllUserOrders());
+      if (!history.location.pathname.startsWith("/admin")) {
+        dispatch(getAllUserOrders());
+      }
     }
   };
 

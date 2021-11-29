@@ -30,15 +30,10 @@ const OrderApi = {
 
     return axiosClientAuthen
       .put(url, reasonCancelling.reasonContent)
-
       .then((response) => {
-        console.log(response);
         return response;
       })
       .catch((error) => Promise.reject(error));
-  },
-  returnOrder: async (id) => {
-    return Promise.resolve(1);
   },
   updateOrderStatus: async (id) => {
     const url = `${UrlConstant.UPDATE_ORDER_STATUS}/${id}`;
@@ -76,7 +71,7 @@ const OrderApi = {
   },
 
   getAllAdminOrders: async ({ month, year }) => {
-    console.log(month, year);
+    // console.log("get all admin order");
     const url = `${UrlConstant.GET_ALL_ADMIN_ORDERS}/${month}/${year}`;
     return axiosClientAuthen.get(url);
   },

@@ -4,7 +4,7 @@
 
 import axios from "axios";
 import { authHeader } from "../helpers/authHeader";
-import { refreshToken } from "../helpers/refreshToken";
+// import { refreshToken } from "../helpers/refreshToken";
 import queryString from "query-string";
 
 const axiosClientAuthen = axios.create({
@@ -16,13 +16,12 @@ const axiosClientAuthen = axios.create({
 });
 
 axiosClientAuthen.interceptors.request.use(async (config) => {
-  // handle token
-  //console.log("send request");
+
   config.headers.Authorization = authHeader();
   return config;
 });
 
-let refreshTokenRequest = null;
+// let refreshTokenRequest = null;
 axiosClientAuthen.interceptors.response.use(
   (response) => {
     if (response && response.data) {
@@ -31,18 +30,20 @@ axiosClientAuthen.interceptors.response.use(
     return response;
   },
   (error) => {
-    return new Promise(async (resolve, reject) => {
-      if (error.response.data.message === "Token expired") {
-        refreshTokenRequest = refreshTokenRequest
-          ? refreshTokenRequest
-          : refreshToken(refreshTokenRequest);
-        await refreshTokenRequest;
-        refreshTokenRequest = null;
-        let res = await axiosClientAuthen(error.config);
-        resolve(res);
-      }
-      return Promise.reject(error);
-    });
+    return Promise.reject(error);
+    // return new Promise(async (resolve, reject) => {
+    //   console.log(error.response)
+    //   // if (error.response && error.response.data.message === "Token expired") {
+    //   //   refreshTokenRequest = refreshTokenRequest
+    //   //     ? refreshTokenRequest
+    //   //     : refreshToken(refreshTokenRequest);
+    //   //   await refreshTokenRequest;
+    //   //   refreshTokenRequest = null;
+    //   //   let res = await axiosClientAuthen(error.config);
+    //   //   resolve(res);
+    //   // }
+    //   return Promise.reject(error);
+    // });
   }
 );
 

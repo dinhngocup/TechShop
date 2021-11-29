@@ -2,7 +2,8 @@ import React from "react";
 import { Col, Input, Label } from "reactstrap";
 
 function ProductSelection(props) {
-  const { name, options, handleSelection } = props;
+  const { name, options, handleSelection, defaultValue } = props;
+
   return (
     <>
       <Label sm={1} className="text-capitalize">
@@ -14,9 +15,10 @@ function ProductSelection(props) {
           name={name}
           onChange={handleSelection}
           defaultValue={"DEFAULT"}
+          disabled={defaultValue ? true : false}
         >
           <option disabled value={"DEFAULT"}>
-            -- Select an option --
+            {defaultValue ? defaultValue : "-- Select an option --"}
           </option>
           {options.map((option) => (
             <option key={option.id} value={option.id}>

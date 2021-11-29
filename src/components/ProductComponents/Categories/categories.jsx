@@ -7,15 +7,13 @@ function Categories() {
   // console.log('product item')
   const stateCategories = useSelector((state) => state.category);
 
-  
   const renderCategoryTable = (categories) => {
     return categories.length !== 0
       ? categories.map((category, index) => (
           <NavLink
             activeClassName="active"
-            to={`/products${category.slug ? `/${category.slug}` : ""}`}
-            key={category.id}
-            exact={category.exact}
+            to={`/product/${category.slug}`}
+            key={category.slug}
           >
             <li>{category.name}</li>
           </NavLink>

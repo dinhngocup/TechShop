@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import image1 from "../../../assets/images/headphone1.jpeg";
-import ProductImage from "../../../components/AdminProduct/ProductImage/productImage";
-import ProductMainInfoInput from "../../../components/AdminProduct/ProductMainInfoInput/productMainInfoInput";
+import image1 from "../../../../assets/images/headphone1.jpeg";
+import ProductImage from "../../../../components/AdminProduct/ProductImage/productImage";
+import ProductMainInfoInput from "../../../../components/AdminProduct/ProductMainInfoInput/productMainInfoInput";
 import "./_mainInfo.scss";
 
 function MainInfo(props) {
+  const { product } = props;
+
   const [images, setImages] = useState([]);
   const [listErrors, setListErrors] = useState();
 
@@ -47,7 +49,7 @@ function MainInfo(props) {
     switch (name) {
       case "name":
         if (!value) {
-          newErrors[name] = "Cannot by empty.";
+          newErrors[name] = "Cannot be empty.";
         } else {
           newErrors[name] = "";
         }
@@ -57,7 +59,7 @@ function MainInfo(props) {
       case "warranty":
         // only include digit
         if (!/^\d+$/.test(value)) {
-          newErrors[name] = "Number only.";
+          newErrors[name] = "Natural numbers only.";
         } else {
           newErrors[name] = "";
         }
@@ -99,6 +101,8 @@ function MainInfo(props) {
             listErrors={listErrors}
             dataType="text"
             name="name"
+            defaultValue={product?.name}
+            disabled={product ? true : false}
           />
           <Row>
             <Col xs={12} sm={4}>
@@ -109,10 +113,10 @@ function MainInfo(props) {
                 listErrors={listErrors}
                 dataType="number"
                 name="price"
+                defaultValue={product?.price}
               />
             </Col>
-            <Col sm={1}></Col>
-            <Col xs={12} sm={3}>
+            <Col xs={12} sm={4}>
               <ProductMainInfoInput
                 label="stock"
                 isRequired={true}
@@ -120,10 +124,10 @@ function MainInfo(props) {
                 listErrors={listErrors}
                 dataType="number"
                 name="stock"
+                defaultValue={product?.stock}
               />
             </Col>
-            <Col sm={1}></Col>
-            <Col xs={12} sm={3}>
+            <Col xs={12} sm={4}>
               <ProductMainInfoInput
                 label="warranty"
                 isRequired={true}
@@ -131,6 +135,7 @@ function MainInfo(props) {
                 listErrors={listErrors}
                 dataType="number"
                 name="warranty"
+                defaultValue={product?.warranty}
               />
             </Col>
           </Row>
@@ -140,6 +145,7 @@ function MainInfo(props) {
             listErrors={listErrors}
             dataType="textarea"
             name="shortDescription"
+            defaultValue={product?.shortDescrip}
           />
         </Col>
       </Row>

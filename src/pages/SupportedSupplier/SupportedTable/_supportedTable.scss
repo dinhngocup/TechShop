@@ -1,0 +1,84 @@
+.supported-table {
+    .header {
+        position: relative;
+        .add-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            button {
+                border: 1px solid rgb(32, 28, 194);
+                color: rgb(32, 28, 194);
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+        .deco-line {
+            span {
+                width: 10%;
+                height: 0.1em;
+                background-color: rgb(32, 28, 194);
+                position: relative;
+                &::after,
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    background-color: rgb(32, 28, 194);
+                    width: 0.3em;
+                    height: 100%;
+                    content: "";
+                }
+                &::after {
+                    right: 0;
+                    transform: translateX(1em);
+                }
+                &::before {
+                    left: 0;
+                    transform: translateX(-1em);
+                }
+            }
+        }
+    }
+    table {
+        table-layout: fixed;
+        width: 100%;
+        // border: 1px solid var(--admin-header);
+        // box-shadow: 1px 1px 5px 5px rgb(241, 241, 241);
+
+        td {
+            padding: 10px 30px;
+        }
+        th {
+            padding: 18px 25px;
+            color: var(--admin-header);
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        th,
+        td {
+            &.number {
+                width: 7%;
+            }
+            &.photo {
+                width: 12%;
+            }
+            &.name {
+                width: 16em;
+            }
+            &.day {
+                width: 12em;
+            }
+        }
+        td {
+            &.name {
+                div {
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}
