@@ -10,10 +10,8 @@ import SupplierModal from "../../components/AdminBrandCategory/SupplierModal/sup
 import CancelModal from "../../components/AdminBrandCategory/CancelModal/cancelModal";
 
 function SupportedSupplier(props) {
-  console.log("main");
   const [activeTab, setActiveTab] = useState(CATEGORY_TAB_INDEX);
   const [modalData, setModalData] = useState();
-  console.log(modalData);
   const stateCategories = useSelector((state) => state.category.data);
   const stateBrands = useSelector((state) => state.brand.data);
 

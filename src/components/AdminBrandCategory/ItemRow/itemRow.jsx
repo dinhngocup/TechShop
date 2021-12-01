@@ -4,6 +4,13 @@ import image from "../../../assets/images/headphone1.jpeg";
 function ItemRow(props) {
   const { item, no, updateItemModal } = props;
 
+  const convertDate = (date) => {
+    let newDate = new Date(date);
+    newDate = newDate.toString().split(" ");
+    let result = newDate[1] + " " + newDate[2] + ", " + newDate[3];
+    return result;
+  }
+
   return (
     <tr className="product-table-item">
       <td>{no}</td>
@@ -16,10 +23,10 @@ function ItemRow(props) {
         </div>
       </td>
       <td className="text-center ">
-        <b>Dec 13, 2020</b>
+        <b>{convertDate(item.createdDate)}</b>
       </td>
       <td className="text-center ">
-        <b>May 13, 2020</b>
+        <b>{convertDate(item.lastModified)}</b>
       </td>
 
       <td className="product-action">
