@@ -14,10 +14,10 @@ function ProductSelection(props) {
           type="select"
           name={name}
           onChange={handleSelection}
-          defaultValue={"DEFAULT"}
           disabled={defaultValue ? true : false}
+          required
         >
-          <option disabled value={"DEFAULT"}>
+          <option value="">
             {defaultValue ? defaultValue : "-- Select an option --"}
           </option>
           {options.map((option) => (

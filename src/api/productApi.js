@@ -1,5 +1,6 @@
 import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
+import axiosClientAuthen from "./axiosClientAuthen";
 
 const ProductApi = {
   getAllProducts: async (params) => {
@@ -7,9 +8,9 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   remove: (id) => {
-    // const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`;
-    // return axiosClient.delete(url);
-    return Promise.resolve();
+    const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`;
+    console.log(id);
+    return axiosClient.delete(url);
   },
   getProductsByCategory: async (params) => {
     let { category } = params;
@@ -30,6 +31,10 @@ const ProductApi = {
   getDetailedProduct: async (id) => {
     const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
     return axiosClient.get(url);
+  },
+  getAdminDetailedProduct: async (id) => {
+    const url = `${UrlConstant.GET_DETAILED_PRODUCT}/${id}`;
+    return axiosClientAuthen.get(url);
   },
   getRelatedCategoryPro: async (id) => {
     const url = `${UrlConstant.GET_RELATED_CATEGORY_PRODUCT}/${id}`;
@@ -145,89 +150,32 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   updateProductInfo: async (product) => {
-  //   {
-  //     "existedSpecifications": [
-  //         {
-  //             "id": "10VAR_CHAR",
-  //             "value": "Black"
-  //         },
-  //         {
-  //             "id": "7FLOAT",
-  //             "value": "4"
-  //         },
-  //         {
-  //             "id": "8FLOAT",
-  //             "value": "12.6"
-  //         },
-  //         {
-  //             "id": "4TEXT",
-  //             "value": "hii"
-  //         }
-  //     ],
-  //     "id": "6",
-  //     "newSpecifications": [
-  //         {
-  //             "name": "ColorNew",
-  //             "dataType": "VAR",
-  //             "value": "hii"
-  //         },
-  //         {
-  //             "name": "Color",
-  //             "dataType": "BOOL",
-  //             "value": "Yes"
-  //         }
-  //     ],
-  //     "price": "1200000",
-  //     "shortDescription": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus incidunt distinctio saepe laudantium, nam unde quaerat perferendis harum, \r\naspernatur atque blanditiis rerum possimus! Praesentium dolorum, accusamus repellat doloribus ex ipsam",
-  //     "stock": "50",
-  //     "warranty": "2"
-  // }
-    return Promise.reject();
+    console.log(product);
+
+    const url = `${UrlConstant.UPDATE_PRODUCT}`;
+    const body = JSON.stringify(product);
+
+    return axiosClientAuthen
+      .put(url, body)
+
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
   },
   addProduct: async (product) => {
-    //   {
-    //     "brand": "e572dcea-479d-4d8a-bb40-ea638e43e756",
-    //     "category": "4741b10d-a1de-4c9c-acaf-040185f58e85",
-    //     "existedSpecifications": [
-    //         {
-    //             "id": "1",
-    //             "value": "444"
-    //         },
-    //         {
-    //             "id": "91",
-    //             "value": "22"
-    //         },
-    //         {
-    //             "id": "92",
-    //             "value": "22"
-    //         },
-    //         {
-    //             "id": "93",
-    //             "value": "0"
-    //         },
-    //         {
-    //             "id": "94",
-    //             "value": "2"
-    //         },
-    //         {
-    //             "id": "95",
-    //             "value": "2"
-    //         }
-    //     ],
-    //     "name": "productName",
-    //     "newSpecifications": [
-    //         {
-    //             "name": "weightt",
-    //             "dataType": "VAR",
-    //             "value": "hii"
-    //         }
-    //     ],
-    //     "price": "23",
-    //     "shortDescription": "hi",
-    //     "stock": "243",
-    //     "warranty": "23"
-    // }
-    return Promise.resolve();
+    console.log(product);
+
+    const url = `${UrlConstant.ADD_NEW_PRODUCT}`;
+    const body = JSON.stringify(product);
+
+    return axiosClientAuthen
+      .post(url, body)
+
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
   },
 };
 export default ProductApi;
