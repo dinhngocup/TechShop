@@ -22,7 +22,7 @@ function SpecificationInputGroup(props) {
     const newErrors = {};
     const errorName = attribute.name + attribute.dataType;
     switch (attribute.dataType) {
-      case "VAR_CHAR":
+      case "VARCHAR":
       case "TEXT":
         if (!value) {
           newErrors[errorName] = "Cannot be empty.";
@@ -40,7 +40,11 @@ function SpecificationInputGroup(props) {
         break;
       case "FLOAT":
         // TODO: only decimal number
-        if (!/^\d*(\.\d{0,2})?$/.test(value) || parseFloat(value) < 0 || !value) {
+        if (
+          !/^\d*(\.\d{0,2})?$/.test(value) ||
+          parseFloat(value) < 0 ||
+          !value
+        ) {
           console.log(parseFloat(value));
           newErrors[errorName] = "Positive decimal numbers only.";
         } else {

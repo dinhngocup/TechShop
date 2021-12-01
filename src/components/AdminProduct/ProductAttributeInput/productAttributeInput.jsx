@@ -16,13 +16,13 @@ function ProductAttributeInput(props) {
 
   const renderInput = () => {
     switch (attribute.dataType) {
-      case "VAR_CHAR":
+      case "VARCHAR":
         return (
           <Input
             type="text"
             name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
               attribute.id
-            }`}
+            }${editable ? "" : `_${attribute.dataType}`}`}
             defaultValue={defaultValue || ""}
             onBlur={(e) => handleValidation(e, attribute)}
             invalid={listErrors && listErrors[attribute.id] ? true : false}
@@ -35,14 +35,14 @@ function ProductAttributeInput(props) {
             type="select"
             name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
               attribute.id
-            }`}
+            }${editable ? "" : `_${attribute.dataType}`}`}
             onBlur={(e) => handleValidation(e, attribute)}
             invalid={listErrors && listErrors[attribute.id] ? true : false}
+            defaultValue={defaultValue || ""}
             required
           >
-            <option></option>
-            <option>Yes</option>
-            <option>No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </Input>
         );
 
@@ -52,7 +52,7 @@ function ProductAttributeInput(props) {
             type="textarea"
             name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
               attribute.id
-            }`}
+            }${editable ? "" : `_${attribute.dataType}`}`}
             onBlur={(e) => handleValidation(e, attribute)}
             invalid={listErrors && listErrors[attribute.id] ? true : false}
             defaultValue={defaultValue || ""}
@@ -63,10 +63,11 @@ function ProductAttributeInput(props) {
       case "INT":
         return (
           <Input
+            min="0"
             type="number"
             name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
               attribute.id
-            }`}
+            }${editable ? "" : `_${attribute.dataType}`}`}
             onBlur={(e) => handleValidation(e, attribute)}
             invalid={listErrors && listErrors[attribute.id] ? true : false}
             defaultValue={defaultValue || ""}
@@ -77,10 +78,12 @@ function ProductAttributeInput(props) {
       case "FLOAT":
         return (
           <Input
+            min="0"
             type="number"
+            step="0.001"
             name={`${editable ? "NEW_SPECS_" : "EXISTED_SPECS_"}${
               attribute.id
-            }`}
+            }${editable ? "" : `_${attribute.dataType}`}`}
             onBlur={(e) => handleValidation(e, attribute)}
             invalid={listErrors && listErrors[attribute.id] ? true : false}
             defaultValue={defaultValue || ""}

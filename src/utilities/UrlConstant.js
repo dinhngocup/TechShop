@@ -12,6 +12,8 @@ export const GET_FULL_DESCRIP_PRODUCT = "/api/v1/product/longDescrip";
 export const GET_EXISTED_SPECIFICATION = "/api/v1/product/specification";
 
 export const SEARCH_PRODUCTS = "/api/v1/product";
+export const ADD_NEW_PRODUCT = "/api/v1/product";
+export const UPDATE_PRODUCT = "/api/v1/product";
 
 export const GET_PROPOSED_PRODUCTS = "/proposed_products";
 export const GET_PRODUCTS_IN_CART = "/products";

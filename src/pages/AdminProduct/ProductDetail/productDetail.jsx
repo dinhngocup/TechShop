@@ -8,6 +8,8 @@ import {
 } from "../../../utilities/slices/notificationSlice";
 import MainInfo from "./MainInfo/mainInfo";
 import ProductSpecification from "./Specification/productSpecification";
+import { useHistory } from "react-router-dom";
+import { getAllProducts } from "../../../utilities/slices/productSlice";
 
 function ProductDetail(props) {
   const { id } = props;
@@ -15,10 +17,11 @@ function ProductDetail(props) {
   const [productDetail, setProductDetail] = useState();
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchProductDetail = async () => {
-      return await ProductApi.getDetailedProduct(id);
+      return await ProductApi.getAdminDetailedProduct(id);
     };
     if (id) {
       fetchProductDetail()
@@ -33,10 +36,11 @@ function ProductDetail(props) {
     event.preventDefault();
 
     const newSpecifications = [];
-    const existedSpecifications = [];
+    const existedAttributes = [];
     for (let [key, value] of formData.entries()) {
       if (key.startsWith("NEW_SPECS_")) {
         const newAttribute = key.replace("NEW_SPECS_", "").split("_");
+        console.log(key);
         const newSpecs = {
           name: newAttribute[0],
           dataType: newAttribute[1],
@@ -44,8 +48,14 @@ function ProductDetail(props) {
         };
         newSpecifications.push(newSpecs);
       } else if (key.startsWith("EXISTED_SPECS_")) {
-        const existedSpecsId = key.replace("EXISTED_SPECS_", "");
-        existedSpecifications.push({ id: existedSpecsId, value });
+        const existedSpecsValue = key.replace("EXISTED_SPECS_", "").split("_");
+        console.log(key);
+
+        existedAttributes.push({
+          id: existedSpecsValue[0],
+          value,
+          dataType: existedSpecsValue[1],
+        });
       } else {
         mainInfo = { ...mainInfo, [key]: value };
       }
@@ -54,7 +64,7 @@ function ProductDetail(props) {
     const body = {
       ...mainInfo,
       newSpecifications,
-      existedSpecifications,
+      existedAttributes,
     };
     let response;
     if (id) {
@@ -68,6 +78,8 @@ function ProductDetail(props) {
     response
       .then(() => {
         dispatch(showSuccessMessage());
+        dispatch(getAllProducts());
+        history.push("/admin/product");
       })
       .catch(() => dispatch(showFailedMessage()));
   };
@@ -79,7 +91,7 @@ function ProductDetail(props) {
           <MainInfo product={productDetail} />
           <ProductSpecification product={id ? productDetail : null} />
           <Button type="submit" className="w-100 btn-submit">
-            Add
+            {id ? "Update" : "Add"}
           </Button>
         </Form>
       ) : (
