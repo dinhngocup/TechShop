@@ -37,11 +37,11 @@ function SupplierModal(props) {
   const handleValidation = (value) => {
     let error = "";
 
-    if (!value) {
+    if (!value.trim()) {
       error = "Cannot be empty.";
     } else {
       const existedItemName = listItems.find(
-        (item) => item.name.toLowerCase() === value.toLowerCase()
+        (item) => item.name.toLowerCase() === value.trim().toLowerCase()
       );
       if (existedItemName) {
         error = "This item already existed.";
@@ -52,8 +52,8 @@ function SupplierModal(props) {
 
   const handleAddNewItem = () => {
     // generate slug
-    const slug = "";
-    return { name: itemInfo, slug };
+    const slug = itemInfo.toLowerCase().replaceAll(' ', '-');
+    return { name: itemInfo.trim(), slug };
   };
 
   const submitItemInfo = () => {
@@ -61,13 +61,13 @@ function SupplierModal(props) {
     switch (type) {
       case "Categories":
         response = item
-          ? CategoryApi.update({ id: item.id, slug: item.slug, name: itemInfo })
+          ? CategoryApi.update({ id: item.id, slug: itemInfo.toLowerCase().replaceAll(' ', '-'), name: itemInfo.trim(), createdDate: item.createdDate })
           : CategoryApi.add(handleAddNewItem());
         break;
       case "Brands":
         response = item
-          ? BrandApi.update({ id: item.id, name: itemInfo })
-          : BrandApi.add({ name: itemInfo });
+          ? BrandApi.update({ id: item.id, name: itemInfo.trim(), createdDate: item.createdDate })
+          : BrandApi.add({ name: itemInfo.trim() });
         break;
       default:
         break;
@@ -84,6 +84,13 @@ function SupplierModal(props) {
       })
       .catch(() => dispatch(showFailedMessage()));
   };
+
+  const convertDate = (date) => {
+    let newDate = new Date(date);
+    newDate = newDate.toString().split(" ");
+    let result = newDate[1] + " " + newDate[2] + ", " + newDate[3];
+    return result;
+  }
 
   useEffect(() => {
     setItemInfo("");
@@ -154,10 +161,10 @@ function SupplierModal(props) {
                   </FormGroup>
                   <div className="date">
                     <div>
-                      Created date: <b>May 13, 2021</b>
+                      Created date: <b>{convertDate(item.createdDate)}</b>
                     </div>
                     <div>
-                      Last modified: <b>May 13, 2021</b>
+                      Last modified: <b>{convertDate(item.lastModified)}</b>
                     </div>
                   </div>
                 </>
@@ -169,9 +176,6 @@ function SupplierModal(props) {
                     name="name"
                     onChange={updateItemInfo}
                     value={itemInfo || ""}
-                    onBlur={(e) =>
-                      !e.target.value && setError("Cannot be empty.")
-                    }
                   />
                   <span className="text-danger">
                     <small>{error}</small>

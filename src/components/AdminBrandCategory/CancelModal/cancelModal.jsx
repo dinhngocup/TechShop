@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import BrandApi from "../../../api/brandApi";
 import CategoryApi from "../../../api/categoryApi";
 import ProductApi from "../../../api/productApi";
+import { getBrands } from "../../../utilities/slices/brandSlice";
+import { getCategories } from "../../../utilities/slices/categorySlice";
 import {
   showFailedMessage,
   showSuccessMessage,
@@ -16,19 +18,18 @@ function CancelModal(props) {
     let response;
     switch (name) {
       case "Categories":
-        response = CategoryApi.remove(id);
+        response = CategoryApi.remove(id).then(() => {dispatch(showSuccessMessage()); dispatch(getCategories())});
         break;
       case "Brands":
-        response = BrandApi.remove(id);
+        response = BrandApi.remove(id).then(() => {dispatch(showSuccessMessage()); dispatch(getBrands())});
         break;
       case "product":
-        response = ProductApi.remove(id);
+        response = ProductApi.remove(id).then(() => {dispatch(showSuccessMessage())});
         break;
       default:
         break;
     }
     response
-      .then(() => dispatch(showSuccessMessage()))
       .catch(() => dispatch(showFailedMessage()));
   };
 

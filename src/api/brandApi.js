@@ -1,30 +1,37 @@
 import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
-// import axiosClientAuthen from './axiosClientAuthen';
+import axiosClientAuthen from './axiosClientAuthen';
 
 const BrandApi = {
   getBrands: async () => {
     const url = `${UrlConstant.GET_ALL_BRANDS}`;
-    // console.log("call api get all brands");
     return axiosClient.get(url);
   },
   remove: (id) => {
-    // console.log("call api remove brand");
-    // const url = `${UrlConstant.REMOVE_BRANDS}/${id}`;
-    // return axiosClientAuthen.delete(url);
-    return Promise.resolve();
+    const url = `${UrlConstant.REMOVE_BRANDS}/${id}`;
+    return axiosClientAuthen.delete(url);
   },
   update: async (brand) => {
-    // console.log("call api update brand", brand);
-    // const url = `${UrlConstant.UPDATE_BRANDS}/${id}`;
-    // return axiosClientAuthen.put(url);
-    return Promise.resolve();
+    const url = `${UrlConstant.UPDATE_BRANDS}`;
+    const body = JSON.stringify(brand);
+    return  axiosClientAuthen
+      .put(url, body)
+
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
   },
   add: async (brand) => {
-    // console.log("call api update brand", brand);
-    // const url = `${UrlConstant.ADD_BRANDS}/${id}`;
-    // return axiosClientAuthen.post(url);
-    return Promise.resolve();
+    const url = `${UrlConstant.ADD_BRANDS}`;
+    const body = JSON.stringify(brand);
+    return  axiosClientAuthen
+      .post(url, body)
+
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
   },
 };
 export default BrandApi;

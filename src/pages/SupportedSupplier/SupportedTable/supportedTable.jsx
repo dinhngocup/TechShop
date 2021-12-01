@@ -3,7 +3,6 @@ import ItemRow from "../../../components/AdminBrandCategory/ItemRow/itemRow";
 import "./_supportedTable.scss";
 
 function SupportedTable(props) {
-  console.log("supported table");
   const { listItems, name, updateItemModal } = props;
 
   const renderSupportedTable = () => (

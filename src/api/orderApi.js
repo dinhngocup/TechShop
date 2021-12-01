@@ -76,7 +76,6 @@ const OrderApi = {
     return axiosClientAuthen.get(url);
   },
   transferToShipper: async (id, shipperInfo) => {
-    console.log("call transfer", shipperInfo);
     const url = `${UrlConstant.UPDATE_ORDER_STATUS}/${id}`;
 
     return axiosClientAuthen
