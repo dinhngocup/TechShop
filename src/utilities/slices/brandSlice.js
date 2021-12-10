@@ -35,6 +35,9 @@ const brand = createSlice({
         return { ...brand, isCheckedByAdmin: false };
       });
     },
+    removeBrand: (state, action) => {
+      state.data = state.data.filter((brand) => brand.id !== action.payload.id);
+    },
   },
   extraReducers: {
     [getBrands.pending]: (state) => {
@@ -48,5 +51,6 @@ const brand = createSlice({
     },
   },
 });
-export const { updateBrandFilter, removeAllBrandFilters } = brand.actions;
+export const { updateBrandFilter, removeAllBrandFilters, removeBrand } =
+  brand.actions;
 export default brand.reducer;

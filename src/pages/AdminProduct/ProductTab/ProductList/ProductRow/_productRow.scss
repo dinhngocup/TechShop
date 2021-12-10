@@ -1,18 +1,11 @@
 .product-table-item {
-    color: rgb(102, 110, 125);
-    border-top: 1px dashed var(--border-color);
-    &:hover {
-        background-color: #fffcf5;
-        // cursor: pointer;
-    }
+    
     img {
         height: 50px;
         width: 50px;
         border-radius: 5px;
     }
-    td {
-        font-size: 0.9em;
-    }
+    
     .product-action {
         a {
             color: inherit;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import image1 from "../../../../assets/images/headphone1.jpeg";
-import ProductImage from "../../../../components/AdminProduct/ProductImage/productImage";
-import ProductMainInfoInput from "../../../../components/AdminProduct/ProductMainInfoInput/productMainInfoInput";
+import image1 from "../../../../../assets/images/headphone1.jpeg";
+import ProductImage from "../../../../../components/AdminProduct/ProductImage/productImage";
+import ProductMainInfoInput from "../../../../../components/AdminProduct/ProductMainInfoInput/productMainInfoInput";
 import "./_mainInfo.scss";
 
 function MainInfo(props) {

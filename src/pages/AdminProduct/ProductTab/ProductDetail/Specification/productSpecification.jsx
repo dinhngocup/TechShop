@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Col, FormGroup, Spinner } from "reactstrap";
-import ProductApi from "../../../../api/productApi";
-import ProductSelection from "../../../../components/AdminProduct/ProductSelection/productSelection";
-import SpecificationInputGroup from "../../../../components/AdminProduct/SpecificationInputGroup/specificationInputGroup";
+import ProductApi from "../../../../../api/productApi";
+import ProductSelection from "../../../../../components/AdminProduct/ProductSelection/productSelection";
+import SpecificationInputGroup from "../../../../../components/AdminProduct/SpecificationInputGroup/specificationInputGroup";
 import "./_productSpecification.scss";
+import { getCategories } from "../../../../../utilities/slices/categorySlice";
+import { getBrands } from "../../../../../utilities/slices/brandSlice";
 
 function ProductSpecification(props) {
   const { product } = props;
@@ -15,6 +17,8 @@ function ProductSpecification(props) {
   const [filterSpecification, setFilterSpecification] = useState({});
   const [specsAttributes, setSpecsAttributes] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchAttributes = async () => {
@@ -63,6 +67,28 @@ function ProductSpecification(props) {
       }
     }
   };
+
+  // get categories
+  useEffect(() => {
+    async function fetchCategories() {
+      await dispatch(getCategories());
+    }
+    if (!stateCategories.length) {
+      fetchCategories();
+    }
+  }, [dispatch, stateCategories]);
+
+  // get brands
+  useEffect(() => {
+    async function fetchBrands() {
+      await dispatch(getBrands());
+    }
+
+    if (!stateBrands.length) {
+      fetchBrands();
+    }
+  }, [dispatch, stateBrands]);
+
   return (
     <div className="product-specification my-2">
       <div className="text-center header">Specification</div>
@@ -80,7 +106,7 @@ function ProductSpecification(props) {
       <FormGroup row>
         <ProductSelection
           name="category"
-          options={stateCategories}
+          options={stateCategories.filter((item) => item.name !== "All")}
           handleSelection={handleSelection}
           defaultValue={product?.categoryName}
         />

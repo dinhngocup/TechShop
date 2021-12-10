@@ -1,9 +1,12 @@
-.brand-category-header-container {
+.separated-tab-header-container {
     background-color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     &:hover {
         cursor: pointer;
+        a {
+            text-decoration: none;
+        }
     }
     &:first-child {
         .header {
@@ -51,7 +54,7 @@
         }
     }
 
-    &.active + .brand-category-header-container {
+    &.active + .separated-tab-header-container {
         .header {
             border-bottom-left-radius: 20px;
         }

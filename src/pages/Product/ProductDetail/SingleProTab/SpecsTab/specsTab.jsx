@@ -21,21 +21,27 @@ function SpecsTab(props) {
   const renderSpecsInfo = (specifications) => {
     let result = [];
     if (specifications && specifications.length !== 0) {
-      console.log(specifications);
-      Object.entries(specifications).forEach(([name, value], index) => {
-        console.log(name, value);
+      specifications.forEach((specification, index) => {
         if (index % 2 === 0) {
           result.push(
             <div className="row specs" key={index}>
-              <div className="col-4 specs-tag text-capitalize">{name}</div>
-              <div className="col-8 specs-content text-capitalize">{value}</div>
+              <div className="col-4 specs-tag text-capitalize">
+                {specification.name}
+              </div>
+              <div className="col-8 specs-content text-capitalize">
+                {specification.value}
+              </div>
             </div>
           );
         } else {
           result.push(
             <div className="row specs specs-deco" key={index}>
-              <div className="col-4 specs-tag text-capitalize">{name}</div>
-              <div className="col-8 specs-content text-capitalize">{value}</div>
+              <div className="col-4 specs-tag text-capitalize">
+                {specification.name}
+              </div>
+              <div className="col-8 specs-content text-capitalize">
+                {specification.value}
+              </div>
             </div>
           );
         }

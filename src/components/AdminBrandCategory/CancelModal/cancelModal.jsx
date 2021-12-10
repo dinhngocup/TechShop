@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import BrandApi from "../../../api/brandApi";
 import CategoryApi from "../../../api/categoryApi";
 import ProductApi from "../../../api/productApi";
-import { getBrands } from "../../../utilities/slices/brandSlice";
-import { getCategories } from "../../../utilities/slices/categorySlice";
+import { removeBrand } from "../../../utilities/slices/brandSlice";
+import { removeCategory } from "../../../utilities/slices/categorySlice";
 import {
   showFailedMessage,
   showSuccessMessage,
 } from "../../../utilities/slices/notificationSlice";
+import { removeProduct } from "../../../utilities/slices/productSlice";
 
 function CancelModal(props) {
   const { id, name } = props;
@@ -18,19 +19,31 @@ function CancelModal(props) {
     let response;
     switch (name) {
       case "Categories":
-        response = CategoryApi.remove(id).then(() => {dispatch(showSuccessMessage()); dispatch(getCategories())});
+        response = CategoryApi.remove(id).then(() => {
+          dispatch(showSuccessMessage());
+          dispatch(removeCategory({ id }));
+        });
         break;
       case "Brands":
-        response = BrandApi.remove(id).then(() => {dispatch(showSuccessMessage()); dispatch(getBrands())});
+        response = BrandApi.remove(id).then(() => {
+          dispatch(showSuccessMessage());
+          dispatch(removeBrand({ id }));
+        });
         break;
       case "product":
-        response = ProductApi.remove(id).then(() => {dispatch(showSuccessMessage())});
+        response = ProductApi.remove(id).then(() => {
+          dispatch(showSuccessMessage());
+          dispatch(
+            removeProduct({
+              id,
+            })
+          );
+        });
         break;
       default:
         break;
     }
-    response
-      .catch(() => dispatch(showFailedMessage()));
+    response.catch(() => dispatch(showFailedMessage()));
   };
 
   return (

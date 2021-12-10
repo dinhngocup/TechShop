@@ -8,8 +8,7 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   remove: (id) => {
-    const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`;
-    console.log(id);
+    const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`
     return axiosClient.delete(url);
   },
   getProductsByCategory: async (params) => {
@@ -164,14 +163,42 @@ const ProductApi = {
       .catch((error) => Promise.reject(error));
   },
   addProduct: async (product) => {
-    console.log(product);
-
     const url = `${UrlConstant.ADD_NEW_PRODUCT}`;
     const body = JSON.stringify(product);
 
     return axiosClientAuthen
       .post(url, body)
 
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
+  },
+  updateSpecsStatus: (id) => {
+    const url = `${UrlConstant.UPDATE_SPECIFICATION_STATUS}/${id}`;
+
+    return axiosClientAuthen
+      .put(url)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
+  },
+  getAffectProduct: (id) => {
+    const url = `${UrlConstant.GET_AFFECTED_PRODUCTS}/${id}`;
+
+    return axiosClientAuthen
+      .get(url)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => Promise.reject(error));
+  },
+  removeAttribute: (id) => {
+    const url = `${UrlConstant.REMOVE_PRODUCT_ATTRIBUTE}/${id}`;
+
+    return axiosClientAuthen
+      .delete(url)
       .then((response) => {
         return response;
       })

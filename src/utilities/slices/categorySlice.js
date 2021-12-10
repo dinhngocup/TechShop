@@ -38,6 +38,11 @@ const category = createSlice({
         return { ...category, isCheckedByAdmin: false };
       });
     },
+    removeCategory: (state, action) => {
+      state.data = state.data.filter(
+        (category) => category.id !== action.payload.id
+      );
+    },
   },
   extraReducers: {
     [getCategories.pending]: (state) => {
@@ -51,6 +56,9 @@ const category = createSlice({
     },
   },
 });
-export const { updateCategoryFilter, removeAllCategoryFilters } =
-  category.actions;
+export const {
+  updateCategoryFilter,
+  removeAllCategoryFilters,
+  removeCategory,
+} = category.actions;
 export default category.reducer;

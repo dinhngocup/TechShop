@@ -20,11 +20,17 @@ function OrderSummary(props) {
       })
     );
   };
+  const parseOrderTime = (time) => {
+    let dateTime = new Date(time);
+    return `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()} - ${dateTime.getHours()}:${
+      dateTime.getMinutes() < 10 ? "0" : ""
+    }${dateTime.getMinutes()}`;
+  };
 
   return (
     <tr className="table-item" onClick={handleRowClick}>
       <td className="">{order.id}</td>
-      <td className="">{order.lastConfirm}</td>
+      <td className="">{parseOrderTime(order.lastConfirm)}</td>
 
       <td className="order-status">{order.statusDetail}</td>
       <td className="">{order.totalItems}</td>

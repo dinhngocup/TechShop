@@ -28,19 +28,8 @@
         }
     }
     table {
-        width: 80%;
-        // border: 1px solid var(--admin-header);
         box-shadow: 1px 1px 5px 5px rgb(241, 241, 241);
-
-        td {
-            padding: 10px 30px;
-        }
         th {
-            padding: 18px 25px;
-            color: var(--admin-header);
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-transform: uppercase;
             &.number {
                 width: 5%;
             }
@@ -51,26 +40,5 @@
                 width: 20%;
             }
         }
-    }
-}
-
-.admin-brand-category {
-    background-color: rgb(244,244,251);
-    padding: 1em;
-    border-radius: 10px;
-
-    .header-tab {
-        width: max-content;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        span {
-            font-size: small;
-            margin-left: 10px;
-            background-color: rgb(32,28,194);
-            color: white;
-            padding: 5px 8px;
-            border-radius: 10px;
-        }
-        
     }
 }

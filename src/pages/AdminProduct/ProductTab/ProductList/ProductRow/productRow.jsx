@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import image from "../../../../assets/images/headphone1.jpeg";
-import handlePrice from "../../../../helpers/formatPrice";
+import image from "../../../../../assets/images/headphone1.jpeg";
+import handlePrice from "../../../../../helpers/formatPrice";
 import "./_productRow.scss";
 
 function ProductRow(props) {
   const { product, index, removeItem } = props;
   const location = useLocation();
-  
+
   return (
-    <tr className="product-table-item">
+    <tr className="product-table-item separated-table-item">
       <td className="number">{index}</td>
       <td className="photo">
         <img src={image} alt="" />
@@ -20,7 +20,7 @@ function ProductRow(props) {
         </div>
       </td>
 
-      <td className="price">{handlePrice(product.price)}</td>
+      <td className="price text-right">{handlePrice(product.price)}</td>
       <td className="brand">
         <div>{product.brandName}</div>
       </td>
@@ -43,7 +43,9 @@ function ProductRow(props) {
       </td>
       <td className="product-action action">
         <div className="d-flex justify-content-between align-items-center">
-          <NavLink to={`${location.pathname}?action=edit&id=${product.id}`}>
+          <NavLink
+            to={`${location.pathname}${location.search}&action=edit&id=${product.id}`}
+          >
             <i className="far fa-eye"></i>
           </NavLink>
           <i

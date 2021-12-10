@@ -7,13 +7,14 @@ import image from "../../../assets/images/headphone1.jpeg";
 import { getBrands } from "../../../utilities/slices/brandSlice";
 import { getCategories } from "../../../utilities/slices/categorySlice";
 import {
-  showFailedMessage, showSuccessMessage
+  showFailedMessage,
+  showSuccessMessage,
 } from "../../../utilities/slices/notificationSlice";
 import ProductImage from "../../AdminProduct/ProductImage/productImage";
 import "./_supplierModal.scss";
 
 function SupplierModal(props) {
-  const { item, type, listItems } = props;
+  const { item, type, listItems, updateModalData } = props;
 
   const [itemInfo, setItemInfo] = useState();
   const [error, setError] = useState();
@@ -52,7 +53,7 @@ function SupplierModal(props) {
 
   const handleAddNewItem = () => {
     // generate slug
-    const slug = itemInfo.toLowerCase().replaceAll(' ', '-');
+    const slug = itemInfo.toLowerCase().replaceAll(" ", "-");
     return { name: itemInfo.trim(), slug };
   };
 
@@ -61,12 +62,21 @@ function SupplierModal(props) {
     switch (type) {
       case "Categories":
         response = item
-          ? CategoryApi.update({ id: item.id, slug: itemInfo.toLowerCase().replaceAll(' ', '-'), name: itemInfo.trim(), createdDate: item.createdDate })
+          ? CategoryApi.update({
+              id: item.id,
+              slug: itemInfo.toLowerCase().replaceAll(" ", "-"),
+              name: itemInfo.trim(),
+              createdDate: item.createdDate,
+            })
           : CategoryApi.add(handleAddNewItem());
         break;
       case "Brands":
         response = item
-          ? BrandApi.update({ id: item.id, name: itemInfo.trim(), createdDate: item.createdDate })
+          ? BrandApi.update({
+              id: item.id,
+              name: itemInfo.trim(),
+              createdDate: item.createdDate,
+            })
           : BrandApi.add({ name: itemInfo.trim() });
         break;
       default:
@@ -82,7 +92,8 @@ function SupplierModal(props) {
           dispatch(getBrands());
         }
       })
-      .catch(() => dispatch(showFailedMessage()));
+      .catch(() => dispatch(showFailedMessage()))
+      .finally(() => updateModalData(null));
   };
 
   const convertDate = (date) => {
@@ -90,7 +101,7 @@ function SupplierModal(props) {
     newDate = newDate.toString().split(" ");
     let result = newDate[1] + " " + newDate[2] + ", " + newDate[3];
     return result;
-  }
+  };
 
   useEffect(() => {
     setItemInfo("");
@@ -198,6 +209,7 @@ function SupplierModal(props) {
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
+              onClick={() => updateModalData(null)}
             >
               Cancel
             </button>

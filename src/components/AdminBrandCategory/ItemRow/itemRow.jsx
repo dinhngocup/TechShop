@@ -12,7 +12,7 @@ function ItemRow(props) {
   }
 
   return (
-    <tr className="product-table-item">
+    <tr className="product-table-item separated-table-item">
       <td>{no}</td>
       <td className="">
         <img src={image} alt="" />
@@ -51,4 +51,4 @@ function ItemRow(props) {
 
 ItemRow.propTypes = {};
 
-export default ItemRow;
+export default React.memo(ItemRow);

@@ -1,133 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "reactstrap";
-import SaleModal from "../../components/AdminProduct/SaleModal/saleModal";
-import { getAllProducts } from "../../utilities/slices/productSlice";
-import FilterBar from "./FilterBar/filterBar";
-import ProductDetail from "./ProductDetail/productDetail";
-import ProductList from "./ProductList/productList";
-import SearchBar from "./SearchBar/searchBar";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
-import "./_main.scss";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { SeparatedTab } from "../common/SeparatedTab/separatedTab";
+import ProductTab from "./ProductTab/productTab";
+import SpecificationsTab from "./SpecificationsTab/specificationsTab";
+import { PRODUCT_TAB_INDEX } from "./type";
 
 function AdminProduct(props) {
-  const filterItem = useSelector((state) => state.filterProduct.filters);
-  const stateProducts = useSelector((state) => state.product.products);
-
-  const dispatch = useDispatch();
-
-  const [searchInput, setSearchInput] = useState();
-  const [renderProducts, setRenderProducts] = useState();
-  // const [productDetailId, setProductDetailId] = useState();
-
   const location = useLocation();
-  const history = useHistory();
-  const currentAction = location.search
-    ? new URLSearchParams(location.search).get("action")
-    : 0;
-  const productIdURL = location.search
-    ? new URLSearchParams(location.search).get("id")
-    : 0;
-
-  useEffect(() => {
-    // setRenderProducts(stateProducts.allProducts)
-
-    // console.log(stateProducts)
-    const result = filterSearchProducts(filterItem, searchInput, stateProducts.allProducts);
-    setRenderProducts(result);
-
-
-  }, [filterItem, searchInput, stateProducts]);
-
-  const filterSearchProducts = (filterValue, searchValue, products) => {
-    let result;
-    if (filterValue.length || searchValue) {
-      if (filterValue.length) {
-        let category = [];
-        let brand = [];
-        filterValue.forEach(value => {
-          if (value.itemCategory === 'Category') {
-            category.push(value.name);
-          } else if(value.itemCategory === 'Brand') {
-            brand.push(value.name);
-          }
-        });
-        if( category.length) {
-          result = products.filter(product => category.includes(product.categoryName));
-        }
-        if (brand.length) {
-          if (category.length) {
-            result = result.filter(product => brand.includes(product.brandName));
-          } else {
-            result = products.filter(product => brand.includes(product.brandName));
-          }
-        }
-      }
-      if (searchValue) {
-        searchValue = searchValue.trim();
-        searchValue = searchValue.toLowerCase();
-        if(filterValue.length) {
-          result = result.filter(product => product.name.toLowerCase().includes(searchValue));
-        }
-        else {
-          result = products.filter(product => product.name.toLowerCase().includes(searchValue));
-        }
-      }
-    }
-    else {
-      result = products;
-    }
-    return result;
-  }
-
-
-  useEffect(() => {
-    async function fetchProduct() {
-      // setLoading(true);
-      await dispatch(getAllProducts());
-    }
-    if (!stateProducts.allProducts) {
-      fetchProduct();
-    } else {
-      // setLoading(false);
-    }
-  }, [dispatch, stateProducts]);
+  const typeProductTabIndex = parseInt(
+    location.search ? new URLSearchParams(location.search).get("type") : 1
+  );
 
   return (
     <div className="body-content">
-      <div className="product-table" style={{ height: "4500px" }}>
-        {!currentAction ? (
-          <>
-            <SearchBar
-              updateSearchInput={(keyword) => setSearchInput(keyword)}
-            />
-            <FilterBar />
-          </>
-        ) : (
-          ""
-        )}
-        <div className="my-3 product-table-header">
-          <h2 className="text-center">
-            {!productIdURL ? "Products" : "New Product"}
-          </h2>
-          {!currentAction ? (
-            <NavLink to={`${location.pathname}?action=add`}>
-              <Button>
-                <b>Add new</b>
-              </Button>
-            </NavLink>
+      <div className="separated-tab">
+        <div className="header d-flex">
+          <SeparatedTab tabName="Product" activeTab={typeProductTabIndex} />
+        </div>
+        <div style={{ backgroundColor: "white" }}>
+          {typeProductTabIndex === PRODUCT_TAB_INDEX ? (
+            <ProductTab />
           ) : (
-            <Button onClick={() => history.goBack()}>
-              <b>Back</b>
-            </Button>
+            <SpecificationsTab />
           )}
         </div>
-        {!currentAction ? (
-          <ProductList products={renderProducts} />
-        ) : (
-          <ProductDetail id={productIdURL} />
-        )}
-        <SaleModal />
       </div>
     </div>
   );

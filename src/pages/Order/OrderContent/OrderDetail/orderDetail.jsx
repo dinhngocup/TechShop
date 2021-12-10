@@ -35,6 +35,13 @@ function OrderDetail(props) {
     },
   ];
 
+  const parseOrderTime = (time) => {
+    let dateTime = new Date(time);
+    return `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()} - ${dateTime.getHours()}:${
+      dateTime.getMinutes() < 10 ? "0" : ""
+    }${dateTime.getMinutes()}`;
+  };
+
   const renderProgress = (orderProgessDetail) => {
     if (order?.cancelled) {
       progressList = [
@@ -102,7 +109,7 @@ function OrderDetail(props) {
           <i className={progress.icon}></i>
         </div>
         <div className="bs-wizard-info text-center order-time">
-          {progress.orderTime}
+          {progress.orderTime && parseOrderTime(progress.orderTime)}
         </div>
       </div>
     ));

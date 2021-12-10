@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, FormGroup, Input, Label, Row } from "reactstrap";
-import FilterItem from "../../../components/AdminProduct/FilterItem/filterItem";
-import FilterSelection from "../../../components/AdminProduct/FilterSelection/filterSelection";
+import FilterItem from "../../../../components/AdminProduct/FilterItem/filterItem";
+import FilterSelection from "../../../../components/AdminProduct/FilterSelection/filterSelection";
 import {
   getBrands,
   removeAllBrandFilters,
-} from "../../../utilities/slices/brandSlice";
+} from "../../../../utilities/slices/brandSlice";
 import {
   getCategories,
   removeAllCategoryFilters,
-} from "../../../utilities/slices/categorySlice";
+} from "../../../../utilities/slices/categorySlice";
 import {
   clearAllFilters,
   updateSaleFilter,
-} from "../../../utilities/slices/filterProduct";
+} from "../../../../utilities/slices/filterProduct";
 import "./_filterBar.scss";
 
 function FilterBar(props) {

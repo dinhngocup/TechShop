@@ -50,18 +50,18 @@ function App() {
                   <Col xs="9" className="pl-0 pr-5">
                     <Switch>
                       {/*TODO: update to private route*/}
-                      <PrivateRoute path="/admin/home">
+                      <Route path="/admin/home">
                         <AdminHome />
-                      </PrivateRoute>
-                      <PrivateRoute path="/admin/order/:orderStatus">
+                      </Route>
+                      <Route path="/admin/order/:orderStatus">
                         <AdminOrder />
-                      </PrivateRoute>
-                      <PrivateRoute path="/admin/product">
+                      </Route>
+                      <Route path="/admin/product">
                         <AdminProduct />
-                      </PrivateRoute>
-                      <PrivateRoute path="/admin/supplier">
+                      </Route>
+                      <Route path="/admin/supplier">
                         <SupportedSupplier />
-                      </PrivateRoute>
+                      </Route>
                     </Switch>
                   </Col>
                 </Row>

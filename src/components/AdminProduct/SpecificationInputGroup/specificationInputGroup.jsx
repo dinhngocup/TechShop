@@ -66,15 +66,17 @@ function SpecificationInputGroup(props) {
 
   const renderExistedAttributes = () => {
     return specsAttributes.length ? (
-      specsAttributes.map((attribute) => (
-        <ProductAttributeInput
-          attribute={attribute}
-          key={attribute.id}
-          handleValidation={handleValidation}
-          listErrors={listErrors}
-          defaultValue={attribute?.value}
-        />
-      ))
+      specsAttributes
+        .filter((attribute) => !attribute.isDisabled)
+        .map((attribute) => (
+          <ProductAttributeInput
+            attribute={attribute}
+            key={attribute.id}
+            handleValidation={handleValidation}
+            listErrors={listErrors}
+            defaultValue={attribute?.value}
+          />
+        ))
     ) : (
       <div className="text-center">
         <small>

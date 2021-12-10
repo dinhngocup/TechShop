@@ -10,7 +10,7 @@ const filterProducts = (products) => {
   products.forEach((product) => {
     const category = product.categorySlug;
     const brand = product.brandName;
-    
+
     if (!filterResults[category]) {
       filterResults[category] = [];
     }
@@ -26,7 +26,7 @@ const filterProducts = (products) => {
 
 export const getAllProducts = createAsyncThunk(
   "product/getAllProducts",
-  async (params, thunkAPI) => {
+  async (params) => {
     const listProduct = await ProductApi.getAllProducts(params);
     const filterProductsResult = filterProducts(listProduct);
     return {
@@ -41,7 +41,27 @@ const product = createSlice({
   initialState: {
     products: {},
   },
-  reducers: {},
+  reducers: {
+    removeProduct: (state, action) => {
+      const id = action.payload.id;
+      const deletedProduct = state.products.allProducts.find(
+        (product) => product.id === id
+      );
+      const categorySlug = deletedProduct.categorySlug;
+      const brandName = deletedProduct.brandName;
+
+      state.products.allProducts = state.products.allProducts.filter(
+        (product) => product.id !== deletedProduct.id
+      );
+      state.products.filterProducts[categorySlug] =
+        state.products.filterProducts[categorySlug].filter(
+          (product) => product.id !== id
+        );
+      state.products.filterProducts[brandName] = state.products.filterProducts[
+        brandName
+      ].filter((product) => product.id !== id);
+    },
+  },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
       //console.log('pending fetching list')
@@ -55,4 +75,5 @@ const product = createSlice({
     },
   },
 });
+export const { removeProduct } = product.actions;
 export default product.reducer;

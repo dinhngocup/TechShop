@@ -10,6 +10,10 @@ export const GET_RELATED_BRAND_PRODUCT = "/api/v1/product/related-brand";
 export const GET_SPECS_PRODUCT = "/api/v1/product/specs";
 export const GET_FULL_DESCRIP_PRODUCT = "/api/v1/product/longDescrip";
 export const GET_EXISTED_SPECIFICATION = "/api/v1/product/specification";
+export const UPDATE_SPECIFICATION_STATUS = "/api/v1/product/specification";
+export const GET_AFFECTED_PRODUCTS =
+  "/api/v1/product/specification/affected-product";
+export const REMOVE_PRODUCT_ATTRIBUTE = "/api/v1/product/specification";
 
 export const SEARCH_PRODUCTS = "/api/v1/product";
 export const ADD_NEW_PRODUCT = "/api/v1/product";

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormGroup, Input, Label, Col } from "reactstrap";
-import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/ProductDetail/Specification/type";
+import { ATTRIBUTE_TYPE } from "../../../pages/AdminProduct/ProductTab/ProductDetail/Specification/type";
 import "./_productAttributeInput.scss";
 
 function ProductAttributeInput(props) {
