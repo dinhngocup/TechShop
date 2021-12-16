@@ -6,8 +6,7 @@
     .btn-refresh {
         background-color: white;
         color: var(--admin-header);
-        // transform: rotate(180deg);
-       
+        width: 9em;
         &:hover {
             border: 1px solid var(--admin-header);
             i {

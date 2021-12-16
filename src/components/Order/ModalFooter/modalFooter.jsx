@@ -3,7 +3,7 @@ import { Spinner } from "reactstrap";
 import PropTypes from "prop-types";
 
 function ModalFooter(props) {
-  const { isSucceed, loading, confirmRequest, isDisabled } = props;
+  const { isSucceed, loading, confirmRequest, isDisabled, resetData } = props;
   return (
     <>
       {!isSucceed ? (
@@ -23,6 +23,7 @@ function ModalFooter(props) {
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
+              onClick={resetData}
             >
               Cancel
             </button>

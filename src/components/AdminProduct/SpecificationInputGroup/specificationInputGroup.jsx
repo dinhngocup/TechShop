@@ -45,7 +45,6 @@ function SpecificationInputGroup(props) {
           parseFloat(value) < 0 ||
           !value
         ) {
-          console.log(parseFloat(value));
           newErrors[errorName] = "Positive decimal numbers only.";
         } else {
           newErrors[errorName] = "";

@@ -56,7 +56,7 @@ function ProductDetail(props) {
           })
         );
         setProduct(response);
-        console.log("success");
+        console.log(response);
         fetchRelatedBrandProduct();
         fetchRelatedCategoryProduct();
         fetchFirstReviews();
@@ -71,7 +71,6 @@ function ProductDetail(props) {
           })
         );
         setLoading(false);
-        console.log("err");
         setProduct(null);
       });
 

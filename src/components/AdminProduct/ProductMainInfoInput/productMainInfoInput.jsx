@@ -2,8 +2,15 @@ import React from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 
 function ProductMainInfoInput(props) {
-  const { label, handleValidation, listErrors, dataType, name, defaultValue, disabled } =
-    props;
+  const {
+    label,
+    handleValidation,
+    listErrors,
+    dataType,
+    name,
+    defaultValue,
+    disabled,
+  } = props;
 
   return (
     <FormGroup>

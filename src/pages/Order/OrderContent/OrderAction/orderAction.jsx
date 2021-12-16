@@ -97,6 +97,10 @@ function OrderAction(props) {
             isMainBtn: true,
           },
           {
+            btnName: OrderActionName.VIEW_CUSTOMER_HISTORY,
+            isMainBtn: true,
+          },
+          {
             btnName: OrderActionName.ADMIN_CANCEL_ORDER,
             isMainBtn: false,
           },

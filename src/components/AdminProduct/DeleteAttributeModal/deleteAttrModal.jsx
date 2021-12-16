@@ -56,7 +56,7 @@ function DeleteAttrModal(props) {
             </button>
           </div>
           <div className="modal-body d-flex">
-            This action will be affect to {affectedProducts} products Are you
+            This action will be affect to {affectedProducts} product(s) Are you
             sure you want to delete this item?
           </div>
           <div className="modal-footer">

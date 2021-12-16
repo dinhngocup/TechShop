@@ -44,6 +44,7 @@ export const GET_COUPON_BY_ID = "/coupons";
 // USER
 export const LOGIN = "api/v1/auth/login";
 export const GET_USER_SHIPPING_INFO = "/api/v1/user/shippingInfo";
+export const SIGNUP = "/api/v1/user";
 export const PLACE_ORDER = "/api/v1/invoice";
 
 // ORDER
@@ -52,7 +53,11 @@ export const GET_ALL_ADMIN_ORDERS = "/api/v1/invoice";
 export const GET_DETAILED_ORDER = "/api/v1/invoice";
 export const CANCEL_ORDER = "/api/v1/invoice/cancel";
 export const UPDATE_ORDER_STATUS = "/api/v1/invoice/status";
+export const TRANSFER_TO_SHIPPER = "/api/v1/invoice/shipper";
 export const GET_ALL_ORDER = "/api/v1/invoice";
 
 // TOKEN
 export const REFRESH_TOKEN = "/refresh";
+
+// SHIPPER
+export const GET_ALL_SHIPPERS = "/api/v1/shipper";

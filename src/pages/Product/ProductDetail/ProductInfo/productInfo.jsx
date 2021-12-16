@@ -22,9 +22,9 @@ const renderTechInfo = (shortTech) => {
 
 function ProductInfo(props) {
   const { product } = props;
-  //console.log("info");
+  console.log("info", product);
   return (
-    <React.Fragment>
+    <React.Fragment className="product-info">
       <div className="title">
         <div className="product-name">{product.name}</div>
         <div className="product-rating">
@@ -51,6 +51,7 @@ function ProductInfo(props) {
             id={product.id}
             name={product.name}
             price={product.price}
+            sDeleted={product?.isDeleted}
           />
         </div>
       </div>

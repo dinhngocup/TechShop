@@ -41,7 +41,6 @@ function ModalCancelOrder(props) {
     const url = history.location.pathname.startsWith("/admin")
       ? "/admin/order/cancelled"
       : "/your-orders/cancelled";
-    console.log(url);
     isSucceed && history.push(url);
   };
 

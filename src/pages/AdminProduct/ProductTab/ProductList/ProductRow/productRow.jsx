@@ -44,7 +44,7 @@ function ProductRow(props) {
       <td className="product-action action">
         <div className="d-flex justify-content-between align-items-center">
           <NavLink
-            to={`${location.pathname}${location.search}&action=edit&id=${product.id}`}
+            to={`${location.pathname}?type=1&action=edit&id=${product.id}`}
           >
             <i className="far fa-eye"></i>
           </NavLink>

@@ -64,7 +64,6 @@ function CheckOut(props) {
           dispatch(clearAll());
         })
         .catch((err) => {
-          console.log(err);
         });
     };
     placeOrder(data);

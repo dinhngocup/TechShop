@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import ModalCancelOrder from "../../components/Order/ModalCancelOrder/modalCancelOrder";
 import ModalConfirmOrder from "../../components/Order/ModalConfirmOrder/modalConfirmOrder";
 import ModalReceived from "../../components/Order/ModalReceived/modalReceived";
-import ModalShipperInfo from "../../components/Order/ModalShipperInfo/modalShipperInfo";
 import OrderDetail from "../Order/OrderContent/OrderDetail/orderDetail";
 import TodoList from "./TodoList/todoList";
 
@@ -15,7 +14,7 @@ function AdminOrder(props) {
   const urlId = location.search
     ? new URLSearchParams(location.search).get("id")
     : 0;
-    
+
   return (
     <div className="body-content">
       <Route exact path="/admin/order/:orderStatus">
@@ -23,8 +22,9 @@ function AdminOrder(props) {
       </Route>
       <ModalConfirmOrder orderId={orderId} />
       <ModalCancelOrder orderId={orderId} />
-      <ModalReceived orderId={orderId}  modalType={modalType} />
-      <ModalShipperInfo orderId={orderId} modalType={modalType} />
+      <ModalReceived orderId={orderId} modalType={modalType} />
+
+      {/* <ModalShipperInfo orderId={orderId} modalType={modalType}/> */}
     </div>
   );
 }

@@ -14,6 +14,8 @@ import reducerNewProduct from "../utilities/slices/newProductSlide";
 import reducerAdminOrder from "../utilities/slices/adminOrderSlice";
 import reducerProductTemp from "../utilities/slices/productTemp";
 import reducerNotification from "../utilities/slices/notificationSlice";
+import reducerShipper from "../utilities/slices/shipperSlice";
+import reducerCustomer from "../utilities/slices/customerSlice";
 
 const rootReducer = {
   productModal: reducerProductModal,
@@ -31,6 +33,8 @@ const rootReducer = {
   adminOrder: reducerAdminOrder,
   productTemp: reducerProductTemp,
   notification: reducerNotification,
+  shipper: reducerShipper,
+  customer: reducerCustomer,
 };
 const store = configureStore({
   reducer: rootReducer,

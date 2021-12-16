@@ -23,7 +23,7 @@ function CartItem(props) {
     };
     fetchDetailedProduct(productInCart.id);
   }, [productInCart.id]);
-  console.log(product);
+
   return (
     <tr className="table-item">
       <td className="product">

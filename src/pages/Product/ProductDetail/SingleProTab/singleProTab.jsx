@@ -8,7 +8,6 @@ import SpecsTab from "./SpecsTab/specsTab";
 import "./_singleProTab.scss";
 
 function SingleProTab(props) {
-  //console.log("hi");
   const {
     product,
     relatedCategoryProducts,

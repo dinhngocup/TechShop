@@ -37,7 +37,6 @@ const OrderApi = {
   },
   updateOrderStatus: async (id) => {
     const url = `${UrlConstant.UPDATE_ORDER_STATUS}/${id}`;
-
     return axiosClientAuthen
       .put(url)
       .then((response) => {
@@ -45,38 +44,13 @@ const OrderApi = {
       })
       .catch((error) => Promise.reject(error));
   },
-  getTodoList: async () => {
-    return [
-      {
-        orderStatus: "Placed Order",
-        quantity: 6,
-      },
-      {
-        orderStatus: "In Handling",
-        quantity: 3,
-      },
-      {
-        orderStatus: "Shipped",
-        quantity: 2,
-      },
-      {
-        orderStatus: "Deliveried",
-        quantity: 4,
-      },
-      {
-        orderStatus: "Cancelled",
-        quantity: 1,
-      },
-    ];
-  },
-
   getAllAdminOrders: async ({ month, year }) => {
     // console.log("get all admin order");
     const url = `${UrlConstant.GET_ALL_ADMIN_ORDERS}/${month}/${year}`;
     return axiosClientAuthen.get(url);
   },
-  transferToShipper: async (id, shipperInfo) => {
-    const url = `${UrlConstant.UPDATE_ORDER_STATUS}/${id}`;
+  transferToShipper: async (orderId, shipperId) => {
+    const url = `${UrlConstant.TRANSFER_TO_SHIPPER}/${orderId}/${shipperId}`;
 
     return axiosClientAuthen
       .put(url)

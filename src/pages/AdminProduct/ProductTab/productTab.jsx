@@ -11,7 +11,6 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import "./_productTab.scss";
 
 function ProductTab(props) {
-  console.log("product tab");
   const filterItem = useSelector((state) => state.filterProduct.filters);
   const stateProducts = useSelector((state) => state.product.products);
 
@@ -113,9 +112,9 @@ function ProductTab(props) {
       )}
       <div className="product-table-header p-3">
         <h2 className="text-center">
-          {!productIdURL ? "Products" : "New Product"}
+          {!productIdURL ? "Products" : "Product Detail"}
           {!currentAction ? (
-            <NavLink to={`${location.pathname}${location.search}&action=add`}>
+            <NavLink to={`${location.pathname}?type=1&action=add`}>
               <Button>
                 <b>Add new</b>
               </Button>

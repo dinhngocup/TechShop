@@ -46,6 +46,7 @@ const classifyOrder = (listOrders) => {
         break;
     }
   });
+  console.log(JSON.stringify(filterResults));
   return filterResults;
 };
 
@@ -91,7 +92,6 @@ const user = createSlice({
       state.data.error = "";
     },
     [login.rejected]: (state) => {
-      console.log("login failed");
       state.data.error = "Username or password is incorrect";
     },
     [getAllUserOrders.pending]: (state) => {
@@ -100,9 +100,7 @@ const user = createSlice({
     [getAllUserOrders.fulfilled]: (state, action) => {
       state.data.listOrders = action.payload;
     },
-    [getAllUserOrders.rejected]: (state) => {
-      console.log("get order failed");
-    },
+    [getAllUserOrders.rejected]: (state) => {},
   },
 });
 export default user.reducer;

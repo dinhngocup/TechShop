@@ -25,7 +25,7 @@ function ModalReceived(props) {
 
   const redirectToCompletedOrder = () => {
     const url = history.location.pathname.startsWith("/admin")
-      ? "/admin/order/shipped"
+      ? `/admin/order/shipped`
       : "/your-orders/deliveried";
     isSucceed && history.push(url);
   };
@@ -94,7 +94,6 @@ function ModalReceived(props) {
     response = await OrderApi.updateOrderStatus(orderId);
 
     if (response) {
-      console.log(response);
       setLoading(false);
       setIsSucceed(true);
       if (!history.location.pathname.startsWith("/admin")) {

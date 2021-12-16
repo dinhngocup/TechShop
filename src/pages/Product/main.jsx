@@ -5,7 +5,7 @@ import "../../assets/styles/_childBanner.scss";
 import Breadcrumb from "../../components/common/Breadcrumb/breadcrumb";
 import {
   addNewBreadcrumb,
-  removeLastBreadcrumb
+  removeLastBreadcrumb,
 } from "../../utilities/slices/breadcrumbSlice";
 import ProductDetail from "./ProductDetail/productDetail";
 import ProductGridView from "./ProductGridView/productGridView";
@@ -26,20 +26,11 @@ function Product() {
     return () => {
       dispatch(removeLastBreadcrumb());
     };
-
   }, [dispatch, location.pathname]);
 
-  
   const urlId = location.search
     ? new URLSearchParams(location.search).get("id")
     : 0;
-
-    console.log(urlId)
-  // useEffect(() => {
-  //   if (!urlId) {
-  //     dispatch(updateProductTemp(null));
-  //   }
-  // }, [urlId]);
 
   return (
     <div className="wrapper-dashboard product-area">

@@ -22,6 +22,7 @@ import "./_app.scss";
 import AdminOrder from "./pages/AdminOrder/main";
 import AdminProduct from "./pages/AdminProduct/main";
 import SupportedSupplier from "./pages/SupportedSupplier/main";
+import AdminCustomer from "./pages/AdminCustomer/main";
 
 function App() {
   console.log("app");
@@ -40,6 +41,7 @@ function App() {
                 "/admin/order/:orderStatus",
                 "/admin/product",
                 "/admin/supplier",
+                "/admin/customer",
               ]}
             >
               <div className="container-fluid pt-1">
@@ -61,6 +63,9 @@ function App() {
                       </Route>
                       <Route path="/admin/supplier">
                         <SupportedSupplier />
+                      </Route>
+                      <Route path="/admin/customer">
+                        <AdminCustomer />
                       </Route>
                     </Switch>
                   </Col>
@@ -125,7 +130,6 @@ function App() {
           </Switch>
         </Router>
       </div>
-      
     </div>
   );
 }

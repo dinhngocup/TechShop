@@ -47,8 +47,7 @@ function ProductCard(props) {
       alert();
     }
   };
-
-  const images = parseImages(product.images);
+  const images = product.images && parseImages(product.images);
   return (
     <div className="product-card">
       <Link

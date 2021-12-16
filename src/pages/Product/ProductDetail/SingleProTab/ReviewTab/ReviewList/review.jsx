@@ -7,7 +7,7 @@ import "./_review.scss";
 function Review(props) {
   const { review } = props;
   return (
-    <div className="review">
+    <div className="product-review">
       <div className="review-title d-flex">
         <div className="reviewer d-flex">
           <img src={image} alt="avatar" />
@@ -25,14 +25,14 @@ function Review(props) {
       </div>
       <div className="review-body">
         <div className="review-content mb-2">{review.reviewContent}</div>
-        <div className="reply-review">
+        {/* <div className="reply-review">
           <button className="btn-reply">
             <i className="fa fa-reply"></i>
           </button>
           <button className="btn-reply">
             <i className="far fa-comment"></i> 8
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

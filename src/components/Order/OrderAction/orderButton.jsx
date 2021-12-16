@@ -33,6 +33,8 @@ function OrderButton(props) {
 
       case OrderActionName.CONFIRMED:
         return "#modalConfirm";
+      case OrderActionName.VIEW_CUSTOMER_HISTORY:
+        return "#modalCustomerInfo";
       default:
         break;
     }
@@ -40,6 +42,8 @@ function OrderButton(props) {
 
   return (
     <button
+      data-backdrop="static"
+      data-keyboard="false"
       data-toggle="modal"
       data-target={`${dataTargetButton()}`}
       className={`${isMainBtn ? "main-btn" : ""} btn`}

@@ -7,7 +7,7 @@ import OrderAction from "../OrderAction/orderAction";
 
 function OrderBody(props) {
   const { order } = props;
-  console.log(order)
+
   return (
     <div className="p-3 order-body mb-4">
       <div className="text-right order-status-container pb-2">

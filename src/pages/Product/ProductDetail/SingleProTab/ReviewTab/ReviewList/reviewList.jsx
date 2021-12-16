@@ -40,7 +40,7 @@ function ReviewList(props) {
 
   const renderReviewPage = (reviewList) => {
     if (reviewList === null) return "";
-    if (totalReviews === 0) return <div>Ko tồn tại review nào</div>;
+    if (totalReviews === 0) return <div>No any reviews for this product. Buy, Experience and Review it now!</div>;
     return (
       <React.Fragment>
         <Row>

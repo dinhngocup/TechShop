@@ -18,7 +18,7 @@ function ModalConfirmOrder(props) {
   }, [orderId]);
 
   const redirectToCompletedOrder = () => {
-    isSucceed && history.push("/admin/order/handling");
+    isSucceed && history.push(`/admin/order/handling?id=${orderId}`);
   };
 
   const renderBody = () => {

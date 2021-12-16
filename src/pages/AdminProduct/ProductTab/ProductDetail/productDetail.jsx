@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Form } from "reactstrap";
+import { useHistory } from "react-router-dom";
+import { Button, Form, Spinner } from "reactstrap";
 import ProductApi from "../../../../api/productApi";
 import {
   showFailedMessage,
   showSuccessMessage,
 } from "../../../../utilities/slices/notificationSlice";
+import { updateProduct } from "../../../../utilities/slices/productSlice";
 import MainInfo from "./MainInfo/mainInfo";
 import ProductSpecification from "./Specification/productSpecification";
-import { useHistory } from "react-router-dom";
-import { Spinner } from "reactstrap";
 
 function ProductDetail(props) {
   const { id } = props;
@@ -68,25 +68,24 @@ function ProductDetail(props) {
       newSpecifications,
       existedAttributes,
     };
-    let response;
 
     if (id) {
-      console.log("update");
-      response = ProductApi.updateProductInfo({ ...body, id })
+      const fetchProductDetail = async () => {
+        return await ProductApi.getAdminDetailedProduct(id);
+      };
+      ProductApi.updateProductInfo({ ...body, id })
         .then(() => {
-          const fetchProductDetail = async () => {
-            return await ProductApi.getAdminDetailedProduct(id);
-          };
-
-          fetchProductDetail().then((res) => setProductDetail(res));
-          dispatch(showSuccessMessage());
-          history.push("/admin/product");
+          fetchProductDetail().then((res) => {
+            setProductDetail(res);
+            dispatch(showSuccessMessage());
+            dispatch(updateProduct(res));
+          });
         })
-        .catch(() => dispatch(showFailedMessage()));
+        .catch(() => {
+          dispatch(showFailedMessage());
+        });
     } else {
-      console.log("add");
-
-      response = ProductApi.addProduct(body)
+      ProductApi.addProduct(body)
         .then(() => {
           dispatch(showSuccessMessage());
           history.push("/admin/product");

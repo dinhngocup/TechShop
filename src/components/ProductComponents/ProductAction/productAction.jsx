@@ -12,7 +12,7 @@ ProductAction.defaultProps = {
 };
 
 function ProductAction(props) {
-  const { stockStatus, stock, id, name, price } = props;
+  const { stockStatus, isDeleted, id, name, price, stock } = props;
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
@@ -54,7 +54,11 @@ function ProductAction(props) {
         <p>
           Status:{" "}
           <span className={stockStatus}>
-            {stockStatus === "in-stock" ? "In Stock" : "Out of Stock"}
+            {isDeleted
+              ? "Stop Providing"
+              : stockStatus === "in-stock"
+              ? "In Stock"
+              : "Out of Stock"}
           </span>
         </p>
         {stock > 0 ? (

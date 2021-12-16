@@ -1,4 +1,5 @@
 const formatDate = (dateString) => {
+
   let dateFormat = new Date(dateString);
 
   const month = dateFormat.toLocaleString("default", { month: "long" });

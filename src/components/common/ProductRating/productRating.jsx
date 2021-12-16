@@ -38,7 +38,7 @@ function ProductRating(props) {
     return result;
   };
   return (
-    <div className="d-flex" style={{ color: "var(--product-rating)" }}>
+    <div className="d-flex" style={{ color: "var(--review-star-background)" }}>
       {renderRateProduct(rate)}
     </div>
   );

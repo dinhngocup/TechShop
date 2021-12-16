@@ -5,9 +5,15 @@ import OrderApi from "../../../api/orderApi";
 import { OrderActionName } from "../../../pages/Order/type";
 import ModalFooter from "../ModalFooter/modalFooter";
 import { MESSAGE_ORDER } from "../type";
+import { useSelector, useDispatch } from "react-redux";
+import { getShippers } from "../../../utilities/slices/shipperSlice";
+import {
+  showFailedMessage,
+  showSuccessMessage,
+} from "../../../utilities/slices/notificationSlice";
 
 function ModalShipperInfo(props) {
-  const { orderId, modalType } = props;
+  const { orderId, modalType, shipper, updateShipperInfo } = props;
   const PREV_SHIPPER_INFO = useRef();
   const history = useHistory();
 
@@ -15,18 +21,16 @@ function ModalShipperInfo(props) {
   const [loading, setLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
 
+  const shippers = useSelector((state) => state.shipper.shippers);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const getShippingInfo = async () => {
-      let response = await OrderApi.getShippingInfo(orderId);
-      if (response) {
-        setShipperInfo(response);
-        PREV_SHIPPER_INFO.current = response;
-      }
-    };
-    if (modalType === OrderActionName.EDIT_SHIPPER_INFO) {
-      getShippingInfo();
-    } else {
-      setShipperInfo({});
+    async function fetchAll() {
+      await dispatch(getShippers());
+    }
+
+    if (!shippers) {
+      fetchAll();
     }
   }, [orderId, modalType]);
 
@@ -37,10 +41,13 @@ function ModalShipperInfo(props) {
   }, [orderId, modalType]);
 
   const handleChangeInput = (e) => {
-    const value = e.target.value;
+    const id = e.target.value;
+    const shipper = shippers.find((shipper) => shipper.id === id);
+
     setShipperInfo({
-      ...shipperInfo,
-      [e.target.name]: value,
+      id,
+      name: shipper.name,
+      phone: shipper.phone,
     });
   };
 
@@ -50,20 +57,39 @@ function ModalShipperInfo(props) {
         <React.Fragment>
           <FormGroup>
             <Label for="exampleEmail">Shipper's Name</Label>
+
             <Input
-              type="text"
-              name="name"
-              value={(shipperInfo && shipperInfo.name) || ""}
+              type="select"
               onChange={handleChangeInput}
-            />
+              name="name"
+              value={
+                (shipperInfo && shipperInfo.id) ||
+                (shipper && shipper.id) ||
+                "DEFAULT"
+              }
+            >
+              <option disabled value="DEFAULT">
+                -- Select an option --
+              </option>
+              {shippers &&
+                shippers.map((shipper) => (
+                  <option key={shipper.id} value={shipper.id}>
+                    {shipper.name}
+                  </option>
+                ))}
+            </Input>
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">Shipper's Phone Number</Label>
             <Input
               type="number"
               name="phone"
-              value={(shipperInfo && shipperInfo.phone) || ""}
-              onChange={handleChangeInput}
+              value={
+                (shipperInfo && shipperInfo.phone) ||
+                (shipper && shipper.phone) ||
+                ""
+              }
+              disabled
             />
           </FormGroup>
         </React.Fragment>
@@ -79,31 +105,36 @@ function ModalShipperInfo(props) {
   };
 
   const confirmRequest = async () => {
-    if (
-      modalType === OrderActionName.EDIT_SHIPPER_INFO &&
-      shipperInfo.name === PREV_SHIPPER_INFO.current.name &&
-      shipperInfo.phone === PREV_SHIPPER_INFO.current.phone
-    ) {
-      setIsSucceed(true);
+    if (modalType === OrderActionName.EDIT_SHIPPER_INFO) {
+      setLoading(true);
+      OrderApi.transferToShipper(orderId, shipperInfo.id).then(() => {
+        dispatch(showSuccessMessage({ message: "Updated Successfully" }));
+        setLoading(false);
+        PREV_SHIPPER_INFO.current = shipperInfo.id;
+        updateShipperInfo(shipperInfo);
+      });
       return;
     }
 
-    let response;
     setLoading(true);
-    response = await OrderApi.transferToShipper(orderId, shipperInfo);
-
-    if (response) {
-      setLoading(false);
-      setIsSucceed(true);
-    }
+    OrderApi.updateOrderStatus(orderId)
+      .then(() => {
+        OrderApi.transferToShipper(orderId, shipperInfo.id).then(() => {
+          setLoading(false);
+          setIsSucceed(true);
+          setShipperInfo(null);
+        });
+      })
+      .catch(() => {
+        dispatch(showFailedMessage());
+      });
   };
 
   const redirect = () => {
-    const url =
-      modalType === OrderActionName.EDIT_SHIPPER_INFO
-        ? history.location.pathname
-        : "/admin/order/shipped";
-    isSucceed && history.push(url);
+    setShipperInfo(null);
+    if (modalType === OrderActionName.TRANSFER_TO_SHIPPER && isSucceed) {
+      history.push(`/admin/order/shipped?id=${orderId}`);
+    }
   };
 
   return (
@@ -141,8 +172,12 @@ function ModalShipperInfo(props) {
               isSucceed={isSucceed}
               loading={loading}
               confirmRequest={confirmRequest}
+              resetData={() => setShipperInfo(null)}
               isDisabled={
-                !shipperInfo || !shipperInfo.name || !shipperInfo.phone
+                !shipperInfo ||
+                !shipperInfo.name ||
+                !shipperInfo.phone ||
+                shipperInfo?.id === PREV_SHIPPER_INFO.current
               }
             />
           </div>

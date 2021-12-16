@@ -43,15 +43,13 @@ const GlobalStyle = createGlobalStyle`{
         /**
          * Review
          */ 
-        --review-star-background: rgb(253, 216, 53);
-        --review-star-border: rgb(255, 181, 0);
+        --review-star-background: #FF385C;
+        --review-star-border: #FF385C;
         --reviewed-tag: rgb(0, 153, 0);
 
         /**
          * Subscription
          */ 
-        --review-star-border: rgb(255, 181, 0);
-        --reviewed-tag: rgb(0, 153, 0);
         
         /**
          * Stock status
@@ -63,7 +61,6 @@ const GlobalStyle = createGlobalStyle`{
          * Product
          */ 
         --description-font-color: #909295;
-        --product-rating: rgb(246,159,0);
         --product-grid-view-title: #f37084;
         --product-category-font: darkblue;
         --product-tab-nav-hover: rgb(194,204,206);

@@ -29,6 +29,7 @@ export const getAllProducts = createAsyncThunk(
   async (params) => {
     const listProduct = await ProductApi.getAllProducts(params);
     const filterProductsResult = filterProducts(listProduct);
+    
     return {
       allProducts: listProduct,
       filterProducts: filterProductsResult,
@@ -61,6 +62,29 @@ const product = createSlice({
         brandName
       ].filter((product) => product.id !== id);
     },
+    updateProduct: (state, action) => {
+      const updatedProduct = state.products.allProducts.find(
+        (product) => product.id === action.payload.id
+      );
+
+      let categoryfilterProduct = state.products.filterProducts[
+        updatedProduct.categorySlug
+      ].find((product) => product.id === action.payload.id);
+      let brandfilterProduct = state.products.filterProducts[
+        updatedProduct.brandName
+      ].find((product) => product.id === action.payload.id);
+
+      if (updatedProduct) {
+        Object.keys(updatedProduct).map((key) => {
+          return (updatedProduct[key] = action.payload[key]);
+        });
+        Object.assign(categoryfilterProduct, updatedProduct);
+        Object.assign(brandfilterProduct, updatedProduct);
+      }
+    },
+    addProduct: (state, action) => {
+      
+    },
   },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
@@ -75,5 +99,5 @@ const product = createSlice({
     },
   },
 });
-export const { removeProduct } = product.actions;
+export const { removeProduct, updateProduct, addProduct } = product.actions;
 export default product.reducer;

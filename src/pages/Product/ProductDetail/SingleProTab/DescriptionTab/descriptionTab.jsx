@@ -7,7 +7,7 @@ const DescriptionTab = (props) => {
   const { longDescrip } = props;
 
   const renderDescrips = (descrips) => {
-    if(descrips !== undefined){
+    if(descrips){
       var description = descrips.replace(/'/g, '"');
       description = JSON.parse(description);
       return description.map((item, index) => (

@@ -8,7 +8,7 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   remove: (id) => {
-    const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`
+    const url = `${UrlConstant.REMOVE_PRODUCT}/${id}`;
     return axiosClient.delete(url);
   },
   getProductsByCategory: async (params) => {
@@ -149,8 +149,6 @@ const ProductApi = {
     return axiosClient.get(url);
   },
   updateProductInfo: async (product) => {
-    console.log(product);
-
     const url = `${UrlConstant.UPDATE_PRODUCT}`;
     const body = JSON.stringify(product);
 
@@ -165,7 +163,7 @@ const ProductApi = {
   addProduct: async (product) => {
     const url = `${UrlConstant.ADD_NEW_PRODUCT}`;
     const body = JSON.stringify(product);
-
+console.log(body)
     return axiosClientAuthen
       .post(url, body)
 

@@ -11,11 +11,11 @@
     .product-review {
         border-bottom: 1px dashed var(--border-color);
         img {
-            height: 100%;
-            width: 100px;
+            height: 5em;
+            width: 5em;
         }
         .rate-star {
-            font-size: smaller;
+            font-size: smalle;
             display: flex;
             justify-content: center;
             svg {
@@ -29,6 +29,19 @@
             }
             &.unrated {
                 flex-direction: row-reverse;
+            }
+        }
+        .reviewed-tag {
+            text-align: right;
+            font-size: small;
+            color: var(--reviewed-tag);
+        }
+        .provided-tag {
+            color: #717171;
+            font-style: italic;
+            span {
+                font-weight: 600;
+                color: var(--primary-background);
             }
         }
     }
@@ -53,21 +66,22 @@
         padding: 12px;
         border-radius: 4px;
     }
-}
-.btn-review {
-    float: right;
-    background-color: var(--review-star-background);
-
-    color: rgb(36, 36, 36);
-    border-radius: 4px;
-    font-size: small;
-    button {
-        padding: 5px 15px;
-        background-color: var(--review-star-background);
-        border: var(--review-star-background);
+    .feedback {
+        color: var(--review-star-background);
     }
-    .loading-review {
-        padding: 5px 30px;
+    .review-content {
+        width: 60%;
+        font-size: small;
+        border: 1px solid var(--reviewed-tag);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-left: 1em;
+        padding: 0.5em 0 0.5em 1em;
+    }
+    .review-time {
+        font-size: small;
+        color: #717171;
     }
 }
 .reviewed-modal-body {
@@ -97,3 +111,20 @@
         color: white;
     }
 }
+.btn-review {
+    float: right;
+    background-color: var(--review-star-background);
+
+    border-radius: 4px;
+    font-size: small;
+    button {
+        padding: 5px 15px;
+        // color: white;
+        background-color: var(--review-star-background);
+        border: var(--review-star-background);
+    }
+    .loading-review {
+        padding: 5px 30px;
+    }
+}
+

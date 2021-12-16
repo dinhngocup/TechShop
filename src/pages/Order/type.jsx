@@ -4,7 +4,14 @@ export const OrderStatus = {
   SHIPPED: "Shipped",
   DELIVERIED: "Deliveried",
   CANCELLED: "Cancelled",
-  RETURN: "Return Package",
+};
+
+export const CustomerOrderStatus = {
+  "placed-order": "Placed Order",
+  handling: "In Handling",
+  shipped: "Shipped",
+  deliveried: "Deliveried",
+  cancelled: "Cancelled",
 };
 
 export const OrderActionName = {
@@ -20,6 +27,7 @@ export const OrderActionName = {
   SHIPPED_SUCCESSFULLY: "Received by Customer",
   VIEW_CUSTOMER_RATE: "View Customer's Review",
   EDIT_SHIPPER_INFO: "Edit Shipper's Information",
+  VIEW_CUSTOMER_HISTORY: "Customer's History",
 };
 
 export const OrderModalType = {

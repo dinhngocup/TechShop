@@ -72,7 +72,7 @@ function AdminLogin(props) {
                 </button>
               </div>
             </div>
-            <div>{error}</div>
+            <div className="text-danger">{error}</div>
           </div>
         </div>
         <div className="col-sm"></div>

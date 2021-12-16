@@ -6,6 +6,7 @@ import OrderApi from "../../../api/orderApi";
 import { AdminOrderUrl } from "../../../pages/AdminOrder/adminOrderType";
 import { OrderStatus } from "../../../pages/Order/type";
 import { updateOrderPeriod } from "../../../utilities/slices/adminOrderSlice";
+import { showFailedMessage } from "../../../utilities/slices/notificationSlice";
 import { AdminOrderTypeLabel } from "../adminOrderType";
 import TodoTable from "./TodoTable/todoTable";
 import "./_todoList.scss";
@@ -13,8 +14,7 @@ import "./_todoList.scss";
 function TodoList(props) {
   const [allOrders, setAllOrders] = useState();
   const [orders, setOrders] = useState();
-
-  // const [loading, setLoading] = useState();
+  const [content, setContent] = useState("Refresh All");
 
   const orderPeriod = useSelector((state) => state.adminOrder.orderPeriod);
 
@@ -55,16 +55,33 @@ function TodoList(props) {
   };
 
   const fetchAllAdminOrders = async () => {
-    const parseDateTime = orderPeriod.split("-");
-    const response = await OrderApi.getAllAdminOrders({
-      month: parseDateTime[1],
-      year: parseDateTime[0],
-    });
+    if (content === "Refresh All") {
+      const parseDateTime = orderPeriod.split("-");
+      setContent("Refreshing");
+      OrderApi.getAllAdminOrders({
+        month: parseDateTime[1],
+        year: parseDateTime[0],
+      })
+        .then((response) => {
+          const filterOrders = classifyAdminOrders(response);
 
-    if (response) {
-      const filterOrders = classifyAdminOrders(response);
-      setAllOrders(filterOrders);
+          setAllOrders(filterOrders);
+          alert();
+        })
+        .catch((e) => {
+          dispatch(dispatch(showFailedMessage()));
+        });
     }
+  };
+
+  let timer = null;
+
+  const alert = () => {
+    window.clearTimeout(timer);
+    setContent("Refreshed!");
+    timer = window.setTimeout(function () {
+      setContent("Refresh All");
+    }, 600);
   };
 
   useEffect(() => {
@@ -107,7 +124,8 @@ function TodoList(props) {
             className="btn btn-refresh"
             onClick={() => fetchAllAdminOrders(orderPeriod)}
           >
-            <i className="fas fa-sync-alt mr-2"></i>Refresh All
+            <i className="fas fa-sync-alt mr-2"></i>
+            {content}
           </button>
         </div>
         <p>You have to handle these orders as soon as possible</p>

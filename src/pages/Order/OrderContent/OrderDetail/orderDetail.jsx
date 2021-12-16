@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import OrderApi from "../../../../api/orderApi";
+import CustomerInfoModal from "../../../../components/AdminCustomer/CustomerInfoModal/customerInfoModal";
+import ModalShipperInfo from "../../../../components/Order/ModalShipperInfo/modalShipperInfo";
 import OrderProduct from "../../../../components/Order/Product/orderProduct";
 import ReviewModal from "../../../../components/Order/ReviewModal/reviewModal";
 import handlePrice from "../../../../helpers/formatPrice";
-import { OrderStatus } from "../../type";
+import { OrderActionName, OrderStatus } from "../../type";
 import OrderAction from "../OrderAction/orderAction";
 import "./_orderDetail.scss";
 
 function OrderDetail(props) {
+  const { modalType } = useSelector((state) => state.orderModal);
   const { orderId } = props;
-  const history = useHistory();
+  const location = useLocation();
+
+  const { orderStatus } = useParams();
 
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState(false);
+  
+  const [newShipperInfo, setNewShipperInfo] = useState();
 
   let progressList = [
     {
@@ -37,7 +45,9 @@ function OrderDetail(props) {
 
   const parseOrderTime = (time) => {
     let dateTime = new Date(time);
-    return `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()} - ${dateTime.getHours()}:${
+    return `${dateTime.getDate()}/${
+      dateTime.getMonth() + 1
+    }/${dateTime.getFullYear()} - ${dateTime.getHours()}:${
       dateTime.getMinutes() < 10 ? "0" : ""
     }${dateTime.getMinutes()}`;
   };
@@ -130,7 +140,7 @@ function OrderDetail(props) {
     };
 
     getDetailedOrder();
-  }, [orderId]);
+  }, [orderId, orderStatus]);
 
   const renderOrderDetail = () => {
     if (loading) {
@@ -146,8 +156,16 @@ function OrderDetail(props) {
     return (
       <div className="order-detail">
         <div className="d-flex justify-content-between py-3 px-4 text-uppercase header">
-          <div onClick={history.goBack}>
-            <i className="fas fa-chevron-left mr-2"></i>Back
+          <div>
+            <NavLink
+              to={
+                location.pathname.startsWith("/admin")
+                  ? `/admin/order/${orderStatus}`
+                  : `/your-orders/${orderStatus}`
+              }
+            >
+              <i className="fas fa-chevron-left mr-2"></i>Back
+            </NavLink>
           </div>
           <div className="sub-title">
             <span className="pr-3">Order Id: {orderId}</span>
@@ -165,14 +183,17 @@ function OrderDetail(props) {
         <div className="shipping-address p-4">
           <div className="d-flex justify-content-between">
             <h4>Shipping Address</h4>
-            {order?.shipperInfo ? (
+            {newShipperInfo || order?.shipper ? (
               <div className="shipper">
                 <div>
-                  <small>Shipper: {order.shipperInfo.name}</small>
+                  <small>
+                    Shipper: {newShipperInfo?.name || order.shipper.name}
+                  </small>
                 </div>
                 <div>
                   <small>
-                    Shipper's phone number: {order.shipperInfo.phone}
+                    Shipper's phone number:{" "}
+                    {newShipperInfo?.phone || order.shipper.phone}
                   </small>
                 </div>
               </div>
@@ -238,7 +259,7 @@ function OrderDetail(props) {
           </div>
         </div>
         {order.status === OrderStatus.DELIVERIED ? (
-          <ReviewModal order={order} />
+          <ReviewModal order={order} orderId={orderId} />
         ) : (
           ""
         )}
@@ -246,7 +267,28 @@ function OrderDetail(props) {
     );
   };
 
-  return <>{renderOrderDetail()}</>;
+  return (
+    <>
+      {renderOrderDetail()}
+      {modalType === OrderActionName.TRANSFER_TO_SHIPPER ||
+      modalType === OrderActionName.EDIT_SHIPPER_INFO ? (
+        <ModalShipperInfo
+          orderId={orderId}
+          modalType={modalType}
+          shipper={newShipperInfo || order?.shipper}
+          updateShipperInfo={(info) => setNewShipperInfo(info)}
+        />
+      ) : (
+        ""
+      )}
+
+      {modalType === OrderActionName.VIEW_CUSTOMER_HISTORY ? (
+        <CustomerInfoModal customerID={order.customerID} />
+      ) : (
+        ""
+      )}
+    </>
+  );
 }
 
 OrderDetail.propTypes = {};

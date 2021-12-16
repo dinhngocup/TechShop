@@ -10,7 +10,7 @@ const notification = createSlice({
   reducers: {
     showSuccessMessage: (state, action) => {
       state.type = NotificationType.SUCCESS_NOTIFICATION;
-      if (action.payload && !action.payload.message) {
+      if (action.payload && action.payload.message) {
         state.message = action.payload.message;
       } else {
         state.message = "Your action is successful.";
@@ -18,7 +18,7 @@ const notification = createSlice({
     },
     showFailedMessage: (state, action) => {
       state.type = NotificationType.FAILED_NOTIFICATION;
-      if (action.payload && !action.payload?.message) {
+      if (action.payload && action.payload?.message) {
         state.message = action.payload.message;
       } else {
         state.message = "Your action failed. Please try again after a while.";
