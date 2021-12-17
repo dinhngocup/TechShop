@@ -185,7 +185,7 @@ console.log(body)
   getAffectProduct: (id) => {
     const url = `${UrlConstant.GET_AFFECTED_PRODUCTS}/${id}`;
 
-    return axiosClientAuthen
+    return axiosClient
       .get(url)
       .then((response) => {
         return response;

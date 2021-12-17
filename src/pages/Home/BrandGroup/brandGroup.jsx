@@ -26,10 +26,10 @@ function BrandGroup() {
           <Col key={index} xs="4" sm="4" md="3" lg="3">
             <div className="brand-info">
               <div className="brand-img">
-                <img src={image} alt={brand.brandName} />
+                <img  src={`${process.env.REACT_APP_API_URL}${brand.img}`} alt={brand.brandName} />
               </div>
               <div className="brand-img">
-                <img src={image} alt={brand.brandName} />
+                <img  src={`${process.env.REACT_APP_API_URL}${brand.img}`} alt={brand.brandName} />
               </div>
             </div>
           </Col>

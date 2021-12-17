@@ -147,7 +147,7 @@ function SupplierModal(props) {
                 </div>
               ) : (
                 <div className="large-image mr-3">
-                  <ProductImage image={image} />
+                  <ProductImage image={`${process.env.REACT_APP_API_URL}${item.img}`} />
                 </div>
               )}
             </div>

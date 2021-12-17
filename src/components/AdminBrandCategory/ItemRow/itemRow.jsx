@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../../../assets/images/headphone1.jpeg";
+import parseImages from "../../../helpers/parseImages";
 
 function ItemRow(props) {
   const { item, no, updateItemModal } = props;
@@ -15,7 +16,7 @@ function ItemRow(props) {
     <tr className="product-table-item separated-table-item">
       <td>{no}</td>
       <td className="">
-        <img src={image} alt="" />
+        <img src={`${process.env.REACT_APP_API_URL}${item.img}`} alt="" />
       </td>
       <td className="text-center name">
         <div>
