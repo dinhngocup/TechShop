@@ -39,11 +39,16 @@ function ExistedBrand() {
             to={`/product/${brandName}`}
             key={brand.id}
           >
-            <li>
-              <i
-                className="fas fa-square-full"
-                style={{ color: `#${randomColor}` }}
-              ></i>
+            <li className="">
+              {brand.img ? (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}${brand.img}`}
+                  alt=""
+                  className="mr-3"
+                />
+              ) : (
+                ""
+              )}
               <span>{brandName}</span>
               <span>
                 {stateProducts.filterProducts[brandName]

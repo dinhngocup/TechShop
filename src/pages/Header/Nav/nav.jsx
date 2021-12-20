@@ -23,12 +23,21 @@ function Nav(props) {
   const renderCategoryModal = (categories) => {
     return categories.length !== 0
       ? categories.map((category, index) => (
-          <Col key={index} xs="4" sm="4" md="4" lg="4">
+          <Col key={index} xs="4" sm="4" md="4" lg="4" className="mb-2">
             <NavLink
               to={`/product${category.slug ? `/${category.slug}` : ""}`}
               activeClassName="active"
               exact={category.exact}
             >
+              {category.img ? (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}${category.img}`}
+                  alt=""
+                  className="mr-2"
+                />
+              ) : (
+                ""
+              )}
               {category.name}
             </NavLink>
           </Col>
@@ -51,7 +60,14 @@ function Nav(props) {
               Products
             </NavLink>
             <div className="dropdown">
-              <Row>{renderCategoryModal(stateCategories.data)}</Row>
+              <Row>
+                {renderCategoryModal(stateCategories.data)}
+                <Col xs="4" sm="4" md="4" lg="4" className="mb-2">
+                  <NavLink to={`/product/all`} activeClassName="active">
+                    All
+                  </NavLink>
+                </Col>
+              </Row>
             </div>
           </li>
           <li>

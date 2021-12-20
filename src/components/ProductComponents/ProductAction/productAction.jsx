@@ -53,7 +53,7 @@ function ProductAction(props) {
       <div className="stock-status">
         <p>
           Status:{" "}
-          <span className={stockStatus}>
+          <span className={isDeleted ? "out-of-stock" : stockStatus}>
             {isDeleted
               ? "Stop Providing"
               : stockStatus === "in-stock"

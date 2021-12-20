@@ -4,13 +4,14 @@
  */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import CustomerApi from "../../api/customerApi";
 import UserApi from "../../api/userApi";
 
 // thunk action to get list cutomer
 export const getCustomers = createAsyncThunk(
   "customer/getCustomers",
   async () => {
-    const listCustomers = await UserApi.getAllCustomers();
+    const listCustomers = await CustomerApi.getAllCustomers();
     return listCustomers;
   }
 );

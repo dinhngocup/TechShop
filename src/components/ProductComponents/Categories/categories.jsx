@@ -15,7 +15,18 @@ function Categories() {
             to={`/product/${category.slug}`}
             key={category.slug}
           >
-            <li>{category.name}</li>
+            <li>
+              {category.img ? (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}${category.img}`}
+                  alt=""
+                  className="mr-2"
+                />
+              ) : (
+                ""
+              )}
+              {category.name}
+            </li>
           </NavLink>
         ))
       : "";
@@ -24,7 +35,12 @@ function Categories() {
     <div className="option-table">
       <div className="option-table-heading">CATEGORIES</div>
       <div className="option-table-content category-table filter-table">
-        <ul>{renderCategoryTable(stateCategories.data)}</ul>
+        <ul>
+          {renderCategoryTable(stateCategories.data)}
+          <NavLink activeClassName="active" to={`/product/all`}>
+            <li>All</li>
+          </NavLink>
+        </ul>
       </div>
     </div>
   );

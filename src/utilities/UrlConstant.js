@@ -61,3 +61,7 @@ export const REFRESH_TOKEN = "/refresh";
 
 // SHIPPER
 export const GET_ALL_SHIPPERS = "/api/v1/shipper";
+
+// CUSTOMER
+export const GET_ALL_CUSTOMERS = "/api/v1/customer";
+export const GET_DETAILED_CUSTOMERS = "/api/v1/customer";

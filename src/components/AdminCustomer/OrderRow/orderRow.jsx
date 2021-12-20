@@ -1,6 +1,7 @@
 import React from "react";
 import handlePrice from "../../../helpers/formatPrice";
 import "./_orderRow.scss";
+import { parseOrderTime } from "../../../helpers/parseOrderTime";
 
 function OrderRow(props) {
   const { isCancelled, order, number } = props;
@@ -19,7 +20,7 @@ function OrderRow(props) {
         </a>
       </td>
 
-      <td className="last-confirm">13/12/2021 21:10</td>
+      <td className="last-confirm">{parseOrderTime(order.lastConfirm)}</td>
       <td className="item">{order.totalItems}</td>
       <td className="price">
         <div>{handlePrice(order.total)}</div>
@@ -36,7 +37,11 @@ function OrderRow(props) {
               <div>{order.reason}</div>
             </a>
           </td>
-          <td className="actor">{order.whoCancel}</td>
+          <td className="actor">
+            <div className="text-capitalize">
+              {order.whoCancel.toLowerCase()}
+            </div>
+          </td>
         </>
       ) : (
         <td className="status">{order.statusDetail}</td>

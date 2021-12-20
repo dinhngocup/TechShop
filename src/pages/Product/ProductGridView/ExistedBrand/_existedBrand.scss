@@ -7,13 +7,12 @@
             
         }
         li {
+            display: block !important;
             line-height: 30px;
             font-size: 13px;
             font-weight: 500;
             color: var(--main-info-font-color);
-            i {
-                margin-right: 20px;
-            }
+            
             span:last-child {
                 float: right;
             }

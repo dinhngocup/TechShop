@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import handlePrice from "../../../helpers/formatPrice";
 import { OrderActionName } from "../../../pages/Order/type";
 import { updateOrderModal } from "../../../utilities/slices/orderModalSlice";
+import { parseOrderTime } from "../../../helpers/parseOrderTime";
 
 function OrderSummary(props) {
   const { order } = props;
@@ -20,12 +21,7 @@ function OrderSummary(props) {
       })
     );
   };
-  const parseOrderTime = (time) => {
-    let dateTime = new Date(time);
-    return `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()} - ${dateTime.getHours()}:${
-      dateTime.getMinutes() < 10 ? "0" : ""
-    }${dateTime.getMinutes()}`;
-  };
+  console.log(order.lastConfirm)
 
   return (
     <tr className="table-item" onClick={handleRowClick}>

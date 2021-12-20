@@ -6,6 +6,8 @@ import handlePrice from "../../../helpers/formatPrice";
 import { CustomerOrderStatus } from "../../../pages/Order/type";
 import OrderRow from "../OrderRow/orderRow";
 import "./_customerInfoModal.scss";
+import CustomerApi from "../../../api/customerApi";
+import formatFullyDate from "../../../helpers/formatFullyDateTime";
 
 function CustomerInfoModal(props) {
   const { customerID } = props;
@@ -16,14 +18,15 @@ function CustomerInfoModal(props) {
 
   useEffect(() => {
     // setLoading(true);
-    UserApi.getCustomerInfo(customerID)
-      .then((res) => {
-        setCustomerInfo(res);
-        // setLoading(false);
-      })
-      .catch(() => setCustomerInfo(null));
+    if (customerID) {
+      CustomerApi.getCustomerInfo(customerID)
+        .then((res) => {
+          setCustomerInfo(res);
+          // setLoading(false);
+        })
+        .catch(() => setCustomerInfo(null));
+    }
   }, [customerID]);
-
   return (
     <div
       className="modal fade modal-customer-info"
@@ -97,7 +100,7 @@ function CustomerInfoModal(props) {
                           <Input
                             type="text"
                             name="name"
-                            value={customerInfo.dob}
+                            value={formatFullyDate(customerInfo.dob)}
                             disabled
                           />
                         </Col>
@@ -187,7 +190,8 @@ function CustomerInfoModal(props) {
                             <th className="last-confirm">Confirmed</th>
                             <th className="item">Item</th>
                             <th className="price">Total</th>
-                            {activeTab === CustomerOrderStatus.cancelled ? (
+                            {activeTab ===
+                            CustomerOrderStatus.cancelled.toLowerCase() ? (
                               <>
                                 <th className="reason">Reason</th>
                                 <th className="actor">Actor</th>
@@ -207,7 +211,8 @@ function CustomerInfoModal(props) {
                                 key={order.id}
                                 order={order}
                                 isCancelled={
-                                  activeTab === CustomerOrderStatus.cancelled
+                                  activeTab ===
+                                  CustomerOrderStatus.cancelled.toLowerCase()
                                 }
                               />
                             )
