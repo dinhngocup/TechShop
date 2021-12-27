@@ -18,7 +18,6 @@ function Timer(props) {
       let productEXP = new Date(EXP);
 
       let milliSeconds = Math.abs(productEXP - new Date()) / 1000;
-      //console.log(milliSeconds);
 
       let days = Math.floor(milliSeconds / 86400);
       milliSeconds -= days * 86400;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import AddAttributeModal from "../AddAttributeModal/addAttributeModal";
 import ProductAttributeInput from "../ProductAttributeInput/productAttributeInput";
@@ -8,6 +8,10 @@ function SpecificationInputGroup(props) {
 
   const [newAttributes, setNewAttributes] = useState([]);
   const [listErrors, setListErrors] = useState();
+
+  useEffect(() => {
+    setNewAttributes([]);
+  }, [specsAttributes]);
 
   const removeNewAttribute = (attr) => {
     const newList = newAttributes.filter(
@@ -39,13 +43,12 @@ function SpecificationInputGroup(props) {
         }
         break;
       case "FLOAT":
-        // TODO: only decimal number
         if (
           !/^\d*(\.\d{0,2})?$/.test(value) ||
           parseFloat(value) < 0 ||
           !value
         ) {
-          newErrors[errorName] = "Positive decimal numbers only.";
+          newErrors[errorName] = "Positive number with 2 decimal place only.";
         } else {
           newErrors[errorName] = "";
         }
@@ -64,7 +67,7 @@ function SpecificationInputGroup(props) {
   };
 
   const renderExistedAttributes = () => {
-    return specsAttributes.length ? (
+    return specsAttributes && specsAttributes.length ? (
       specsAttributes
         .filter((attribute) => !attribute.isDisabled)
         .map((attribute) => (

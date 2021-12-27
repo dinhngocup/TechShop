@@ -1,6 +1,4 @@
 import React from "react";
-import image from "../../../assets/images/headphone1.jpeg";
-import parseImages from "../../../helpers/parseImages";
 
 function ItemRow(props) {
   const { item, no, updateItemModal } = props;

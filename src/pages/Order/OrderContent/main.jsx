@@ -28,7 +28,6 @@ function OrderContent(props) {
   }, [dispatch]);
 
   // useEffect(() => {
-  //   console.log(tabName)
   //   // dispatch(resetOrderModal());
   // }, [dispatch, tabName]);
 

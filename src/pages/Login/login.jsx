@@ -1,23 +1,21 @@
-import { cookiesService } from "../../helpers/cookiesService";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { login, updateLoggedInStatus } from "../../utilities/slices/userSlice";
-import "./_login.scss";
-import image from "../../assets/images/footer1.gif";
-import avatar from "../../assets/images/avatar.jpg";
-import { Col, Input, Row, FormGroup, Button } from "reactstrap";
+import { Button, Col, FormGroup, Input, Row } from "reactstrap";
 import UserApi from "../../api/userApi";
+import image from "../../assets/images/footer1.gif";
 import {
   showFailedMessage,
-  showSuccessMessage,
+  showSuccessMessage
 } from "../../utilities/slices/notificationSlice";
+import { login, updateLoggedInStatus } from "../../utilities/slices/userSlice";
+import "./_login.scss";
 
 function Login() {
   const location = useLocation();
   const history = useHistory();
   const [info, setInfo] = useState({});
-  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [isLoginForm, setIsLoginForm] = useState(true);
   const [alert, setAlert] = useState({});
 
   const { isLoggedIn, error } = useSelector((state) => state.user.data);
@@ -40,13 +38,17 @@ function Login() {
 
   useEffect(() => {
     const checkLoggedInStatus = () => {
-      const status = cookiesService.getCookies("user");
+      // const status = cookiesService.getCookies("user");
+      const status = localStorage.getItem("user");
+
       if (status === undefined && isLoggedIn)
         dispatch(updateLoggedInStatus({ isLoggedIn: false }));
     };
     checkLoggedInStatus();
-    const prefix =
-      cookiesService.getCookies("access") === "ADMIN" ? "/admin" : "";
+    const prefix = localStorage.getItem("access") === "ADMIN" ? "/admin" : "";
+
+    // const prefix =
+    //   cookiesService.getCookies("access") === "ADMIN" ? "/admin" : "";
     if (isLoggedIn) {
       if (location.state?.referrer.pathname) {
         history.push(location.state.referrer.pathname);

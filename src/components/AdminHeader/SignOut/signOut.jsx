@@ -1,18 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { cookiesService } from "../../../helpers/cookiesService";
-import {
-  clearData
-} from "../../../utilities/slices/userSlice";
+import { clearData } from "../../../utilities/slices/userSlice";
 
 function SignOut(props) {
   const dispatch = useDispatch();
 
   const logout = () => {
-    cookiesService.removeCookies("user");
-    cookiesService.removeCookies("access");
-    window.location.href = "/home";
-    // dispatch(updateLoggedInStatus({ isLoggedIn: false }));
+    // cookiesService.removeCookies("user");
+    // cookiesService.removeCookies("access");
+    const prefix = localStorage.getItem("access") === "ADMIN" ? "/admin" : "";
+    localStorage.removeItem("user");
+    localStorage.removeItem("access");
+    localStorage.removeItem("fullname");
+    window.location.href = prefix === "" ? "/home" : "/admin/login";
+
     dispatch(clearData());
   };
   return (

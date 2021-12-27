@@ -8,7 +8,6 @@ import "./_results.scss";
 
 function Results(props) {
   const { data } = props;
-  //console.log(data);
   const { results, otherResults, searchTerm } = data;
 
   const arrangeResults = (results, otherResults, searchTerm) => {

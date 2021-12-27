@@ -18,13 +18,11 @@ const shipper = createSlice({
   },
   extraReducers: {
     [getShippers.pending]: (state) => {
-      //console.log('pending fetching list')
     },
     [getShippers.fulfilled]: (state, action) => {
       state.shippers = action.payload;
     },
     [getShippers.rejected]: (state) => {
-      //console.log('false fetching list')
     },
   },
 });

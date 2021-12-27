@@ -46,13 +46,11 @@ const category = createSlice({
   },
   extraReducers: {
     [getCategories.pending]: (state) => {
-      //console.log('pending fetching list')
     },
     [getCategories.fulfilled]: (state, action) => {
       state.data = action.payload;
     },
     [getCategories.rejected]: (state) => {
-      //console.log('false fetching list')
     },
   },
 });

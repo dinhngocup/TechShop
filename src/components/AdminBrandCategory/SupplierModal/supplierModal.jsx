@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 import { FormGroup, Input, Label } from "reactstrap";
 import BrandApi from "../../../api/brandApi";
 import CategoryApi from "../../../api/categoryApi";
-import image from "../../../assets/images/headphone1.jpeg";
 import { getBrands } from "../../../utilities/slices/brandSlice";
 import { getCategories } from "../../../utilities/slices/categorySlice";
 import {
   showFailedMessage,
-  showSuccessMessage,
+  showSuccessMessage
 } from "../../../utilities/slices/notificationSlice";
 import ProductImage from "../../AdminProduct/ProductImage/productImage";
 import "./_supplierModal.scss";

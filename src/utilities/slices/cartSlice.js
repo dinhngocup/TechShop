@@ -82,7 +82,6 @@ const cart = createSlice({
       )
         state.products = [...cookiesService.getCookies("cart")];
 
-      //console.log(state.products);
       state.products.find((product) => {
         if (product.id === action.payload.id) product.quantity++;
         return "";

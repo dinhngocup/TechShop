@@ -56,7 +56,6 @@ function CheckOut(props) {
       setLoading(true);
       return OrderApi.placeOrder(data)
         .then((res) => {
-          //console.log(res);
           setLoading(false);
           history.push("/your-orders/placed-order");
           dispatch(getAllUserOrders());

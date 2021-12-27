@@ -1,8 +1,6 @@
-import { cookiesService } from "../helpers/cookiesService";
+import { classifyOrder } from "../helpers/classifyOrder";
 import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
-import axiosClientAuthen from "./axiosClientAuthen";
-import { classifyOrder } from "../helpers/classifyOrder";
 
 const CustomerApi = {
   getAllCustomers: () => {

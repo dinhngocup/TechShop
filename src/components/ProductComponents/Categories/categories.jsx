@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import "./_categories.scss";
 
 function Categories() {
-  // console.log('product item')
   const stateCategories = useSelector((state) => state.category);
 
   const renderCategoryTable = (categories) => {

@@ -3,7 +3,6 @@ import ReviewList from "./ReviewList/reviewList";
 import "./_reviewTab.scss";
 
 function ReviewTab(props) {
-  //console.log("review");
   const { rate, id, totalReviews, firstReviews } = props;
   return (
     <div className="review-tab">

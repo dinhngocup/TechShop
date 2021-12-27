@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import image from "../../../assets/images/razer.png";
-import "./_brandGroup.scss";
 import { getBrands } from '../../../utilities/slices/brandSlice';
+import "./_brandGroup.scss";
 
 function BrandGroup() {
   const stateBrands = useSelector((state) => state.brand.data);

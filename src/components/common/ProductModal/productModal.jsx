@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./_productModal.scss";
 import parseImages from "../../../helpers/parseImages";
 import handlePrice from "../../../helpers/formatPrice";
+import noimage from "../../../assets/images/noimage.png";
 
 function ProductModal(props) {
   const { product } = props;
@@ -33,7 +34,10 @@ function ProductModal(props) {
           </div>
           <div className="modal-body" id="modalMenu">
             <div className="product-modal-photo">
-              <img src={images[0]} alt="apple watch" />
+              <img
+                src={images.length > 0 ? images[0] : noimage}
+                alt="apple watch"
+              />
             </div>
             <div className="product-modal-info">
               <div className="title info-deco">{product.name}</div>

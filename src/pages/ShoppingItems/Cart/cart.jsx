@@ -11,7 +11,6 @@ import Coupon from "./Coupon/coupon";
 import { useHistory } from "react-router-dom";
 
 function Cart() {
-  //console.log("cart");
   const productsInCart = useSelector((state) => state.cart.products);
 
   const history = useHistory();

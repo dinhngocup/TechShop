@@ -9,7 +9,6 @@ export async function refreshToken(refreshTokenRequest) {
   return axiosClient
     .post(url, data)
     .then((response) => {
-      //console.log("res", response);
       cookiesService.updateAccessToken(response);
     })
     .catch((error) => {

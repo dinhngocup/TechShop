@@ -2,7 +2,6 @@ import GeneralOrder from "../../../../pages/ShoppingItems/common/GeneralOrder/ge
 import React from "react";
 
 function Order() {
-  //console.log('order')
   return (
     <div>
       <div className='header'>

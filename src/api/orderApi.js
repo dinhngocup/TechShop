@@ -45,7 +45,6 @@ const OrderApi = {
       .catch((error) => Promise.reject(error));
   },
   getAllAdminOrders: async ({ month, year }) => {
-    // console.log("get all admin order");
     const url = `${UrlConstant.GET_ALL_ADMIN_ORDERS}/${month}/${year}`;
     return axiosClientAuthen.get(url);
   },

@@ -56,14 +56,12 @@ function ProductDetail(props) {
           })
         );
         setProduct(response);
-        console.log(response);
         fetchRelatedBrandProduct();
         fetchRelatedCategoryProduct();
         fetchFirstReviews();
         setLoading(false);
       })
-      .catch((err) => {
-        // console.log(err)
+      .catch(() => {
         dispatch(
           addNewBreadcrumb({
             name: "No product",

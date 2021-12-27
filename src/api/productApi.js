@@ -18,12 +18,10 @@ const ProductApi = {
   },
   getTrendingProducts: async () => {
     const url = `${UrlConstant.GET_TRENDING_PRODUCTS}`;
-    //console.log("call api get trending product");
     return axiosClient.get(url);
   },
   getTopPurchasedProducts: async (filterTopProduct) => {
     const url = `${UrlConstant.GET_TOP_PURCHASED_PRODUCTS}/${filterTopProduct}`;
-    //console.log("call api get top purchased product");
     return axiosClient.get(url);
   },
 
@@ -163,12 +161,11 @@ const ProductApi = {
   addProduct: async (product) => {
     const url = `${UrlConstant.ADD_NEW_PRODUCT}`;
     const body = JSON.stringify(product);
-console.log(body)
     return axiosClientAuthen
       .post(url, body)
 
       .then((response) => {
-        return response;
+        return Promise.resolve(response);
       })
       .catch((error) => Promise.reject(error));
   },

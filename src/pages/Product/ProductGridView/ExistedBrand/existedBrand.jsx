@@ -5,7 +5,6 @@ import { getBrands } from "../../../../utilities/slices/brandSlice";
 import "./_existedBrand.scss";
 
 function ExistedBrand() {
-  //console.log('brands')
   const stateBrands = useSelector((state) => state.brand.data);
   const stateProducts = useSelector((state) => state.product.products);
 
@@ -24,15 +23,11 @@ function ExistedBrand() {
 
   const renderListBrand = () => {
     let res = "";
-    // console.log(stateProducts.filterProducts);
     res = stateBrands
       .filter((brand) => stateProducts.filterProducts[brand.name])
       .map((brand, index) => {
-        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
         const brandName = brand.name;
-        // console.log(brandName)
-        // console.log(stateProducts.filterProducts)
-        // console.log(stateProducts.filterProducts[brandName])
+
         return (
           <NavLink
             activeClassName="active"

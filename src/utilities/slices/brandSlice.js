@@ -41,13 +41,11 @@ const brand = createSlice({
   },
   extraReducers: {
     [getBrands.pending]: (state) => {
-      //console.log('pending fetching list')
     },
     [getBrands.fulfilled]: (state, action) => {
       state.data = action.payload;
     },
     [getBrands.rejected]: (state) => {
-      //console.log('false fetching list')
     },
   },
 });

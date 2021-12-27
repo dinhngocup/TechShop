@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import ProductInfo from "../ProductInfo/productInfo";
 import "./_singleProInfo.scss";
+import noimage from "../../../../assets/images/noimage.png";
 
 SingleProInfo.propTypes = {
   product: PropTypes.object,
@@ -16,14 +17,15 @@ SingleProInfo.defaultProps = {
 function SingleProInfo(props) {
   const { product } = props;
   const images = parseImages(product.images);
-  //console.log(images)
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const [activeImage, setActiveImage] = useState(
+    images.length > 0 ? images[0] : noimage
+  );
 
   const displayImage = (src) => {
     setActiveImage(src);
   };
   const renderImages = (images) => {
-    return images.length !== 0
+    return images.length > 0
       ? images.map((image, index) => (
           <Col
             key={index}
@@ -46,7 +48,7 @@ function SingleProInfo(props) {
       : "";
   };
   useEffect(() => {
-    setActiveImage(images[0]);
+    setActiveImage(images.length > 0 ? images[0] : noimage);
   }, [product.images]);
   return (
     <div className="single-pro-info">

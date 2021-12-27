@@ -29,7 +29,6 @@ export const getAllProducts = createAsyncThunk(
   async (params) => {
     const listProduct = await ProductApi.getAllProducts(params);
     const filterProductsResult = filterProducts(listProduct);
-    
     return {
       allProducts: listProduct,
       filterProducts: filterProductsResult,
@@ -83,20 +82,18 @@ const product = createSlice({
       }
     },
     addProduct: (state, action) => {
-      
+      const newProduct = action.payload;
+      state.products.allProducts.push(newProduct);
+      state.products.filterProducts[newProduct.brandName].push(newProduct);
+      state.products.filterProducts[newProduct.categorySlug].push(newProduct);
     },
   },
   extraReducers: {
-    [getAllProducts.pending]: (state) => {
-      //console.log('pending fetching list')
-    },
+    [getAllProducts.pending]: (state) => {},
     [getAllProducts.fulfilled]: (state, action) => {
-      //console.log('fetching successfully')
       state.products = action.payload;
     },
-    [getAllProducts.rejected]: (state) => {
-      //console.log('false fetching list')
-    },
+    [getAllProducts.rejected]: (state) => {},
   },
 });
 export const { removeProduct, updateProduct, addProduct } = product.actions;

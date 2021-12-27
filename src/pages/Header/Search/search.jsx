@@ -8,7 +8,6 @@ function Search() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const typingTimeoutRef = useRef(null);
-  //console.log(typingTimeoutRef.current)
 
   const handleChangeSearchTerm = (e) => {
     const value = e.target.value;

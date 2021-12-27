@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import handlePrice from "../../../helpers/formatPrice";
 import parseImages from "../../../helpers/parseImages";
 import "./_orderProduct.scss";
-
+import noimage from "../../../assets/images/noimage.png";
 
 function OrderProduct(props) {
   const { product } = props;
@@ -16,7 +16,11 @@ function OrderProduct(props) {
       className="product-info-container"
     >
       <Media className="py-3 product-info">
-        <img alt="" className="mr-3" src={images[0]} />
+        <img
+          alt=""
+          className="mr-3"
+          src={images.length > 0 ? images[0] : noimage}
+        />
         <Media.Body className="product-body">
           <h5>{product.name}</h5>
 

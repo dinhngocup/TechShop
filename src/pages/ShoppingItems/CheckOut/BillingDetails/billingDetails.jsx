@@ -10,7 +10,6 @@ function BillingDetails(props) {
   const [content, setContent] = useState(" Add new one");
   const [confirmAddress, setConfirmAddress] = useState(true);
   const [defaultInfo, setDefaultInfo] = useState({});
-  //console.log("info");
 
   const updateInfo = (additionalInfo) => {
     setConfirmAddress(false);

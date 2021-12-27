@@ -11,6 +11,7 @@ import formatFullyDate from "../../../helpers/formatFullyDateTime";
 import { showFailedMessage } from "../../../utilities/slices/notificationSlice";
 import { getAllUserOrders } from "../../../utilities/slices/userSlice";
 import { useDispatch } from "react-redux";
+import noimage from "../../../assets/images/noimage.png";
 
 function ReviewModal(props) {
   const { order, orderId } = props;
@@ -126,7 +127,11 @@ function ReviewModal(props) {
     };
     return (
       <Media className="p-3 product-review">
-        <img alt="" className="mr-3" src={images[0]} />
+        <img
+          alt=""
+          className="mr-3"
+          src={images.length > 0 ? images[0] : noimage}
+        />
         <Media.Body className="d-flex flex-column justify-content-between">
           <div className="d-flex justify-content-between">
             <div>

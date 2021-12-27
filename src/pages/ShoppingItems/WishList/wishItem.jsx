@@ -6,6 +6,7 @@ import ProductApi from "../../../api/productApi";
 import parseImages from "../../../helpers/parseImages";
 import { addToCart } from "../../../utilities/slices/cartSlice";
 import { editWishList } from "../../../utilities/slices/wishListSlice";
+import noimage from "../../../assets/images/noimage.png";
 
 function WishItem(props) {
   const { productInWishList } = props;
@@ -18,7 +19,6 @@ function WishItem(props) {
     const fetchDetailedProduct = async (id) => {
       let response = await ProductApi.getDetailedProduct(id);
       setProduct(response);
-      console.log(response);
     };
     fetchDetailedProduct(productInWishList);
   }, [productInWishList]);
@@ -38,7 +38,11 @@ function WishItem(props) {
   return (
     <tr className="table-item">
       <td className="product">
-        <img src={images[0]} alt="" className="" />
+        <img
+          src={images.length > 0 ? images[0] : noimage}
+          alt=""
+          className=""
+        />
         <div className="short-info">
           <Link
             className="name"

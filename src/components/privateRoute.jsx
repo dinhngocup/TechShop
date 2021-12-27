@@ -1,4 +1,3 @@
-import { cookiesService } from "../helpers/cookiesService";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
@@ -13,8 +12,10 @@ function PrivateRoute({ children, ...restData }) {
   const { isLoggedIn } = useSelector((state) => state.user.data);
   const dispatch = useDispatch();
 
-  const status = cookiesService.getCookies("user");
-  const role = cookiesService.getCookies("access")
+  // const status = cookiesService.getCookies("user");
+  // const role = cookiesService.getCookies("access")
+  const status = localStorage.getItem("user");
+  const role = localStorage.getItem("access");
 
   const checkLoggedInStatus = (status, isLoggedIn) => {
     if (status === undefined && isLoggedIn)
@@ -53,9 +54,7 @@ function PrivateRoute({ children, ...restData }) {
       />
     );
   };
-  return (
-    <Route {...restData}>{redirectRoute(children)}</Route>
-  );
+  return <Route {...restData}>{redirectRoute(children)}</Route>;
 }
 
 PrivateRoute.propTypes = {};

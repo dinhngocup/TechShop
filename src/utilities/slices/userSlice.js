@@ -6,10 +6,9 @@
  */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import UserApi from "../../api/userApi";
-import { cookiesService } from "../../helpers/cookiesService";
 import OrderApi from "../../api/orderApi";
-import { OrderStatus } from "../../pages/Order/type";
+import UserApi from "../../api/userApi";
+import { classifyOrder } from "../../helpers/classifyOrder";
 
 // thunk action to login and get token
 export const login = createAsyncThunk("user/login", async (params) => {
@@ -17,38 +16,13 @@ export const login = createAsyncThunk("user/login", async (params) => {
   return token;
 });
 
-const classifyOrder = (listOrders) => {
-  let filterResults = {
-    "placed-order": [],
-    handling: [],
-    deliveried: [],
-    shipped: [],
-    cancelled: [],
-  };
-  listOrders.forEach((order) => {
-    switch (order.status) {
-      case OrderStatus.PLACED_ORDER:
-        filterResults["placed-order"].push(order);
-        break;
-      case OrderStatus.IN_HANDLING:
-        filterResults["handling"].push(order);
-        break;
-      case OrderStatus.DELIVERIED:
-        filterResults["deliveried"].push(order);
-        break;
-      case OrderStatus.SHIPPED:
-        filterResults["shipped"].push(order);
-        break;
-      case OrderStatus.CANCELLED:
-        filterResults["cancelled"].push(order);
-        break;
-      default:
-        break;
-    }
-  });
-  console.log(JSON.stringify(filterResults));
-  return filterResults;
-};
+export const adminLogin = createAsyncThunk(
+  "user/adminLogin",
+  async (params) => {
+    const token = await UserApi.adminLogin(params);
+    return token;
+  }
+);
 
 // thunk action to get list order
 export const getAllUserOrders = createAsyncThunk(
@@ -61,7 +35,8 @@ export const getAllUserOrders = createAsyncThunk(
 );
 
 export const initialStateUseLoggedIn = () => {
-  let result = cookiesService.getCookies("user");
+  // let result = cookiesService.getCookies("user");
+  let result = localStorage.getItem("user");
   return result === undefined || result === null ? false : true;
 };
 
@@ -84,9 +59,7 @@ const user = createSlice({
     },
   },
   extraReducers: {
-    [login.pending]: (state) => {
-      //console.log("pending get token");
-    },
+    [login.pending]: (state) => {},
     [login.fulfilled]: (state, action) => {
       state.data.isLoggedIn = true;
       state.data.error = "";
@@ -94,9 +67,15 @@ const user = createSlice({
     [login.rejected]: (state) => {
       state.data.error = "Username or password is incorrect";
     },
-    [getAllUserOrders.pending]: (state) => {
-      //console.log("pending get token");
+    [adminLogin.pending]: (state) => {},
+    [adminLogin.fulfilled]: (state, action) => {
+      state.data.isLoggedIn = true;
+      state.data.error = "";
     },
+    [adminLogin.rejected]: (state) => {
+      state.data.error = "Username or password is incorrect";
+    },
+    [getAllUserOrders.pending]: (state) => {},
     [getAllUserOrders.fulfilled]: (state, action) => {
       state.data.listOrders = action.payload;
     },

@@ -21,7 +21,6 @@ function OrderSummary(props) {
       })
     );
   };
-  console.log(order.lastConfirm)
 
   return (
     <tr className="table-item" onClick={handleRowClick}>

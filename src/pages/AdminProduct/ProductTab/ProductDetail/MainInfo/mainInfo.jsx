@@ -149,6 +149,7 @@ function MainInfo(props) {
           />
         </Col>
       </Row>
+      <div>Long Description</div>
     </div>
   );
 }

@@ -32,7 +32,6 @@ axiosClientAuthen.interceptors.response.use(
   (error) => {
     return Promise.reject(error);
     // return new Promise(async (resolve, reject) => {
-    //   console.log(error.response)
     //   // if (error.response && error.response.data.message === "Token expired") {
     //   //   refreshTokenRequest = refreshTokenRequest
     //   //     ? refreshTokenRequest

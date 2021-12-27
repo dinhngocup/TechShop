@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Col, FormGroup, Input, Label, Row, Spinner } from "reactstrap";
-import UserApi from "../../../api/userApi";
+import CustomerApi from "../../../api/customerApi";
 import image from "../../../assets/images/headphone1.jpeg";
+import formatFullyDate from "../../../helpers/formatFullyDateTime";
 import handlePrice from "../../../helpers/formatPrice";
 import { CustomerOrderStatus } from "../../../pages/Order/type";
 import OrderRow from "../OrderRow/orderRow";
 import "./_customerInfoModal.scss";
-import CustomerApi from "../../../api/customerApi";
-import formatFullyDate from "../../../helpers/formatFullyDateTime";
 
 function CustomerInfoModal(props) {
   const { customerID } = props;

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { Button, Form, Spinner } from "reactstrap";
 import ProductApi from "../../../../api/productApi";
+import LongDescription from "./LongDescription/longDescription";
+import MainInfo from "./MainInfo/mainInfo";
+import ProductSpecification from "./Specification/productSpecification";
+import { useDispatch } from "react-redux";
 import {
   showFailedMessage,
   showSuccessMessage,
 } from "../../../../utilities/slices/notificationSlice";
-import { updateProduct } from "../../../../utilities/slices/productSlice";
-import MainInfo from "./MainInfo/mainInfo";
-import ProductSpecification from "./Specification/productSpecification";
+import { useHistory } from "react-router-dom";
+import {
+  updateProduct,
+  addProduct,
+} from "../../../../utilities/slices/productSlice";
 
 function ProductDetail(props) {
   const { id } = props;
@@ -17,8 +21,9 @@ function ProductDetail(props) {
   const [productDetail, setProductDetail] = useState();
   const [loading, setLoading] = useState(false);
 
-  const history = useHistory();
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -40,6 +45,12 @@ function ProductDetail(props) {
 
     const newSpecifications = [];
     const existedAttributes = [];
+    const longDescription = [];
+    let description = {
+      header: "",
+      content: "",
+    };
+    let index = 0;
     for (let [key, value] of formData.entries()) {
       if (key.startsWith("NEW_SPECS_")) {
         const newAttribute = key.replace("NEW_SPECS_", "").split("_");
@@ -58,15 +69,29 @@ function ProductDetail(props) {
           value,
           dataType: existedSpecsValue[1],
         });
+      } else if (key === "header" || key === "content") {
+        description[key] = value;
+        if (index === 1) {
+          if (description.header !== "" || description.content !== "") {
+            longDescription.push(description);
+          }
+          description = {
+            header: "",
+            content: "",
+          };
+          index = 0;
+        } else {
+          index++;
+        }
       } else {
         mainInfo = { ...mainInfo, [key]: value };
       }
     }
-
     const body = {
       ...mainInfo,
       newSpecifications,
       existedAttributes,
+      longDescription: JSON.stringify(longDescription),
     };
 
     if (id) {
@@ -74,11 +99,11 @@ function ProductDetail(props) {
         return await ProductApi.getAdminDetailedProduct(id);
       };
       ProductApi.updateProductInfo({ ...body, id })
-        .then(() => {
+        .then((res) => {
+          dispatch(showSuccessMessage());
+          dispatch(updateProduct(res));
           fetchProductDetail().then((res) => {
             setProductDetail(res);
-            dispatch(showSuccessMessage());
-            dispatch(updateProduct(res));
           });
         })
         .catch(() => {
@@ -86,11 +111,15 @@ function ProductDetail(props) {
         });
     } else {
       ProductApi.addProduct(body)
-        .then(() => {
+        .then((res) => {
           dispatch(showSuccessMessage());
+          dispatch(addProduct(res));
+
           history.push("/admin/product");
         })
-        .catch(() => dispatch(showFailedMessage()));
+        .catch(() => {
+          dispatch(showFailedMessage());
+        });
     }
   };
 
@@ -103,6 +132,7 @@ function ProductDetail(props) {
       ) : !id || (id && productDetail) ? (
         <Form onSubmit={handleSubmit} className="px-3 pb-3">
           <MainInfo product={productDetail} />
+          <LongDescription product={productDetail} />
           <ProductSpecification product={id ? productDetail : null} />
           <Button type="submit" className="w-100 btn-submit">
             {id ? "Update" : "Add"}

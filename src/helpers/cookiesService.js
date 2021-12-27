@@ -41,7 +41,6 @@ function updateAccessToken({ access_token }) {
   let newCookies = cookies.get("user");
   newCookies["access_token"] = access_token;
   setCookies("user", newCookies, 2);
-  //console.log(cookies.get("user")["access_token"])
 }
 function removeCookies(name) {
   return cookies.remove(name);

@@ -16,7 +16,6 @@ function GeneralOrder() {
           accumulator + currentValue.price * currentValue.quantity,
         0
       );
-      //console.log(price)
       setTotalPrice(price);
     }
   }, [productsInCart]);

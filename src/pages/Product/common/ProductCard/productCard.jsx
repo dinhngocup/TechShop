@@ -9,6 +9,7 @@ import parseImages from "../../../../helpers/parseImages";
 import { addToCart } from "../../../../utilities/slices/cartSlice";
 import { getProductModal } from "../../../../utilities/slices/productModalSlice";
 import "./_productCard.scss";
+import noimage from "../../../../assets/images/noimage.png";
 
 function ProductCard(props) {
   const { product } = props;
@@ -47,7 +48,7 @@ function ProductCard(props) {
       alert();
     }
   };
-  const images = product.images && parseImages(product.images);
+  const images = parseImages(product.images);
   return (
     <div className="product-card">
       <Link
@@ -55,7 +56,14 @@ function ProductCard(props) {
         // onClick={() => dispatch(updateProductTemp(product.id))}
       >
         <div className="product-photo">
-          {images[0] !== "" ? <img src={images[0]} alt="Apple watch" /> : ""}
+          {images[0] !== "" ? (
+            <img
+              src={images.length > 0 ? images[0] : noimage}
+              alt="Apple watch"
+            />
+          ) : (
+            ""
+          )}
           <WishIcon id={product.id} />
           <div
             className="product-action"

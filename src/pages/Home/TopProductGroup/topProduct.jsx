@@ -5,6 +5,7 @@ import parseImages from "../../../helpers/parseImages";
 import PropTypes from "prop-types";
 import React from "react";
 import "./_topProduct.scss";
+import noimage from "../../../assets/images/noimage.png";
 
 function TopProduct(props) {
   const { product } = props;
@@ -17,7 +18,7 @@ function TopProduct(props) {
   return (
     <div className="d-flex justify-content-center top-product">
       <div className="product-info">
-        <img src={images[0]} alt={product.name} />
+        <img src={images.length > 0 ? images[0] : noimage} alt={product.name} />
         <div className="button">
           <BtnMore />
           <BtnAdd product={productData} />

@@ -5,7 +5,8 @@ import parseImages from "../../../helpers/parseImages";
 import { PropTypes } from "prop-types";
 import React from "react";
 import "./_proposedProduct.scss";
-import handlePrice from '../../../helpers/formatPrice';
+import handlePrice from "../../../helpers/formatPrice";
+import noimage from "../../../assets/images/noimage.png";
 
 ProposedProduct.propTypes = {
   product: PropTypes.object,
@@ -25,7 +26,7 @@ function ProposedProduct(props) {
   return (
     <div className="proposed-product row">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-        <img src={images[0]} alt="Apple Watch" />
+        <img src={images.length > 0 ? images[0] : noimage} alt="Apple Watch" />
       </div>
       <div className="col-sm-12 proposed-product-content col-xs-12 col-md-12 col-lg-4">
         <h2>{product.name}</h2>

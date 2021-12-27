@@ -1,8 +1,10 @@
-import { cookiesService } from "../../helpers/cookiesService";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { login, updateLoggedInStatus } from "../../utilities/slices/userSlice";
+import {
+  adminLogin,
+  updateLoggedInStatus
+} from "../../utilities/slices/userSlice";
 import "./_adminLogin.scss";
 
 function AdminLogin(props) {
@@ -22,24 +24,28 @@ function AdminLogin(props) {
     e.preventDefault();
 
     async function submitToLogin() {
-      await dispatch(login(info));
+      await dispatch(adminLogin(info));
     }
     submitToLogin();
   };
 
   useEffect(() => {
     const checkLoggedInStatus = () => {
-      const status = cookiesService.getCookies("user");
+      // const status = cookiesService.getCookies("user");
+      const status = localStorage.getItem("user");
       if (status === undefined && isLoggedIn)
         dispatch(updateLoggedInStatus({ isLoggedIn: false }));
     };
     checkLoggedInStatus();
-    const prefix =
-      cookiesService.getCookies("access") === "ADMIN" ? "/admin" : "";
+    // const prefix =
+    //   cookiesService.getCookies("access") === "ADMIN" ? "/admin" : "";
+    const prefix = localStorage.getItem("access") === "ADMIN" ? "/admin" : "";
     if (isLoggedIn) {
       if (location.state?.referrer.pathname) {
         history.push(location.state.referrer.pathname);
-      } else history.push(`${prefix}/home`);
+      } else {
+        history.push(`${prefix}/home`);
+      }
     }
   }, [isLoggedIn, history, location, dispatch]);
 

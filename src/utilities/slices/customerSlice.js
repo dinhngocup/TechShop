@@ -5,7 +5,6 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import CustomerApi from "../../api/customerApi";
-import UserApi from "../../api/userApi";
 
 // thunk action to get list cutomer
 export const getCustomers = createAsyncThunk(
@@ -23,13 +22,11 @@ const customer = createSlice({
   },
   extraReducers: {
     [getCustomers.pending]: (state) => {
-      //console.log('pending fetching list')
     },
     [getCustomers.fulfilled]: (state, action) => {
       state.customers = action.payload;
     },
     [getCustomers.rejected]: (state) => {
-      //console.log('false fetching list')
     },
   },
 });

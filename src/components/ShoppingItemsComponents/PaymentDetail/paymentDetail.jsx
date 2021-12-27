@@ -4,7 +4,6 @@ import handlePrice from "../../../helpers/formatPrice";
 
 function PaymentDetail(props) {
   const { product } = props;
-  //console.log(product.id)
   return (
     <tr className="payment-detail">
       <td>{product.name}</td>

@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Col, Row } from "reactstrap";
 import "./App.css";
 import GlobalStyle from "./assets/styles/GlobalStyle";
 import SignOut from "./components/AdminHeader/SignOut/signOut";
@@ -10,19 +9,19 @@ import ScrollToTop from "./components/main/ScrollToTop/scrollToTop";
 import ScrollToTopRouter from "./components/main/ScrollToTop/scrollToTopRouter";
 import NotFoundPage from "./components/notFoundPage";
 import PrivateRoute from "./components/privateRoute";
+import AdminCustomer from "./pages/AdminCustomer/main";
 import AdminHome from "./pages/AdminHome/main";
 import AdminLogin from "./pages/AdminLogin/main";
+import AdminOrder from "./pages/AdminOrder/main";
+import AdminProduct from "./pages/AdminProduct/main";
 import Header from "./pages/Header/header";
 import Home from "./pages/Home/main";
 import Login from "./pages/Login/login";
 import OrderPage from "./pages/Order/main";
 import Product from "./pages/Product/main";
 import ShoppingCart from "./pages/ShoppingItems/main";
-import "./_app.scss";
-import AdminOrder from "./pages/AdminOrder/main";
-import AdminProduct from "./pages/AdminProduct/main";
 import SupportedSupplier from "./pages/SupportedSupplier/main";
-import AdminCustomer from "./pages/AdminCustomer/main";
+import "./_app.scss";
 
 function App() {
   console.log("app");
@@ -44,32 +43,32 @@ function App() {
                 "/admin/customer",
               ]}
             >
-              <div className="container-fluid pt-1">
-                <Row style={{ height: "100vh", background: "white" }}>
-                  <Col xs="3" className="p-0">
-                    <AdminNav />
-                  </Col>
-                  <Col xs="9" className="pl-0 pr-5">
-                    <Switch>
-                      {/*TODO: update to private route*/}
-                      <Route path="/admin/home">
-                        <AdminHome />
-                      </Route>
-                      <Route path="/admin/order/:orderStatus">
-                        <AdminOrder />
-                      </Route>
-                      <Route path="/admin/product">
-                        <AdminProduct />
-                      </Route>
-                      <Route path="/admin/supplier">
-                        <SupportedSupplier />
-                      </Route>
-                      <Route path="/admin/customer">
-                        <AdminCustomer />
-                      </Route>
-                    </Switch>
-                  </Col>
-                </Row>
+              <div
+                className="pt-1 px-0 d-flex"
+                style={{ height: "100vh", backgroundColor: "white" }}
+              >
+                <div style={{ width: "20%" }}>
+                  <AdminNav />
+                </div>
+                <div style={{ width: "80%" }}>
+                  <Switch>
+                    <Route path="/admin/home">
+                      <AdminHome />
+                    </Route>
+                    <Route path="/admin/order/:orderStatus">
+                      <AdminOrder />
+                    </Route>
+                    <Route path="/admin/product">
+                      <AdminProduct />
+                    </Route>
+                    <Route path="/admin/supplier">
+                      <SupportedSupplier />
+                    </Route>
+                    <Route path="/admin/customer">
+                      <AdminCustomer />
+                    </Route>
+                  </Switch>
+                </div>
               </div>
             </Route>
 

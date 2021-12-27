@@ -1,4 +1,3 @@
-import { cookiesService } from "../helpers/cookiesService";
 import * as UrlConstant from "../utilities/UrlConstant";
 import axiosClient from "./axiosClient";
 import axiosClientAuthen from "./axiosClientAuthen";
@@ -16,12 +15,34 @@ const UserApi = {
       .post(url, data)
 
       .then((response) => {
-        cookiesService.setCookies("access", response.role, 24);
-        cookiesService.setCookies("user", response.access_token, 24);
+        localStorage.setItem("access", response.role);
+        localStorage.setItem("user", response.access_token);
+        localStorage.setItem("fullname", response.fullname);
+        // cookiesService.setCookies("access", response.role, 24);
+        // cookiesService.setCookies("user", response.access_token, 24);
         return response;
       })
       .catch((error) => {
-        //console.log(error);
+        return Promise.reject(error);
+      });
+  },
+  adminLogin: async (params) => {
+    let { email, pswd } = params;
+    const url = `${UrlConstant.ADMIN_LOGIN}`;
+    const data = JSON.stringify({ email, pswd });
+
+    return axiosClient
+      .post(url, data)
+
+      .then((response) => {
+        localStorage.setItem("access", response.role);
+        localStorage.setItem("user", response.access_token);
+        localStorage.setItem("fullname", response.fullname);
+        // cookiesService.setCookies("access", response.role, 24);
+        // cookiesService.setCookies("user", response.access_token, 24);
+        return response;
+      })
+      .catch((error) => {
         return Promise.reject(error);
       });
   },
@@ -33,7 +54,6 @@ const UserApi = {
         return response;
       })
       .catch((error) => {
-        //console.log(error.response);
         return Promise.reject(error);
       });
   },
@@ -54,6 +74,5 @@ const UserApi = {
         }
       });
   },
- 
 };
 export default UserApi;

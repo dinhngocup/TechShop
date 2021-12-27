@@ -6,13 +6,13 @@ import CartAction from "../../../../components/ShoppingItemsComponents/CartActio
 import handlePrice from "../../../../helpers/formatPrice";
 import parseImages from "../../../../helpers/parseImages";
 import { removeFromCart } from "../../../../utilities/slices/cartSlice";
+import noimage from "../../../../assets/images/noimage.png";
 
 function CartItem(props) {
   const { productInCart } = props;
 
   const [product, setProduct] = useState({});
   const images = parseImages(product.images);
-  //console.log("item", productInCart.id);
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,11 @@ function CartItem(props) {
   return (
     <tr className="table-item">
       <td className="product">
-        <img src={images[0]} alt="" className="" />
+        <img
+          src={images.length > 0 ? images[0] : noimage}
+          alt=""
+          className=""
+        />
         <div className="short-info">
           <Link
             className="name"
